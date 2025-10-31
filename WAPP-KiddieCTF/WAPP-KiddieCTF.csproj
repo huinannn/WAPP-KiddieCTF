@@ -100,6 +100,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin\Admin_Dash.aspx" />
+    <Content Include="Admin\Admin_AccManage.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -184,6 +186,20 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Admin_Dash.aspx.cs">
+      <DependentUpon>Admin_Dash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin_Dash.aspx.designer.cs">
+      <DependentUpon>Admin_Dash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin_AccManage.aspx.cs">
+      <DependentUpon>Admin_AccManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin_AccManage.aspx.designer.cs">
+      <DependentUpon>Admin_AccManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>

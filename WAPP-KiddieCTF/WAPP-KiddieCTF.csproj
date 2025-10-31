@@ -102,6 +102,10 @@
     <Content Include="About.aspx" />
     <Content Include="Admin\Admin_Dash.aspx" />
     <Content Include="Admin\Admin_AccManage.aspx" />
+    <Content Include="App_Data\KiddieCTF.mdf" />
+    <Content Include="App_Data\KiddieCTF_log.ldf">
+      <DependentUpon>KiddieCTF.mdf</DependentUpon>
+    </Content>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -254,9 +258,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />

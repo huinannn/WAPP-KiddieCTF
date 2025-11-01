@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin_AccManage.aspx.cs" Inherits="WAPP_KiddieCTF.Admin.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="WAPP_KiddieCTF.Admin.Dashboard" %>
 
 <!DOCTYPE html>
 

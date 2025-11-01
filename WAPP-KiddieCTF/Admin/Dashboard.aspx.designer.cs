@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Admin
 {
 
 
-    public partial class WebForm1
+    public partial class Dashboard
     {
 
         /// <summary>

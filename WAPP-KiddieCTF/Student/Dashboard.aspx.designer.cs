@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_KiddieCTF.Admin
+namespace WAPP_KiddieCTF.Student
 {
 
 
-    public partial class WebForm1
+    public partial class Dashboard
     {
 
         /// <summary>

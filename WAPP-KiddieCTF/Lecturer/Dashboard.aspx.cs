@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WAPP_KiddieCTF.Admin
+namespace WAPP_KiddieCTF.Lecturer
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Dashboard : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

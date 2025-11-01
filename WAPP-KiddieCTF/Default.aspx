@@ -1,44 +1,113 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WAPP_KiddieCTF._Default" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WAPP_KiddieCTF._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="Default.css" />
 
-    <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
-
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
+    <div class="login">
+        <div class="left-panel">
+            <img src="Images/Login.png" alt="Background" class="background-img" />
         </div>
-    </main>
 
+        <div class="right-panel">
+            <img src="Images/Logo.png" alt="Logo" class="logo" />
+            <h1 class="welcome-text">WELCOME BACK!</h1>
+
+            <div class="input-group">
+                <label class="label">ID:</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-user icon"></i>
+                    <asp:TextBox ID="txtUserID" runat="server" placeholder="Enter your ID" CssClass="input-field"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="label">Password:</label>
+                <div class="input-box" style="position: relative;">
+                    <i class="fa-solid fa-key icon"></i>
+                    <asp:TextBox ID="txtPassword" runat="server" 
+                                 TextMode="Password" 
+                                 placeholder="Enter your password" 
+                                 CssClass="input-field"></asp:TextBox>
+
+                    <i class="fa-solid fa-eye-slash toggle-eye" 
+                       id="togglePassword" 
+                       onclick="togglePasswordVisibility()"></i>
+                </div>
+            </div>
+
+
+            <div class="input-group">
+                <label class="label">Role:</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-users icon"></i>
+                    <asp:DropDownList ID="ddlRole" runat="server" CssClass="input-field" AppendDataBoundItems="true">
+                        <asp:ListItem Text="Select your role" Value="" disabled="true" selected="true" hidden="true" />
+                        <asp:ListItem Text="Admin" Value="Admin" />
+                        <asp:ListItem Text="Lecturer" Value="Lecturer" />
+                        <asp:ListItem Text="Student" Value="Student" />
+                    </asp:DropDownList>
+                </div>
+            </div>
+
+            <asp:Button ID="btnLogin" runat="server"
+                Text="LOGIN" CssClass="login-btn"
+                OnClientClick="return validateAndFocus();"
+                OnClick="btnLogin_Click" />
+
+            <asp:Label ID="lblError" runat="server" CssClass="error-label" Visible="false"></asp:Label>
+
+            <span id="jsError" class="error-label" style="display:none;"></span>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function validateAndFocus() {
+            var userId = document.getElementById('<%= txtUserID.ClientID %>');
+            var password = document.getElementById('<%= txtPassword.ClientID %>');
+            var role = document.getElementById('<%= ddlRole.ClientID %>');
+            var jsError = document.getElementById('jsError');
+            var serverError = document.getElementById('<%= lblError.ClientID %>');
+
+            jsError.style.display = "none";
+            if (serverError) {
+                serverError.style.display = "none";
+            }
+            var isValid = true;
+
+            if (userId.value.trim() === "" || password.value.trim() === "" || role.selectedIndex === 0) {
+                isValid = false;
+            }
+
+            if (!isValid) {
+                jsError.style.display = "block";
+                jsError.innerHTML = "Please fill in all the required fields!";
+
+                if (userId.value.trim() === "") {
+                    userId.focus();
+                } else if (password.value.trim() === "") {
+                    password.focus();
+                } else if (role.selectedIndex === 0) {
+                    role.focus();
+                }
+                return false;
+            }
+            return true;
+        }
+
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
+            var eyeIcon = document.getElementById('togglePassword');
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                passwordField.type = "password";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
 </asp:Content>

@@ -1,0 +1,160 @@
+﻿/* General */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-weight: 600;
+    font-family: 'Teko', sans-serif;
+    overflow: hidden;
+    letter-spacing: 1.50px;
+    word-wrap: break-word
+}
+
+.login {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Left Panel */
+.left-panel {
+    width: 50%;
+    position: relative;
+}
+
+.background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right Panel */
+.right-panel {
+    width: 50%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 215px;
+    height: 173px;
+    margin-top: -50px;
+    margin-bottom: -10px;
+}
+
+.welcome-text {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    margin-bottom: 40px;
+}
+
+/* Input Sections */
+.input-group {
+    margin-bottom: 30px;
+    width: 70%;
+}
+
+.label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    border: 3px solid white;
+    border-radius: 20px;
+    padding: 10px 15px;
+    background: transparent;
+}
+
+    .input-box:focus-within {
+        border-color: #4FC3F7;
+        box-shadow: 0 0 8px #4FC3F7;
+        transition: 0.3s;
+    }
+
+.icon {
+    color: #9BA0A6;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.input-field {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #9BA0A6;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.input-box select.input-field {
+    appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #9BA0A6;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-left: -5px;
+    padding: 0 30px 0 5px;
+}
+
+.input-box:has(select) {
+    position: relative;
+}
+
+    .input-box:has(select)::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #9BA0A6;
+        position: absolute;
+        right: 15px;
+        pointer-events: none;
+        font-size: 14px;
+    }
+
+.input-box select.input-field option {
+    background-color: black;
+    color: #9BA0A6;
+    font-size: 15px;
+}
+
+/* Button */
+.login-btn {
+    width: 70%;
+    height: 50px;
+    background: #4FC3F7;
+    border: none;
+    border-radius: 20px;
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+    .login-btn:hover {
+        background: #3FA9F5;
+        color: white;
+    }
+
+/* Error */
+.error-label {
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    color: red;
+}

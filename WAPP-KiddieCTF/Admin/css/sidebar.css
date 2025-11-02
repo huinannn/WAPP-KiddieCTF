@@ -1,0 +1,160 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: #000;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Teko', sans-serif;
+    z-index: 1000;
+}
+
+.sidebar .logo {
+    width: 200px;
+    height: 160px;
+    margin-bottom: 24px;
+}
+
+.sidebar .nav {
+    flex: 1;
+    margin-top: 20px;
+}
+
+.sidebar .nav-item {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    color: #8D8D8D;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.sidebar .nav-item.active {
+    color: #fff;
+}
+
+.sidebar .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 30px;
+    background: #4FC3F7;
+    border-radius: 3px;
+}
+
+.sidebar .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    background: currentColor;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.icon.dashboard {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>');
+    mask: same;
+}
+
+.icon.account {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>');
+    mask: same;
+}
+
+
+.icon.courses {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>');
+    mask: same;
+}
+
+.icon.challenges {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+    mask: same;
+}
+
+.icon.tools {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.33-.02-.64-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.61l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.5.5 0 0 0-.5-.44h-3.84a.5.5 0 0 0-.5.44l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L3.86 10.5a.5.5 0 0 0 .12.61l2.03 1.58c-.04.3-.06.61-.06.94 0 .33.02.64.06.94l-2.03 1.58a.5.5 0 0 0-.12.61l1.92 3.32a.5.5 0 0 0 .61.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54a.5.5 0 0 0 .5.44h3.84a.5.5 0 0 0 .5-.44l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96a.5.5 0 0 0 .61-.22l1.92-3.32a.5.5 0 0 0-.12-.61l-2.03-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>');
+    mask: same;
+}
+
+
+
+.sidebar .divider {
+    width: 200px;
+    height: 2px;
+    background: #4FC3F7;
+    border-radius: 2px;
+    margin: 20px 0;
+}
+
+.sidebar .user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar .avatar {
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.sidebar .avatar i {
+    font-size: 24px;
+    color: #1B263B;
+}
+
+.sidebar .user-info .name {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.sidebar .user-info .id {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.75px;
+    color: #fff;
+}
+
+.sidebar .logout {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.sidebar .logout-icon {
+    font-size: 24px;
+    color: red;
+    margin-left: 10px;
+    margin-right: 20px;
+}

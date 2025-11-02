@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebGrease.Activities;
 
-namespace WAPP_KiddieCTF
+namespace WAPP_Assignment
 {
     public partial class _Default : System.Web.UI.Page
     {
@@ -62,22 +62,53 @@ namespace WAPP_KiddieCTF
                     string currentTime = DateTime.Now.ToString("HH:mm:ss");
                     string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    string newLoginId = "";
+                    string LoginId = "";
                     string prefix = "";
                     string loginTable = "";
                     string loginIdColumn = "";
 
-                    if (role == "Student")
+                    if (role == "Admin")
+                    {
+                        Session["AdminID"] = userId;
+                    }
+                    else if (role == "Student")
                     {
                         prefix = "SL";
                         loginTable = "Student_Login";
                         loginIdColumn = "StdLogin_ID";
+
+                        string studentNameQuery = "SELECT Student_Name, Intake_Code, Student_Password FROM Student WHERE Student_ID=@StudentID";
+                        SqlCommand nameCmd = new SqlCommand(studentNameQuery, con);
+                        nameCmd.Parameters.AddWithValue("@StudentID", userId);
+                        SqlDataReader reader = nameCmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            string studentName = reader["Student_Name"].ToString();
+                            string intakeCode = reader["Intake_Code"].ToString();
+                            string studentPassword = reader["Student_Password"].ToString();
+
+                            Session["StudentName"] = studentName;
+                            Session["StudentID"] = userId;
+                            Session["StudentIntakeCode"] = intakeCode;
+                            Session["StudentPassword"] = studentPassword;
+                        }
+
+                        reader.Close();
                     }
                     else if (role == "Lecturer")
                     {
                         prefix = "LL";
                         loginTable = "Lecturer_Login";
                         loginIdColumn = "LecLogin_ID";
+
+                        string lecturerNameQuery = "SELECT Lecturer_Name FROM Lecturer WHERE Lecturer_ID=@LecturerID";
+                        SqlCommand nameCmd = new SqlCommand(lecturerNameQuery, con);
+                        nameCmd.Parameters.AddWithValue("@LecturerID", userId);
+                        string lecturerName = nameCmd.ExecuteScalar()?.ToString();
+
+                        Session["LecturerName"] = lecturerName;
+                        Session["LecturerID"] = userId;
                     }
 
                     if (!string.IsNullOrEmpty(loginTable))
@@ -90,11 +121,20 @@ namespace WAPP_KiddieCTF
                         {
                             string lastId = result.ToString();
                             int num = int.Parse(lastId.Substring(2)) + 1;
-                            newLoginId = prefix + num.ToString("D3");
+                            LoginId = prefix + num.ToString("D3");
                         }
                         else
                         {
-                            newLoginId = prefix + "001";
+                            LoginId = prefix + "001";
+                        }
+
+                        if (role == "Student")
+                        {
+                            Session["StudentLoginID"] = LoginId;
+                        }
+                        else if (role == "Lecturer")
+                        {
+                            Session["LecturerLoginID"] = LoginId;
                         }
 
                         string insertQuery = "";
@@ -110,7 +150,7 @@ namespace WAPP_KiddieCTF
                         }
 
                         SqlCommand insertCmd = new SqlCommand(insertQuery, con);
-                        insertCmd.Parameters.AddWithValue("@LoginID", newLoginId);
+                        insertCmd.Parameters.AddWithValue("@LoginID", LoginId);
                         insertCmd.Parameters.AddWithValue("@UserID", userId);
                         insertCmd.Parameters.AddWithValue("@Time", currentTime);
                         insertCmd.Parameters.AddWithValue("@Date", currentDate);

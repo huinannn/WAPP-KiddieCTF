@@ -11,7 +11,7 @@ namespace WAPP_Assignment.Student
 {
 
 
-    public partial class Dashboard
+    public partial class Challenges
     {
 
         /// <summary>

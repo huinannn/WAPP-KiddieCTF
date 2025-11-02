@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="WAPP_Assignment.Student.Dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Challenges.aspx.cs" Inherits="WAPP_Assignment.Student.Challenges" %>
 <%@ Register Src="~/Student/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Student Dashboard</title>
-    <link href="css/dashboard.css" rel="stylesheet" />
+    <title>Student Challenges</title>
+    <link href="css/challenges.css" rel="stylesheet" />
     <link href="~/Images/Logo.png" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>

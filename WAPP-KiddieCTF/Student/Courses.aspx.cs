@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WAPP_Assignment.Student
 {
-    public partial class Dashboard : System.Web.UI.Page
+    public partial class Courses : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

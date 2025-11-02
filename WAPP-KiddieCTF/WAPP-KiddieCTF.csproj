@@ -131,6 +131,7 @@
     <Content Include="Images\Login.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Lecturer\Dashboard.aspx" />
+    <Content Include="LogOut.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -187,7 +188,16 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Student\Challenges.aspx" />
+    <Content Include="Student\Courses.aspx" />
+    <Content Include="Student\css\profile.css" />
+    <Content Include="Student\css\sidebar.css" />
     <Content Include="Student\Dashboard.aspx" />
+    <Content Include="Student\Discussions.aspx" />
+    <Content Include="Student\EditProfile.aspx" />
+    <Content Include="Student\Profile.aspx" />
+    <Content Include="Student\SideBar.ascx" />
+    <Content Include="Student\Tools.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Site.Mobile.Master" />
@@ -233,6 +243,13 @@
     <Compile Include="Lecturer\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LogOut.aspx.cs">
+      <DependentUpon>LogOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogOut.aspx.designer.cs">
+      <DependentUpon>LogOut.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -248,12 +265,61 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Student\Challenges.aspx.cs">
+      <DependentUpon>Challenges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Challenges.aspx.designer.cs">
+      <DependentUpon>Challenges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Courses.aspx.cs">
+      <DependentUpon>Courses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Courses.aspx.designer.cs">
+      <DependentUpon>Courses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Student\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Discussions.aspx.cs">
+      <DependentUpon>Discussions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Discussions.aspx.designer.cs">
+      <DependentUpon>Discussions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\SideBar.ascx.cs">
+      <DependentUpon>SideBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\SideBar.ascx.designer.cs">
+      <DependentUpon>SideBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Tools.aspx.cs">
+      <DependentUpon>Tools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Tools.aspx.designer.cs">
+      <DependentUpon>Tools.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

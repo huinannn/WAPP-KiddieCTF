@@ -20,48 +20,21 @@
             <div class="header">
                 <h1>Accounts</h1>
                 <div class="search-container">
-                    <input type="text" placeholder="Search Student ID" class="search-box" />
-                    <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
-                    <button class="add-btn"><i class="fas fa-user-plus"></i> Add New Student</button>
+                    <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Search Student ID"></asp:TextBox>
+                    <asp:Button ID="btnFilter" runat="server" CssClass="filter-btn" Text="Filter" />
+                    <asp:Button ID="btnAddStudent" runat="server" CssClass="add-btn" Text="Add New Student" />
                 </div>
             </div>
 
+            <!-- Tabs -->
             <div class="tab-container">
-                <button class="tab active">Student</button>
-                <button class="tab">Lecturer</button>
-                <button class="tab">Intake</button>
+                <asp:Button ID="btnStudentTab" runat="server" CssClass="tab active" Text="Student" OnClick="btnStudentTab_Click" />
+                <asp:Button ID="btnLecturerTab" runat="server" CssClass="tab" Text="Lecturer" OnClick="btnLecturerTab_Click" />
+                <asp:Button ID="btnIntakeTab" runat="server" CssClass="tab" Text="Intake" OnClick="btnIntakeTab_Click" />
             </div>
 
-            <table class="account-table">
-                <thead>
-                    <tr>
-                        <th>Student ID</th>
-                        <th>Student Name</th>
-                        <th>Student Intake Code</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>TP072094</td>
-                        <td>Wong Xin Yee</td>
-                        <td>AP02F25202CS(CYB)</td>
-                        <td class="action-icons">
-                            <i class="fas fa-edit"></i>
-                            <i class="fas fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>TP123456</td>
-                        <td>Ahmad Faiz Bin Rahman</td>
-                        <td>AP02F25202CS(CYB)</td>
-                        <td class="action-icons">
-                            <i class="fas fa-edit"></i>
-                            <i class="fas fa-trash"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Table -->
+            <asp:GridView ID="gvAccounts" runat="server" CssClass="account-table" AutoGenerateColumns="true"></asp:GridView>
         </div>
     </form>
 </body>

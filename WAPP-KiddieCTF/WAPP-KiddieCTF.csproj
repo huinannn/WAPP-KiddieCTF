@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Account.aspx" />
+    <Content Include="Admin\css\Account.css" />
     <Content Include="Admin\css\sidebar.css" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\SideBar.ascx" />

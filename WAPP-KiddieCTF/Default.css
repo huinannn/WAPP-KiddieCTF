@@ -1,178 +1,157 @@
-﻿*:not(.fa, .fa-solid, .fa-regular, .fa-brands, i) {
-    font-family: 'Teko', sans-serif !important;
-    font-weight: 700;
-}
-
-.fa, .fa-solid, .fa-regular, .fa-brands {
-    font-family: "Font Awesome 6 Free" !important;
-    font-weight: 900 !important;
-}
-
-/* General Layout */
-body {
+﻿* {
     margin: 0;
     padding: 0;
-    background-color: black;
-    color: white;
-    overflow: hidden;
-    word-wrap: break-word;
+    box-sizing: border-box;
 }
 
-/* Main Layout */
-.login {
-    display: flex;
-    width: 100%;
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
     height: 100vh;
-}
-
-/* Left Panel */
-.left-panel {
-    width: 50%;
-    position: relative;
-}
-
-.background-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Right Panel */
-.right-panel {
-    width: 50%;
+    background: #000;
+    padding: 20px 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    font-family: 'Teko', sans-serif;
+    z-index: 1000;
 }
 
-/* Logo + Header */
-.logo {
-    width: 215px;
-    height: 173px;
-    margin-top: -60px;
-    margin-bottom: -35px;
+.sidebar .logo {
+    width: 200px;
+    height: 160px;
+    margin-bottom: 22px;
 }
 
-.welcome-text {
-    font-size: 34px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    margin-bottom: 15px;
-}
-
-/* Input Groups */
-.input-group {
-    margin-bottom: 30px;
-    width: 70%;
-}
-
-.label {
-    display: block;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
-
-.input-box {
-    display: flex;
-    align-items: center;
-    border: 3px solid white;
-    border-radius: 20px;
-    padding: 10px 15px;
-    background: transparent;
-    position: relative;
-    transition: 0.3s;
-}
-
-    .input-box:focus-within {
-        border-color: #4FC3F7;
-        box-shadow: 0 0 8px #4FC3F7;
-    }
-
-/* Input and Icons */
-.icon {
-    color: #9BA0A6;
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-.input-field {
+.sidebar .nav {
     flex: 1;
-    background: none;
-    border: none;
-    outline: none;
-    color: #9BA0A6;
-    font-size: 16px;
-    letter-spacing: 1px;
-}
-
-/* Dropdown Styling */
-.input-box select.input-field {
-    appearance: none;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #9BA0A6;
-    font-size: 16px;
-    padding: 0 30px 0 5px;
-}
-
-.input-box:has(select)::after {
-    content: "\f078";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: #9BA0A6;
-    position: absolute;
-    right: 15px;
-    pointer-events: none;
-    font-size: 15px;
-}
-
-.input-box select.input-field option {
-    background-color: black;
-    color: #9BA0A6;
-    font-size: 16px;
-}
-
-/* Button */
-.login-btn {
-    width: 70%;
-    height: 50px;
-    background: #4FC3F7;
-    border: none;
-    border-radius: 20px;
-    color: black;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: 0.3s;
     margin-top: 20px;
 }
 
-    .login-btn:hover {
-        background: #3FA9F5;
-        color: white;
-    }
-
-/* Password Eye Icon */
-.toggle-eye {
-    color: #9BA0A6;
-    font-size: 16px;
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
+.sidebar .nav-item {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    color: #8D8D8D;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    position: relative;
 }
 
-/* Error Label */
-.error-label {
-    margin-top: 25px;
-    font-size: 16px;
+.sidebar .nav-item.active {
+    color: #fff;
+}
+
+.sidebar .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 30px;
+    background: #4FC3F7;
+    border-radius: 3px;
+}
+
+.sidebar .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    background: currentColor;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.icon.dashboard {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>');
+    mask: same;
+}
+
+.icon.courses {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>');
+    mask: same;
+}
+
+.icon.challenges {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+    mask: same;
+}
+
+.icon.tools {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.33-.02-.64-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.61l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.5.5 0 0 0-.5-.44h-3.84a.5.5 0 0 0-.5.44l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L3.86 10.5a.5.5 0 0 0 .12.61l2.03 1.58c-.04.3-.06.61-.06.94 0 .33.02.64.06.94l-2.03 1.58a.5.5 0 0 0-.12.61l1.92 3.32a.5.5 0 0 0 .61.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54a.5.5 0 0 0 .5.44h3.84a.5.5 0 0 0 .5-.44l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96a.5.5 0 0 0 .61-.22l1.92-3.32a.5.5 0 0 0-.12-.61l-2.03-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>');
+    mask: same;
+}
+
+.icon.discussions {
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 8V6c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-2l4 4-4 4v-2c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v-2l-4 4 4 4v-2c0-.55.45-1 1-1h14c.55 0 1-.45 1-1v-2z"/></svg>');
+    mask: same;
+}
+
+.sidebar .divider {
+    width: 200px;
+    height: 2px;
+    background: #4FC3F7;
+    border-radius: 2px;
+    margin: 15px 0;
+}
+
+.sidebar .user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar .avatar {
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.sidebar .avatar i {
+    font-size: 24px;
+    color: #1B263B;
+}
+
+.sidebar .user-info .name {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.sidebar .user-info .id {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.75px;
+    color: #fff;
+}
+
+.sidebar .logout {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.sidebar .logout-icon {
+    font-size: 24px;
     color: red;
-    text-align: center;
-    letter-spacing: 1.5px;
+    margin-left: 10px;
+    margin-right: 20px;
 }

@@ -17,12 +17,16 @@
         </div>
 
         <div class="main">
+            <!-- Header -->
             <div class="header">
                 <h1>Accounts</h1>
-                <div class="search-container">
-                    <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Search Student ID"></asp:TextBox>
-                    <asp:Button ID="btnFilter" runat="server" CssClass="filter-btn" Text="Filter" />
-                    <asp:Button ID="btnAddStudent" runat="server" CssClass="add-btn" Text="Add New Student" />
+                <div class="search-container" style="font-family: 'Teko', sans-serif;">
+                    <asp:TextBox ID="txtSearch" runat="server" CssClass="search-box" placeholder="Search ID" 
+                                 style="font-family: 'Teko', sans-serif;"></asp:TextBox>
+                    <asp:Button ID="btnFilter" runat="server" CssClass="filter-btn" Text="Search" 
+                                style="font-family: 'Teko', sans-serif;" OnClick="btnFilter_Click" />
+                    <asp:Button ID="btnAddStudent" runat="server" CssClass="add-btn" Text="Add New Student" 
+                                style="font-family: 'Teko', sans-serif;" />
                 </div>
             </div>
 
@@ -33,9 +37,12 @@
                 <asp:Button ID="btnIntakeTab" runat="server" CssClass="tab" Text="Intake" OnClick="btnIntakeTab_Click" />
             </div>
 
-            <!-- Table -->
-            <asp:GridView ID="gvAccounts" runat="server" CssClass="account-table" AutoGenerateColumns="true"></asp:GridView>
+            <!-- GridView -->
+            <asp:GridView ID="gvAccounts" runat="server" CssClass="account-table" AutoGenerateColumns="false">
+            </asp:GridView>
+
         </div>
     </form>
 </body>
 </html>
+

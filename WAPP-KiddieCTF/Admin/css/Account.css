@@ -34,6 +34,7 @@ form {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 25px;
+
 }
 
     .header h1 {
@@ -42,9 +43,20 @@ form {
         letter-spacing: 1px;
         margin: 0;
     }
+/* Search container - apply Teko font to all child elements */
+.search-container,
+.search-container input,
+.search-container button,
+.search-container .search-box,
+.search-container .filter-btn,
+.search-container .add-btn {
+    font-family: 'Teko', sans-serif;
+}
+
 
 /* Search and Buttons */
 .search-container {
+    font-family: 'Teko', sans-serif;
     display: flex;
     gap: 10px;
 }
@@ -56,21 +68,30 @@ form {
     width: 200px;
     background-color: #374151;
     color: #fff;
+
 }
 
     .search-box::placeholder {
         color: #9ca3af;
+
     }
 
 .filter-btn {
-    background-color: #374151;
-    border: none;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 6px;
+    font-size: 18px; /* Adjust the size if needed */
+    padding: 8px 16px; /* Adjust padding to suit your design */
+    background-color: transparent;
+    border: 1px solid #ccc;
     cursor: pointer;
-    font-weight: 500;
+    display: flex;
+    align-items: center; /* Center the icon inside the button */
+    justify-content: center;
 }
+
+    .filter-btn i {
+        font-size: 20px; /* Adjust the icon size */
+        color: #333;
+    }
+
 
 .add-btn {
     background-color: #374151;
@@ -81,6 +102,7 @@ form {
     cursor: pointer;
     font-weight: 500;
     transition: background-color 0.3s ease;
+    font-family: 'Teko', sans-serif;
 }
 
     .add-btn:hover {
@@ -117,20 +139,20 @@ form {
     border: none;
 }
 
-    /* Title Row */
-    .account-table thead tr {
-        background-color: #1e293b !important; /* distinct title line color */
-    }
+    /* Header Row */
+/*    .account-table thead tr {
+        background-color: #1e293b !important;
+    }*/
 
     /* Header Cells */
     .account-table th {
         padding: 16px 24px;
         text-align: left;
-        letter-spacing: 0.8px;
         font-weight: 600;
+        letter-spacing: 0.8px;
         border: none;
-        color: #f9fafb; /* slightly brighter text */
-        background-color: #1e293b !important; /* distinct title line color */
+        color: #f9fafb;
+        background-color: #1e293b !important;
     }
 
     /* Data Cells */
@@ -147,7 +169,6 @@ form {
         border-bottom: 6px solid #0f172a;
     }
 
-        /* Hover Effect */
         .account-table tbody tr:hover {
             background-color: #4b5563;
         }

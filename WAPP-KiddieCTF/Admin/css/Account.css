@@ -34,7 +34,6 @@ form {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 25px;
-
 }
 
     .header h1 {
@@ -68,12 +67,10 @@ form {
     width: 200px;
     background-color: #374151;
     color: #fff;
-
 }
 
     .search-box::placeholder {
         color: #9ca3af;
-
     }
 
 .filter-btn {
@@ -140,7 +137,7 @@ form {
 }
 
     /* Header Row */
-/*    .account-table thead tr {
+    /*    .account-table thead tr {
         background-color: #1e293b !important;
     }*/
 

@@ -225,4 +225,3 @@ namespace WAPP_KiddieCTF.Admin
         }
     }
 }
-

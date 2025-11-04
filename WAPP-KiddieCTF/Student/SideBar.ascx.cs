@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace WAPP_Assignment.Student
+namespace WAPP_KiddieCTF.Student
 {
-    public partial class SideBar : UserControl
+    public partial class SideBar : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {

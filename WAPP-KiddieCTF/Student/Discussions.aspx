@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Discussions.aspx.cs" Inherits="WAPP_Assignment.Student.Discussions" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Discussions.aspx.cs" Inherits="WAPP_KiddieCTF.Student.Discussions" %>
 <%@ Register Src="~/Student/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>

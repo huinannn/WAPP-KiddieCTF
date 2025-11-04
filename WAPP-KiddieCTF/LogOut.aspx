@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LogOut.aspx.cs" Inherits="WAPP_Assignment.Student.LogOut" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LogOut.aspx.cs" Inherits="WAPP_KiddieCTF.LogOut" %>
 
 <!DOCTYPE html>
 

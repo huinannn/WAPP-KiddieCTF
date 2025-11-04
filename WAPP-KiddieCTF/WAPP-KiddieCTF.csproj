@@ -101,6 +101,10 @@
     <Content Include="Admin\css\sidebar.css" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\SideBar.ascx" />
+    <Content Include="App_Data\KiddieCTF.mdf" />
+    <Content Include="App_Data\KiddieCTF_log.ldf">
+      <DependentUpon>KiddieCTF.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />

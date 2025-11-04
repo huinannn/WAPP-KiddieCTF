@@ -1,4 +1,4 @@
-﻿﻿*:not(.fa, .fa-solid, .fa-regular, .fa-brands, i) {
+﻿*:not(.fa, .fa-solid, .fa-regular, .fa-brands, i) {
     font-family: 'Teko', sans-serif !important;
     font-weight: 700;
 }

@@ -40,7 +40,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-left: 30px;
+    margin-left: -24px;
     flex-wrap: wrap;
 }
 
@@ -102,12 +102,12 @@
     transition: 0.3s;
 }
 
-.password-field:focus {
-    background: #133B5C;
-    outline: none;
-    border-color: #ffffff;
-    box-shadow: 0 0 10px #ffffff;
-}
+    .password-field:focus {
+        background: #133B5C;
+        outline: none;
+        border-color: #ffffff;
+        box-shadow: 0 0 10px #ffffff;
+    }
 
 /* Password Eye Icon */
 .password-container {
@@ -142,10 +142,10 @@
     transition: 0.3s;
 }
 
-.edit-link:hover {
-    background: #3FA9F5;
-    color: white;
-}
+    .edit-link:hover {
+        background: #3FA9F5;
+        color: white;
+    }
 
 /* Back Button */
 .back-button {
@@ -188,7 +188,7 @@
     font-weight: 900;
     letter-spacing: 1px;
     position: absolute;
-    left: 60%;
+    left: 58%;
     transform: translate(-50%, -50%);
 }
 
@@ -200,6 +200,6 @@
     font-weight: 900;
     letter-spacing: 1px;
     position: absolute;
-    left: 60%;
+    left: 58%;
     transform: translate(-50%, -50%);
 }

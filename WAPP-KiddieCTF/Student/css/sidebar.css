@@ -20,55 +20,55 @@
     z-index: 1000;
 }
 
-.sidebar .logo {
-    width: 200px;
-    height: 160px;
-    margin-bottom: 24px;
-}
+    .sidebar .logo {
+        width: 200px;
+        height: 160px;
+        margin-bottom: 22px;
+    }
 
-.sidebar .nav {
-    flex: 1;
-    margin-top: 20px;
-}
+    .sidebar .nav {
+        flex: 1;
+        margin-top: 20px;
+    }
 
-.sidebar .nav-item {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    margin-bottom: 10px;
-    color: #8D8D8D;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    position: relative;
-}
+    .sidebar .nav-item {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        margin-bottom: 10px;
+        color: #8D8D8D;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        position: relative;
+    }
 
-.sidebar .nav-item.active {
-    color: #fff;
-}
+        .sidebar .nav-item.active {
+            color: #fff;
+        }
 
-.sidebar .nav-item.active::before {
-    content: '';
-    position: absolute;
-    left: -25px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2px;
-    height: 30px;
-    background: #4FC3F7;
-    border-radius: 3px;
-}
+            .sidebar .nav-item.active::before {
+                content: '';
+                position: absolute;
+                left: -25px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 2px;
+                height: 30px;
+                background: #4FC3F7;
+                border-radius: 3px;
+            }
 
-.sidebar .icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
-    background: currentColor;
-    mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-}
+    .sidebar .icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+        background: currentColor;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
 
 .icon.dashboard {
     -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>');
@@ -100,7 +100,7 @@
     height: 2px;
     background: #4FC3F7;
     border-radius: 2px;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .sidebar .user-profile {
@@ -120,10 +120,10 @@
     margin-right: 10px;
 }
 
-.sidebar .avatar i {
-    font-size: 24px;
-    color: #1B263B;
-}
+    .sidebar .avatar i {
+        font-size: 24px;
+        color: #1B263B;
+    }
 
 .sidebar .user-info .name {
     font-size: 20px;

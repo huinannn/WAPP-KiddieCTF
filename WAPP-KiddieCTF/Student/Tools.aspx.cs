@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WAPP_Assignment
+namespace WAPP_Assignment.Student
 {
     public partial class Tools : System.Web.UI.Page
     {

@@ -11,7 +11,6 @@
             background-color: #1B263B;
             border-radius: 20px;
             padding: 40px;
-            margin-left: 250px;
         }
 
         .discussion-upper {
@@ -19,28 +18,28 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .each-card {
+            background-color: #455066;
+            opacity: .7;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
         }
 
         .discussion-card {
-            background-color: #2E3A55;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
             display: flex;
-            align-items: center;
+            align-items: start;
             justify-content: space-between;
         }
 
-        .discussion-left {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
         .discussion-left img {
-            width: 140px;
-            height: 120px;
-            border-radius: 8px;
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
         .discussion-title {
@@ -52,11 +51,30 @@
         .discussion-subtext {
             color: #9BA0A6;
             font-size: 14px;
+            margin-bottom: 20px;
         }
 
         .discussion-right {
             text-align: right;
-            color: #9BA0A6;
+            color: #E0E0E0;
+            height: 100%;
+        }
+
+        .discussion-bottom {
+            text-align: right;
+            width: 100%;
+            color: #E0E0E0;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            cursor: pointer;
+        }
+
+        .discussion-bottom img {
+            width: 15px;
+            height: 15px;
         }
 
         .search-bar {
@@ -65,9 +83,13 @@
             gap: 10px;
             background-color: #2E3A55;
             border-radius: 10px;
-            padding: 10px 15px;
-            margin-bottom: 30px;
+            padding: 15px;
             width: 70%;
+        }
+
+        .search-bar img {
+            width: 20px;
+            height: 20px;
         }
 
         .search-bar input {
@@ -76,81 +98,120 @@
             border: none;
             outline: none;
             color: white;
-            font-size: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.9px;
         }
 
         .create-btn {
             background-color: #133B5C;
             border: none;
-            color: white;
+            color: #9BA0A6;
             aspect-ratio: 111/46;
             max-width: 150px;
             padding: 10px 20px;
             border-radius: 8px;
             font-weight: bold;
+            font-size: 18px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .create-btn img {
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
 
-<body style="background-color: #0B132B;">
+<body>
     <form id="form1" runat="server">
         <uc:SideBar ID="SidebarControl" runat="server" />
 
-        <div class="discussion-container">
-            <h2 style="color: white; font-size: 28px; margin-bottom: 20px;">Discussions</h2>
+        <div class="main-content" style="margin-left: 250px; padding: 40px;">
+            <h2 style="color: white; margin-bottom: 20px;">Discussions</h2>
 
             <div class="discussion-upper">
                 <div class="search-bar">
+                    <img src="../Images/icons/search.png"/>
                     <input type="text" placeholder="Search Discussion" />
                 </div>
                 <div class="spacer"></div>
-                <button class="create-btn" type="button">CREATE</button>
+                <button class="create-btn" type="button"><img src="../Images/icons/add.png"/>CREATE</button>
             </div>
 
-            <div class="discussion-card">
-                <div class="discussion-left">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/09/09/31/computer-1245714_960_720.jpg" alt="Discussion Image" />
-                    <div>
-                        <div class="discussion-title">Discussion Name</div>
-                        <div class="discussion-subtext">About tool or hacking...</div>
+            <div class="discussion-container" style="background-color: #1B263B;">
+                <div class="each-card">
+                    <div class="discussion-card">
+                        <div class="discussion-left">
+                            <div class="discussion-title">Discussion Name</div>
+                            <div class="discussion-subtext">About cyber security topics...</div>
+                            <img src="../Images/discussion/discussion.jpg"/>
+                        </div>
+                        <div class="discussion-right">
+                            <div>Posted by: <strong>Angeline</strong></div>
+                            <div>Date: 4/112025</div>
+                        </div>
+                    </div>
+                    <div class="discussion-bottom">
+                        5 Comments
+                        <img src="../Images/icons/chat.png" />
                     </div>
                 </div>
-                <div class="discussion-right">
-                    <div>Posted by: <strong>Angeline 22</strong></div>
-                    <div>2 hours ago</div>
-                    <div>3 comments 💬</div>
-                </div>
-            </div>
-
-            <div class="discussion-card">
-                <div class="discussion-left">
-                    <img src="https://cdn.pixabay.com/photo/2017/01/06/19/15/hacker-1952027_960_720.jpg" alt="Discussion Image" />
-                    <div>
-                        <div class="discussion-title">Discussion Name</div>
-                        <div class="discussion-subtext">About cyber security topics...</div>
-                    </div>
-                </div>
-                <div class="discussion-right">
-                    <div>Posted by: <strong>Angeline 22</strong></div>
-                    <div>1 day ago</div>
-                    <div>5 comments 💬</div>
-                </div>
-            </div>
-
-            <div class="discussion-card">
-                <div class="discussion-left">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/09/09/31/computer-1245714_960_720.jpg" alt="Discussion Image" />
-                    <div>
-                        <div class="discussion-title">Discussion Name</div>
-                        <div class="discussion-subtext">About CTF or security tools...</div>
-                    </div>
-                </div>
-                <div class="discussion-right">
-                    <div>Posted by: <strong>Angeline 22</strong></div>
-                    <div>3 days ago</div>
-                    <div>1 comment 💬</div>
-                </div>
+                <div class="each-card">
+    <div class="discussion-card">
+        <div class="discussion-left">
+            <div class="discussion-title">Discussion Name</div>
+            <div class="discussion-subtext">About cyber security topics...</div>
+            <img src="../Images/discussion/discussion.jpg"/>
+        </div>
+        <div class="discussion-right">
+            <div>Posted by: <strong>Angeline</strong></div>
+            <div>Date: 4/112025</div>
+        </div>
+    </div>
+    <div class="discussion-bottom">
+        5 Comments
+        <img src="../Images/icons/chat.png" />
+    </div>
+</div>
+                <div class="each-card">
+    <div class="discussion-card">
+        <div class="discussion-left">
+            <div class="discussion-title">Discussion Name</div>
+            <div class="discussion-subtext">About cyber security topics...</div>
+            <img src="../Images/discussion/discussion.jpg"/>
+        </div>
+        <div class="discussion-right">
+            <div>Posted by: <strong>Angeline</strong></div>
+            <div>Date: 4/112025</div>
+        </div>
+    </div>
+    <div class="discussion-bottom">
+        5 Comments
+        <img src="../Images/icons/chat.png" />
+    </div>
+</div>
+                <div class="each-card">
+    <div class="discussion-card">
+        <div class="discussion-left">
+            <div class="discussion-title">Discussion Name</div>
+            <div class="discussion-subtext">About cyber security topics...</div>
+            <img src="../Images/discussion/discussion.jpg"/>
+        </div>
+        <div class="discussion-right">
+            <div>Posted by: <strong>Angeline</strong></div>
+            <div>Date: 4/112025</div>
+        </div>
+    </div>
+    <div class="discussion-bottom">
+        5 Comments
+        <img src="../Images/icons/chat.png" />
+    </div>
+</div>
             </div>
         </div>
     </form>

@@ -6,9 +6,8 @@
 }
 
 body {
-    background-color: #0b0d16;
+    background-color: #000000;
     color: white;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 .main-content {
@@ -18,7 +17,7 @@ body {
 
 .main-content h2 {
     font-size: 50px;
-
+    letter-spacing: 2.5px;
 }
 
 a {

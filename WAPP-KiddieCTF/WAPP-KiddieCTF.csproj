@@ -126,6 +126,10 @@
     <Content Include="Default.aspx" />
     <Content Include="Default.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\discussion\discussion.jpg" />
+    <Content Include="Images\icons\add.png" />
+    <Content Include="Images\icons\chat.png" />
+    <Content Include="Images\icons\search.png" />
     <Content Include="Lecturer\Courses.aspx" />
     <Content Include="Lecturer\css\courses.css" />
     <Content Include="Lecturer\css\sidebar.css" />

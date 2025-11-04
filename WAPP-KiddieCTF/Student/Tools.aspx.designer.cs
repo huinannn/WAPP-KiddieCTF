@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_Assignment.Student
+namespace WAPP_Assignment
 {
 
 

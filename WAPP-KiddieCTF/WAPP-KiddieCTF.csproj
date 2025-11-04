@@ -127,9 +127,11 @@
     <Content Include="Images\icons\chat.png" />
     <Content Include="Images\icons\search.png" />
     <Content Include="Lecturer\AddChapter.aspx" />
+    <Content Include="Lecturer\AddNewCourse.aspx" />
     <Content Include="Lecturer\CourseDetails.aspx" />
     <Content Include="Lecturer\Courses.aspx" />
     <Content Include="Lecturer\css\addChapter.css" />
+    <Content Include="Lecturer\css\addNewCourse.css" />
     <Content Include="Lecturer\css\courseDetails.css" />
     <Content Include="Lecturer\css\courses.css" />
     <Content Include="Lecturer\css\sidebar.css" />
@@ -256,6 +258,13 @@
     </Compile>
     <Compile Include="Lecturer\AddChapter.aspx.designer.cs">
       <DependentUpon>AddChapter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer\AddNewCourse.aspx.cs">
+      <DependentUpon>AddNewCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\AddNewCourse.aspx.designer.cs">
+      <DependentUpon>AddNewCourse.aspx</DependentUpon>
     </Compile>
     <Compile Include="Lecturer\CourseDetails.aspx.cs">
       <DependentUpon>CourseDetails.aspx</DependentUpon>

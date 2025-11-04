@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Discussions</title>
+    <title>Discussion</title>
     <link href="css/discussions.css" rel="stylesheet" />
     <style>
         .head {
@@ -35,7 +35,6 @@
         }
 
         .each-card {
-            opacity: .7;
             border-radius: 12px;
             min-height: 100vh;
         }

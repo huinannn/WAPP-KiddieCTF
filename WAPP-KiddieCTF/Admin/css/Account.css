@@ -76,17 +76,20 @@ form {
 .filter-btn {
     font-size: 18px; /* Adjust the size if needed */
     padding: 8px 16px; /* Adjust padding to suit your design */
-    background-color: transparent;
-    border: 1px solid #ccc;
+    background-color: #374151;
+    border: 1px solid #374151;
+    border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center; /* Center the icon inside the button */
     justify-content: center;
+    color:#fff;
 }
 
     .filter-btn i {
         font-size: 20px; /* Adjust the icon size */
-        color: #333;
+        color: #fff;
+        background-color: #374151;
     }
 
 
@@ -108,13 +111,17 @@ form {
 
 /* Tabs */
 .tab-container {
+    position: relative;
+    z-index: 10;
     margin-top: 25px;
     display: flex;
 }
 
 .tab {
+    position: relative;
+    z-index: 10;
     font-family: 'Teko', sans-serif;
-    background-color: #1e293b;
+    background-color: #0a0e14;
     border: none;
     padding: 10px 20px;
     border-radius: 15px 15px 0px 0px;
@@ -125,8 +132,8 @@ form {
 }
 
     .tab.active {
-        background-color: #000;
-        border: 1px solid #000;
+        background-color: #1e293b;
+        border: 1px solid #1e293b;
     }
 
 /* Table */
@@ -188,4 +195,49 @@ form {
 
     .delete-btn:hover {
         background-color: #dc2626;
+    }
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    margin: 15% auto;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal input, .modal select {
+    width: 80%;
+    padding: 8px;
+    margin: 10px 0;
+    background-color: #374151;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.modal button {
+    padding: 8px 20px;
+    background-color: #374151;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .modal button:hover {
+        background-color: #222;
     }

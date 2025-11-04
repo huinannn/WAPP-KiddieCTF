@@ -241,3 +241,170 @@ form {
     .modal button:hover {
         background-color: #222;
     }
+
+/* ===== POPUP / MODAL (new style) ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-family: 'Teko', sans-serif;
+}
+
+/* the card */
+.modal-box {
+
+    position: relative;
+    z-index:10000;
+    overflow:visible !important;
+    background: #13233b; /* dark navy like screenshot */
+    width: 520px; /* you can make 540 if you want wider */
+    border-radius: 18px;
+    border: 3px solid #ffffff;
+    padding: 26px 32px 30px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+}
+
+.modal-box select {
+    position: relative;
+    z-index: 10001;
+}
+
+/* title at the top */
+.modal-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+/* group for each label + input */
+.modal-section {
+    width: 100%;
+}
+
+.modal-field {
+    position: relative;
+    z-index: 20;
+    margin-bottom: 16px;
+}
+
+    .modal-field label {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+/* inputs and dropdowns (asp:TextBox renders as input) */
+.modal-input,
+.modal-section input[type="text"],
+.modal-section select {
+    width: 100%;
+    background: #13233b;
+    border: 3px solid #ffffff;
+    border-radius: 14px;
+    color: #ffffff;
+    font-family: 'Teko', sans-serif;
+    font-size: 17px;
+    padding: 10px 14px 6px;
+    height: 54px; /* tall like screenshot */
+    outline: none;
+    box-sizing: border-box;
+}
+
+.modal-section input::placeholder,
+.modal-section select {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* two inputs in a row (intake month/year) */
+.modal-field-row {
+    display: flex;
+    gap: 14px;
+}
+
+    .modal-field-row .modal-input {
+        flex: 1;
+    }
+
+/* bottom buttons */
+.modal-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 18px;
+}
+
+.modal-btn {
+    background: #13233b;
+    border: 3px solid #ffffff;
+    border-radius: 14px;
+    color: #ffffff;
+    font-family: 'Teko', sans-serif;
+    font-size: 19px;
+    padding: 4px 26px 2px;
+    height: 56px;
+    cursor: pointer;
+    transition: transform 0.08s ease-out;
+    min-width: 110px;
+    text-align: center;
+}
+
+    .modal-btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .modal-btn.cancel {
+        /* same style, you can tint slightly if you want */
+    }
+
+/* error text inside modal */
+.modal-error {
+    background: rgba(248, 113, 113, 0.15);
+    border: 1px solid rgba(248, 113, 113, 0.6);
+    color: #ffe4e6;
+    border-radius: 10px;
+    padding: 6px 12px 3px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+/* ===== success popup (same card) ===== */
+.success-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.success-box {
+    background: #13233b;
+    width: 460px;
+    border-radius: 18px;
+    border: 3px solid #fff;
+    padding: 28px 30px 28px;
+    text-align: center;
+}
+
+    .success-box h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .success-box p {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+
+    .success-box .modal-btn {
+        height: 52px;
+    }

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_Assignment
+namespace WAPP_Assignment.Student
 {
 
 
-    public partial class Tools
+    public partial class Discussions
     {
 
         /// <summary>

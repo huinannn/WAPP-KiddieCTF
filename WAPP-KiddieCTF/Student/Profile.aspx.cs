@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WAPP_Assignment.Student
+namespace WAPP_KiddieCTF.Student
 {
     public partial class Profile : System.Web.UI.Page
     {

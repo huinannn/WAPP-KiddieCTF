@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebGrease.Activities;
 
-namespace WAPP_Assignment
+namespace WAPP_KiddieCTF
 {
     public partial class _Default : System.Web.UI.Page
     {

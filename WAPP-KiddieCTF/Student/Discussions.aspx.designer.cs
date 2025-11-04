@@ -30,6 +30,6 @@ namespace WAPP_KiddieCTF.Student
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WAPP_Assignment.Student.SideBar SidebarControl;
+        protected global::WAPP_KiddieCTF.Student.SideBar SidebarControl;
     }
 }

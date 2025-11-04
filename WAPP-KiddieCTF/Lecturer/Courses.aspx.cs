@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,25 +16,87 @@ namespace WAPP_KiddieCTF.Lecturer
         {
             if (!IsPostBack)
             {
-                BindCourses();
+                BindCourses("");
             }
         }
 
-        private void BindCourses()
+        private void BindCourses(string searchTerm)
         {
-            // Sample data (replace with DB call)
-            var courses = new[]
-            {
-        new { CourseID = 1, CourseName = "Course Name 1" },
-        new { CourseID = 2, CourseName = "Course Name 2" },
-        new { CourseID = 3, CourseName = "Course Name 3" },
-        new { CourseID = 4, CourseName = "Course Name 4" },
-        new { CourseID = 5, CourseName = "Course Name 5" },
-        new { CourseID = 6, CourseName = "Course Name 6" }
-    };
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-            CourseRepeater.DataSource = courses;
-            CourseRepeater.DataBind();
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string query = @"
+                SELECT Course_ID, Course_Name 
+                FROM Course 
+                WHERE Lecturer_ID = @LecturerID 
+                AND (@SearchTerm IS NULL OR @SearchTerm = '' OR Course_Name LIKE '%' + @SearchTerm + '%')
+                ORDER BY Course_ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    string lecturerId = Session["LecturerID"]?.ToString() ?? "LC001"; // From login session
+                    cmd.Parameters.AddWithValue("@LecturerID", lecturerId);
+                    cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+
+                    conn.Open();
+                    sda.Fill(dt);
+                    CourseRepeater.DataSource = dt;
+                    CourseRepeater.DataBind();
+                }
+            }
         }
+
+        // Search Event (Triggers on every keystroke)
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+            BindCourses(searchTerm);
+
+            UpdatePanelSearch.Update();
+            UpdatePanelCourses.Update();
+
+            // FORCE placeholder update after postback
+            string script = @"
+                <script type='text/javascript'>
+                    setTimeout(function() {
+                        var txt = document.getElementById('" + txtSearch.ClientID + @"');
+                        var label = txt.parentNode.querySelector('.placeholder-label');
+                        if (txt && label) {
+                            if (txt.value.trim() === '') {
+                                label.style.opacity = '1';
+                                label.style.transform = 'translateY(-50%)';
+                                label.style.top = '50%';
+                                label.style.fontSize = '18px';
+                            } else {
+                                label.style.opacity = '0';
+                                label.style.transform = 'translateY(-50%) scale(0.8)';
+                                label.style.top = '10px';
+                                label.style.fontSize = '14ography, px';
+                            }
+                        }
+                    }, 150);
+                </script>";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "ForcePlaceholder", script, false);
+        }
+
+        protected void lnkEdit_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            string courseId = btn.CommandArgument;
+            Response.Redirect($"EditCourse.aspx?id={courseId}");
+        }
+
+        protected void lnkCourseCard_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            string courseId = btn.CommandArgument;
+            Response.Redirect($"CourseDetails.aspx?id={courseId}");
+        }
+
     }
 }

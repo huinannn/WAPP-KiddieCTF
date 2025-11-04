@@ -101,10 +101,6 @@
     <Content Include="Admin\css\sidebar.css" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\SideBar.ascx" />
-    <Content Include="App_Data\KiddieCTF.mdf" />
-    <Content Include="App_Data\KiddieCTF_log.ldf">
-      <DependentUpon>KiddieCTF.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -130,7 +126,11 @@
     <Content Include="Images\icons\add.png" />
     <Content Include="Images\icons\chat.png" />
     <Content Include="Images\icons\search.png" />
+    <Content Include="Lecturer\AddChapter.aspx" />
+    <Content Include="Lecturer\CourseDetails.aspx" />
     <Content Include="Lecturer\Courses.aspx" />
+    <Content Include="Lecturer\css\addChapter.css" />
+    <Content Include="Lecturer\css\courseDetails.css" />
     <Content Include="Lecturer\css\courses.css" />
     <Content Include="Lecturer\css\sidebar.css" />
     <Content Include="Images\Login.png" />
@@ -249,6 +249,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer\AddChapter.aspx.cs">
+      <DependentUpon>AddChapter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\AddChapter.aspx.designer.cs">
+      <DependentUpon>AddChapter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer\CourseDetails.aspx.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\CourseDetails.aspx.designer.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Lecturer\Courses.aspx.cs">
       <DependentUpon>Courses.aspx</DependentUpon>

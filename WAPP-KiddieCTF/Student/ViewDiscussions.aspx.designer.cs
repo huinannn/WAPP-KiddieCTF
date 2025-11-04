@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Student
 {
 
 
-    public partial class Discussions
+    public partial class ViewDiscussions
     {
 
         /// <summary>

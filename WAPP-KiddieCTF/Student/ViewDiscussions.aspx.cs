@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WAPP_KiddieCTF.Student
 {
-    public partial class Tools : System.Web.UI.Page
+    public partial class ViewDiscussions : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

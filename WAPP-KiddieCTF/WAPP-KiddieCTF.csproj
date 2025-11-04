@@ -200,11 +200,12 @@
     <Content Include="Student\css\discussions.css" />
     <Content Include="Student\css\tools.css" />
     <Content Include="Student\Dashboard.aspx" />
-    <Content Include="Student\Discussions.aspx" />
     <Content Include="Student\EditProfile.aspx" />
     <Content Include="Student\Profile.aspx" />
     <Content Include="Student\SideBar.ascx" />
+    <Content Include="Student\Discussions.aspx" />
     <Content Include="Student\Tools.aspx" />
+    <Content Include="Student\ViewDiscussions.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Site.Mobile.Master" />
@@ -307,13 +308,6 @@
     <Compile Include="Student\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Student\Discussions.aspx.cs">
-      <DependentUpon>Discussions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Student\Discussions.aspx.designer.cs">
-      <DependentUpon>Discussions.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Student\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -335,12 +329,26 @@
     <Compile Include="Student\SideBar.ascx.designer.cs">
       <DependentUpon>SideBar.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Student\Discussions.aspx.cs">
+      <DependentUpon>Discussions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Discussions.aspx.designer.cs">
+      <DependentUpon>Discussions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\Tools.aspx.cs">
       <DependentUpon>Tools.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Student\Tools.aspx.designer.cs">
       <DependentUpon>Tools.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\ViewDiscussions.aspx.cs">
+      <DependentUpon>ViewDiscussions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\ViewDiscussions.aspx.designer.cs">
+      <DependentUpon>ViewDiscussions.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

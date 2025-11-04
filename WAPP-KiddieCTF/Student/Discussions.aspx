@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Discussions.aspx.cs" Inherits="WAPP_Assignment.Student.Discussions" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Discussions.aspx.cs" Inherits="WAPP_KiddieCTF.Student.Discussions" %>
 <%@ Register Src="~/Student/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>
@@ -27,6 +27,7 @@
             border-radius: 12px;
             padding: 25px;
             margin-bottom: 25px;
+            cursor: pointer;
         }
 
         .discussion-card {
@@ -144,7 +145,7 @@
             </div>
 
             <div class="discussion-container" style="background-color: #1B263B;">
-                <div class="each-card">
+                <div class="each-card" onclick="window.location.href='ViewDiscussions.aspx'">
                     <div class="discussion-card">
                         <div class="discussion-left">
                             <div class="discussion-title">Discussion Name</div>
@@ -217,3 +218,4 @@
     </form>
 </body>
 </html>
+

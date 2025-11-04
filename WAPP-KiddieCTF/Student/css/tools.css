@@ -1,0 +1,43 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Teko', sans-serif;
+}
+
+body {
+    background-color: #0b0d16;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.main-content {
+    margin-left: 240px;
+    padding: 40px;
+}
+
+.main-content h2 {
+    font-size: 50px;
+
+}
+
+a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: #1B263B;
+    border-radius: 20px;
+    padding: 30px 40px;
+}
+

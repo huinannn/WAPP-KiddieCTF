@@ -37,8 +37,8 @@
         }
 
         .discussion-left img {
-            width: 300px;
-            height: auto;
+            width: auto;
+            height: 200px;
             border-radius: 10px;
             object-fit: cover;
         }
@@ -144,75 +144,28 @@
                 <button class="create-btn" type="button" onclick="window.location.href='AddDiscussions.aspx'"><img src="../Images/icons/add.png"/>CREATE</button>
             </div>
 
-            <div class="discussion-container" style="background-color: #1B263B;">
-                <div class="each-card" onclick="window.location.href='ViewDiscussions.aspx'">
-                    <div class="discussion-card">
-                        <div class="discussion-left">
-                            <div class="discussion-title">Discussion Name</div>
-                            <div class="discussion-subtext">About cyber security topics...</div>
-                            <img src="../Images/discussion/discussion.jpg"/>
+            <div class="discussion-container">
+                <asp:Repeater ID="rptDiscussions" runat="server">
+                    <ItemTemplate>
+                        <div class="each-card" onclick="window.location.href='ViewDiscussions.aspx?id=<%# Eval("Discussion_ID") %>'">
+                            <div class="discussion-card">
+                                <div class="discussion-left">
+                                    <div class="discussion-title"><%# Eval("Discussion_Title") %></div>
+                                    <div class="discussion-subtext"><%# Eval("Discussion_Message") %></div>
+                                    <img src='../<%# Eval("Discussion_Post") %>' alt="Discussion Image" />
+                                </div>
+                                <div class="discussion-right">
+                                    <div>Posted by: <strong><%# Eval("Student_Name") %></strong></div>
+                                    <div>Date: <%# Eval("Discussion_DateTime", "{0:dd/MM/yyyy hh:mm tt}") %></div>
+                                </div>
+                            </div>
+                            <div class="discussion-bottom">
+                                <%# Eval("CommentCount") %> Comments
+                                <img src="../Images/icons/chat.png" />
+                            </div>
                         </div>
-                        <div class="discussion-right">
-                            <div>Posted by: <strong>Angeline</strong></div>
-                            <div>Date: 4/112025</div>
-                        </div>
-                    </div>
-                    <div class="discussion-bottom">
-                        5 Comments
-                        <img src="../Images/icons/chat.png" />
-                    </div>
-                </div>
-                <div class="each-card">
-    <div class="discussion-card">
-        <div class="discussion-left">
-            <div class="discussion-title">Discussion Name</div>
-            <div class="discussion-subtext">About cyber security topics...</div>
-            <img src="../Images/discussion/discussion.jpg"/>
-        </div>
-        <div class="discussion-right">
-            <div>Posted by: <strong>Angeline</strong></div>
-            <div>Date: 4/112025</div>
-        </div>
-    </div>
-    <div class="discussion-bottom">
-        5 Comments
-        <img src="../Images/icons/chat.png" />
-    </div>
-</div>
-                <div class="each-card">
-    <div class="discussion-card">
-        <div class="discussion-left">
-            <div class="discussion-title">Discussion Name</div>
-            <div class="discussion-subtext">About cyber security topics...</div>
-            <img src="../Images/discussion/discussion.jpg"/>
-        </div>
-        <div class="discussion-right">
-            <div>Posted by: <strong>Angeline</strong></div>
-            <div>Date: 4/112025</div>
-        </div>
-    </div>
-    <div class="discussion-bottom">
-        5 Comments
-        <img src="../Images/icons/chat.png" />
-    </div>
-</div>
-                <div class="each-card">
-    <div class="discussion-card">
-        <div class="discussion-left">
-            <div class="discussion-title">Discussion Name</div>
-            <div class="discussion-subtext">About cyber security topics...</div>
-            <img src="../Images/discussion/discussion.jpg"/>
-        </div>
-        <div class="discussion-right">
-            <div>Posted by: <strong>Angeline</strong></div>
-            <div>Date: 4/112025</div>
-        </div>
-    </div>
-    <div class="discussion-bottom">
-        5 Comments
-        <img src="../Images/icons/chat.png" />
-    </div>
-</div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </form>

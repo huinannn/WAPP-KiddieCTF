@@ -60,22 +60,22 @@ namespace WAPP_KiddieCTF.Admin
         protected global::System.Web.UI.WebControls.Repeater rptLatestIntake;
 
         /// <summary>
-        /// loginChartPlaceholder control.
+        /// lblYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loginChartPlaceholder;
+        protected global::System.Web.UI.WebControls.Label lblYear;
 
         /// <summary>
-        /// logoutChartPlaceholder control.
+        /// ddlYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl logoutChartPlaceholder;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
 
         /// <summary>
         /// rptMostAccessed control.
@@ -85,5 +85,14 @@ namespace WAPP_KiddieCTF.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptMostAccessed;
+
+        /// <summary>
+        /// litChartData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litChartData;
     }
 }

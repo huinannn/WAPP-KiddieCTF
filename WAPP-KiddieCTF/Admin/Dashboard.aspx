@@ -12,6 +12,9 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
+    <!-- Chart.js (needed for the charts we build in code-behind) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link href="css/Dashboard.css" rel="stylesheet" />
 </head>
 <body>
@@ -59,16 +62,11 @@
                         <div class="intake-list">
                             <asp:Repeater ID="rptLatestIntake" runat="server">
                                 <ItemTemplate>
-                                    <div class="intake-item"><%# Eval("IntakeName") %></div>
+                                    <div class="intake-item">
+                                        <%# (Container.ItemIndex + 1).ToString() + ". " + Eval("Intake_Name") %>
+                                    </div>
                                 </ItemTemplate>
                             </asp:Repeater>
-
-                            <!-- Placeholder -->
-                            <div class="intake-item placeholder">Intake 1</div>
-                            <div class="intake-item placeholder">Intake 2</div>
-                            <div class="intake-item placeholder">Intake 3</div>
-                            <div class="intake-item placeholder">Intake 4</div>
-                            <div class="intake-item placeholder">Intake 5</div>
                         </div>
                     </div>
 
@@ -79,14 +77,30 @@
 
                     <!-- Charts -->
                     <div class="charts-stack">
-                        <div class="card-rect chart-card">
-                            <h2>User Login (Today)</h2>
-                            <div class="chart-inner" id="loginChartPlaceholder" runat="server"></div>
+
+                        <!-- Year dropdown (your code-behind binds this) -->
+                        <div style="margin-bottom:6px;">
+                            <asp:Label ID="lblYear" runat="server" Text="Select Year:" Style="margin-right:6px;"></asp:Label>
+                            <asp:DropDownList ID="ddlYear" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlYear_SelectedIndexChanged"
+                                Style="padding:3px 6px; font-size:12px; border-radius:5px;background-color: #374151;color:#fff;border:none;">
+                            </asp:DropDownList>
                         </div>
 
                         <div class="card-rect chart-card">
-                            <h2>User Logout (Today)</h2>
-                            <div class="chart-inner" id="logoutChartPlaceholder" runat="server"></div>
+                            <h2>User Login (by Month)</h2>
+                            <div class="chart-inner">
+                                <canvas id="loginChart" width="1000" height="200"></canvas>
+                            </div>
+
+                        </div>
+
+                        <div class="card-rect chart-card">
+                            <h2>User Logout (by Month)</h2>
+                            <div class="chart-inner">
+                                <canvas id="logoutChart" width="1000" height="200"></canvas>
+                            </div>
+
                         </div>
                     </div>
 
@@ -101,31 +115,17 @@
                             <ItemTemplate>
                                 <div class="accessed-item">
                                     <p class="accessed-name"><%# Eval("Name") %></p>
+                                    <p class="accessed-detail">Category: <%# Eval("Category") %></p>
                                     <p class="accessed-detail">Total Student Accessed: <%# Eval("TotalAccessed") %></p>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
-
-                        <!-- Placeholder -->
-                        <div class="accessed-item placeholder">
-                            <p class="accessed-name">Course Name 1</p>
-                            <p class="accessed-detail">Total Student Accessed: 100</p>
-                        </div>
-                        <div class="accessed-item placeholder">
-                            <p class="accessed-name">Challenge Name 1</p>
-                            <p class="accessed-detail">Total Student Accessed: 90</p>
-                        </div>
-                        <div class="accessed-item placeholder">
-                            <p class="accessed-name">Course Name 2</p>
-                            <p class="accessed-detail">Total Student Accessed: 50</p>
-                        </div>
-                        <div class="accessed-item placeholder">
-                            <p class="accessed-name">Challenge Name 2</p>
-                            <p class="accessed-detail">Total Student Accessed: 30</p>
-                        </div>
                     </div>
 
                 </section>
+
+                <!-- this will get the <script> injected from code-behind -->
+                <asp:Literal ID="litChartData" runat="server" EnableViewState="false"></asp:Literal>
 
             </div>
         </div>

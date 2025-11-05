@@ -19,6 +19,7 @@ body {
     background: var(--bg);
     color: var(--white);
     font-family: 'Teko', sans-serif;
+    background-color: #111827;
 }
 
 /* ---- SIDEBAR ---- */
@@ -37,6 +38,7 @@ body {
     margin-left: 250px;
     background: var(--bg);
     min-height: 100vh;
+    background-color:#111827;
 }
 
 /* ---- CENTER CONTENT ---- */
@@ -159,8 +161,17 @@ body {
 .chart-inner {
     background: rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    height: 150px;
+    height: 200px; /* whatever height you like */
+    width: 100%;
+    position: relative;
 }
+
+    .chart-inner canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+
 
 /* Most Accessed */
 .accessed-card {

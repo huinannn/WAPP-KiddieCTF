@@ -11,7 +11,11 @@ namespace WAPP_KiddieCTF.Student
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["StudentID"] == null)
+            {
+                Response.Redirect("~/Default.aspx");
+                return;
+            }
         }
 
         protected void btnPost_Click(object sender, EventArgs e)
@@ -58,7 +62,7 @@ namespace WAPP_KiddieCTF.Student
                 }
 
                 // Save image to /Images/discussion/
-                string folderPath = Server.MapPath("~/Images/discussion/");
+                string folderPath = Server.MapPath("Images/discussion/");
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -68,7 +72,7 @@ namespace WAPP_KiddieCTF.Student
                 string fullPath = Path.Combine(folderPath, newFileName);
                 fileImage.SaveAs(fullPath);
 
-                imagePath = "~/Images/discussion/" + newFileName;
+                imagePath = "Images/discussion/" + newFileName;
             }
 
             string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;

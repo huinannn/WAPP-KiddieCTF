@@ -54,9 +54,10 @@
         }
 
         .discussion-subtext {
-            color: #9BA0A6;
-            font-size: 14px;
+            color: white;
+            font-size: 20px;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         .discussion-right {
@@ -200,69 +201,76 @@
         <uc:SideBar ID="SidebarControl" runat="server" />
         <div class="main-content" style="margin-left: 250px; padding: 40px;">
             <div class="head">
-                <h2 style="color: white; margin-bottom: 20px;">Discussion Name</h2>
+                <h2 style="color: white; margin-bottom: 20px;"><asp:Label ID="lblTitle" runat="server" /></h2>
                 <div class="spacer"></div>
-                <button class="back" onclick="window.location.href='Discussions.aspx'">Back</button>
+                <button class="back" type="button" onclick="window.location.href='Discussions.aspx'">Back</button>
             </div>
 
             <div class="discussion-container">
                 <div class="each-card">
                     <div class="discussion-card">
                         <div class="discussion-left">
-                            <div class="discussion-subtext">About cyber security topics...</div>
-                            <img src="../Images/discussion/discussion.jpg"/>
+                            <div class="discussion-subtext"><asp:Label ID="lblMessage" runat="server" /></div>
+                            <asp:Image ID="imgPost" runat="server" Width="300px" CssClass="discussion-img" />
                         </div>
                         <div class="discussion-right">
-                            <div>Posted by: <strong>Angeline</strong></div>
-                            <div>Date: 4/112025</div>
+                            <div>Posted by: <strong><asp:Label ID="lblStudentName" runat="server" /></strong></div>
+                            <div>Date: <asp:Label ID="lblDateTime" runat="server" /></div>
                         </div>
                     </div>
+
                     <div class="comment">
                         <div class="title">
                             <img src="../Images/icons/chat.png" />
-                            <h5>Comment</h5>
+                            <h5>Comments</h5>
                         </div>
-                        <div class="comment-input">
-                            <textarea class="input" name="comment" placeholder="Leave a Comment..." title="Please leave a comment before you submit!" required="required"></textarea>
-                            <button class="submit-button" name="submit" type="submit">Comment</button>
-                        </div>
-                        <div class="comment-view">
-                            <div class="each-comment">
-                                <div class="comment-element">
-                                    <p>Angeline XC</p>
-                                    <p>4/11/2025</p>
-                                </div>
-                                <div class="comment-element">
-                                    <h5>Talk about some comments. I hate WAPP!!!!</h5>
-                                    <div class="spacer"></div>
-                                    <span class="reply-toggle">Reply</span>
-                                </div>
-                                <div class="replies">
-                                    <div class="each-reply">
-                                        <div class="reply-element">
-                                            <p>John Doe</p>
-                                            <p>4/11/2025</p>
-                                        </div>
-                                        <div class="reply-element">
-                                            <h5>I understand your frustration!</h5>
-                                        </div>
-                                    </div>
-                                    <div class="each-reply">
-                                        <div class="reply-element">
-                                            <p>Jane Smith</p>
-                                            <p>4/11/2025</p>
-                                        </div>
-                                        <div class="reply-element">
-                                            <h5>WAPP can be tricky sometimes.</h5>
-                                        </div>
-                                    </div>
 
-                                    <div class="reply-input">
-                                        <textarea placeholder="Add a reply..." required="required"></textarea>
-                                        <button class="submit-button" type="submit">Reply</button>
+                       <div class="comment-input">
+                            <asp:TextBox ID="txtComment" runat="server" CssClass="input" 
+                                         TextMode="MultiLine" placeholder="Leave a Comment..."></asp:TextBox>
+                            <asp:Button ID="btnAddComment" runat="server" CssClass="submit-button" 
+                                        Text="Comment" OnClick="btnAddComment_Click" />
+                        </div>
+
+                        <div class="comment-view">
+                            <asp:Repeater ID="rptComments" runat="server">
+                                <ItemTemplate>
+                                    <div class="each-comment">
+                                        <div class="comment-element">
+                                            <p><%# Eval("Student_Name") %></p>
+                                            <p><%# Eval("Comment_DateTime", "{0:dd/MM/yyyy hh:mm tt}") %></p>
+                                        </div>
+                                        <div class="comment-element">
+                                            <h5><%# Eval("Comment_Message") %></h5>
+                                            <div class="spacer"></div>
+                                            <span class="reply-toggle">Reply</span>
+                                        </div>
+
+                                        <div class="replies">
+                                            <asp:Repeater ID="rptReplies" runat="server">
+                                                <ItemTemplate>
+                                                    <div class="each-reply">
+                                                        <div class="reply-element">
+                                                            <p><%# Eval("Student_Name") %></p>
+                                                            <p><%# Eval("Reply_DateTime", "{0:dd/MM/yyyy hh:mm tt}") %></p>
+                                                        </div>
+                                                        <div class="reply-element">
+                                                            <h5><%# Eval("Reply_Message") %></h5>
+                                                        </div>
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+
+                                            <div class="reply-input">
+                                                <asp:TextBox ID="txtReply" runat="server" CssClass="input" 
+                                                             TextMode="MultiLine" placeholder="Add a reply..."></asp:TextBox>
+                                                <asp:Button ID="btnAddReply" runat="server" CssClass="submit-button" 
+                                                            Text="Reply" CommandName="AddReply" CommandArgument='<%# Eval("Comment_ID") %>' OnClick="btnAddReply_Click" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </div>
                     </div>
                 </div>

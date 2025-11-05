@@ -138,7 +138,7 @@
             <div class="discussion-upper">
                 <div class="search-bar">
                     <img src="../Images/icons/search.png"/>
-                    <input type="text" placeholder="Search Discussion" />
+                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search Discussion" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged" />
                 </div>
                 <div class="spacer"></div>
                 <button class="create-btn" type="button" onclick="window.location.href='AddDiscussions.aspx'"><img src="../Images/icons/add.png"/>CREATE</button>

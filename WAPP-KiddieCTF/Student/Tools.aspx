@@ -39,9 +39,8 @@
         .tool-card {
             background-color: #455066;
             opacity: .7;
-            aspect-ratio: 280/173;
-            min-width: 250px;
-            min-height: 173px;
+            width: 250px;
+            height: 173px;
             padding: 20px;
             border-radius: 10px;
             transition: 0.3s ease;
@@ -68,6 +67,8 @@
         .tool-card p {
             color: white;
             font-size: 15px;
+            width: 100%;
+            word-wrap: anywhere;
         }
 
         .row {
@@ -93,9 +94,9 @@
             <div class="mb-4" style="margin-top: 20px;">
                 <button type="button" class="category-btn active" style="font-weight: bold;">All</button>
                 <button type="button" class="category-btn">OSINT</button>
-                <button type="button" class="category-btn">Cryptography</button>
-                <button type="button" class="category-btn">Steganography</button>
-                <button type="button" class="category-btn">Reverse Engineering</button>
+                <button type="button" class="category-btn">CRYPTOGRAPHY</button>
+                <button type="button" class="category-btn">STEGANOGRAPHY</button>
+                <button type="button" class="category-btn">REVERSE ENGINEERING</button>
             </div>
 
             <div class="row">
@@ -130,7 +131,7 @@
 
                     cards.forEach(card => {
                         const smallText = card.querySelector("small").textContent.trim();
-                        const parent = card.closest(".col-md-4");
+                        const parent = card.closest("a");
 
                         if (category === "All" || smallText === category) {
                             parent.style.display = "block";

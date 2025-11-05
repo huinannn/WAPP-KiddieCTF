@@ -1,0 +1,214 @@
+﻿/* =========================
+   DASHBOARD.CSS (equal left-right padding)
+   ========================= */
+
+/* ---- COLORS ---- */
+:root {
+    --bg: #000;
+    --card: #1B263B;
+    --white: #fff;
+}
+
+/* ---- GLOBAL ---- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Teko', sans-serif;
+}
+
+/* ---- SIDEBAR ---- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #000;
+    z-index: 90;
+}
+
+/* ---- MAIN LAYOUT ---- */
+.dashboard-main {
+    margin-left: 250px;
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+/* ---- CENTER CONTENT ---- */
+.dashboard-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 50px; /* <-- equal left and right padding */
+    background-color: #111827;
+}
+
+/* ---- HEADER ---- */
+
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+    .dashboard-header h1 {
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+
+/* =========================
+   TOP ROW (3 CARDS)
+   ========================= */
+.top-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.card-rect {
+    background: var(--card);
+    border: 3px solid #fff;
+    border-radius: 14px;
+}
+
+/* KPI Cards */
+.kpi-card {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 150px;
+}
+
+.kpi-icon {
+    font-size: 48px;
+    margin-bottom: 6px;
+}
+
+.kpi-label {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    margin-bottom: 2px;
+}
+
+.kpi-value {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Latest Intake */
+.intake-card {
+    padding: 12px;
+}
+
+    .intake-card h2 {
+        font-size: 18px;
+        margin: 0 0 6px;
+    }
+
+.intake-line {
+    height: 2px;
+    background: rgba(255,255,255,0.15);
+    margin-bottom: 6px;
+}
+
+.intake-item {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    opacity: 0.85;
+}
+
+/* =========================
+   BOTTOM ROW
+   ========================= */
+.bottom-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 16px;
+}
+
+/* Chart Section */
+.charts-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chart-card {
+    background: var(--card);
+    border: 3px solid #fff;
+    border-radius: 14px;
+    padding: 10px 12px;
+}
+
+    .chart-card h2 {
+        font-size: 16px;
+        margin: 0 0 6px;
+    }
+
+.chart-inner {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    height: 150px;
+}
+
+/* Most Accessed */
+.accessed-card {
+    background: var(--card);
+    border: 3px solid #fff;
+    border-radius: 14px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.accessed-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+    .accessed-title .sub {
+        font-size: 13px;
+    }
+
+.accessed-item {
+    background: rgba(93, 111, 144, 0.7);
+    border-radius: 8px;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+}
+
+.accessed-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 2px;
+}
+
+.accessed-detail {
+    font-size: 12px;
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1200px) {
+    .dashboard-content {
+        padding: 40px 20px;
+    }
+
+    .bottom-row {
+        grid-template-columns: 1fr;
+    }
+}

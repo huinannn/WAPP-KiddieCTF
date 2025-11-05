@@ -31,5 +31,59 @@ namespace WAPP_KiddieCTF.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WAPP_Assignment.Admin.SideBar SidebarControl;
+
+        /// <summary>
+        /// lblStudentsCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStudentsCount;
+
+        /// <summary>
+        /// lblLecturerCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLecturerCount;
+
+        /// <summary>
+        /// rptLatestIntake control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptLatestIntake;
+
+        /// <summary>
+        /// loginChartPlaceholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loginChartPlaceholder;
+
+        /// <summary>
+        /// logoutChartPlaceholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl logoutChartPlaceholder;
+
+        /// <summary>
+        /// rptMostAccessed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptMostAccessed;
     }
 }

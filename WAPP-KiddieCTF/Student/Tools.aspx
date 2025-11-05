@@ -99,89 +99,19 @@
             </div>
 
             <div class="row">
-                <a href="https://gchq.github.io/CyberChef/" target="_blank">
-                    <div class="col-md-4">
-                        <div class="tool-card">
-                            <small>OSINT</small>
-                            <h5>CyberChef</h5>
-                            <p>https://cyhs.github.io/CyberChef/</p>
-                        </div>
-                    </div>
-                </a>
-                <div class="col-md-4">
-    <div class="tool-card">
-        <small>OSINT</small>
-        <h5>CyberChef</h5>
-        <a href="https://cyhs.github.io/CyberChef/">https://cyhs.github.io/CyberChef/</a>
-    </div>
-</div>
-                <div class="col-md-4">
-    <div class="tool-card">
-        <small>OSINT</small>
-        <h5>CyberChef</h5>
-        <a href="https://cyhs.github.io/CyberChef/">https://cyhs.github.io/CyberChef/</a>
-    </div>
-</div>
-                <div class="col-md-4">
-    <div class="tool-card">
-        <small>OSINT</small>
-        <h5>CyberChef</h5>
-        <a href="https://cyhs.github.io/CyberChef/">https://cyhs.github.io/CyberChef/</a>
-    </div>
-</div>
-
-                <div class="col-md-4">
-                    <div class="tool-card">
-                        <small>Cryptography</small>
-                        <h5>Hash Analyzer</h5>
-                        <a href="https://www.md5hashgenerator.com/">https://www.md5hashgenerator.com/</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="tool-card">
-                        <small>Steganography</small>
-                        <h5>StegOnline</h5>
-                        <a href="https://stegonline.georgeom.net/">https://stegonline.georgeom.net/</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-    <div class="tool-card">
-        <small>Steganography</small>
-        <h5>StegOnline</h5>
-        <a href="https://stegonline.georgeom.net/">https://stegonline.georgeom.net/</a>
-    </div>
-</div>
-
-                <div class="col-md-4">
-                    <div class="tool-card">
-                        <small>Reverse Engineering</small>
-                        <h5>Ghidra</h5>
-                        <a href="https://ghidra-sre.org/">https://ghidra-sre.org/</a>
-                    </div>
-                </div>
-                 <div class="col-md-4">
-     <div class="tool-card">
-         <small>Reverse Engineering</small>
-         <h5>Ghidra</h5>
-         <a href="https://ghidra-sre.org/">https://ghidra-sre.org/</a>
-     </div>
- </div>
-                 <div class="col-md-4">
-     <div class="tool-card">
-         <small>Reverse Engineering</small>
-         <h5>Ghidra</h5>
-         <a href="https://ghidra-sre.org/">https://ghidra-sre.org/</a>
-     </div>
- </div>
-
-                <div class="col-md-4">
-                    <div class="tool-card">
-                        <small>OSINT</small>
-                        <h5>Shodan</h5>
-                        <a href="https://www.shodan.io/">https://www.shodan.io/</a>
-                    </div>
-                </div>
+                <asp:Repeater ID="rptTools" runat="server">
+                    <ItemTemplate>
+                        <a href='<%# Eval("Tool_Description") %>' target="_blank">
+                            <div class="col-md-4">
+                                <div class="tool-card">
+                                    <small><%# Eval("Category_Name").ToString().ToUpper() %></small>
+                                    <h5><%# Eval("Tool_Name") %></h5>
+                                    <p><%# Eval("Tool_Description") %></p>
+                                </div>
+                            </div>
+                        </a>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </form>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddNewCourse.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.AddNewCourse" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditCourse.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.EditCourse" %>
 
 <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Kiddie CTF - Add New Course</title>
+    <title>Kiddie CTF - Edit Course</title>
 
     <!-- Reusable Sidebar CSS -->
     <link href="css/sidebar.css" rel="stylesheet" runat="server" />
@@ -14,9 +14,12 @@
     <!-- Add New Course Page CSS -->
     <link href="css/addNewCourse.css" rel="stylesheet" runat="server" />
 
+    <!-- Edit Course Page CSS -->
+    <link href="css/editCourse.css" rel="stylesheet" runat="server" />
+
     <!-- Google Font: Teko -->
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet"/>
-
+    
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -55,9 +58,8 @@
 
         <!-- === MAIN CONTENT === -->
         <div class="main">
-            <h1 class="page-title">Add New Course</h1>
+            <h1 class="page-title">Edit Course</h1>
 
-            <!-- BIG PANEL (Taller, no toolbar) -->
             <div class="content-panel">
                 <div class="form-container">
                     <!-- Back Button -->
@@ -65,7 +67,7 @@
                         <img src="images/back_icon.png" alt="Back" />
                     </button>
 
-                    <!-- Course ID (Auto) -->
+                    <!-- Course ID (Read-only) -->
                     <div class="course-id-label">Course ID: <asp:Label ID="lblCourseID" runat="server" Text=""></asp:Label></div>
 
                     <!-- Course Name Input -->
@@ -80,11 +82,8 @@
                     <!-- Student Enrolled Section -->
                     <div class="student-section">
                         <label>Student Enrolled</label>
-
                         <div class="student-panel">
                             <div class="student-buttons">
-
-                                <!-- ADD STUDENTS -->
                                 <div class="student-btn-wrapper">
                                     <asp:LinkButton ID="btnAddStudents" runat="server" CssClass="student-btn" OnClick="btnAddStudents_Click">
                                         <div class="btn-content">
@@ -93,8 +92,6 @@
                                         </div>
                                     </asp:LinkButton>
                                 </div>
-
-                                <!-- VIEW STUDENTS -->
                                 <div class="student-btn-wrapper">
                                     <asp:LinkButton ID="btnViewStudents" runat="server" CssClass="student-btn" OnClick="btnViewStudents_Click">
                                         <div class="btn-content">
@@ -103,16 +100,26 @@
                                         </div>
                                     </asp:LinkButton>
                                 </div>
-
                             </div>
                         </div>
                     </div>
 
-                    <!-- DONE Button -->
-                    <asp:Button ID="btnDone" runat="server" CssClass="done-btn" OnClick="btnDone_Click" Text="DONE" />
+                    <!-- DELETE & EDIT BUTTONS -->
+                    <div class="action-buttons">
+                        <asp:Button ID="btnDelete" runat="server" CssClass="delete-btn" Text="DELETE" OnClick="btnDelete_Click" OnClientClick="return confirmDelete();" />
+                        <asp:Button ID="btnEdit" runat="server" CssClass="edit-btn" Text="EDIT" OnClick="btnEdit_Click" />
+                    </div>
                 </div>
             </div>
         </div>
     </form>
+
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to permanently delete this course?");
+        }
+    </script>
+
 </body>
 </html>
+

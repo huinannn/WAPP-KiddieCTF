@@ -33,6 +33,24 @@ namespace WAPP_KiddieCTF.Lecturer
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// lblLecturerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLecturerName;
+
+        /// <summary>
+        /// lblLecturerID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLecturerID;
+
+        /// <summary>
         /// lblCourseName control.
         /// </summary>
         /// <remarks>
@@ -49,15 +67,6 @@ namespace WAPP_KiddieCTF.Lecturer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanelContent;
-
-        /// <summary>
-        /// lnkEditChapters control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEditChapters;
 
         /// <summary>
         /// rptChapters control.
@@ -96,22 +105,22 @@ namespace WAPP_KiddieCTF.Lecturer
         protected global::System.Web.UI.WebControls.Button btnViewProgress;
 
         /// <summary>
-        /// lnkEditAssignment control.
+        /// rptAssignment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEditAssignment;
+        protected global::System.Web.UI.WebControls.Repeater rptAssignment;
 
         /// <summary>
-        /// lblAssignment control.
+        /// Literal1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAssignment;
+        protected global::System.Web.UI.WebControls.Literal Literal1;
 
         /// <summary>
         /// btnAddAssignment control.

@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WAPP_KiddieCTF.Lecturer
+{
+    public partial class AddStudent : System.Web.UI.Page
+    {
+        private string CourseID => Request.QueryString["course"];
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["LecturerID"] == null || Session["LecturerName"] == null)
+            {
+                Response.Redirect("../Default.aspx");
+                return;
+            }
+
+            lblLecturerID.Text = Session["LecturerID"].ToString();
+            lblLecturerName.Text = Session["LecturerName"].ToString();
+
+            if (string.IsNullOrEmpty(CourseID))
+                Response.Redirect("Courses.aspx");
+
+            if (!IsPostBack)
+                LoadStudents();
+        }
+
+        private void LoadStudents(string search = "")
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string query = @"
+                    SELECT s.Student_ID, s.Student_Name, s.Intake_Code
+                    FROM Student s
+                    WHERE 
+                       (s.Student_ID LIKE @Search 
+                        OR s.Student_Name LIKE @Search 
+                        OR s.Intake_Code LIKE @Search)
+                       AND s.Student_ID NOT IN (
+                           SELECT Student_ID FROM Assigned_Course WHERE Course_ID = @CourseID
+                       )
+                    ORDER BY s.Student_ID";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CourseID", CourseID);
+                cmd.Parameters.AddWithValue("@Search", $"%{search}%");
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                StudentRepeater.DataSource = dt;
+                StudentRepeater.DataBind();
+
+                pnlNoResults.Visible = dt.Rows.Count == 0;
+            }
+        }
+
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadStudents(txtSearch.Text.Trim());
+
+            UpdatePanelSearch.Update();
+            UpdatePanelStudents.Update();
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string studentId = btn.CommandArgument;
+
+            string connStr = ConfigurationManager.ConnectionStrings["KiddieCTFConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                // Check duplicate
+                string checkQuery = "SELECT COUNT(*) FROM Assigned_Course WHERE Course_ID = @CourseID AND Student_ID = @StudentID";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                checkCmd.Parameters.AddWithValue("@CourseID", CourseID);
+                checkCmd.Parameters.AddWithValue("@StudentID", studentId);
+
+                conn.Open();
+                int count = (int)checkCmd.ExecuteScalar();
+                if (count > 0)
+                {
+                    // Already exists
+                    LoadStudents(txtSearch.Text.Trim());
+                    return;
+                }
+
+                // Generate AC_ID
+                string maxQuery = "SELECT ISNULL(MAX(CAST(SUBSTRING(AC_ID, 3, 50) AS INT)), 0) FROM Assigned_Course";
+                SqlCommand maxCmd = new SqlCommand(maxQuery, conn);
+                int maxId = (int)maxCmd.ExecuteScalar();
+                string newAcId = "AC" + (maxId + 1).ToString("D3");
+
+                // Insert
+                string insertQuery = "INSERT INTO Assigned_Course (AC_ID, Course_ID, Student_ID) VALUES (@AC_ID, @CourseID, @StudentID)";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, conn);
+                insertCmd.Parameters.AddWithValue("@AC_ID", newAcId);
+                insertCmd.Parameters.AddWithValue("@CourseID", CourseID);
+                insertCmd.Parameters.AddWithValue("@StudentID", studentId);
+                insertCmd.ExecuteNonQuery();
+            }
+
+            LoadStudents(txtSearch.Text.Trim());
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "AddSuccess",
+                "Swal.fire({ title: 'Added!', text: 'Student added successfully.', icon: 'success', background:'#1B263B', color:'#fff' });", true);
+        }
+
+    }
+}

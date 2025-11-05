@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Lecturer
 {
 
 
-    public partial class AddNewCourse
+    public partial class AddAssignment
     {
 
         /// <summary>
@@ -51,40 +51,49 @@ namespace WAPP_KiddieCTF.Lecturer
         protected global::System.Web.UI.WebControls.Label lblLecturerID;
 
         /// <summary>
-        /// lblCourseID control.
+        /// lblFAID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseID;
+        protected global::System.Web.UI.WebControls.Label lblFAID;
 
         /// <summary>
-        /// txtCourseName control.
+        /// txtFAName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCourseName;
+        protected global::System.Web.UI.WebControls.TextBox txtFAName;
 
         /// <summary>
-        /// btnAddStudents control.
+        /// fuFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddStudents;
+        protected global::System.Web.UI.WebControls.FileUpload fuFile;
 
         /// <summary>
-        /// btnViewStudents control.
+        /// lblFileName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnViewStudents;
+        protected global::System.Web.UI.WebControls.Label lblFileName;
+
+        /// <summary>
+        /// txtDeadline control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDeadline;
 
         /// <summary>
         /// btnDone control.

@@ -18,6 +18,15 @@ namespace WAPP_KiddieCTF.Lecturer
         {
             CurrentCourseID = Request.QueryString["id"];
 
+            if (Session["LecturerID"] == null || Session["LecturerName"] == null)
+            {
+                Response.Redirect("../Default.aspx");
+                return;
+            }
+
+            lblLecturerID.Text = Session["LecturerID"].ToString();
+            lblLecturerName.Text = Session["LecturerName"].ToString();
+
             if (!IsPostBack)
             {
                 if (string.IsNullOrEmpty(CurrentCourseID))
@@ -56,7 +65,7 @@ namespace WAPP_KiddieCTF.Lecturer
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string query = "SELECT Chapter_Name FROM Chapter WHERE Course_ID = @CourseID ORDER BY Chapter_ID";
+                string query = "SELECT Chapter_ID, Chapter_Name FROM Chapter WHERE Course_ID = @CourseID ORDER BY Chapter_ID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@CourseID", CurrentCourseID);
 
@@ -68,7 +77,6 @@ namespace WAPP_KiddieCTF.Lecturer
                 rptChapters.DataBind();
 
                 bool hasChapters = dt.Rows.Count > 0;
-                lnkEditChapters.Visible = hasChapters;
                 litNoChapters.Visible = !hasChapters;
                 btnAddChapter.Visible = true;
             }
@@ -78,25 +86,17 @@ namespace WAPP_KiddieCTF.Lecturer
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string query = "SELECT FA_Name FROM Final_Assignment WHERE Course_ID = @CourseID";
+                string query = "SELECT FA_ID, FA_Name FROM Final_Assignment WHERE Course_ID = @CourseID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@CourseID", CurrentCourseID);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
 
-                conn.Open();
-                object result = cmd.ExecuteScalar();
+                rptAssignment.DataSource = dt;
+                rptAssignment.DataBind();
 
-                if (result != null)
-                {
-                    lblAssignment.Text = "Assignment: " + result.ToString();
-                    lnkEditAssignment.Visible = true;
-                    litNoAssignment.Visible = false;
-                }
-                else
-                {
-                    lblAssignment.Text = "";
-                    lnkEditAssignment.Visible = false;
-                    litNoAssignment.Visible = true;
-                }
+                litNoAssignment.Visible = dt.Rows.Count == 0;
             }
         }
 
@@ -112,12 +112,7 @@ namespace WAPP_KiddieCTF.Lecturer
 
         protected void btnAddAssignment_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"AddFinalAssignment.aspx?courseid={CurrentCourseID}");
-        }
-
-        protected void lnkEditChapters_Click(object sender, EventArgs e)
-        {
-            Response.Redirect($"EditChapters.aspx?courseid={CurrentCourseID}");
+            Response.Redirect($"AddAssignment.aspx?courseid={CurrentCourseID}");
         }
 
         protected void lnkEditAssignment_Click(object sender, EventArgs e)
@@ -127,12 +122,12 @@ namespace WAPP_KiddieCTF.Lecturer
 
         protected void btnViewProgress_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"StudentChapterProgress.aspx?courseid={CurrentCourseID}");
+            Response.Redirect($"ChapterProgress.aspx?courseid={CurrentCourseID}");
         }
 
         protected void btnViewAssignProgress_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"StudentAssignmentProgress.aspx?courseid={CurrentCourseID}");
+            Response.Redirect($"AssignmentProgress.aspx?courseid={CurrentCourseID}");
         }
 
     }

@@ -116,9 +116,20 @@
     letter-spacing: 1px;
     line-height: 1.8;
     margin-bottom: 20px;
-    max-height: 180px; /* limit height */
-    overflow-y: auto; /* only this area scrolls */
+    max-height: 180px;
+    overflow-y: auto;
 }
+
+.chapter-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    .chapter-link:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
 
 .assignment-details {
     color: white;
@@ -131,6 +142,22 @@
 
     .chapter-list em, .assignment-details em {
         color: #777;
+    }
+
+.assignment-link {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: block;
+    margin: 8px 0;
+    transition: color 0.2s ease;
+}
+
+    .assignment-link:hover {
+        color: #007bff;
+        text-decoration: underline;
     }
 
 .action-buttons {

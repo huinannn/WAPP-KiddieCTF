@@ -24,7 +24,6 @@
     margin-left: 40px;
 }
 
-/* TOOLBAR */
 .toolbar {
     display: flex;
     gap: 16px;
@@ -32,6 +31,7 @@
     width: 1060px;
     justify-content: flex-start;
     align-items: center;
+    padding-left: 0;
 }
 
     .toolbar > div {
@@ -51,13 +51,34 @@
         margin-right: 10px;
     }
 
-/* SEARCH BOX */
+.back-btn {
+    width: 37px;
+    height: 46px;
+    background: rgba(69, 80, 102, 0.7);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .back-btn img {
+        width: 23px;
+        height: 23px;
+        padding-left: 5px;
+    }
+
+    .back-btn:hover {
+        background: #133B5C;
+    }
+
 .search-box {
     position: relative;
     width: 364px;
     height: 46px;
     border-radius: 10px;
-    padding: 0 16px; /* ← Same as toolbar */
+    padding: 0 16px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -81,7 +102,7 @@
     flex: 1;
     outline: none;
     height: 100%;
-    padding: 0; /* ← Remove padding */
+    padding: 0;
 }
 
 .placeholder-label {
@@ -95,11 +116,9 @@
     letter-spacing: 0.9px;
     pointer-events: none;
     transition: all 0.2s ease;
-    /* Hide by default if input has value */
     opacity: 1;
 }
 
-/* Always hide when input has value */
 .search-input:not(:placeholder-shown) + .placeholder-label,
 .search-input:focus + .placeholder-label,
 .search-input[has-value="true"] + .placeholder-label {
@@ -109,28 +128,7 @@
     font-size: 14px;
 }
 
-.filter-box {
-    width: 111px;
-}
-
-.add-box {
-    margin-left: auto;
-    width: 220px;
-}
-
-    .add-box img {
-        width: 30px;
-        height: 25px;
-        margin-right: 10px;
-        flex-shrink: 0;
-        cursor: pointer;
-    }
-
-    .add-box:hover {
-        background: #133B5C; /* lighter hover effect */
-    }
-
-/* PANEL: GROWS VERTICALLY */
+/* PANEL */
 .content-panel {
     width: 1060px;
     min-height: 701px;
@@ -138,80 +136,83 @@
     background: #1B263B;
     padding: 40px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
     flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
 }
 
-/* GRID: 3 COLUMNS, AUTO-WRAP */
-.course-grid {
+/* TABLE */
+.table-header, .table-row {
     display: grid;
-    grid-template-columns: repeat(3, 280px);
-    gap: 40px 48px;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: start;
-    margin: 0;
-}
-
-.course-card {
-    position: relative;
-    width: 280px;
-    height: 280px;
-    background: rgba(69, 80, 102, 0.7);
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-    .course-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(79, 195, 247, 0.3);
-        background: rgba(69, 80, 102, 0.9);
-    }
-
-.edit-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 45px;
-    height: 18px;
-    background: rgba(155, 160, 166, 0.7);
-    border: none;
-    border-radius: 5px;
-    color: #1B263B;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.55px;
-    cursor: pointer;
-    display: flex;
+    grid-template-columns: 200px 380px 300px; /* ID, Name, Progress */
+    gap: 20px;
+    padding: 15px 20px;
     align-items: center;
-    justify-content: center;
+    box-sizing: border-box;
 }
 
-    .edit-btn::before {
-        content: '';
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        background: url('../images/edit_icon.png') center no-repeat;
-        background-size: contain;
-        margin-right: 5px;
-    }
-
-.course-name {
+.table-header {
+    background: #5D6B88;
+    border-radius: 10px 10px 3px 3px;
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #fff;
-    margin-bottom: 8px;
+    color: white;
+    border-bottom: 4px solid #FFFFFF;
 }
 
-.course-id {
-    font-size: 16px;
+.table-row {
+    background: rgba(69, 80, 102, 0.7);
+    border-radius: 10px;
+    font-size: 20px;
     font-weight: 600;
-    letter-spacing: 0.8px;
-    color: #9BA0A6;
+    letter-spacing: 1px;
+    color: white;
+}
+
+    .table-header > div, .table-row > div {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .table-header .col-id, .table-row .col-id {
+        padding-left: 30px;
+    }
+
+    .table-header .col-progress, .table-row .col-progress {
+        text-align: center;
+        font-weight: 700;
+        color: #32d294;
+    }
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 580px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+}
+
+    .table-body::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .table-body::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .table-body::-webkit-scrollbar-thumb {
+        background: #5D6B88;
+        border-radius: 4px;
+    }
+
+.no-data {
+    text-align: center;
+    color: #777;
+    font-size: 20px;
+    padding: 40px;
+    font-style: italic;
 }

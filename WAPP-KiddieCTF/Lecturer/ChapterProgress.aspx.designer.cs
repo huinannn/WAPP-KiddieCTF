@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Lecturer
 {
 
 
-    public partial class AddNewCourse
+    public partial class ChapterProgress
     {
 
         /// <summary>
@@ -51,48 +51,48 @@ namespace WAPP_KiddieCTF.Lecturer
         protected global::System.Web.UI.WebControls.Label lblLecturerID;
 
         /// <summary>
-        /// lblCourseID control.
+        /// UpdatePanelSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseID;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelSearch;
 
         /// <summary>
-        /// txtCourseName control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCourseName;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// btnAddStudents control.
+        /// UpdatePanelProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddStudents;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelProgress;
 
         /// <summary>
-        /// btnViewStudents control.
+        /// rptProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnViewStudents;
+        protected global::System.Web.UI.WebControls.Repeater rptProgress;
 
         /// <summary>
-        /// btnDone control.
+        /// litNoData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDone;
+        protected global::System.Web.UI.WebControls.Literal litNoData;
     }
 }

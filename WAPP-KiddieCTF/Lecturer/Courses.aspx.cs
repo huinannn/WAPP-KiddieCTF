@@ -14,6 +14,16 @@ namespace WAPP_KiddieCTF.Lecturer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LecturerID"] == null || Session["LecturerName"] == null)
+            {
+                Response.Redirect("../Default.aspx");
+                return;
+            }
+
+            // Display Lecturer Info in sidebar
+            lblLecturerName.Text = Session["LecturerName"].ToString();
+            lblLecturerID.Text = Session["LecturerID"].ToString();
+
             if (!IsPostBack)
             {
                 BindCourses("");
@@ -35,7 +45,7 @@ namespace WAPP_KiddieCTF.Lecturer
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    string lecturerId = Session["LecturerID"]?.ToString() ?? "LC001"; // From login session
+                    string lecturerId = Session["LecturerID"]?.ToString();
                     cmd.Parameters.AddWithValue("@LecturerID", lecturerId);
                     cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
 

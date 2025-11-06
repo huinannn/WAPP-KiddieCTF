@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace WAPP_KiddieCTF.Lecturer
 {
-    public partial class AddChapter : System.Web.UI.Page
+    public partial class AddAssignment : System.Web.UI.Page
     {
         string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         protected string CourseID;
@@ -32,61 +32,77 @@ namespace WAPP_KiddieCTF.Lecturer
                 if (string.IsNullOrEmpty(CourseID))
                     Response.Redirect("Courses.aspx");
 
-                GenerateNextChapterID();
+                GenerateNextFAID();
                 Session["ReturnCourseID"] = CourseID;
             }
         }
 
-        private void GenerateNextChapterID()
+            private void GenerateNextFAID()
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string query = "SELECT MAX(CAST(SUBSTRING(Chapter_ID, 3, LEN(Chapter_ID)) AS INT)) FROM Chapter WHERE Chapter_ID LIKE 'CP%'";
+                string query = "SELECT MAX(CAST(SUBSTRING(FA_ID, 3, LEN(FA_ID)) AS INT)) FROM Final_Assignment WHERE FA_ID LIKE 'FA%'";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 object result = cmd.ExecuteScalar();
-                int nextNum = (result == DBNull.Value) ? 1 : Convert.ToInt32(result) + 1;
-                lblChapterID.Text = "CP" + nextNum.ToString("D3"); // CP001, CP002...
+                int next = (result == DBNull.Value) ? 1 : Convert.ToInt32(result) + 1;
+                lblFAID.Text = "FA" + next.ToString("D3"); // FA001, FA002...
             }
         }
 
         protected void btnDone_Click(object sender, EventArgs e)
         {
-            string chapterName = txtChapterName.Text.Trim();
-            if (string.IsNullOrEmpty(chapterName))
+            string name = txtFAName.Text.Trim();
+            if (string.IsNullOrEmpty(name))
             {
-                ShowAlert("error", "Chapter name cannot be empty!");
+                ShowAlert("error", "Assignment name cannot be empty!");
                 return;
             }
 
-            if (!fuChapterFile.HasFile)
+            if (!fuFile.HasFile)
             {
                 ShowAlert("error", "Please attach a file!");
                 return;
             }
 
-            // Validate file type
-            string ext = Path.GetExtension(fuChapterFile.FileName).ToLower();
-            if (ext != ".pdf" && ext != ".docx" && ext != ".pptx")
+            string ext = Path.GetExtension(fuFile.FileName).ToLower();
+            if (ext != ".pdf" && ext != ".docx" && ext != ".zip")
             {
-                ShowAlert("error", "Only PDF, DOCX, PPTX files are allowed!");
+                ShowAlert("error", "Only PDF, DOCX, ZIP allowed!");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtDeadline.Text))
+            {
+                ShowAlert("error", "Please select a deadline!");
+                return;
+            }
+
+            DateTime deadline;
+            if (!DateTime.TryParse(txtDeadline.Text, out deadline))
+            {
+                ShowAlert("error", "Invalid deadline!");
                 return;
             }
 
             // Save file
-            string fileName = lblChapterID.Text + ext;
-            string filePath = Server.MapPath("~/Uploads/Chapters/") + fileName;
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            fuChapterFile.SaveAs(filePath);
+            string fileName = lblFAID.Text + ext;
+            string path = Server.MapPath("~/Uploads/Assignments/") + fileName;
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            fuFile.SaveAs(path);
 
-            // Insert into DB
+            // Insert DB
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string query = "INSERT INTO Chapter (Chapter_ID, Chapter_Name, Chapter_File, Course_ID) VALUES (@ID, @Name, @File, @CourseID)";
+                string query = @"INSERT INTO Final_Assignment 
+                    (FA_ID, FA_Name, FA_File, FA_Deadline, Course_ID) 
+                    VALUES (@ID, @Name, @File, @Deadline, @CourseID)";
+
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@ID", lblChapterID.Text);
-                cmd.Parameters.AddWithValue("@Name", chapterName);
+                cmd.Parameters.AddWithValue("@ID", lblFAID.Text);
+                cmd.Parameters.AddWithValue("@Name", name);
                 cmd.Parameters.AddWithValue("@File", fileName);
+                cmd.Parameters.AddWithValue("@Deadline", deadline);
                 cmd.Parameters.AddWithValue("@CourseID", Session["ReturnCourseID"]);
 
                 conn.Open();
@@ -94,24 +110,24 @@ namespace WAPP_KiddieCTF.Lecturer
             }
 
             // Success
-            string script = @"
-                Swal.fire({
+            string script = $@"
+                Swal.fire({{
                     icon: 'success',
-                    title: 'Chapter added successfully!',
+                    title: 'Assignment added!',
                     showConfirmButton: false,
                     timer: 1500
-                }).then(() => {
-                    window.location.replace('CourseDetails.aspx?id=" + Session["ReturnCourseID"] + @"');
-                });
+                }}).then(() => {{
+                    window.location = 'CourseDetails.aspx?id={Session["ReturnCourseID"]}';
+                }});
             ";
-            ScriptManager.RegisterStartupScript(this, GetType(), "AddChapterSuccess", script, true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "success", script, true);
         }
 
         private void ShowAlert(string icon, string title)
         {
-            string script = $@"Swal.fire({{ icon: '{icon}', title: '{title}', confirmButtonColor: '#3085d6' }});";
+            string script = $"Swal.fire({{ icon: '{icon}', title: '{title}', confirmButtonColor: '#3085d6' }});";
             ScriptManager.RegisterStartupScript(this, GetType(), icon, script, true);
         }
 
     }
-}
+    }

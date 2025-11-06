@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_KiddieCTF.Lecturer
+namespace WAPP_KiddieCTF.Student
 {
 
 
-    public partial class CourseDetails
+    public partial class ChallengeDetails
     {
 
         /// <summary>
@@ -24,129 +24,147 @@ namespace WAPP_KiddieCTF.Lecturer
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ScriptManager1 control.
+        /// SidebarControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::WAPP_KiddieCTF.Student.SideBar SidebarControl;
 
         /// <summary>
-        /// lblLecturerName control.
+        /// challengeDetailPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLecturerName;
+        protected global::System.Web.UI.WebControls.Panel challengeDetailPanel;
 
         /// <summary>
-        /// lblLecturerID control.
+        /// challengeHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLecturerID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl challengeHeader;
 
         /// <summary>
-        /// lblCourseName control.
+        /// lblCategoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseName;
+        protected global::System.Web.UI.WebControls.Label lblCategoryName;
 
         /// <summary>
-        /// UpdatePanelContent control.
+        /// lblChallengeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelContent;
+        protected global::System.Web.UI.WebControls.Label lblChallengeName;
 
         /// <summary>
-        /// rptChapters control.
+        /// lblname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptChapters;
+        protected global::System.Web.UI.WebControls.Label lblname;
 
         /// <summary>
-        /// litNoChapters control.
+        /// difficultyLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNoChapters;
+        protected global::System.Web.UI.WebControls.Label difficultyLabel;
 
         /// <summary>
-        /// btnAddChapter control.
+        /// challengeDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddChapter;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl challengeDescription;
 
         /// <summary>
-        /// btnViewProgress control.
+        /// litDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewProgress;
+        protected global::System.Web.UI.WebControls.Literal litDescription;
 
         /// <summary>
-        /// rptAssignment control.
+        /// challengeFileSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptAssignment;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl challengeFileSection;
 
         /// <summary>
-        /// Literal1 control.
+        /// lnkFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.HyperLink lnkFile;
 
         /// <summary>
-        /// btnAddAssignment control.
+        /// submitSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddAssignment;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitSection;
 
         /// <summary>
-        /// btnViewAssignProgress control.
+        /// flagTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewAssignProgress;
+        protected global::System.Web.UI.WebControls.TextBox flagTextBox;
 
         /// <summary>
-        /// litNoAssignment control.
+        /// submitButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNoAssignment;
+        protected global::System.Web.UI.WebControls.Button submitButton;
+
+        /// <summary>
+        /// errorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorMessage;
+
+        /// <summary>
+        /// successMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label successMessage;
     }
 }

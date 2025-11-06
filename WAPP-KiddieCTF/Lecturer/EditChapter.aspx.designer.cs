@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Lecturer
 {
 
 
-    public partial class AddNewCourse
+    public partial class EditChapter
     {
 
         /// <summary>
@@ -51,48 +51,57 @@ namespace WAPP_KiddieCTF.Lecturer
         protected global::System.Web.UI.WebControls.Label lblLecturerID;
 
         /// <summary>
-        /// lblCourseID control.
+        /// lblChapterID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCourseID;
+        protected global::System.Web.UI.WebControls.Label lblChapterID;
 
         /// <summary>
-        /// txtCourseName control.
+        /// txtChapterName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCourseName;
+        protected global::System.Web.UI.WebControls.TextBox txtChapterName;
 
         /// <summary>
-        /// btnAddStudents control.
+        /// fuChapterFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddStudents;
+        protected global::System.Web.UI.WebControls.FileUpload fuChapterFile;
 
         /// <summary>
-        /// btnViewStudents control.
+        /// lblFileName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnViewStudents;
+        protected global::System.Web.UI.WebControls.Label lblFileName;
 
         /// <summary>
-        /// btnDone control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDone;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
+
+        /// <summary>
+        /// btnEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEdit;
     }
 }

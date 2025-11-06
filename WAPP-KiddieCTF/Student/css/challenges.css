@@ -1,0 +1,475 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Teko', sans-serif;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 40px;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Title */
+.challenges-title {
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #fff;
+    margin-bottom: 30px;
+    align-self: flex-start;
+    margin-left: 40px;
+}
+
+/* Challenge Container */
+.challenges-container {
+    width: 1050px;
+    max-width: 100%;
+    height: auto;
+    min-height: 500px;
+    border-radius: 20px;
+    background: #1B263B;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 18px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* Category Tabs */
+.category-tabs {
+    display: flex;
+    margin: -4px 0 10px 14px; /* shorthand: top right bottom left */
+    font-size: 18px;
+    align-items: flex-start;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+}
+
+.tab {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 5px;
+    background-color: #455066B2;
+    color: #9BA0A6;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.tab:hover {
+    background-color: #4FC3F7;
+    color: white;
+}
+
+.tab.active {
+    background-color: #133B5CB2;
+}
+
+/* Challenge Grid */
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width: 100%;
+}
+
+/* Challenge Cards */
+.challenge-item {
+    background-color: rgba(69.17, 80.37, 101.75, 0.70);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+    align-items: flex-start;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.challenge-item:hover {
+    transform: translateY(-4px);
+}
+
+/* Category */
+.category {
+    color: #9BA0A6;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-bottom: 15px;
+}
+
+/* Challenge Name */
+.c_name {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+/* Difficulty */
+.difficulty {
+    margin-top: 50px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+}
+
+/* No Challenges */
+.no-challenges {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #9BA0A6;
+    text-align: center;
+    width: auto;
+    position: absolute;
+    top: 55%;
+    left: 48%;
+    padding: 10px;
+}
+
+/* Difficulty Levels */
+.easy {
+    background-color: #30BC30B2;
+    border-radius: 2px;
+    padding: 2px 15px;
+}
+
+.medium {
+    background-color: #DF850FB2;
+    border-radius: 2px;
+    padding: 2px 12px;
+}
+
+.hard {
+    background-color: #B81E1EB2;
+    border-radius: 2px;
+    padding: 2px 15px;
+}
+
+/* Challenge Details */
+.challenge-details {
+    width: 1050px;
+    max-width: 100%;
+    height: auto;
+    min-height: 500px;
+    border-radius: 20px;
+    background: #1B263B;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 18px;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.challenge-header h1 {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: -5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.challenge-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #9BA0A6;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.author-difficulty {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.lecture-id-label {
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-right: 50px;
+}
+
+#lblname {
+    margin-left: 10px;
+}
+
+.difficulty-label {
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #9BA0A6;
+}
+
+.difficulty-value {
+    color: white;
+    font-size: 18px;
+}
+
+#difficultyLabel {
+    margin-left: 10px;
+}
+
+.category-name {
+    margin-bottom: 20px;
+}
+
+.category-label {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.challenge-container {
+    width: 700px;
+    background-color: #455066B2;
+    border-radius: 10px;
+    padding: 40px;
+    margin-bottom: 20px;
+}
+
+.challenge-description, .challenge-file {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.challenge-file {
+    margin-bottom: 60px;
+}
+
+.challenge-description h3, .challenge-file h3 {
+    color: white;
+}
+
+.challenge-file a {
+    color: #1B263B;
+    font-size: 18px;
+    text-decoration: none;
+    background: #9BA0A6;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.download-btn.disabled {
+    background-color: #9BA0A6;
+    color: #1B263B;
+    cursor: not-allowed;
+}
+
+/* File Section */
+.file-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.file-divider {
+    width: 42.5%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.50);
+    border-radius: 5px;
+}
+
+.file-text {
+    margin: 0 10px;
+    color: #9BA0A6;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+}
+
+/* Submit Section */
+.submit-section {
+    display: flex;
+    align-items: center; 
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+/* Flag Container */
+.flag-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.flag-input {
+    width: 100%;
+    padding: 10px 10px 10px 45px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #9BA0A6;
+    background: transparent;
+    color: #9BA0A6;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* Flag Icon */
+.flag-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #9BA0A6;
+}
+
+/* Focus Effect for Flag Input */
+.flag-input:focus {
+    outline: none;
+    border: 1px solid #FFFFFF;
+}
+
+/* Placeholder text color for the solved state */
+.flag-input[readonly]::placeholder {
+    color: lightgreen;
+    cursor: not-allowed;
+}
+
+/* Background color of the flag input when it's solved */
+.flag-input.solved {
+    background-color: lightgreen;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 20%;
+    padding: 12px;
+    background-color: #4FC3F7;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #3FA9F5;
+    color: white;
+}
+
+.submit-btn.disabled {
+    background-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
+/* Success Label */
+.success {
+    font-size: 16px;
+    color: lightgreen;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1px;
+    position: relative;
+    left: 35%;
+    transform: translateX(-50%);
+}
+
+/* Error Label */
+.error {
+    font-size: 16px;
+    color: red;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1px;
+    position: relative;
+    left: 35%;
+    transform: translateX(-50%);
+}
+
+/* When Flag is Incorrect */
+.flag-input.incorrect {
+    border-color: red;
+}
+
+/* When Flag is Correct */
+.flag-input.correct {
+    border-color: lightgreen;
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: #9BA0A6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    transition: 0.3s;
+}
+
+.back-icon {
+    font-size: 20px;
+    color: #1B263B;
+    text-align: center;
+}
+
+.back-button:hover {
+    background: #3FA9F5;
+    color: white;
+}
+
+.back-icon:hover {
+    color: white;
+}
+
+/* Solved Challenge */
+.solved-challenge {
+    background-color: rgba(169, 169, 169, 0.15);
+    opacity: 0.5;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.solved-challenge:hover {
+    transform: translateY(-4px);
+}

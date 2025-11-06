@@ -30,17 +30,25 @@
                 <a href="Courses.aspx" class="nav-item active"><span class="icon courses"></span><span class="label">Courses</span></a>
                 <a href="Challenges.aspx" class="nav-item"><span class="icon challenges"></span><span class="label">Challenges</span></a>
                 <a href="Tools.aspx" class="nav-item"><span class="icon tools"></span><span class="label">Tools</span></a>
-                <a href="Dashboard.aspx" class="nav-item"><span class="icon dashboard"></span><span class="label">DASHBOARD</span></a>
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                <div class="avatar"></div>
+                <div class="avatar">
+                    <img src="images/profile.png" alt="Profile" />
+                </div>
                 <div class="user-info">
-                    <div class="name">Wong Xin Yee</div>
-                    <div class="id">LC123456</div>
+                    <div class="name">
+                        <asp:Label ID="lblLecturerName" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div class="id">
+                        <asp:Label ID="lblLecturerID" runat="server" Text=""></asp:Label>
+                    </div>
                 </div>
             </div>
-            <a href="Login.aspx" class="logout"><span class="icon logout-icon"></span><span class="label">LOG OUT</span></a>
+            <a href="../LogOut.aspx" class="logout">
+                <img src="images/logout.png" alt="Logout" class="logout-img" />
+                <span class="label">LOG OUT</span>
+            </a>
         </div>
 
         <!-- MAIN CONTENT -->
@@ -61,15 +69,15 @@
                         <div class="section chapters-section">
                             <div class="section-header">
                                 <h2>Chapters</h2>
-                                <asp:LinkButton ID="lnkEditChapters" runat="server" CssClass="edit-btn" OnClick="lnkEditChapters_Click" Visible="false">
-                                    <span>EDIT</span>
-                                    <img src="images/edit_icon.png" alt="Edit" />
-                                </asp:LinkButton>
                             </div>
                             <div class="chapter-list">
                                 <asp:Repeater ID="rptChapters" runat="server">
                                     <ItemTemplate>
-                                        <div><%# Eval("Chapter_Name") %></div>
+                                        <div class="chapter-item">
+                                            <a href='<%# "EditChapter.aspx?chapterid=" + Eval("Chapter_ID") + "&courseid=" + Request.QueryString["id"] %>' class="chapter-link">
+                                                <%# Eval("Chapter_Name") %>
+                                            </a>
+                                        </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
                                 <asp:Literal ID="litNoChapters" runat="server" Text="<em>No chapters added yet.</em>" Visible="false"></asp:Literal>
@@ -87,13 +95,17 @@
                         <div class="section assignment-section">
                             <div class="section-header">
                                 <h2>Final Assignment</h2>
-                                <asp:LinkButton ID="lnkEditAssignment" runat="server" CssClass="edit-btn" OnClick="lnkEditAssignment_Click" Visible="false">
-                                    <span>EDIT</span>
-                                    <img src="images/edit_icon.png" alt="Edit" />
-                                </asp:LinkButton>
                             </div>
                             <div class="assignment-details">
-                                <asp:Label ID="lblAssignment" runat="server" Text="Assignment: Not set"></asp:Label>
+                                <asp:Repeater ID="rptAssignment" runat="server">
+                                    <ItemTemplate>
+                                        <a href='<%# "EditAssignment.aspx?faid=" + Eval("FA_ID") + "&courseid=" + Request.QueryString["id"] %>' 
+                                           class="assignment-link">
+                                            <%# Eval("FA_Name") %>
+                                        </a>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <asp:Literal ID="Literal1" runat="server" Text="<em>No final assignment added.</em>" Visible="false"></asp:Literal>
                             </div>
                             <div class="action-buttons">
                                 <asp:Button ID="btnAddAssignment" runat="server" Text="Add Assignment" CssClass="action-btn add-btn" OnClick="btnAddAssignment_Click" />

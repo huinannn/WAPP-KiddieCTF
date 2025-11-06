@@ -24,7 +24,6 @@
     margin-left: 40px;
 }
 
-/* BIG PANEL - Same as addNewCourse */
 .content-panel {
     width: 1060px;
     min-height: 766px;
@@ -43,7 +42,7 @@
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .back-btn {
@@ -60,7 +59,7 @@
         height: 47px;
     }
 
-.chapter-id-label {
+.assignment-id-label {
     color: white;
     font-size: 30px;
     font-weight: 700;
@@ -83,8 +82,7 @@
         margin-left: 5px;
     }
 
-.input-box,
-.file-upload-box {
+.input-box, .file-upload-box {
     position: relative;
     width: 100%;
     height: 60px;
@@ -95,10 +93,6 @@
     align-items: center;
     box-sizing: border-box;
 }
-
-    .input-box .placeholder {
-        color: #9BA0A6;
-    }
 
 .input-field {
     background: transparent;
@@ -126,17 +120,26 @@
     transition: all 0.2s ease;
 }
 
-.input-field::placeholder {
+.input-group .placeholder {
     color: #9BA0A6;
-    opacity: 1;
 }
 
-.input-field:focus + .placeholder,
-.input-field:not(:placeholder-shown) + .placeholder {
+.input-field:focus + .placeholder, .input-field:not(:placeholder-shown) + .placeholder {
     opacity: 0;
     transform: translateY(-50%) scale(0.8);
     top: 10px;
     font-size: 14px;
+}
+
+/* ROW: File + Deadline */
+.row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.half {
+    flex: 1;
 }
 
 /* FILE UPLOAD */
@@ -170,9 +173,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 780px;
+    max-width: 300px;
 }
 
+/* DONE BUTTON */
 .done-btn {
     width: 134px;
     height: 55px;
@@ -185,7 +189,8 @@
     letter-spacing: 1.6px;
     cursor: pointer;
     font-family: 'Teko', sans-serif;
-    margin-top: 30px;
+    transition: all 0.25s ease;
+    margin-top: 20px;
 }
 
     .done-btn:hover {

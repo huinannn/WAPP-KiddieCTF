@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddNewCourse.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.AddNewCourse" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddAssignment.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.AddAssignment" %>
 
 <!DOCTYPE html>
 
@@ -6,25 +6,25 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Kiddie CTF - Add New Course</title>
+    <title>Kiddie CTF - Add Final Assignment</title>
 
     <!-- Reusable Sidebar CSS -->
     <link href="css/sidebar.css" rel="stylesheet" runat="server" />
 
-    <!-- Add New Course Page CSS -->
-    <link href="css/addNewCourse.css" rel="stylesheet" runat="server" />
+    <!-- Add Assignment Page CSS -->
+    <link href="css/addAssignment.css" rel="stylesheet" runat="server" />
 
     <!-- Google Font: Teko -->
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet"/>
 
-    <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <!-- === SIDEBAR === -->
+
+        <!-- SIDEBAR -->
         <div class="sidebar">
             <img class="logo" src="images/logo.png" alt="Logo" />
             <nav class="nav">
@@ -53,66 +53,67 @@
                 </a>
         </div>
 
-        <!-- === MAIN CONTENT === -->
+        <!-- MAIN -->
         <div class="main">
-            <h1 class="page-title">Add New Course</h1>
+            <h1 class="page-title">Add Final Assignment</h1>
 
-            <!-- BIG PANEL (Taller, no toolbar) -->
             <div class="content-panel">
                 <div class="form-container">
                     <!-- Back Button -->
-                    <button type="button" class="back-btn" onclick="window.location='Courses.aspx'">
+                    <button type="button" class="back-btn" onclick="history.back()">
                         <img src="images/back_icon.png" alt="Back" />
                     </button>
 
-                    <!-- Course ID (Auto) -->
-                    <div class="course-id-label">Course ID: <asp:Label ID="lblCourseID" runat="server" Text=""></asp:Label></div>
+                    <!-- Assignment ID -->
+                    <div class="assignment-id-label">
+                        Assignment ID: <asp:Label ID="lblFAID" runat="server" Text="FA001"></asp:Label>
+                    </div>
 
-                    <!-- Course Name Input -->
+                    <!-- Assignment Name -->
                     <div class="input-group">
-                        <label>Course Name</label>
-                        <div class="course-name-box">
-                            <asp:TextBox ID="txtCourseName" runat="server" CssClass="course-name-input" placeholder=" "></asp:TextBox>
-                            <label class="placeholder-label">Enter course name</label>
+                        <label>Assignment Name</label>
+                        <div class="input-box">
+                            <asp:TextBox ID="txtFAName" runat="server" CssClass="input-field" placeholder=" "></asp:TextBox>
+                            <label class="placeholder">Enter assignment name</label>
                         </div>
                     </div>
 
-                    <!-- Student Enrolled Section -->
-                    <div class="student-section">
-                        <label>Student Enrolled</label>
-
-                        <div class="student-panel">
-                            <div class="student-buttons">
-
-                                <!-- ADD STUDENTS -->
-                                <div class="student-btn-wrapper">
-                                    <asp:LinkButton ID="btnAddStudents" runat="server" CssClass="student-btn" OnClick="btnAddStudents_Click">
-                                        <div class="btn-content">
-                                            <img src="images/addStudent.png" alt="Add" class="btn-icon" />
-                                            <span class="btn-text">Add Students</span>
-                                        </div>
-                                    </asp:LinkButton>
+                    <!-- File + Deadline Row -->
+                    <div class="row">
+                        <!-- File Upload -->
+                        <div class="input-group half">
+                            <label>File Attached</label>
+                            <div class="file-upload-box">
+                                <asp:FileUpload ID="fuFile" runat="server" CssClass="file-upload" />
+                                <div class="upload-icon">
+                                    <img src="images/attachFile_icon.png" alt="Upload" />
                                 </div>
+                                <asp:Label ID="lblFileName" runat="server" CssClass="file-name" Text="No file chosen"></asp:Label>
+                            </div>
+                        </div>
 
-                                <!-- VIEW STUDENTS -->
-                                <div class="student-btn-wrapper">
-                                    <asp:LinkButton ID="btnViewStudents" runat="server" CssClass="student-btn" OnClick="btnViewStudents_Click">
-                                        <div class="btn-content">
-                                            <img src="images/viewStudent.png" alt="View" class="btn-icon" />
-                                            <span class="btn-text">View Students</span>
-                                        </div>
-                                    </asp:LinkButton>
-                                </div>
-
+                        <!-- Deadline -->
+                        <div class="input-group half">
+                            <label>Deadline</label>
+                            <div class="input-box">
+                                <asp:TextBox ID="txtDeadline" runat="server" CssClass="input-field" TextMode="Date"></asp:TextBox>
                             </div>
                         </div>
                     </div>
 
                     <!-- DONE Button -->
-                    <asp:Button ID="btnDone" runat="server" CssClass="done-btn" OnClick="btnDone_Click" Text="DONE" />
+                    <asp:Button ID="btnDone" runat="server" CssClass="done-btn" Text="DONE" OnClick="btnDone_Click" />
                 </div>
             </div>
         </div>
     </form>
+
+    <script>
+        document.querySelector('.file-upload').addEventListener('change', function () {
+            const name = this.files[0]?.name || 'No file chosen';
+            document.querySelector('.file-name').textContent = name;
+        });
+    </script>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddChapter.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.AddChapter" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditAssignment.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.EditAssignment" %>
 
 <!DOCTYPE html>
 
@@ -6,13 +6,13 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Kiddie CTF - Add Chapter</title>
+    <title>Kiddie CTF - Edit Final Assignment</title>
 
     <!-- Reusable Sidebar CSS -->
     <link href="css/sidebar.css" rel="stylesheet" runat="server" />
 
-    <!-- Add Chapter Page CSS -->
-    <link href="css/addChapter.css" rel="stylesheet" runat="server" />
+    <!-- Edit Assignment Page CSS -->
+    <link href="css/editAssignment.css" rel="stylesheet" runat="server" />
 
     <!-- Google Font: Teko -->
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -24,7 +24,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-        <!-- === SIDEBAR (Same as others) === -->
+        <!-- SIDEBAR -->
         <div class="sidebar">
             <img class="logo" src="images/logo.png" alt="Logo" />
             <nav class="nav">
@@ -53,57 +53,63 @@
                 </a>
         </div>
 
-        <!-- === MAIN CONTENT === -->
+        <!-- MAIN -->
         <div class="main">
-            <h1 class="page-title">Add Chapter</h1>
+            <h1 class="page-title">Edit Final Assignment</h1>
 
-            <!-- BIG PANEL -->
             <div class="content-panel">
                 <div class="form-container">
-                    <!-- Back Button -->
-                    <button type="button" class="back-btn" 
-                            onclick="window.location.replace('CourseDetails.aspx?id=<%= Request.QueryString["courseid"] %>');">
+                    <button type="button" class="back-btn" onclick="history.back()">
                         <img src="images/back_icon.png" alt="Back" />
                     </button>
 
-                    <!-- Chapter ID (Auto) -->
-                    <div class="chapter-id-label">
-                        Chapter ID: <asp:Label ID="lblChapterID" runat="server" Text="CP001"></asp:Label>
+                    <div class="assignment-id-label">
+                        Assignment ID: <asp:Label ID="lblFAID" runat="server" Text="FA001"></asp:Label>
                     </div>
 
-                    <!-- Chapter Name -->
                     <div class="input-group">
-                        <label>Chapter Name</label>
+                        <label>Assignment Name</label>
                         <div class="input-box">
-                            <asp:TextBox ID="txtChapterName" runat="server" CssClass="input-field" placeholder=" "></asp:TextBox>
-                            <label class="placeholder">Enter chapter name</label>
+                            <asp:TextBox ID="txtFAName" runat="server" CssClass="input-field" placeholder=" "></asp:TextBox>
+                            <label class="placeholder">Enter assignment name</label>
                         </div>
                     </div>
 
-                    <!-- File Upload -->
-                    <div class="input-group">
-                        <label>File Attached</label>
-                        <div class="file-upload-box">
-                            <asp:FileUpload ID="fuChapterFile" runat="server" CssClass="file-upload" />
-                            <div class="upload-icon">
-                                <img src="images/attachFile_icon.png" alt="Upload" />
+                    <div class="row">
+                        <div class="input-group half">
+                            <label>File Attached</label>
+                            <div class="file-upload-box">
+                                <asp:FileUpload ID="fuFile" runat="server" CssClass="file-upload" />
+                                <div class="upload-icon">
+                                    <img src="images/attachFile_icon.png" alt="Upload" />
+                                </div>
+                                <asp:Label ID="lblFileName" runat="server" CssClass="file-name" Text="FA001.pdf"></asp:Label>
                             </div>
-                            <asp:Label ID="lblFileName" runat="server" CssClass="file-name" Text="No file chosen"></asp:Label>
+                        </div>
+
+                        <div class="input-group half">
+                            <label>Deadline</label>
+                            <div class="input-box">
+                                <asp:TextBox ID="txtDeadline" runat="server" CssClass="input-field" TextMode="Date"></asp:TextBox>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- DONE Button -->
-                    <asp:Button ID="btnDone" runat="server" CssClass="done-btn" Text="DONE" OnClick="btnDone_Click" />
+                    <div class="action-buttons">
+                        <asp:Button ID="btnDelete" runat="server" CssClass="delete-btn" Text="DELETE"
+                                    OnClick="btnDelete_Click" OnClientClick="return confirm('Delete this assignment?');" />
+                        <asp:Button ID="btnEdit" runat="server" CssClass="edit-btn" Text="EDIT"
+                                    OnClick="btnEdit_Click" />
+                    </div>
                 </div>
             </div>
         </div>
     </form>
 
-    <!-- File Name Update -->
     <script>
         document.querySelector('.file-upload').addEventListener('change', function () {
-            const fileName = this.files[0]?.name || 'No file chosen';
-            document.querySelector('.file-name').textContent = fileName;
+            const name = this.files[0]?.name || '<%= lblFileName.Text %>';
+            document.querySelector('.file-name').textContent = name;
         });
     </script>
 

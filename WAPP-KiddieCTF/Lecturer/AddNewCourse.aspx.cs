@@ -13,6 +13,15 @@ namespace WAPP_KiddieCTF.Lecturer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LecturerID"] == null || Session["LecturerName"] == null)
+            {
+                Response.Redirect("../Default.aspx");
+                return;
+            }
+
+            lblLecturerID.Text = Session["LecturerID"].ToString();
+            lblLecturerName.Text = Session["LecturerName"].ToString();
+
             if (!IsPostBack)
             {
                 GenerateNextCourseID();

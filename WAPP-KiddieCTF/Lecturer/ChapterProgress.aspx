@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Courses.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.Courses" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChapterProgress.aspx.cs" Inherits="WAPP_KiddieCTF.Lecturer.ChapterProgress" %>
 
 <!DOCTYPE html>
 
@@ -6,22 +6,27 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Kiddie CTF - Courses</title>
+    <title>Kiddie CTF - Chapter Progress</title>
 
     <!-- Reusable Sidebar CSS -->
     <link href="css/sidebar.css" rel="stylesheet" runat="server" />
 
-    <!-- Courses Page CSS -->
-    <link href="css/courses.css" rel="stylesheet" runat="server" />
+    <!-- Chapter Progress Page CSS -->
+    <link href="css/chapterProgress.css" rel="stylesheet" runat="server" />
 
     <!-- Google Font: Teko -->
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <!-- === SIDEBAR === -->
+
+        <!-- SIDEBAR -->
         <div class="sidebar">
             <img class="logo" src="images/logo.png" alt="Logo" />
             <nav class="nav">
@@ -32,86 +37,89 @@
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                <div class="avatar">
-                    <img src="images/profile.png" alt="Profile" />
-                </div>
-                <div class="user-info">
-                    <div class="name">
-                        <asp:Label ID="lblLecturerName" runat="server" Text=""></asp:Label>
+                    <div class="avatar">
+                        <img src="images/profile.png" alt="Profile" />
                     </div>
-                    <div class="id">
-                        <asp:Label ID="lblLecturerID" runat="server" Text=""></asp:Label>
+                    <div class="user-info">
+                        <div class="name">
+                            <asp:Label ID="lblLecturerName" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="id">
+                            <asp:Label ID="lblLecturerID" runat="server" Text=""></asp:Label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <a href="../LogOut.aspx" class="logout">
-                <img src="images/logout.png" alt="Logout" class="logout-img" />
-                <span class="label">LOG OUT</span>
-            </a>
+                <a href="../LogOut.aspx" class="logout">
+                    <img src="images/logout.png" alt="Logout" class="logout-img" />
+                    <span class="label">LOG OUT</span>
+                </a>
         </div>
 
-        <!-- === MAIN CONTENT === -->
+        <!-- MAIN -->
         <div class="main">
-            <h1 class="page-title">Courses</h1>
+            <h1 class="page-title">Chapter Progress</h1>
 
-            <!-- Toolbar with Real Search -->
+            <!-- TOOLBAR -->
             <div class="toolbar">
+                <button type="button" class="back-btn" onclick="history.back()">
+                    <img src="images/back_icon2.png" alt="Back" />
+                </button>
+
                 <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="search-box">
                             <img src="images/search.png" alt="" />
-                            <asp:TextBox ID="txtSearch" runat="server" 
-                                         CssClass="search-input" 
-                                         AutoPostBack="true" 
+                            <asp:TextBox ID="txtSearch" runat="server"
+                                         CssClass="search-input"
+                                         AutoPostBack="true"
                                          OnTextChanged="txtSearch_TextChanged">
                             </asp:TextBox>
-                            <label class="placeholder-label">Search Course Name</label>
+                            <label class="placeholder-label">Search Student ID / Student Name</label>
                         </div>
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
                     </Triggers>
                 </asp:UpdatePanel>
-
-                <div class="add-box" onclick="location.href='AddNewCourse.aspx'" style="cursor:pointer;">
-                    <img src="images/add_icon.png" alt="" />
-                    <span>Add New Course</span>
-                </div>
             </div>
 
-            <!-- Wrap Course Panel in UpdatePanel -->
-            <asp:UpdatePanel ID="UpdatePanelCourses" runat="server" UpdateMode="Conditional">
+            <!-- TABLE PANEL -->
+            <asp:UpdatePanel ID="UpdatePanelProgress" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="content-panel">
-                        <div class="course-grid">
-                            <asp:Repeater ID="CourseRepeater" runat="server">
+                        <div class="table-header">
+                            <div class="col-id">Student ID</div>
+                            <div class="col-name">Student Name</div>
+                            <div class="col-progress">Total Chapters Completed</div>
+                        </div>
+
+                        <div class="table-body">
+                            <asp:Repeater ID="rptProgress" runat="server">
                                 <ItemTemplate>
-                                    <div class="course-card" onclick="location.href='CourseDetails.aspx?id=<%# Eval("Course_ID") %>'"
->
-                                        <asp:LinkButton ID="lnkEdit" runat="server"
-                                                        CssClass="edit-btn"
-                                                        CommandArgument='<%# Eval("Course_ID") %>'
-                                                        OnClick="lnkEdit_Click"
-                                                        OnClientClick="event.stopPropagation();">
-                                            <span>EDIT</span>
-                                        </asp:LinkButton>
-                                        <h3 class="course-name"><%# Eval("Course_Name") %></h3>
-                                        <p class="course-id">Course ID: <%# Eval("Course_ID") %></p>
+                                    <div class="table-row">
+                                        <div class="col-id"><%# Eval("Student_ID") %></div>
+                                        <div class="col-name"><%# Eval("Student_Name") %></div>
+                                        <div class="col-progress"><%# Eval("Completed") %></div>
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
+
+                            <asp:Literal ID="litNoData" runat="server" 
+                                         Text="<div class='no-data'>No students enrolled or no progress recorded.</div>" 
+                                         Visible="false"></asp:Literal>
                         </div>
                     </div>
                 </ContentTemplate>
+
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
                 </Triggers>
+
             </asp:UpdatePanel>
         </div>
     </form>
 
     <script>
-        // Sync placeholder behavior with server control
         function updatePlaceholder() {
             var txt = document.getElementById('<%= txtSearch.ClientID %>');
             var label = txt ? txt.parentNode.querySelector('.placeholder-label') : null;
@@ -149,13 +157,8 @@
 
         // Run again after every partial postback (UpdatePanel)
         Sys.Application.add_load(initPlaceholderEvents);
-
-        function editCourse(id) {
-            //Debug purposes
-            //alert("Edit Course ID: " + id);
-            // window.location = "EditCourse.aspx?id=" + id;
-        }
     </script>
 
 </body>
 </html>
+

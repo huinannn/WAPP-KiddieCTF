@@ -59,7 +59,14 @@
 
             <!-- TOOLBAR -->
             <div class="toolbar">
-                <button type="button" class="back-btn" onclick="history.back()">
+                <%
+                    string fromPage = Request.QueryString["from"];
+                    string backUrl = "Courses.aspx"; // default fallback
+                    if (fromPage == "add") backUrl = "AddNewCourse.aspx";
+                    else if (fromPage == "edit") backUrl = $"EditCourse.aspx?id={Request.QueryString["course"]}";
+                %>
+
+                <button type="button" class="back-btn" onclick="window.location.href='<%= backUrl %>';">
                     <img src="images/back_icon2.png" alt="Back" />
                 </button>
 
@@ -100,10 +107,11 @@
                                         <div class="col-name"><%# Eval("Student_Name") %></div>
                                         <div class="col-intake"><%# Eval("Intake_Code") %></div>
                                         <div class="col-action">
-                                            <asp:Button ID="btnAdd" runat="server" CssClass="add-btn" 
-                                                        Text="Add" CommandArgument='<%# Eval("Student_ID") %>' 
-                                                        OnClick="btnAdd_Click" 
-                                                        OnClientClick='<%# "return showAddConfirm(\"" + Eval("Student_Name") + "\", \"" + Eval("Student_ID") + "\");" %>' />
+                                            <asp:Button ID="btnAdd" runat="server" CssClass="add-btn"
+                                                Text="Add"
+                                                CommandArgument='<%# Eval("Student_ID") %>'
+                                                OnClick="btnAdd_Click"
+                                                OnClientClick='return confirmAdd("<%# Eval("Student_Name") %>");' />
                                         </div>
                                     </div>
                                 </ItemTemplate>
@@ -122,9 +130,25 @@
     </form>
 
     <script>
-        function showAddConfirm(name, studentId) {
-            event.preventDefault(); // stop default postback
+        function showAddConfirm(name) {
+            return Swal.fire({
+                title: "Add Student?",
+                text: "Are you sure you want to add " + name + " to this course?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, add",
+                cancelButtonText: "Cancel",
+                background: "#1B263B",
+                color: "#fff",
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33"
+            }).then((result) => {
+                return result.isConfirmed; // return true if confirmed
+            });
+        }
 
+        function confirmAdd(name) {
+            event.preventDefault();
             Swal.fire({
                 title: "Add Student?",
                 text: "Are you sure you want to add " + name + " to this course?",
@@ -138,12 +162,11 @@
                 cancelButtonColor: "#d33"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Trigger the postback manually
-                    __doPostBack(studentId, '');
+                    // manually trigger the original button click
+                    event.target.closest("form").submit();
                 }
             });
-
-            return false; // prevent automatic postback
+            return false;
         }
 
         function updatePlaceholder() {
@@ -193,4 +216,3 @@
 
 </body>
 </html>
-

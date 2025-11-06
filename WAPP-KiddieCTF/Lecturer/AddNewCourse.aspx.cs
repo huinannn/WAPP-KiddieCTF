@@ -44,53 +44,84 @@ namespace WAPP_KiddieCTF.Lecturer
 
         protected void btnDone_Click(object sender, EventArgs e)
         {
+            string courseId = lblCourseID.Text.Trim();
             string courseName = txtCourseName.Text.Trim();
+
             if (string.IsNullOrEmpty(courseName))
             {
-                string errorScript = @"
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Course name cannot be empty!',
-                        showConfirmButton: true,
-                        confirmButtonColor: '#3085d6'
-                    });
-                ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "EmptyCourseName", errorScript, true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "EmptyCourse",
+                    "Swal.fire({ icon: 'error', title: 'Please enter course name!', confirmButtonColor: '#3085d6' });", true);
                 return;
             }
 
-            string connStr = ConfigurationManager.ConnectionStrings["KiddieCTFConnectionString"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                string query = "INSERT INTO Course (Course_ID, Course_Name, Lecturer_ID) VALUES (@CourseID, @CourseName, @LecturerID)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@CourseID", lblCourseID.Text);     // e.g. CR013
-                cmd.Parameters.AddWithValue("@CourseName", courseName);
-                cmd.Parameters.AddWithValue("@LecturerID", Session["LecturerID"]?.ToString() ?? "LC001");
+            List<string> tempStudents = Session["TempStudents"] as List<string>;
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
+            if (tempStudents == null || tempStudents.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "NoStudents",
+                    "Swal.fire({ icon: 'error', title: 'Please add at least one student before completing!', confirmButtonColor: '#3085d6' });", true);
+                return;
             }
 
-            // SUCCESS: Show message + redirect
-            string successScript = @"
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Course created successfully!',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    window.location = 'Courses.aspx';
-                });
-            ";
-            ScriptManager.RegisterStartupScript(this, GetType(), "AddCourseSuccess", successScript, true);
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+
+                // 1️⃣ Insert course
+                string insertCourse = "INSERT INTO Course (Course_ID, Course_Name, Lecturer_ID) VALUES (@ID, @Name, @Lecturer)";
+                SqlCommand cmd = new SqlCommand(insertCourse, conn);
+                cmd.Parameters.AddWithValue("@ID", courseId);
+                cmd.Parameters.AddWithValue("@Name", courseName);
+                cmd.Parameters.AddWithValue("@Lecturer", Session["LecturerID"].ToString());
+                cmd.ExecuteNonQuery();
+
+                // 2️⃣ Insert students
+                foreach (string studentId in tempStudents)
+                {
+                    string maxQuery = "SELECT ISNULL(MAX(CAST(SUBSTRING(AC_ID, 3, 10) AS INT)), 0) FROM Assigned_Course";
+                    SqlCommand maxCmd = new SqlCommand(maxQuery, conn);
+                    int nextId = (int)maxCmd.ExecuteScalar() + 1;
+                    string newAcId = "AC" + nextId.ToString("D3");
+
+                    string insertAssigned = "INSERT INTO Assigned_Course (AC_ID, Course_ID, Student_ID) VALUES (@ACID, @CID, @SID)";
+                    SqlCommand insertCmd = new SqlCommand(insertAssigned, conn);
+                    insertCmd.Parameters.AddWithValue("@ACID", newAcId);
+                    insertCmd.Parameters.AddWithValue("@CID", courseId);
+                    insertCmd.Parameters.AddWithValue("@SID", studentId);
+                    insertCmd.ExecuteNonQuery();
+                }
+            }
+
+            // Clear session
+            Session.Remove("TempCourseID");
+            Session.Remove("TempCourseName");
+            Session.Remove("TempStudents");
+
+            // Success message
+            ScriptManager.RegisterStartupScript(this, GetType(), "Success",
+                "Swal.fire({ icon: 'success', title: 'Course created successfully!', showConfirmButton:false, timer:1500 }).then(()=>{window.location='Courses.aspx';});", true);
         }
 
         protected void btnAddStudents_Click(object sender, EventArgs e)
         {
-            Session["TempCourseID"] = lblCourseID.Text;
-            Session["TempCourseName"] = txtCourseName.Text.Trim();
-            Response.Redirect("AddStudent.aspx");
+            string courseId = lblCourseID.Text.Trim();
+            string courseName = txtCourseName.Text.Trim();
+
+            if (string.IsNullOrEmpty(courseName))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "MissingCourse",
+                    "Swal.fire({ icon: 'error', title: 'Please enter the course name first!', confirmButtonColor: '#3085d6' });", true);
+                return;
+            }
+
+            // Store temporary course info
+            Session["TempCourseID"] = courseId;
+            Session["TempCourseName"] = courseName;
+            Session["TempStudents"] = new List<string>(); // reset or initialize
+
+            Response.Redirect("AddStudent.aspx?course=" + lblCourseID.Text + "&from=add");
+
         }
 
         protected void btnViewStudents_Click(object sender, EventArgs e)

@@ -1,0 +1,219 @@
+﻿/* === Base Setup === */
+body {
+    background: #000;
+    margin: 0;
+    font-family: 'Teko', sans-serif;
+}
+
+/* === Main Layout === */
+.main {
+    margin-left: 250px;
+    padding: 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000;
+}
+
+/* === Page Title (consistent alignment) === */
+.page-title {
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #fff;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    margin-left: 40px;
+}
+
+/* === Big Panel (consistent size & radius) === */
+.content-panel {
+    width: 1060px;
+    min-height: 766px;
+    background: #1B263B;
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+}
+
+/* === Back Button === */
+.back-btn {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+    .back-btn img {
+        width: 47px;
+        height: 47px;
+    }
+
+/* === Challenge ID === */
+.challenge-id {
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+/* === Input Groups === */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+    .input-group label {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+.input-box, .desc-box {
+    background: rgba(69, 80, 101, 0.7);
+    border: none;
+    border-radius: 10px;
+    color: #9BA0A6;
+    font-family: 'Teko', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    padding: 10px 20px;
+    height: 60px;
+    outline: none;
+    resize: none;
+}
+
+.desc-box {
+    height: 180px;
+}
+
+/* === Row Layout === */
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    gap: 25px;
+}
+
+.flex-1 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .flex-1 .input-group:first-child {
+        margin-bottom: 0; /* no big gap */
+    }
+
+.flex-2 {
+    flex: 2;
+}
+
+/* === File Upload (below difficulty, compact layout) === */
+.file-upload-box {
+    position: relative;
+    background: rgba(69, 80, 101, 0.7);
+    border-radius: 10px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 5px;
+}
+
+.file-upload {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.upload-icon {
+    position: absolute;
+    right: 20px;
+}
+
+    .upload-icon img {
+        width: 36px;
+        height: 36px;
+    }
+
+.file-name {
+    color: #9BA0A6;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+}
+
+/* === Done Button (centered) === */
+.btn-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.done-btn {
+    width: 134px;
+    height: 55px;
+    background: #9BA0A6;
+    border: 2px solid #9BA0A6;
+    border-radius: 10px;
+    color: #1B263B;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    font-family: 'Teko', sans-serif;
+    transition: all 0.25s ease;
+}
+
+    .done-btn:hover {
+        background: transparent;
+        color: #9BA0A6;
+        border: 4px solid #9BA0A6;
+        transform: translateY(-2px);
+    }
+
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.delete-btn, .edit-btn {
+    width: 134px;
+    height: 55px;
+    border-radius: 10px;
+    font-family: 'Teko', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    border: 2px solid #9BA0A6;
+    background: #9BA0A6;
+    color: #1B263B;
+    transition: all 0.25s ease;
+}
+
+    .delete-btn:hover, .edit-btn:hover {
+        background: transparent;
+        color: #9BA0A6;
+        border: 4px solid #9BA0A6;
+        transform: translateY(-2px);
+    }

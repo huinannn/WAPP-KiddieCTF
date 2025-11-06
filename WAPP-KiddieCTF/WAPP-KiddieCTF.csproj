@@ -139,23 +139,30 @@
     <Content Include="Images\Login.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Lecturer\AddAssignment.aspx" />
+    <Content Include="Lecturer\AddChallenge.aspx" />
     <Content Include="Lecturer\AddChapter.aspx" />
     <Content Include="Lecturer\AddNewCourse.aspx" />
     <Content Include="Lecturer\AddStudent.aspx" />
     <Content Include="Lecturer\AddTools.aspx" />
     <Content Include="Lecturer\AssignmentProgress.aspx" />
+    <Content Include="Lecturer\ChallengeDetails.aspx" />
+    <Content Include="Lecturer\Challenges.aspx" />
     <Content Include="Lecturer\ChapterProgress.aspx" />
     <Content Include="Lecturer\CourseDetails.aspx" />
     <Content Include="Lecturer\Courses.aspx" />
     <Content Include="Lecturer\css\addAssignment.css" />
+    <Content Include="Lecturer\css\addChallenge.css" />
     <Content Include="Lecturer\css\addChapter.css" />
     <Content Include="Lecturer\css\addNewCourse.css" />
     <Content Include="Lecturer\css\addStudent.css" />
     <Content Include="Lecturer\css\assignmentProgress.css" />
+    <Content Include="Lecturer\css\challengeDetails.css" />
+    <Content Include="Lecturer\css\challenges.css" />
     <Content Include="Lecturer\css\chapterProgress.css" />
     <Content Include="Lecturer\css\courseDetails.css" />
     <Content Include="Lecturer\css\courses.css" />
     <Content Include="Lecturer\css\editAssignment.css" />
+    <Content Include="Lecturer\css\editChallenge.css" />
     <Content Include="Lecturer\css\editChapter.css" />
     <Content Include="Lecturer\css\editCourse.css" />
     <Content Include="Lecturer\css\reviewAssignment.css" />
@@ -164,6 +171,7 @@
     <Content Include="Lecturer\css\tools.css" />
     <Content Include="Lecturer\Dashboard.aspx" />
     <Content Include="Lecturer\EditAssignment.aspx" />
+    <Content Include="Lecturer\EditChallenge.aspx" />
     <Content Include="Lecturer\EditChapter.aspx" />
     <Content Include="Lecturer\EditCourse.aspx" />
     <Content Include="Lecturer\EditTools.aspx" />
@@ -329,6 +337,13 @@
     <Compile Include="Lecturer\AddAssignment.aspx.designer.cs">
       <DependentUpon>AddAssignment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Lecturer\AddChallenge.aspx.cs">
+      <DependentUpon>AddChallenge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\AddChallenge.aspx.designer.cs">
+      <DependentUpon>AddChallenge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Lecturer\AddChapter.aspx.cs">
       <DependentUpon>AddChapter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -364,6 +379,20 @@
     <Compile Include="Lecturer\AssignmentProgress.aspx.designer.cs">
       <DependentUpon>AssignmentProgress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Lecturer\ChallengeDetails.aspx.cs">
+      <DependentUpon>ChallengeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\ChallengeDetails.aspx.designer.cs">
+      <DependentUpon>ChallengeDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer\Challenges.aspx.cs">
+      <DependentUpon>Challenges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\Challenges.aspx.designer.cs">
+      <DependentUpon>Challenges.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Lecturer\ChapterProgress.aspx.cs">
       <DependentUpon>ChapterProgress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -398,6 +427,13 @@
     </Compile>
     <Compile Include="Lecturer\EditAssignment.aspx.designer.cs">
       <DependentUpon>EditAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer\EditChallenge.aspx.cs">
+      <DependentUpon>EditChallenge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\EditChallenge.aspx.designer.cs">
+      <DependentUpon>EditChallenge.aspx</DependentUpon>
     </Compile>
     <Compile Include="Lecturer\EditChapter.aspx.cs">
       <DependentUpon>EditChapter.aspx</DependentUpon>

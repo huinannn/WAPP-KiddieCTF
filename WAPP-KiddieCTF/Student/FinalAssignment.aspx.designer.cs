@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Student
 {
 
 
-    public partial class Courses
+    public partial class FinalAssignment
     {
 
         /// <summary>
@@ -24,6 +24,15 @@ namespace WAPP_KiddieCTF.Student
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// SidebarControl control.
         /// </summary>
         /// <remarks>
@@ -33,57 +42,57 @@ namespace WAPP_KiddieCTF.Student
         protected global::WAPP_KiddieCTF.Student.SideBar SidebarControl;
 
         /// <summary>
-        /// hdnCourseId control.
+        /// FinalAssignmentLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCourseId;
+        protected global::System.Web.UI.WebControls.Label FinalAssignmentLabel;
 
         /// <summary>
-        /// btnRecordClick control.
+        /// DeadlineLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecordClick;
+        protected global::System.Web.UI.WebControls.Label DeadlineLabel;
 
         /// <summary>
-        /// searchTextBox control.
+        /// FileDownloadLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText searchTextBox;
+        protected global::System.Web.UI.WebControls.LinkButton FileDownloadLink;
 
         /// <summary>
-        /// NoCoursesLabel control.
+        /// FileUpload1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NoCoursesLabel;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
 
         /// <summary>
-        /// NoSearchResultsLabel control.
+        /// UploadedFileLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NoSearchResultsLabel;
+        protected global::System.Web.UI.WebControls.Label UploadedFileLabel;
 
         /// <summary>
-        /// CoursesRepeater control.
+        /// SubmitAssignmentButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CoursesRepeater;
+        protected global::System.Web.UI.WebControls.Button SubmitAssignmentButton;
     }
 }

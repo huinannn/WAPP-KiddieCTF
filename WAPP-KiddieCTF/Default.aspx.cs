@@ -163,10 +163,10 @@ namespace WAPP_KiddieCTF
                             Response.Redirect("Admin/Dashboard.aspx");
                             break;
                         case "Lecturer":
-                            Response.Redirect("Lecturer/Dashboard.aspx");
+                            Response.Redirect("Lecturer/Courses.aspx");
                             break;
                         case "Student":
-                            Response.Redirect("Student/Dashboard.aspx");
+                            Response.Redirect("Student/Courses.aspx");
                             break;
                     }
                 }

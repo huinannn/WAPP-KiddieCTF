@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Student
 {
 
 
-    public partial class Courses
+    public partial class Chapter_Assignment
     {
 
         /// <summary>
@@ -33,57 +33,48 @@ namespace WAPP_KiddieCTF.Student
         protected global::WAPP_KiddieCTF.Student.SideBar SidebarControl;
 
         /// <summary>
-        /// hdnCourseId control.
+        /// coursesTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCourseId;
+        protected global::System.Web.UI.WebControls.Literal coursesTitle;
 
         /// <summary>
-        /// btnRecordClick control.
+        /// ChaptersRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRecordClick;
+        protected global::System.Web.UI.WebControls.Repeater ChaptersRepeater;
 
         /// <summary>
-        /// searchTextBox control.
+        /// noChaptersMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText searchTextBox;
+        protected global::System.Web.UI.WebControls.Literal noChaptersMessage;
 
         /// <summary>
-        /// NoCoursesLabel control.
+        /// FinalAssignmentLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NoCoursesLabel;
+        protected global::System.Web.UI.WebControls.LinkButton FinalAssignmentLink;
 
         /// <summary>
-        /// NoSearchResultsLabel control.
+        /// noFinalAssignmentMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NoSearchResultsLabel;
-
-        /// <summary>
-        /// CoursesRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CoursesRepeater;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noFinalAssignmentMessage;
     }
 }

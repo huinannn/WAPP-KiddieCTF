@@ -240,13 +240,17 @@
     <Content Include="Site.Master" />
     <Content Include="Student\AddDiscussions.aspx" />
     <Content Include="Student\Challenges.aspx" />
+    <Content Include="Student\Chapter_Assignment.aspx" />
     <Content Include="Student\Courses.aspx" />
+    <Content Include="Student\css\courses.css" />
+    <Content Include="Student\css\dashboard.css" />
     <Content Include="Student\css\profile.css" />
     <Content Include="Student\css\sidebar.css" />
     <Content Include="Student\css\discussions.css" />
     <Content Include="Student\css\tools.css" />
     <Content Include="Student\Dashboard.aspx" />
     <Content Include="Student\EditProfile.aspx" />
+    <Content Include="Student\FinalAssignment.aspx" />
     <Content Include="Student\Profile.aspx" />
     <Content Include="Student\SideBar.ascx" />
     <Content Include="Student\Discussions.aspx" />
@@ -473,6 +477,13 @@
     <Compile Include="Student\Challenges.aspx.designer.cs">
       <DependentUpon>Challenges.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Student\Chapter_Assignment.aspx.cs">
+      <DependentUpon>Chapter_Assignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Chapter_Assignment.aspx.designer.cs">
+      <DependentUpon>Chapter_Assignment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\Courses.aspx.cs">
       <DependentUpon>Courses.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -493,6 +504,13 @@
     </Compile>
     <Compile Include="Student\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\FinalAssignment.aspx.cs">
+      <DependentUpon>FinalAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\FinalAssignment.aspx.designer.cs">
+      <DependentUpon>FinalAssignment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

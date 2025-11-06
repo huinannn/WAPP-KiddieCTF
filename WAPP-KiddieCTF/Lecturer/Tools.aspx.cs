@@ -35,7 +35,7 @@ namespace WAPP_KiddieCTF.Lecturer
             {
                 con.Open();
                 string sql = @"
-                    SELECT t.Tool_Name, t.Tool_Description, c.Category_Name
+                    SELECT t.Tool_ID, t.Tool_Name, t.Tool_Description, c.Category_Name
                     FROM Tool t
                     LEFT JOIN Category c ON t.Category_ID = c.Category_ID
                 ";

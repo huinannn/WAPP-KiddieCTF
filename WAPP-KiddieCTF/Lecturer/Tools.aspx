@@ -174,18 +174,20 @@
             <div class="row">
                 <asp:Repeater ID="rptTools" runat="server">
                     <ItemTemplate>
-                        <a href='<%# Eval("Tool_Description") %>' target="_blank">
-                            <div class="col-md-4">
-                                <div class="tool-card">
-                                    <div class="category-edit">
-                                        <small><%# Eval("Category_Name").ToString().ToUpper() %></small>
-                                        <button type="button" class="create-btn" style="text-align: right; background-color: #9BA0A6; color: #1B263B; font-size: 15px; min-width: 50px; height: 20px; padding: 15px;"><img src="../Images/icons/pencil.png" style="width: 12px; height: 12px;" />Edit</button>
-                                    </div>
-                                    <h5><%# Eval("Tool_Name") %></h5>
-                                    <p><%# Eval("Tool_Description") %></p>
+                        <div class="col-md-4">
+                            <div class="tool-card">
+                                <div class="category-edit">
+                                    <small><%# Eval("Category_Name").ToString().ToUpper() %></small>
+                                    <button type="button" class="create-btn"
+                                        style="text-align: right; background-color: #9BA0A6; color: #1B263B; font-size: 15px; min-width: 50px; height: 20px; padding: 15px;"
+                                        onclick="window.location.href='EditTools.aspx?Tool_ID=<%# Eval("Tool_ID") %>'">
+                                        <img src="../Images/icons/pencil.png" style="width: 12px; height: 12px;" />Edit
+                                    </button>
                                 </div>
+                                <h5><%# Eval("Tool_Name") %></h5>
+                                <a href='<%# Eval("Tool_Description") %>' target="_blank"><p><%# Eval("Tool_Description") %></p></a>
                             </div>
-                        </a>
+                        </div>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>

@@ -129,13 +129,19 @@
     <Content Include="Images\discussion\discussion.jpg" />
     <Content Include="Images\icons\add.png" />
     <Content Include="Images\icons\chat.png" />
+    <Content Include="Images\icons\back.png" />
+    <Content Include="Images\icons\pencil.png" />
     <Content Include="Images\icons\search.png" />
     <Content Include="Lecturer\AddAssignment.aspx" />
     <Content Include="Lecturer\AddChapter.aspx" />
     <Content Include="Lecturer\AddNewCourse.aspx" />
+<<<<<<< Updated upstream
     <Content Include="Lecturer\AddStudent.aspx" />
     <Content Include="Lecturer\AssignmentProgress.aspx" />
     <Content Include="Lecturer\ChapterProgress.aspx" />
+=======
+    <Content Include="Lecturer\AddTools.aspx" />
+>>>>>>> Stashed changes
     <Content Include="Lecturer\CourseDetails.aspx" />
     <Content Include="Lecturer\Courses.aspx" />
     <Content Include="Lecturer\css\addAssignment.css" />
@@ -153,6 +159,7 @@
     <Content Include="Lecturer\css\sidebar.css" />
     <Content Include="Images\Login.png" />
     <Content Include="Images\Logo.png" />
+<<<<<<< Updated upstream
     <Content Include="Lecturer\css\studentList.css" />
     <Content Include="Lecturer\Dashboard.aspx" />
     <Content Include="Lecturer\EditAssignment.aspx" />
@@ -160,6 +167,11 @@
     <Content Include="Lecturer\EditCourse.aspx" />
     <Content Include="Lecturer\ReviewAssignment.aspx" />
     <Content Include="Lecturer\StudentList.aspx" />
+=======
+    <Content Include="Lecturer\css\tools.css" />
+    <Content Include="Lecturer\Dashboard.aspx" />
+    <Content Include="Lecturer\Tools.aspx" />
+>>>>>>> Stashed changes
     <Content Include="LogOut.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -320,6 +332,7 @@
     <Compile Include="Lecturer\AddNewCourse.aspx.designer.cs">
       <DependentUpon>AddNewCourse.aspx</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
     <Compile Include="Lecturer\AddStudent.aspx.cs">
       <DependentUpon>AddStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -340,6 +353,14 @@
     </Compile>
     <Compile Include="Lecturer\ChapterProgress.aspx.designer.cs">
       <DependentUpon>ChapterProgress.aspx</DependentUpon>
+=======
+    <Compile Include="Lecturer\AddTools.aspx.cs">
+      <DependentUpon>AddTools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\AddTools.aspx.designer.cs">
+      <DependentUpon>AddTools.aspx</DependentUpon>
+>>>>>>> Stashed changes
     </Compile>
     <Compile Include="Lecturer\CourseDetails.aspx.cs">
       <DependentUpon>CourseDetails.aspx</DependentUpon>
@@ -362,6 +383,7 @@
     <Compile Include="Lecturer\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
     <Compile Include="Lecturer\EditAssignment.aspx.cs">
       <DependentUpon>EditAssignment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -396,6 +418,14 @@
     </Compile>
     <Compile Include="Lecturer\StudentList.aspx.designer.cs">
       <DependentUpon>StudentList.aspx</DependentUpon>
+=======
+    <Compile Include="Lecturer\Tools.aspx.cs">
+      <DependentUpon>Tools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\Tools.aspx.designer.cs">
+      <DependentUpon>Tools.aspx</DependentUpon>
+>>>>>>> Stashed changes
     </Compile>
     <Compile Include="LogOut.aspx.cs">
       <DependentUpon>LogOut.aspx</DependentUpon>

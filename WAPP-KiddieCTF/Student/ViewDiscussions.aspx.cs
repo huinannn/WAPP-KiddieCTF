@@ -30,7 +30,12 @@ namespace WAPP_KiddieCTF.Student
         {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                string query = "SELECT Discussion_Title, Discussion_Message, Discussion_Post, Student_Name, Discussion_DateTime FROM Discussion d JOIN Student s ON d.Student_ID = s.Student_ID WHERE Discussion_ID = @Discussion_ID";
+                string query = @"SELECT Discussion_Title, Discussion_Message, Discussion_Post, 
+                         s.Student_Name, Discussion_DateTime 
+                         FROM Discussion d 
+                         JOIN Student s ON d.Student_ID = s.Student_ID 
+                         WHERE Discussion_ID = @Discussion_ID";
+
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Discussion_ID", discussionID);
                 con.Open();
@@ -39,13 +44,36 @@ namespace WAPP_KiddieCTF.Student
                 if (dr.Read())
                 {
                     lblTitle.Text = dr["Discussion_Title"].ToString();
-                    lblMessage.Text = dr["Discussion_Message"].ToString();
                     lblStudentName.Text = dr["Student_Name"].ToString();
                     lblDateTime.Text = Convert.ToDateTime(dr["Discussion_DateTime"]).ToString("dd/MM/yyyy hh:mm tt");
-                    imgPost.ImageUrl = "../" + dr["Discussion_Post"].ToString();
+
+                    // Handle discussion message visibility
+                    string discussionMessage = dr["Discussion_Message"]?.ToString();
+                    if (!string.IsNullOrWhiteSpace(discussionMessage))
+                    {
+                        lblMessage.Text = discussionMessage;
+                        lblMessage.Visible = true;
+                    }
+                    else
+                    {
+                        lblMessage.Visible = false;
+                    }
+
+                    // Handle image visibility
+                    string discussionPost = dr["Discussion_Post"]?.ToString();
+                    if (!string.IsNullOrWhiteSpace(discussionPost))
+                    {
+                        imgPost.ImageUrl = discussionPost;
+                        imgPost.Visible = true;
+                    }
+                    else
+                    {
+                        imgPost.Visible = false;
+                    }
                 }
             }
         }
+
 
         private void LoadComments(string discussionID)
         {

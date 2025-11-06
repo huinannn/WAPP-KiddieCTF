@@ -151,8 +151,15 @@
                             <div class="discussion-card">
                                 <div class="discussion-left">
                                     <div class="discussion-title"><%# Eval("Discussion_Title") %></div>
-                                    <div class="discussion-subtext"><%# Eval("Discussion_Message") %></div>
-                                    <img src='../<%# Eval("Discussion_Post") %>' alt="Discussion Image" />
+                                    <div class="discussion-subtext" 
+                                         visible='<%# !string.IsNullOrEmpty(Eval("Discussion_Message").ToString()) %>'>
+                                        <%# Eval("Discussion_Message") %>
+                                    </div>
+                                    <asp:Literal ID="litImage" runat="server" 
+                                        Text='<%# string.IsNullOrEmpty(Eval("Discussion_Post").ToString()) 
+                                            ? "" 
+                                            : $"<img src=\"{ResolveUrl(Eval("Discussion_Post").ToString())}\" alt=\"Discussion Image\" />" %>' />
+
                                 </div>
                                 <div class="discussion-right">
                                     <div>Posted by: <strong><%# Eval("Student_Name") %></strong></div>

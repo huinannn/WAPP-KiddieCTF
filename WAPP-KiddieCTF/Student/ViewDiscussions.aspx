@@ -210,8 +210,8 @@
                 <div class="each-card">
                     <div class="discussion-card">
                         <div class="discussion-left">
-                            <div class="discussion-subtext"><asp:Label ID="lblMessage" runat="server" /></div>
-                            <asp:Image ID="imgPost" runat="server" Width="300px" CssClass="discussion-img" />
+                            <asp:Label ID="lblMessage" runat="server" CssClass="discussion-subtext" Visible="false" />
+                            <asp:Image ID="imgPost" runat="server" Width="300px" CssClass="discussion-img" Visible="false" />
                         </div>
                         <div class="discussion-right">
                             <div>Posted by: <strong><asp:Label ID="lblStudentName" runat="server" /></strong></div>

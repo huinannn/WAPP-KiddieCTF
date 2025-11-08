@@ -9,7 +9,7 @@ namespace WAPP_KiddieCTF.Student
         {
             if (Session["StudentName"] == null)
             {
-                Response.Redirect("/Default.aspx");
+                Response.Redirect("/LogIn.aspx");
                 return;
             }
 

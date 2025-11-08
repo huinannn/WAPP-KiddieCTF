@@ -13,7 +13,7 @@ namespace WAPP_KiddieCTF.Student
         {
             if (Session["StudentID"] == null)
             {
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/LogIn.aspx");
                 return;
             }
         }
@@ -22,7 +22,7 @@ namespace WAPP_KiddieCTF.Student
         {
             if (Session["StudentID"] == null)
             {
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/LogIn.aspx");
                 return;
             }
 

@@ -129,6 +129,10 @@
     <Content Include="db.Connection.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Default.css" />
+    <Content Include="Images\ctf.png" />
+    <Content Include="Images\hero.JPG" />
+    <Content Include="LogIn.aspx" />
+    <Content Include="LogIn.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\discussion\discussion.jpg" />
     <Content Include="Images\icons\add.png" />
@@ -326,6 +330,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.aspx.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogIn.aspx.designer.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

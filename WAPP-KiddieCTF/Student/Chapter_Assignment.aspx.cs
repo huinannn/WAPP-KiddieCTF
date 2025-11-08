@@ -16,7 +16,7 @@ namespace WAPP_KiddieCTF.Student
 
             if (string.IsNullOrEmpty(studentId) || string.IsNullOrEmpty(courseId))
             {
-                Response.Redirect("/Default.aspx");
+                Response.Redirect("/LogIn.aspx");
             }
             else
             {

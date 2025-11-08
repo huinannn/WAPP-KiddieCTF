@@ -13,7 +13,7 @@ namespace WAPP_KiddieCTF.Student
             string studentId = Session["StudentID"]?.ToString();
             if (string.IsNullOrEmpty(studentId))
             {
-                Response.Redirect("/Default.aspx");
+                Response.Redirect("/LogIn.aspx");
             }
             else
             {

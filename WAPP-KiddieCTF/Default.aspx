@@ -1,114 +1,166 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WAPP_KiddieCTF._Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WAPP_KiddieCTF.Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="Default.css" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="shortcut icon" type="image/png" href="Images/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>KIDDIE CTF</title>
+    <link rel="stylesheet" href="Default.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <div class="login">
-        <div class="left-panel">
-            <img src="Images/Login.png" alt="Background" class="background-img" />
+        #closeModalBtn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+        }
+
+        #closeModalBtn:hover {
+            color: #ff0000;
+    }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div class="left">
+            <img src="Images/Logo.png" alt="">
         </div>
-
-        <div class="right-panel">
-            <img src="Images/Logo.png" alt="Logo" class="logo" />
-            <h1 class="welcome-text">WELCOME BACK!</h1>
-
-            <div class="input-group">
-                <label class="label">ID:</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-user icon"></i>
-                    <asp:TextBox ID="txtUserID" runat="server" placeholder="Enter your ID" CssClass="input-field"></asp:TextBox>
-                </div>
+        <div class="spacer"></div>
+        <div class="right">
+            <div class="head-nav">
+                <a href="#home"><h1>HOME</h1></a>
+                <a href="#ctf"><h1>CTF</h1></a>
+                <a href="#courses"><h1>OUR COURSES</h1></a>
+                <a href="#challenges"><h1>OUR CHALLENGES</h1></a>
+                <a href="LogIn.aspx"><h1 class="login-btn">LOGIN</h1></a>
             </div>
-
-            <div class="input-group">
-                <label class="label">Password:</label>
-                <div class="input-box" style="position: relative;">
-                    <i class="fa-solid fa-key icon"></i>
-                    <asp:TextBox ID="txtPassword" runat="server" 
-                                 TextMode="Password" 
-                                 placeholder="Enter your password" 
-                                 CssClass="input-field"></asp:TextBox>
-
-                    <i class="fa-solid fa-eye-slash toggle-eye" 
-                       id="togglePassword" 
-                       onclick="togglePasswordVisibility()"></i>
-                </div>
-            </div>
-
-
-            <div class="input-group">
-                <label class="label">Role:</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-users icon"></i>
-                    <asp:DropDownList ID="ddlRole" runat="server" CssClass="input-field" AppendDataBoundItems="true">
-                        <asp:ListItem Text="Select your role" Value="" disabled="true" selected="true" hidden="true" />
-                        <asp:ListItem Text="Admin" Value="Admin" />
-                        <asp:ListItem Text="Lecturer" Value="Lecturer" />
-                        <asp:ListItem Text="Student" Value="Student" />
-                    </asp:DropDownList>
-                </div>
-            </div>
-
-            <asp:Button ID="btnLogin" runat="server"
-                Text="LOGIN" CssClass="login-btn"
-                OnClientClick="return validateAndFocus();"
-                OnClick="btnLogin_Click" />
-
-            <asp:Label ID="lblError" runat="server" CssClass="error-label" Visible="false"></asp:Label>
-
-            <span id="jsError" class="error-label" style="display:none;"></span>
         </div>
     </div>
 
-    <script type="text/javascript">
-        function validateAndFocus() {
-            var userId = document.getElementById('<%= txtUserID.ClientID %>');
-            var password = document.getElementById('<%= txtPassword.ClientID %>');
-            var role = document.getElementById('<%= ddlRole.ClientID %>');
-            var jsError = document.getElementById('jsError');
-            var serverError = document.getElementById('<%= lblError.ClientID %>');
+    <div id="home" class="hero">
+        <img src="Images/hero.JPG" alt="">
+        <div class="overlay"></div>
+        <div class="text">
+            <h1>DECODE THE FUTURE</h1>
+            <h3>Fuel your curiosity, build your skills, and uncover the hidden world of cybersecurity</h3>
+            <h2>“one code, one flag, one discovery at a time”</h2>
+        </div>
+    </div>
 
-            jsError.style.display = "none";
-            if (serverError) {
-                serverError.style.display = "none";
-            }
-            var isValid = true;
+    <div id="ctf" class="section">
+        <div class="left">
+            <h2>What is Capture The Flag (CTF)?</h2>
+            <p>Capture The Flag (CTF) is a fun and safe way to learn cybersecurity through hands-on challenges.</p>
+            <p>Each challenge hides a flag — a secret code you must find by solving puzzles, analyzing code, or breaking through digital defenses.</p>
+            <p>Every flag you capture earns you points and new skills!</p>
+        </div>
+        <div class="right">
+            <img src="Images/ctf.png" alt="">
+        </div>
+    </div>
 
-            if (userId.value.trim() === "" || password.value.trim() === "" || role.selectedIndex === 0) {
-                isValid = false;
-            }
+    <div id="courses" class="course-section">
+        <h2>Course Categories</h2>
+        <div style="margin: 20px;"></div>
+        <div class="course">
+           <asp:Repeater ID="rptCourses" runat="server">
+                <ItemTemplate>
+                    <div class="each-course" data-coursename='<%# Eval("Course_Name") %>'>
+                        <h5><%# Eval("Course_Name") %></h5>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+    </div>
+    <div id="courseModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+        background:#fff; padding:20px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.3); z-index:999;">
+        <h2 id="modalTitle" style="color: black;"></h2>
+        <p id="modalDesc"  style="color: black;">This is a short preview of the course.</p>
+        <span id="closeModalBtn" onclick="closeModal()">&times;</span>
+    </div>
 
-            if (!isValid) {
-                jsError.style.display = "block";
-                jsError.innerHTML = "Please fill in all the required fields!";
+    <div id="challenges" class="course-section">
+        <h2>Challenges</h2>
+        <div class="challenge">
+            <div class="each-challenge">
+                <h6>1. Pick a Challenge</h6>
+                <p>Choose a beginner-friendly challenge in web, crypto, or forensics. Each has a description and difficulty level.</p>
+            </div>
+            <div class="each-challenge">
+                <h6>2. Analyze and Solve</h6>
+                <p>Use hints, tutorials, and your curiosity to explore and figure out the puzzle.</p>
+            </div>
+            <div class="each-challenge">
+                <h6>3. Capture the Flag</h6>
+                <p>Once you find the secret code (e.g., FLAG{you_did_it}), submit it to earn points.</p>
+            </div>
+            <div class="each-challenge">
+                <h6>4. Earn Points and Level Up</h6>
+                <p>Collect points, climb the leaderboard, and unlock harder challenges as you improve.</p>
+            </div>
+        </div>
+        <div class="button">
+            <button class="btn" onclick="window.location.href='Student/Challenges.aspx'">START YOUR FIRST CHALLENGE NOW!</button>
+        </div>
+    </div>
 
-                if (userId.value.trim() === "") {
-                    userId.focus();
-                } else if (password.value.trim() === "") {
-                    password.focus();
-                } else if (role.selectedIndex === 0) {
-                    role.focus();
-                }
-                return false;
-            }
-            return true;
+    <footer class="footer">
+        <div class="left">
+            <img src="Images/Logo.png" alt="">
+            <h3>KIDDIE CTF</h3>
+            <p>“one code, one flag, one discovery at a time”</p>
+        </div>
+        <div class="right">
+            <div class="contact">
+                <h3>Address:</h3>
+                <p>No. 27, Jalan Setia Perdana U13/25, <br>
+                    Setia Alam, 40170 Shah Alam, <br>
+                    Selangor, Malaysia.
+                </p>
+            </div>
+            <div class="contact">
+                <h3>Contact:</h3>
+                <p>016-123 4567</p>
+            </div>
+            <div class="contact">
+                <h3>Email:</h3>
+                <p>info@kiddiectf.com</p>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">
+        <p>© Copyright 2025. All Rights Reserved | KIDDIECTF</p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const courses = document.querySelectorAll(".each-course");
+            courses.forEach(course => {
+                course.addEventListener("click", function () {
+                    const courseName = this.getAttribute("data-coursename");
+                    showPreview(courseName);
+                });
+            });
+        });
+
+        function showPreview(courseName) {
+            document.getElementById('modalTitle').innerText = courseName;
+            document.getElementById('modalDesc').innerText = "This is a short description for " + courseName + ".";
+            document.getElementById('courseModal').style.display = "block";
         }
 
-        function togglePasswordVisibility() {
-            var passwordField = document.getElementById('<%= txtPassword.ClientID %>');
-            var eyeIcon = document.getElementById('togglePassword');
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                eyeIcon.classList.remove("fa-eye-slash");
-                eyeIcon.classList.add("fa-eye");
-            } else {
-                passwordField.type = "password";
-                eyeIcon.classList.remove("fa-eye");
-                eyeIcon.classList.add("fa-eye-slash");
-            }
+        function closeModal() {
+            document.getElementById('courseModal').style.display = "none";
         }
     </script>
-</asp:Content>
+
+</body>
+</html>

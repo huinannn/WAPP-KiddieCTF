@@ -71,11 +71,11 @@ namespace WAPP_KiddieCTF
 
                     if (rowsAffected > 0)
                     {
-                        Response.Redirect("/Default.aspx");
+                        Response.Redirect("/LogIn.aspx");
                     }
                     else
                     {
-                        Response.Redirect("/Default.aspx");
+                        Response.Redirect("/LogIn.aspx");
                     }
 
                     Session.Clear();
@@ -88,7 +88,7 @@ namespace WAPP_KiddieCTF
             }
             else
             {
-                Response.Redirect("/Default.aspx");
+                Response.Redirect("/LogIn.aspx");
             }
         }
     }

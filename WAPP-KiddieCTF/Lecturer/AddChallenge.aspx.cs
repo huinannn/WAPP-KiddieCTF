@@ -21,7 +21,7 @@ namespace WAPP_KiddieCTF.Lecturer
         {
             if (Session["LecturerID"] == null || Session["LecturerName"] == null)
             {
-                Response.Redirect("../Default.aspx");
+                Response.Redirect("../LogIn.aspx");
                 return;
             }
 

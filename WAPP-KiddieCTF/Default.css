@@ -1,178 +1,338 @@
-﻿*:not(.fa, .fa-solid, .fa-regular, .fa-brands, i) {
-    font-family: 'Teko', sans-serif !important;
-    font-weight: 700;
+﻿@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --max-w: 1500px;
+    --dark-blue: #0A192F;
+    --teko: "Teko", sans-serif;
+    --background: #000000;
+    --light-blue: #4FC3F7;
 }
 
-.fa, .fa-solid, .fa-regular, .fa-brands {
-    font-family: "Font Awesome 6 Free" !important;
-    font-weight: 900 !important;
-}
-
-/* General Layout */
-body {
+* {
+    font-family: var(--teko);
     margin: 0;
     padding: 0;
-    background-color: black;
+    box-sizing: border-box;
+    outline: 0;
+    border: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: var(--background);
+    max-width: var(--max_w);
+    margin: 0 auto;
+    padding: 10px;
     color: white;
-    overflow: hidden;
-    word-wrap: break-word;
 }
 
-/* Main Layout */
-.login {
-    display: flex;
+.spacer {
+    flex: 1;
+}
+
+.head {
+    background-color: rgba(10, 25, 47, 0.7);
     width: 100%;
-    height: 100vh;
-}
-
-/* Left Panel */
-.left-panel {
-    width: 50%;
-    position: relative;
-}
-
-.background-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Right Panel */
-.right-panel {
-    width: 50%;
+    max-width: var(--max-w);
+    height: 90px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    padding: 5px 10px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Logo + Header */
-.logo {
-    width: 215px;
-    height: 173px;
-    margin-top: -60px;
-    margin-bottom: -35px;
+.head .left img {
+    width: 170px;
+    height: auto;
 }
 
-.welcome-text {
-    font-size: 34px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    margin-bottom: 15px;
+.head .right .head-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
 }
 
-/* Input Groups */
-.input-group {
-    margin-bottom: 30px;
-    width: 70%;
-}
-
-.label {
-    display: block;
-    font-size: 18px;
-    font-weight: 600;
+.head .right .head-nav h1 {
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
     letter-spacing: 1px;
-    margin-bottom: 10px;
 }
 
-.input-box {
-    display: flex;
-    align-items: center;
-    border: 3px solid white;
-    border-radius: 20px;
-    padding: 10px 15px;
-    background: transparent;
-    position: relative;
-    transition: 0.3s;
-}
-
-    .input-box:focus-within {
-        border-color: #4FC3F7;
-        box-shadow: 0 0 8px #4FC3F7;
-    }
-
-/* Input and Icons */
-.icon {
-    color: #9BA0A6;
-    font-size: 16px;
+.head .right .head-nav .login-btn {
+    color: black;
+    background-color: var(--light-blue);
+    padding: 5px 20px;
+    border-radius: 10px;
     margin-right: 10px;
 }
 
-.input-field {
-    flex: 1;
-    background: none;
-    border: none;
-    outline: none;
-    color: #9BA0A6;
-    font-size: 16px;
+.hero {
+    position: relative;
+    width: 100%;
+    max-width: 1500px;
+    height: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(60%);
+}
+
+.hero .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero .text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 100%;
+    margin-left: 50px;
+}
+
+.hero .text h1 {
+    font-size: 100px;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+.hero .text h3 {
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ABABAB;
+    margin-top: -15px;
+}
+
+.hero .text h2 {
+    font-size: 50px;
+    font-weight: 400;
+    color: #E0E0E0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section {
+    max-width: var(--max-w);
+    margin: 0 auto 50px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.section .left {
+    margin-left: 30px;
+    flex: 1 1 55%;
+}
+
+.section .left h2 {
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.section .left p {
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.section .right {
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+.section .right img {
+    width: 300px;
+    height: auto;
+}
+
+.course-section {
+    max-width: var(--max-w);
+    margin: 0 auto 50px auto;
+    padding: 0 20px;
+}
+
+.course-section h2 {
+    margin-left: 30px;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.course {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 45px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.course .each-course {
+    width: 250px;
+    height: 250px;
+    background-color: rgba(69, 80, 102, 0.7);
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    transition: all 0.3s ease; 
+    cursor: pointer;
+}
+
+.course .each-course:hover {
+    transform: translateY(-8px) scale(1.05);
+    background-color: rgba(69, 80, 102, 0.9);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+.course .each-course h5 {
+    font-size: 20px;
+    font-weight: 500;
     letter-spacing: 1px;
 }
 
-/* Dropdown Styling */
-.input-box select.input-field {
-    appearance: none;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #9BA0A6;
-    font-size: 16px;
-    padding: 0 30px 0 5px;
+.course-section .challenge {
+    padding: 5px 30px;
+    max-width: var(--max-w);
+    margin: 0 auto;
 }
 
-.input-box:has(select)::after {
-    content: "\f078";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: #9BA0A6;
-    position: absolute;
-    right: 15px;
-    pointer-events: none;
-    font-size: 15px;
+.course-section .challenge .each-challenge h6 {
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
-.input-box select.input-field option {
-    background-color: black;
-    color: #9BA0A6;
-    font-size: 16px;
-}
-
-/* Button */
-.login-btn {
-    width: 70%;
-    height: 50px;
-    background: #4FC3F7;
-    border: none;
-    border-radius: 20px;
-    color: black;
+.course-section .challenge .each-challenge p {
     font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-left: 20px;
 }
 
-    .login-btn:hover {
-        background: #3FA9F5;
-        color: white;
-    }
-
-/* Password Eye Icon */
-.toggle-eye {
-    color: #9BA0A6;
-    font-size: 16px;
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-/* Error Label */
-.error-label {
-    margin-top: 25px;
-    font-size: 16px;
-    color: red;
+.course-section .button {
+    margin: 50px auto;
+    max-width: var(--max-w);
     text-align: center;
-    letter-spacing: 1.5px;
+}
+
+.course-section .button .btn {
+    padding: 10px 30px;
+    border-radius: 10px;
+    aspect-ratio: 420/80;
+    font-size: 30px;
+    color: #1B263B;
+    background-color: #9BA0A6;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.course-section .button .btn:hover {
+    background-color: white;
+    transform: scale(1.05);
+}
+
+.footer {
+    max-height: 340px;
+    height: 100%;
+    background-color: #060F1C;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: var(--max-w);
+}
+
+.footer .left {
+    margin-left: 30px;
+}
+
+.footer .left img {
+    width: 200px;
+}
+
+.footer .left p {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.footer h3 {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.footer .right .contact {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.footer .right .contact h3 {
+    font-size: 20px;
+    width: 80px;
+}
+
+.footer .right .contact p {
+    letter-spacing: 1px;
+    margin-top: 3px;
+}
+
+.copyright {
+    background-color: #0A192F;
+    max-width: var(--max-w);
+    text-align: center;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+.copyright p {
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+
+#home,
+#ctf,
+#courses,
+#challenges {
+    scroll-margin-top: 90px;
+}
+
+@media(max-width: 1000px) {
+    body {
+        display: none;
+    }
 }

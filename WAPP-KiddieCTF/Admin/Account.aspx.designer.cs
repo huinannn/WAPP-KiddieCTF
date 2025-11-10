@@ -105,15 +105,6 @@ namespace WAPP_KiddieCTF.Admin
         protected global::System.Web.UI.WebControls.Panel pnlModal;
 
         /// <summary>
-        /// lblModalMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModalMessage;
-
-        /// <summary>
         /// pnlAddStudent control.
         /// </summary>
         /// <remarks>
@@ -121,6 +112,24 @@ namespace WAPP_KiddieCTF.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAddStudent;
+
+        /// <summary>
+        /// lblStudentModalTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStudentModalTitle;
+
+        /// <summary>
+        /// lblStudentError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStudentError;
 
         /// <summary>
         /// txtNewStudentID control.
@@ -177,6 +186,24 @@ namespace WAPP_KiddieCTF.Admin
         protected global::System.Web.UI.WebControls.Panel pnlAddLecturer;
 
         /// <summary>
+        /// lblLecturerModalTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLecturerModalTitle;
+
+        /// <summary>
+        /// lblLecturerError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLecturerError;
+
+        /// <summary>
         /// txtNewLecturerID control.
         /// </summary>
         /// <remarks>
@@ -220,6 +247,24 @@ namespace WAPP_KiddieCTF.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAddIntake;
+
+        /// <summary>
+        /// lblIntakeModalTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIntakeModalTitle;
+
+        /// <summary>
+        /// lblIntakeError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIntakeError;
 
         /// <summary>
         /// txtNewIntakeCode control.
@@ -310,5 +355,41 @@ namespace WAPP_KiddieCTF.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSuccessClose;
+
+        /// <summary>
+        /// pnlConfirmDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlConfirmDelete;
+
+        /// <summary>
+        /// lblConfirmText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblConfirmText;
+
+        /// <summary>
+        /// btnConfirmYes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmYes;
+
+        /// <summary>
+        /// btnConfirmNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmNo;
     }
 }

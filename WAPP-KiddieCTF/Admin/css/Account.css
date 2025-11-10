@@ -83,7 +83,7 @@ form {
     display: flex;
     align-items: center; /* Center the icon inside the button */
     justify-content: center;
-    color:#fff;
+    color: #fff;
 }
 
     .filter-btn i {
@@ -256,10 +256,9 @@ form {
 
 /* the card */
 .modal-box {
-
     position: relative;
-    z-index:10000;
-    overflow:visible !important;
+    z-index: 10000;
+    overflow: visible !important;
     background: #13233b; /* dark navy like screenshot */
     width: 520px; /* you can make 540 if you want wider */
     border-radius: 18px;
@@ -268,10 +267,10 @@ form {
     box-shadow: 0 12px 35px rgba(0,0,0,0.4);
 }
 
-.modal-box select {
-    position: relative;
-    z-index: 10001;
-}
+    .modal-box select {
+        position: relative;
+        z-index: 10001;
+    }
 
 /* title at the top */
 .modal-title {
@@ -408,3 +407,4 @@ form {
     .success-box .modal-btn {
         height: 52px;
     }
+

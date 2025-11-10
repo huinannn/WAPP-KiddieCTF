@@ -40,15 +40,17 @@
             </asp:GridView>
         </div>
 
-        <!-- ========== MODAL (Add / Edit) ========== -->
+        <!-- ========== MAIN MODAL (Add / Edit) ========== -->
         <asp:Panel ID="pnlModal" runat="server" Visible="false" CssClass="modal-overlay">
             <div class="modal-box">
-                <!-- error/info -->
-                <asp:Label ID="lblModalMessage" runat="server" CssClass="modal-error" Visible="false"></asp:Label>
-
-                <!-- Add Student Panel -->
+                <!-- STUDENT MODAL -->
                 <asp:Panel ID="pnlAddStudent" runat="server" Visible="false" CssClass="modal-section">
-                    <h2 class="modal-title">Add New Student</h2>
+                    <h2 class="modal-title">
+                        <asp:Label ID="lblStudentModalTitle" runat="server" Text="Add New Student"></asp:Label>
+                    </h2>
+                    <asp:Label ID="lblStudentError" runat="server" CssClass="modal-error" Visible="false"
+                               Style="text-align:center; display:block;"></asp:Label>
+
                     <div class="modal-field">
                         <label for="txtNewStudentID">Student ID</label>
                         <asp:TextBox ID="txtNewStudentID" runat="server" CssClass="modal-input"></asp:TextBox>
@@ -67,9 +69,14 @@
                     </div>
                 </asp:Panel>
 
-                <!-- Add Lecturer Panel -->
+                <!-- LECTURER MODAL -->
                 <asp:Panel ID="pnlAddLecturer" runat="server" Visible="false" CssClass="modal-section">
-                    <h2 class="modal-title">Add New Lecturer</h2>
+                    <h2 class="modal-title">
+                        <asp:Label ID="lblLecturerModalTitle" runat="server" Text="Add New Lecturer"></asp:Label>
+                    </h2>
+                    <asp:Label ID="lblLecturerError" runat="server" CssClass="modal-error" Visible="false"
+                               Style="text-align:center; display:block;"></asp:Label>
+
                     <div class="modal-field">
                         <label for="txtNewLecturerID">Lecturer ID</label>
                         <asp:TextBox ID="txtNewLecturerID" runat="server" CssClass="modal-input"></asp:TextBox>
@@ -84,9 +91,13 @@
                     </div>
                 </asp:Panel>
 
-                <!-- Add Intake Panel -->
+                <!-- INTAKE MODAL -->
                 <asp:Panel ID="pnlAddIntake" runat="server" Visible="false" CssClass="modal-section">
-                    <h2 class="modal-title">Add New Intake</h2>
+                    <h2 class="modal-title">
+                        <asp:Label ID="lblIntakeModalTitle" runat="server" Text="Add New Intake"></asp:Label>
+                    </h2>
+                    <asp:Label ID="lblIntakeError" runat="server" CssClass="modal-error" Visible="false"
+                               Style="text-align:center; display:block;"></asp:Label>
 
                     <div class="modal-field">
                         <label for="txtNewIntakeCode">Intake Code</label>
@@ -117,13 +128,25 @@
             </div>
         </asp:Panel>
 
-        <!-- ========== SUCCESS POPUP (separate panel) ========== -->
+        <!-- ========== SUCCESS POPUP ========== -->
         <asp:Panel ID="pnlSuccess" runat="server" Visible="false" CssClass="success-overlay">
             <div class="success-box">
                 <h3 id="lblSuccessTitle" runat="server">Success!</h3>
                 <asp:Label ID="lblSuccessMessage" runat="server" Text=""></asp:Label>
                 <div class="modal-actions" style="margin-top:20px;">
                     <asp:Button ID="btnSuccessClose" runat="server" Text="Exit" CssClass="modal-btn" OnClick="btnSuccessClose_Click" />
+                </div>
+            </div>
+        </asp:Panel>
+
+        <!-- ========== CONFIRM DELETE POPUP ========== -->
+        <asp:Panel ID="pnlConfirmDelete" runat="server" Visible="false" CssClass="success-overlay">
+            <div class="success-box">
+                <h3>Confirm delete</h3>
+                <asp:Label ID="lblConfirmText" runat="server" Text="Are you sure you want to delete this record?"></asp:Label>
+                <div class="modal-actions" style="margin-top:20px;">
+                    <asp:Button ID="btnConfirmYes" runat="server" Text="Yes" CssClass="modal-btn" OnClick="btnConfirmYes_Click" />
+                    <asp:Button ID="btnConfirmNo" runat="server" Text="No" CssClass="modal-btn cancel" OnClick="btnConfirmNo_Click" />
                 </div>
             </div>
         </asp:Panel>

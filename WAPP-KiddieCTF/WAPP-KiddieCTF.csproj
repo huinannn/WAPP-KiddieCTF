@@ -100,9 +100,39 @@
     <Content Include="Admin\Challenges.aspx" />
     <Content Include="Admin\Courses.aspx" />
     <Content Include="Admin\css\Account.css" />
+    <Content Include="Admin\css\css2\addAssignment.css" />
+    <Content Include="Admin\css\css2\addChallenge.css" />
+    <Content Include="Admin\css\css2\addChapter.css" />
+    <Content Include="Admin\css\css2\addNewCourse.css" />
+    <Content Include="Admin\css\css2\addStudent.css" />
+    <Content Include="Admin\css\css2\assignmentProgress.css" />
+    <Content Include="Admin\css\css2\challengeDetails.css" />
+    <Content Include="Admin\css\css2\challenges.css" />
+    <Content Include="Admin\css\css2\chapterProgress.css" />
+    <Content Include="Admin\css\css2\courseDetails.css" />
+    <Content Include="Admin\css\css2\courses.css" />
+    <Content Include="Admin\css\css2\editAssignment.css" />
+    <Content Include="Admin\css\css2\editChallenge.css" />
+    <Content Include="Admin\css\css2\editChapter.css" />
+    <Content Include="Admin\css\css2\editCourse.css" />
+    <Content Include="Admin\css\css2\reviewAssignment.css" />
+    <Content Include="Admin\css\css2\sidebar.css" />
+    <Content Include="Admin\css\css2\studentList.css" />
+    <Content Include="Admin\css\css2\tools.css" />
     <Content Include="Admin\css\Dashboard.css" />
     <Content Include="Admin\css\sidebar.css" />
     <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\images\addStudent.png" />
+    <Content Include="Admin\images\add_icon.png" />
+    <Content Include="Admin\images\attachFile_icon.png" />
+    <Content Include="Admin\images\back_icon.png" />
+    <Content Include="Admin\images\back_icon2.png" />
+    <Content Include="Admin\images\edit_icon.png" />
+    <Content Include="Admin\images\logo.png" />
+    <Content Include="Admin\images\logout.png" />
+    <Content Include="Admin\images\profile.png" />
+    <Content Include="Admin\images\search.png" />
+    <Content Include="Admin\images\viewStudent.png" />
     <Content Include="Admin\SideBar.ascx" />
     <Content Include="Admin\Tools.aspx" />
     <Content Include="App_Data\KiddieCTF.mdf" />
@@ -613,6 +643,7 @@
   <ItemGroup>
     <Folder Include="Admin\Challenges\" />
     <Folder Include="Admin\Courses\" />
+    <Folder Include="Admin\InnerFunction\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

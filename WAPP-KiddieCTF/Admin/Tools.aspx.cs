@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace WAPP_KiddieCTF.Admin
 {
-	public partial class Tools : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class Tools : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-		}
-	}
+        }
+    }
 }

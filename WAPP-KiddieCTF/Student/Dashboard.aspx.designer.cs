@@ -31,5 +31,41 @@ namespace WAPP_KiddieCTF.Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WAPP_KiddieCTF.Student.SideBar SidebarControl;
+
+        /// <summary>
+        /// rptRecent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptRecent;
+
+        /// <summary>
+        /// lblCompletedFA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCompletedFA;
+
+        /// <summary>
+        /// lblCertificates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCertificates;
+
+        /// <summary>
+        /// lblChallengeProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChallengeProgress;
     }
 }

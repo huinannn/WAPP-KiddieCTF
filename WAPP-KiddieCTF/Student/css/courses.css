@@ -41,30 +41,30 @@
     margin-left: 20px;
 }
 
-.search-container input {
-    flex: 1;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: #9BA0A6;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-}
+    .search-container input {
+        flex: 1;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: #9BA0A6;
+        font-weight: 600;
+        letter-spacing: 0.9px;
+    }
 
-.search-container input::placeholder {
-    color: #9BA0A6;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-}
+        .search-container input::placeholder {
+            color: #9BA0A6;
+            font-weight: 600;
+            letter-spacing: 0.9px;
+        }
 
-.search-container .search-icon {
-    color: #9BA0A6;
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 20px;
-}
+    .search-container .search-icon {
+        color: #9BA0A6;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 20px;
+    }
 
 /* Course Container */
 .courses-container {
@@ -93,10 +93,10 @@
     transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.course-card:hover {
-    background: rgba(69, 80, 102, 0.85);
-    transform: translateY(-4px);
-}
+    .course-card:hover {
+        background: rgba(69, 80, 102, 0.85);
+        transform: translateY(-4px);
+    }
 
 .course-details {
     padding: 25px;
@@ -108,31 +108,31 @@
     align-items: flex-start;
 }
 
-.course-details h3 {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
+    .course-details h3 {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
 
-.course-details p {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    color: #9BA0A6;
-}
+    .course-details p {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        color: #9BA0A6;
+    }
 
-.course-details .course-id {
-    font-weight: 500;
-    font-size: 14px;
-    color: #4FC3F7;
-}
+    .course-details .course-id {
+        font-weight: 500;
+        font-size: 14px;
+        color: #4FC3F7;
+    }
 
-.course-details .lecture-name {
-    font-style: italic;
-    color: #9BA0A6;
-    font-size: 14px;
-}
+    .course-details .lecture-name {
+        font-style: italic;
+        color: #9BA0A6;
+        font-size: 14px;
+    }
 
 /* No Courses Found Message */
 #NoCoursesLabel, #NoSearchResultsLabel {
@@ -204,10 +204,10 @@
     transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.container:hover {
-    background: rgba(69, 80, 102, 0.85);
-    transform: translateY(-4px);
-}
+    .container:hover {
+        background: rgba(69, 80, 102, 0.85);
+        transform: translateY(-4px);
+    }
 
 .dropdown-left {
     font-size: 20px;
@@ -228,9 +228,9 @@
     letter-spacing: 1px;
 }
 
-.dropdown-title i {
-    margin-right: 20px;
-}
+    .dropdown-title i {
+        margin-right: 20px;
+    }
 
 .dropdown-content {
     display: none;
@@ -245,21 +245,21 @@
     border-bottom: 1px solid #ddd;
 }
 
-.chapter-card h4 {
-    color: #9BA0A6;
-    font-weight: 500;
-    letter-spacing: 1px;
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
-}
+    .chapter-card h4 {
+        color: #9BA0A6;
+        font-weight: 500;
+        letter-spacing: 1px;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+    }
 
-.chapter-card h4:hover {
-    color: #fff;
-    transform: translateY(-4px);
-    text-decoration: underline;
-}
+        .chapter-card h4:hover {
+            color: #fff;
+            transform: translateY(-4px);
+            text-decoration: underline;
+        }
 
 .dropdown-title i {
     transition: color 0.3s;
@@ -278,23 +278,23 @@
     text-decoration: none;
 }
 
-.mark-done-btn:hover {
-    background: #3FA9F5;
-    color: white;
-}
+    .mark-done-btn:hover {
+        background: #3FA9F5;
+        color: white;
+    }
 
-.mark-done-btn.done {
-    background: lightgreen;
-    color: white;
-    cursor: not-allowed;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    transition: 0.3s;
-    text-decoration: none;
-}
+    .mark-done-btn.done {
+        background: lightgreen;
+        color: white;
+        cursor: not-allowed;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 10px;
+        font-weight: 500;
+        letter-spacing: 0.6px;
+        transition: 0.3s;
+        text-decoration: none;
+    }
 
 .assignment-card {
     padding: 10px 0;
@@ -343,7 +343,7 @@
     min-height: 450px;
 }
 
-.assignment-title, .due-date{
+.assignment-title, .due-date {
     color: white;
     text-align: center;
     font-size: 24px;
@@ -370,9 +370,9 @@
     font-weight: 600;
 }
 
-.file-download p {
-    margin-bottom: 15px;
-}
+    .file-download p {
+        margin-bottom: 15px;
+    }
 
 .download-icon {
     font-size: 18px;
@@ -398,10 +398,10 @@
     text-decoration: none;
 }
 
-.input-field:hover {
-    color: #fff;
-    text-decoration: underline;
-}
+    .input-field:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
 
 .file-upload {
     display: flex;
@@ -444,10 +444,10 @@
     transition: 0.3s;
 }
 
-.submit-btn:hover {
-    background: #3FA9F5;
-    color: white;
-}
+    .submit-btn:hover {
+        background: #3FA9F5;
+        color: white;
+    }
 
 .submit-button {
     background: transparent;
@@ -478,8 +478,35 @@
 .submit-button[disabled] {
     cursor: not-allowed !important;
 }
-    
+
 .file-label[disabled] {
     cursor: not-allowed !important;
     opacity: 0.6;
+}
+
+/* Certificate */
+.certificate-btn-container {
+    text-align: right;
+}
+
+.certificate-button {
+    padding: 10px 15px;
+    background: #9BA0A6;
+    border-radius: 10px;
+    color: #1B263B;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1.60px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 auto;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.certificate-button:hover {
+    background: #3FA9F5;
+    color: white;
 }

@@ -323,6 +323,7 @@
     <Content Include="Student\Challenges.aspx" />
     <Content Include="Student\Chapter_Assignment.aspx" />
     <Content Include="Student\Courses.aspx" />
+    <Content Include="Student\css\challenges.css" />
     <Content Include="Student\css\courses.css" />
     <Content Include="Student\css\dashboard.css" />
     <Content Include="Student\css\profile.css" />

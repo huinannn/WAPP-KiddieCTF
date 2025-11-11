@@ -42,6 +42,24 @@ namespace WAPP_KiddieCTF.Student
         protected global::System.Web.UI.WebControls.Repeater rptRecent;
 
         /// <summary>
+        /// rptDeadlines control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptDeadlines;
+
+        /// <summary>
+        /// pnlNoDeadlines control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlNoDeadlines;
+
+        /// <summary>
         /// lblCompletedFA control.
         /// </summary>
         /// <remarks>
@@ -67,5 +85,23 @@ namespace WAPP_KiddieCTF.Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblChallengeProgress;
+
+        /// <summary>
+        /// hiddenSolved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenSolved;
+
+        /// <summary>
+        /// hiddenTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenTotal;
     }
 }

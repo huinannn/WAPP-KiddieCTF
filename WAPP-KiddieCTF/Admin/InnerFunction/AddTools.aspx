@@ -154,5 +154,32 @@
             </div>
         </div>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 1) fix sidebar links because this page is inside /Admin/InnerFunction/
+            const navLinks = document.querySelectorAll(".sidebar .nav a");
+
+            navLinks.forEach(function (link) {
+                const href = link.getAttribute("href");
+                // ignore absolute paths (/LogOut.aspx) and full urls
+                if (href && !href.startsWith("/") && !href.startsWith("http")) {
+                    // make it point to parent /Admin/ folder
+                    link.setAttribute("href", "../" + href);
+                }
+            });
+
+            // 2) keep Tools highlighted on Add/Edit pages
+            const currentPage = window.location.pathname.toLowerCase();
+            if (currentPage.includes("addtools") || currentPage.includes("edittools")) {
+                const toolsLink = document.querySelector('.sidebar .nav a[href*="Tools.aspx"]');
+                if (toolsLink) {
+                    document.querySelectorAll('.sidebar .nav a').forEach(a => a.classList.remove('active'));
+                    toolsLink.classList.add('active');
+                }
+            }
+        });
+    </script>
+
+
 </body>
 </html>

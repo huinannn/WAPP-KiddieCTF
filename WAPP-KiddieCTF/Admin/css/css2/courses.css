@@ -1,12 +1,21 @@
-﻿body {
+﻿/* ===== base ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
     background: #000;
     margin: 0;
     font-family: 'Teko', sans-serif;
 }
 
+/* ===== main layout ===== */
+/* layout for main area beside sidebar */
 .main {
-    margin-left: 250px;
-    padding: 40px;
+    margin-left: 250px; /* keep space for sidebar */
+    width: calc(100% - 250px); /* stay within remaining width */
+    padding: 40px 60px; /* 50px left/right gap */
+    box-sizing: border-box;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -14,6 +23,8 @@
     background: #000;
 }
 
+
+/* ===== title ===== */
 .page-title {
     font-size: 50px;
     font-weight: 600;
@@ -24,12 +35,13 @@
     margin-left: 40px;
 }
 
-/* TOOLBAR */
+/* ===== toolbar ===== */
 .toolbar {
     display: flex;
     gap: 16px;
     margin-bottom: 30px;
-    width: 1060px;
+    width: 100%;
+    max-width: 1060px;
     justify-content: flex-start;
     align-items: center;
 }
@@ -51,13 +63,13 @@
         margin-right: 10px;
     }
 
-/* SEARCH BOX */
+/* ===== search box ===== */
 .search-box {
     position: relative;
     width: 364px;
     height: 46px;
     border-radius: 10px;
-    padding: 0 16px; /* ← Same as toolbar */
+    padding: 0 16px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -81,7 +93,7 @@
     flex: 1;
     outline: none;
     height: 100%;
-    padding: 0; /* ← Remove padding */
+    padding: 0;
 }
 
 .placeholder-label {
@@ -95,11 +107,9 @@
     letter-spacing: 0.9px;
     pointer-events: none;
     transition: all 0.2s ease;
-    /* Hide by default if input has value */
     opacity: 1;
 }
 
-/* Always hide when input has value */
 .search-input:not(:placeholder-shown) + .placeholder-label,
 .search-input:focus + .placeholder-label,
 .search-input[has-value="true"] + .placeholder-label {
@@ -109,30 +119,10 @@
     font-size: 14px;
 }
 
-.filter-box {
-    width: 111px;
-}
-
-.add-box {
-    margin-left: auto;
-    width: 220px;
-}
-
-    .add-box img {
-        width: 30px;
-        height: 25px;
-        margin-right: 10px;
-        flex-shrink: 0;
-        cursor: pointer;
-    }
-
-    .add-box:hover {
-        background: #133B5C; /* lighter hover effect */
-    }
-
-/* PANEL: GROWS VERTICALLY */
+/* ===== panel ===== */
 .content-panel {
-    width: 1060px;
+    width: 100%;
+    max-width: 1060px;
     min-height: 701px;
     border-radius: 20px;
     background: #1B263B;
@@ -143,7 +133,7 @@
     flex-direction: column;
 }
 
-/* GRID: 3 COLUMNS, AUTO-WRAP */
+/* ===== grid ===== */
 .course-grid {
     display: grid;
     grid-template-columns: repeat(3, 280px);
@@ -154,6 +144,7 @@
     margin: 0;
 }
 
+/* ===== card ===== */
 .course-card {
     position: relative;
     width: 280px;
@@ -164,6 +155,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    cursor: pointer;
 }
 
     .course-card:hover {
@@ -191,16 +183,6 @@
     justify-content: center;
 }
 
-    .edit-btn::before {
-        content: '';
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        background: url('../images/edit_icon.png') center no-repeat;
-        background-size: contain;
-        margin-right: 5px;
-    }
-
 .course-name {
     font-size: 20px;
     font-weight: 600;
@@ -214,4 +196,65 @@
     font-weight: 600;
     letter-spacing: 0.8px;
     color: #9BA0A6;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* under 1200px: let grid auto-fit and panel stretch */
+@media (max-width: 1200px) {
+    .main {
+        padding: 30px 20px;
+        width: calc(100% - 250px); /* keep the gap */
+    }
+
+    .page-title {
+        margin-left: 0;
+    }
+
+    .toolbar {
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    .content-panel {
+        max-width: 100%;
+    }
+
+    .course-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+    }
+}
+
+/* under 800px: stack toolbar and tighten padding */
+@media (max-width: 800px) {
+    .main {
+        padding: 20px 12px;
+        width: calc(100% - 250px);
+    }
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box,
+    .add-box {
+        width: 100%;
+    }
+
+    .content-panel {
+        padding: 20px;
+    }
+}
+
+/* optional: REALLY small screens — if you want content to use full width
+   even though sidebar is still 250px, drop the margin-left here */
+@media (max-width: 600px) {
+    .main {
+        margin-left: 0;
+        width: 100%;
+    }
 }

@@ -2,29 +2,37 @@
 <%@ Register Src="~/Admin/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Kiddie CTF - Courses (Admin)</title>
+
+    <!-- sidebar + page css -->
+    <link href="css/sidebar.css" rel="stylesheet" />
+    <link href="css/css2/courses.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet"/>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="sidebar">
-            <uc:SideBar ID="SidebarControl" runat="server" />
-        </div>
-                <!-- === MAIN CONTENT === -->
-        <div class="main">
+        <!-- script manager goes here, no sidebar wrapper -->
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <!-- actual sidebar -->
+        <uc:SideBar ID="SidebarControl" runat="server" />
+
+        <!-- main content, pushed right by sidebar width -->
+        <div class="main" style="margin-left:250px;">
             <h1 class="page-title">Courses</h1>
 
-            <!-- Toolbar with Real Search -->
             <div class="toolbar">
                 <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="search-box">
                             <img src="images/search.png" alt="" />
-                            <asp:TextBox ID="txtSearch" runat="server" 
-                                         CssClass="search-input" 
-                                         AutoPostBack="true" 
+                            <asp:TextBox ID="txtSearch" runat="server"
+                                         CssClass="search-input"
+                                         AutoPostBack="true"
                                          OnTextChanged="txtSearch_TextChanged">
                             </asp:TextBox>
                             <label class="placeholder-label">Search Course Name</label>
@@ -35,21 +43,20 @@
                     </Triggers>
                 </asp:UpdatePanel>
 
-                <div class="add-box" onclick="location.href='AddNewCourse.aspx'" style="cursor:pointer;">
+                <div class="add-box" onclick="location.href='InnerFunction/AddNewCourse.aspx'" style="cursor:pointer;">
                     <img src="images/add_icon.png" alt="" />
                     <span>Add New Course</span>
                 </div>
             </div>
 
-            <!-- Wrap Course Panel in UpdatePanel -->
             <asp:UpdatePanel ID="UpdatePanelCourses" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="content-panel">
                         <div class="course-grid">
                             <asp:Repeater ID="CourseRepeater" runat="server">
                                 <ItemTemplate>
-                                    <div class="course-card" onclick="location.href='CourseDetails.aspx?id=<%# Eval("Course_ID") %>'"
->
+                                    <div class="course-card"
+                                         onclick="location.href='CourseDetails.aspx?id=<%# Eval("Course_ID") %>'">
                                         <asp:LinkButton ID="lnkEdit" runat="server"
                                                         CssClass="edit-btn"
                                                         CommandArgument='<%# Eval("Course_ID") %>'
@@ -73,7 +80,6 @@
     </form>
 
     <script>
-        // Sync placeholder behavior with server control
         function updatePlaceholder() {
             var txt = document.getElementById('<%= txtSearch.ClientID %>');
             var label = txt ? txt.parentNode.querySelector('.placeholder-label') : null;
@@ -94,7 +100,6 @@
 
         function initPlaceholderEvents() {
             updatePlaceholder();
-
             var txt = document.getElementById('<%= txtSearch.ClientID %>');
             if (txt) {
                 txt.addEventListener('input', updatePlaceholder);
@@ -106,18 +111,8 @@
             }
         }
 
-        // Run once when page first loads
         document.addEventListener("DOMContentLoaded", initPlaceholderEvents);
-
-        // Run again after every partial postback (UpdatePanel)
         Sys.Application.add_load(initPlaceholderEvents);
-
-        function editCourse(id) {
-            //Debug purposes
-            //alert("Edit Course ID: " + id);
-            // window.location = "EditCourse.aspx?id=" + id;
-        }
     </script>
-    </form>
 </body>
 </html>

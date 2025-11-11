@@ -114,30 +114,30 @@ namespace WAPP_KiddieCTF.Admin
         private DataTable GetMostAccessed()
         {
             string query = @"
-                SELECT TOP 6 *
-                FROM
-                (
-                    -- Courses
-                    SELECT 
-                        c.[Course_Name] AS [Name],
-                        'Course' AS [Category],
-                        COUNT(DISTINCT acr.[Student_ID]) AS [TotalAccessed]
-                    FROM [Access_Course_Record] acr
-                    INNER JOIN [Course] c ON acr.[Course_ID] = c.[Course_ID]
-                    GROUP BY c.[Course_Name]
+        SELECT TOP 6 *
+        FROM
+        (
+            -- Courses
+            SELECT 
+                c.[Course_Name] AS [Name],
+                'Course' AS [Category],
+                COUNT(*) AS [TotalAccessed]      -- ⬅️ changed here
+            FROM [Access_Course_Record] acr
+            INNER JOIN [Course] c ON acr.[Course_ID] = c.[Course_ID]
+            GROUP BY c.[Course_Name]
 
-                    UNION ALL
+            UNION ALL
 
-                    -- Challenges
-                    SELECT 
-                        ch.[Challenge_Name] AS [Name],
-                        'Challenge' AS [Category],
-                        COUNT(DISTINCT achr.[Student_ID]) AS [TotalAccessed]
-                    FROM [Access_Challenge_Record] achr
-                    INNER JOIN [Challenge] ch ON achr.[Challenge_ID] = ch.[Challenge_ID]
-                    GROUP BY ch.[Challenge_Name]
-                ) AS Combined
-                ORDER BY Combined.[TotalAccessed] DESC;";
+            -- Challenges
+            SELECT 
+                ch.[Challenge_Name] AS [Name],
+                'Challenge' AS [Category],
+                COUNT(*) AS [TotalAccessed]      -- ⬅️ and here
+            FROM [Access_Challenge_Record] achr
+            INNER JOIN [Challenge] ch ON achr.[Challenge_ID] = ch.[Challenge_ID]
+            GROUP BY ch.[Challenge_Name]
+        ) AS Combined
+        ORDER BY Combined.[TotalAccessed] DESC;";
 
             DataTable dt = new DataTable();
 
@@ -153,6 +153,7 @@ namespace WAPP_KiddieCTF.Admin
 
             return dt;
         }
+
 
         // -----------------------------
         // year dropdown for charts

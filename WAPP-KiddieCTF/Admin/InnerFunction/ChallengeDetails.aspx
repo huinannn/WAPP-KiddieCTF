@@ -121,5 +121,48 @@
             </div>
         </div>
     </form>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // we are in /Admin/InnerFunction/*
+        // 1) fix sidebar nav links so they point back to /Admin/*.aspx
+        const navLinks = document.querySelectorAll(".sidebar .nav a");
+
+        navLinks.forEach(function (link) {
+            const href = link.getAttribute("href");
+            if (!href) return;
+
+            // skip absolute paths or full urls
+            if (href.startsWith("/") || href.startsWith("http")) return;
+
+            // if it already starts with ../ then it's already fixed
+            if (href.startsWith("../")) return;
+
+            // otherwise, prepend ../
+            link.setAttribute("href", "../" + href);
+        });
+
+        // 2) force "Challenges" to be active on challenge inner pages
+        //    (addchallenge, editchallenge, challengedetails, etc.)
+        const path = window.location.pathname.toLowerCase();
+        const isChallengeInner =
+            path.includes("addchallenge") ||
+            path.includes("editchallenge") ||
+            path.includes("challengedetails");
+
+        if (isChallengeInner) {
+            // remove active from all first
+            document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
+
+            // find the Challenges link — after we rewrote it above it should contain "Challenges.aspx"
+            const challengesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
+                .find(a => (a.getAttribute("href") || "").toLowerCase().includes("challenges.aspx"));
+
+            if (challengesLink) {
+                challengesLink.classList.add("active");
+            }
+        }
+    });
+    </script>
+
 </body>
 </html>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_KiddieCTF.Student
+namespace WAPP_Assignment.Student
 {
 
 

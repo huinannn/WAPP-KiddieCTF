@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 
-namespace WAPP_KiddieCTF.Student
+namespace WAPP_Assignment.Student
 {
     public partial class Courses : System.Web.UI.Page
     {
@@ -13,7 +13,7 @@ namespace WAPP_KiddieCTF.Student
             string studentId = Session["StudentID"]?.ToString();
             if (string.IsNullOrEmpty(studentId))
             {
-                Response.Redirect("/LogIn.aspx");
+                Response.Redirect("/Default.aspx");
             }
             else
             {
@@ -39,7 +39,6 @@ namespace WAPP_KiddieCTF.Student
             {
                 RecordCourseClickToDatabase(studentId, courseId);
 
-                // 跳转到课程页面
                 Response.Redirect($"Chapter_Assignment.aspx?courseId={courseId}");
             }
         }
@@ -50,7 +49,6 @@ namespace WAPP_KiddieCTF.Student
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                // 生成新的 AC001 格式的ID
                 string newId = GenerateNewAccessCourseId(connectionString);
 
                 string query = @"

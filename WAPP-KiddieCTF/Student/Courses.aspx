@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Courses.aspx.cs" Inherits="WAPP_KiddieCTF.Student.Courses" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Courses.aspx.cs" Inherits="WAPP_Assignment.Student.Courses" %>
 <%@ Register Src="~/Student/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>
@@ -14,7 +14,6 @@
     <form id="form1" runat="server">
         <uc:SideBar ID="SidebarControl" runat="server" />
         
-        <!-- 隐藏字段和按钮用于记录点击 -->
         <asp:HiddenField ID="hdnCourseId" runat="server" />
         <asp:Button ID="btnRecordClick" runat="server" OnClick="btnRecordClick_Click" Style="display: none;" />
         
@@ -55,7 +54,6 @@
         }
 
         function redirectToCourse(courseId) {
-            // 设置隐藏字段并触发按钮点击
             document.getElementById('<%= hdnCourseId.ClientID %>').value = courseId;
             document.getElementById('<%= btnRecordClick.ClientID %>').click();
         }

@@ -67,11 +67,7 @@ namespace WAPP_KiddieCTF
                     string loginTable = "";
                     string loginIdColumn = "";
 
-                    if (role == "Admin")
-                    {
-                        Session["AdminID"] = userId;
-                    }
-                    else if (role == "Student")
+                    if (role == "Student")
                     {
                         prefix = "SL";
                         loginTable = "Student_Login";

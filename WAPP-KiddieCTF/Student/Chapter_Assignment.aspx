@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Chapter_Assignment.aspx.cs" Inherits="WAPP_KiddieCTF.Student.Chapter_Assignment" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Chapter_Assignment.aspx.cs" Inherits="WAPP_KiddieCTF.Student.Chapter_Assignment" Async="true" %>
 <%@ Register Src="~/Student/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>
@@ -20,11 +20,16 @@
             </div>
 
             <div class="course-container">
-                 <a href="Courses.aspx" class="back-button">
-                     <i class="fas fa-arrow-left back-icon"></i>
-                 </a>
+                <a href="Courses.aspx" class="back-button">
+                    <i class="fas fa-arrow-left back-icon"></i>
+                </a>
 
                 <div class="course">
+                     <div class="certificate-btn-container">
+                         <asp:Button ID="GenerateCertificateButton" runat="server" Text="Certificate"
+                             CssClass="certificate-button" OnClick="GenerateCertificateButton_Click" Visible="false" />
+                     </div>
+
                     <div class="container">
                         <div class="dropdown-title" onclick="toggleDropdown('chapterDropdown')">
                             <i id="chapterArrow" class="fas fa-chevron-right"></i> Chapters

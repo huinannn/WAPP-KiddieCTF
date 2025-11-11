@@ -6,7 +6,6 @@ using System.IO;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
 namespace WAPP_KiddieCTF.Student
 {
@@ -26,6 +25,12 @@ namespace WAPP_KiddieCTF.Student
             set { ViewState["HasSubmitted"] = value; }
         }
 
+        protected DateTime AssignmentDeadline
+        {
+            get { return ViewState["AssignmentDeadline"] as DateTime? ?? DateTime.MinValue; }
+            set { ViewState["AssignmentDeadline"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string studentId = Session["StudentID"]?.ToString();
@@ -41,11 +46,12 @@ namespace WAPP_KiddieCTF.Student
             {
                 LoadFinalAssignment(courseId);
                 CheckExistingSubmission(studentId);
+                UpdateDeadlineDisplay();
+                CheckSubmissionEligibility();
             }
 
             if (HasSubmitted)
             {
-                // If already submitted, disable upload
                 DisableUpload("submitted");
             }
 
@@ -54,8 +60,7 @@ namespace WAPP_KiddieCTF.Student
             ";
             ScriptManager.RegisterStartupScript(this, GetType(), "setBackButtonHref", script, true);
 
-            // Load marking status
-            LoadMarkingStatus(courseId, studentId);
+            LoadMarkingStatus(studentId);
         }
 
         private void LoadFinalAssignment(string courseId)
@@ -64,9 +69,9 @@ namespace WAPP_KiddieCTF.Student
             using (SqlConnection con = new SqlConnection(connStr))
             {
                 const string sql = @"
-                    SELECT FA_ID, FA_Name, FA_File, FA_Deadline
-                    FROM Final_Assignment
-                    WHERE Course_ID = @Course_ID";
+            SELECT FA_ID, FA_Name, FA_File, FA_Deadline
+            FROM Final_Assignment
+            WHERE Course_ID = @Course_ID";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -78,7 +83,9 @@ namespace WAPP_KiddieCTF.Student
                     {
                         FaId = reader["FA_ID"].ToString();
                         FinalAssignmentLabel.Text = reader["FA_Name"].ToString();
-                        DeadlineLabel.Text = "Due Date: " + Convert.ToDateTime(reader["FA_Deadline"]).ToString("MM/dd/yyyy");
+
+                        AssignmentDeadline = Convert.ToDateTime(reader["FA_Deadline"]);
+                        DeadlineLabel.Text = "Due Date: " + AssignmentDeadline.ToString("MM/dd/yyyy");
 
                         string fileName = reader["FA_File"].ToString();
                         FileDownloadLink.CommandArgument = fileName;
@@ -117,11 +124,48 @@ namespace WAPP_KiddieCTF.Student
                     if (result != null)
                     {
                         HasSubmitted = true;
-                        string uploadedFile = result.ToString();
-                        UploadedFileLabel.Text = $"Submitted for grading!";
+                        UploadedFileLabel.Text = "Submitted for grading!";
                         UploadedFileLabel.ForeColor = System.Drawing.Color.Gray;
                         DisableUpload("submitted");
                     }
+                }
+            }
+        }
+
+        private void CheckSubmissionEligibility()
+        {
+            if (AssignmentDeadline == DateTime.MinValue) return;
+
+            if (HasSubmitted) return;
+
+            if (DateTime.Now > AssignmentDeadline)
+            {
+                DisableUpload("overdue");
+                UploadedFileLabel.Text = "Submission period has ended";
+                UploadedFileLabel.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void UpdateDeadlineDisplay()
+        {
+            if (AssignmentDeadline == DateTime.MinValue) return;
+
+            if (HasSubmitted)
+            {
+                DeadlineLabel.ForeColor = System.Drawing.Color.Green;
+                DeadlineLabel.Text = "Due Date: " + AssignmentDeadline.ToString("MM/dd/yyyy");
+            }
+            else
+            {
+                if (DateTime.Now > AssignmentDeadline)
+                {
+                    DeadlineLabel.ForeColor = System.Drawing.Color.Red;
+                    DeadlineLabel.Text = "Due Date: " + AssignmentDeadline.ToString("MM/dd/yyyy") + " (Overdue)";
+                }
+                else
+                {
+                    DeadlineLabel.ForeColor = System.Drawing.Color.Green;
+                    DeadlineLabel.Text = "Due Date: " + AssignmentDeadline.ToString("MM/dd/yyyy");
                 }
             }
         }
@@ -135,6 +179,8 @@ namespace WAPP_KiddieCTF.Student
             SubmitAssignmentButton.Enabled = false;
             SubmitAssignmentButton.CssClass = "submit-button disabled";
 
+            string script = "";
+
             if (status == "graded")
             {
                 SubmitAssignmentButton.Text = "Graded";
@@ -142,15 +188,22 @@ namespace WAPP_KiddieCTF.Student
             else if (status == "submitted")
             {
                 SubmitAssignmentButton.Text = "Submitted";
+                script = @"
+                document.getElementById('fileLabel').innerHTML = '<i class=""fas fa-check upload-icon""></i> Assignment Already Submitted';
+                document.getElementById('fileLabel').style.cursor = 'not-allowed';
+                document.getElementById('fileLabel').style.opacity = '0.6';";
+            }
+            else if (status == "overdue")
+            {
+                SubmitAssignmentButton.Text = "Closed";
+                script = @"
+                document.getElementById('fileLabel').innerHTML = '<i class=""fas fa-times upload-icon""></i> Submission Period Ended';
+                document.getElementById('fileLabel').style.cursor = 'not-allowed';
+                document.getElementById('fileLabel').style.opacity = '0.6';";
             }
 
-            string script = @"
-                document.getElementById('fileLabel').innerHTML = '<i class=""fas fa-check upload-icon""></i> Assignment Already Submitted';
-                    document.getElementById('fileLabel').style.cursor = 'not-allowed';
-                    document.getElementById('fileLabel').style.opacity = '0.6'; ";
-
             ScriptManager.RegisterStartupScript(this, GetType(), "disableUpload", script, true);
-         }
+        }
 
         protected void DownloadFile(object sender, EventArgs e)
         {
@@ -210,6 +263,12 @@ namespace WAPP_KiddieCTF.Student
                 return;
             }
 
+            if (DateTime.Now > AssignmentDeadline)
+            {
+                ShowMessage("Submission period has ended. You can no longer submit this assignment.", "error");
+                return;
+            }
+
             if (!FileUpload1.HasFile)
             {
                 ShowMessage("Please select a file to upload.", "error");
@@ -249,7 +308,14 @@ namespace WAPP_KiddieCTF.Student
                 {
                     HasSubmitted = true;
                     ShowMessage("Assignment submitted successfully!", "success");
-                    CheckExistingSubmission(studentId); // This will call DisableUpload()
+
+                    UpdateDeadlineDisplay();
+
+                    string delayScript = @"
+                        setTimeout(function() {
+                            __doPostBack('', 'RefreshSubmission');
+                        }, 2500);";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "delayRefresh", delayScript, true);
                 }
                 else
                 {
@@ -286,6 +352,20 @@ namespace WAPP_KiddieCTF.Student
             }
         }
 
+        public void RaisePostBackEvent(string eventArgument)
+        {
+            if (eventArgument == "RefreshSubmission")
+            {
+                string studentId = Session["StudentID"]?.ToString();
+                if (!string.IsNullOrEmpty(studentId))
+                {
+                    CheckExistingSubmission(studentId);
+                    UpdateDeadlineDisplay();
+                    CheckSubmissionEligibility();
+                }
+            }
+        }
+
         private string GenerateNewAnswerId()
         {
             string nextId = "AS001";
@@ -310,10 +390,7 @@ namespace WAPP_KiddieCTF.Student
                     }
                 }
             }
-            catch
-            {
-
-            }
+            catch { }
 
             return nextId;
         }
@@ -321,32 +398,40 @@ namespace WAPP_KiddieCTF.Student
         private void ShowMessage(string text, string type)
         {
             UploadedFileLabel.Text = text;
-            UploadedFileLabel.ForeColor = type == "success"
-                ? System.Drawing.Color.LightGreen
-                : System.Drawing.Color.Red;
 
             if (type == "success")
-            {
-                string script = $@"
-                    setTimeout(function() {{
-                        var el = document.getElementById('{UploadedFileLabel.ClientID}');
-                        if (el) el.style.display = 'none';
-                    }}, 2000);";
+                UploadedFileLabel.ForeColor = System.Drawing.Color.LightGreen;
+            else if (type == "error")
+                UploadedFileLabel.ForeColor = System.Drawing.Color.Red;
+            else
+                UploadedFileLabel.ForeColor = System.Drawing.Color.Gray;
 
-                ScriptManager.RegisterStartupScript(this, GetType(),
-                    "msg" + Guid.NewGuid(), script, true);
-            }
+            string script = $@"
+                setTimeout(function() {{
+                    var el = document.getElementById('{UploadedFileLabel.ClientID}');
+                    if (el) {{
+                        setTimeout(function() {{
+                            el.style.display = 'none';
+                        }}, 500);
+                    }}
+                }}, 2500);";
+
+            ScriptManager.RegisterStartupScript(this, GetType(),
+                "msg" + Guid.NewGuid(), script, true);
         }
 
-        private void LoadMarkingStatus(string courseId, string studentId)
+        private void LoadMarkingStatus(string studentId)
         {
+            if (string.IsNullOrEmpty(FaId))
+                return;
+
             string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connStr))
             {
                 const string sql = @"
-                    SELECT Marking_Grades, Marking_Status
-                    FROM Marking_Table
-                    WHERE Answer_ID = (SELECT Answer_ID FROM Answer_Table WHERE Student_ID = @Student_ID AND FA_ID = @FA_ID)";
+                SELECT Marking_Grades, Marking_Status
+                FROM Marking_Table
+                WHERE Answer_ID = (SELECT Answer_ID FROM Answer_Table WHERE Student_ID = @Student_ID AND FA_ID = @FA_ID)";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -360,23 +445,45 @@ namespace WAPP_KiddieCTF.Student
                         string markingStatus = reader["Marking_Status"].ToString();
                         string markingGrade = reader["Marking_Grades"].ToString();
 
-                        UploadedFileLabel.Text = $"Graded! Score: {markingGrade}";
-
                         if (markingStatus == "Pass")
                         {
                             UploadedFileLabel.ForeColor = System.Drawing.Color.LightGreen;
+                            UploadedFileLabel.Text = $"Graded! You passed with a score: {markingGrade}";
                         }
                         else if (markingStatus == "Fail")
                         {
                             UploadedFileLabel.ForeColor = System.Drawing.Color.Red;
+                            UploadedFileLabel.Text = $"Graded! You failed with a score: {markingGrade}";
                         }
 
                         DisableUpload("graded");
                     }
                     else
                     {
-                        UploadedFileLabel.Text = "Submitted for grading!";
-                        UploadedFileLabel.ForeColor = System.Drawing.Color.Gray;
+                        using (SqlConnection con2 = new SqlConnection(connStr))
+                        {
+                            const string sql2 = @"
+                        SELECT COUNT(*) FROM Answer_Table 
+                        WHERE Student_ID = @Student_ID AND FA_ID = @FA_ID";
+
+                            using (SqlCommand cmd2 = new SqlCommand(sql2, con2))
+                            {
+                                cmd2.Parameters.AddWithValue("@Student_ID", studentId);
+                                cmd2.Parameters.AddWithValue("@FA_ID", FaId);
+                                con2.Open();
+                                int count = (int)cmd2.ExecuteScalar();
+
+                                if (count > 0)
+                                {
+                                    UploadedFileLabel.Text = "Submitted for grading!";
+                                    UploadedFileLabel.ForeColor = System.Drawing.Color.Gray;
+                                }
+                                else
+                                {
+                                    UploadedFileLabel.Text = "";
+                                }
+                            }
+                        }
                     }
                 }
             }

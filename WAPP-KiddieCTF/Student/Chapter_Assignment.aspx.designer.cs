@@ -42,6 +42,15 @@ namespace WAPP_KiddieCTF.Student
         protected global::System.Web.UI.WebControls.Literal coursesTitle;
 
         /// <summary>
+        /// GenerateCertificateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button GenerateCertificateButton;
+
+        /// <summary>
         /// ChaptersRepeater control.
         /// </summary>
         /// <remarks>

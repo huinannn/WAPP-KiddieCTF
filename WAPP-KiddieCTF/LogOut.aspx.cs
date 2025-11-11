@@ -49,13 +49,7 @@ namespace WAPP_KiddieCTF
                         logoutTimeColumn = "LecLogout_Time";
                         logoutDateColumn = "LecLogout_Date";
                         loginId = Session["LecturerLoginID"]?.ToString();
-                        userIdColumn = "Lecturer_ID";
-                    }
-                    else if (Session["AdminID"] != null)
-                    {
-                        userId = Session["AdminID"].ToString();
-                        loginTable = "Admin";
-                        userIdColumn = "Admin_ID";
+                        userIdColumn = "Lecturer_ID";          
                     }
 
                     string updateQuery = $"UPDATE {loginTable} SET {logoutTimeColumn}=@LogoutTime, {logoutDateColumn}=@LogoutDate " +

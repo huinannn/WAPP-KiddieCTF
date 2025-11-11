@@ -169,8 +169,17 @@
     <Content Include="Admin\images\profile.png" />
     <Content Include="Admin\images\search.png" />
     <Content Include="Admin\images\viewStudent.png" />
+    <Content Include="Admin\InnerFunction\AddChallenge.aspx" />
+    <Content Include="Admin\InnerFunction\AddNewCourse.aspx" />
+    <Content Include="Admin\InnerFunction\AddStudent.aspx" />
     <Content Include="Admin\InnerFunction\AddTools.aspx" />
+    <Content Include="Admin\InnerFunction\ChallengeDetails.aspx" />
+    <Content Include="Admin\InnerFunction\CourseDetails.aspx" />
+    <Content Include="Admin\InnerFunction\EditAssignment.aspx" />
+    <Content Include="Admin\InnerFunction\EditChallenge.aspx" />
+    <Content Include="Admin\InnerFunction\EditCourse.aspx" />
     <Content Include="Admin\InnerFunction\EditTools.aspx" />
+    <Content Include="Admin\InnerFunction\StudentList.aspx" />
     <Content Include="Admin\SideBar.ascx" />
     <Content Include="Admin\Tools.aspx" />
     <Content Include="App_Data\KiddieCTF.mdf" />
@@ -371,6 +380,27 @@
     <Compile Include="Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\InnerFunction\AddChallenge.aspx.cs">
+      <DependentUpon>AddChallenge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddChallenge.aspx.designer.cs">
+      <DependentUpon>AddChallenge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddNewCourse.aspx.cs">
+      <DependentUpon>AddNewCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddNewCourse.aspx.designer.cs">
+      <DependentUpon>AddNewCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddStudent.aspx.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddStudent.aspx.designer.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\InnerFunction\AddTools.aspx.cs">
       <DependentUpon>AddTools.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,12 +408,54 @@
     <Compile Include="Admin\InnerFunction\AddTools.aspx.designer.cs">
       <DependentUpon>AddTools.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\InnerFunction\ChallengeDetails.aspx.cs">
+      <DependentUpon>ChallengeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\ChallengeDetails.aspx.designer.cs">
+      <DependentUpon>ChallengeDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\CourseDetails.aspx.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\CourseDetails.aspx.designer.cs">
+      <DependentUpon>CourseDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditAssignment.aspx.cs">
+      <DependentUpon>EditAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditAssignment.aspx.designer.cs">
+      <DependentUpon>EditAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditChallenge.aspx.cs">
+      <DependentUpon>EditChallenge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditChallenge.aspx.designer.cs">
+      <DependentUpon>EditChallenge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditCourse.aspx.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditCourse.aspx.designer.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\InnerFunction\EditTools.aspx.cs">
       <DependentUpon>EditTools.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\InnerFunction\EditTools.aspx.designer.cs">
       <DependentUpon>EditTools.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\StudentList.aspx.cs">
+      <DependentUpon>StudentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\StudentList.aspx.designer.cs">
+      <DependentUpon>StudentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SideBar.ascx.cs">
       <DependentUpon>SideBar.ascx</DependentUpon>

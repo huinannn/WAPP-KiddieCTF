@@ -56,7 +56,7 @@
                             <asp:Repeater ID="CourseRepeater" runat="server">
                                 <ItemTemplate>
                                     <div class="course-card"
-                                         onclick="location.href='CourseDetails.aspx?id=<%# Eval("Course_ID") %>'">
+                                         onclick="location.href='InnerFunction/CourseDetails.aspx?id=<%# Eval("Course_ID") %>'">
                                         <asp:LinkButton ID="lnkEdit" runat="server"
                                                         CssClass="edit-btn"
                                                         CommandArgument='<%# Eval("Course_ID") %>'

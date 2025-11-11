@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_KiddieCTF.Admin
+namespace WAPP_KiddieCTF.Admin.InnerFunction
 {
 
 
-    public partial class Challenges
+    public partial class StudentList
     {
 
         /// <summary>
@@ -42,66 +42,39 @@ namespace WAPP_KiddieCTF.Admin
         protected global::WAPP_Assignment.Admin.SideBar SidebarControl;
 
         /// <summary>
-        /// lnkAll control.
+        /// UpdatePanelSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAll;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelSearch;
 
         /// <summary>
-        /// lnkOSINT control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkOSINT;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// lnkCrypto control.
+        /// UpdatePanelStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCrypto;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelStudents;
 
         /// <summary>
-        /// lnkStegano control.
+        /// StudentRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkStegano;
-
-        /// <summary>
-        /// lnkReverse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkReverse;
-
-        /// <summary>
-        /// UpdatePanelChallenges control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelChallenges;
-
-        /// <summary>
-        /// ChallengeRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ChallengeRepeater;
+        protected global::System.Web.UI.WebControls.Repeater StudentRepeater;
     }
 }

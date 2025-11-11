@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_KiddieCTF.Admin
+namespace WAPP_KiddieCTF.Admin.InnerFunction
 {
 
 
-    public partial class Challenges
+    public partial class EditAssignment
     {
 
         /// <summary>
@@ -42,66 +42,66 @@ namespace WAPP_KiddieCTF.Admin
         protected global::WAPP_Assignment.Admin.SideBar SidebarControl;
 
         /// <summary>
-        /// lnkAll control.
+        /// lblFAID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAll;
+        protected global::System.Web.UI.WebControls.Label lblFAID;
 
         /// <summary>
-        /// lnkOSINT control.
+        /// txtFAName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkOSINT;
+        protected global::System.Web.UI.WebControls.TextBox txtFAName;
 
         /// <summary>
-        /// lnkCrypto control.
+        /// fuFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCrypto;
+        protected global::System.Web.UI.WebControls.FileUpload fuFile;
 
         /// <summary>
-        /// lnkStegano control.
+        /// lblFileName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkStegano;
+        protected global::System.Web.UI.WebControls.Label lblFileName;
 
         /// <summary>
-        /// lnkReverse control.
+        /// txtDeadline control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkReverse;
+        protected global::System.Web.UI.WebControls.TextBox txtDeadline;
 
         /// <summary>
-        /// UpdatePanelChallenges control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelChallenges;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
 
         /// <summary>
-        /// ChallengeRepeater control.
+        /// btnEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ChallengeRepeater;
+        protected global::System.Web.UI.WebControls.Button btnEdit;
     }
 }

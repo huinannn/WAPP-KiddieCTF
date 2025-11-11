@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WAPP_KiddieCTF.Admin
+namespace WAPP_KiddieCTF.Admin.InnerFunction
 {
 
 
-    public partial class Challenges
+    public partial class CourseDetails
     {
 
         /// <summary>
@@ -42,66 +42,93 @@ namespace WAPP_KiddieCTF.Admin
         protected global::WAPP_Assignment.Admin.SideBar SidebarControl;
 
         /// <summary>
-        /// lnkAll control.
+        /// lblCourseName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAll;
+        protected global::System.Web.UI.WebControls.Label lblCourseName;
 
         /// <summary>
-        /// lnkOSINT control.
+        /// UpdatePanelContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkOSINT;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelContent;
 
         /// <summary>
-        /// lnkCrypto control.
+        /// rptChapters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCrypto;
+        protected global::System.Web.UI.WebControls.Repeater rptChapters;
 
         /// <summary>
-        /// lnkStegano control.
+        /// litNoChapters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkStegano;
+        protected global::System.Web.UI.WebControls.Literal litNoChapters;
 
         /// <summary>
-        /// lnkReverse control.
+        /// btnAddChapter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkReverse;
+        protected global::System.Web.UI.WebControls.Button btnAddChapter;
 
         /// <summary>
-        /// UpdatePanelChallenges control.
+        /// btnViewProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelChallenges;
+        protected global::System.Web.UI.WebControls.Button btnViewProgress;
 
         /// <summary>
-        /// ChallengeRepeater control.
+        /// rptAssignment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ChallengeRepeater;
+        protected global::System.Web.UI.WebControls.Repeater rptAssignment;
+
+        /// <summary>
+        /// litNoAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNoAssignment;
+
+        /// <summary>
+        /// btnAddAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddAssignment;
+
+        /// <summary>
+        /// btnViewAssignProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnViewAssignProgress;
     }
 }

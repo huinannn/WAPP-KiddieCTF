@@ -33,6 +33,15 @@ namespace WAPP_KiddieCTF.Student
         protected global::WAPP_KiddieCTF.Student.SideBar SidebarControl;
 
         /// <summary>
+        /// NoCertificatesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoCertificatesLabel;
+
+        /// <summary>
         /// rptCertificates control.
         /// </summary>
         /// <remarks>

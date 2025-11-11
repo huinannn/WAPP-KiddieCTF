@@ -21,6 +21,8 @@
                     <i class="fas fa-arrow-left back-icon"></i>
                 </a>
 
+                <asp:Label ID="NoCertificatesLabel" runat="server" Text="You do not have any certificates!" Visible="false" />
+
                 <asp:Repeater ID="rptCertificates" runat="server">
                     <ItemTemplate>
                         <div class="certificate-item">

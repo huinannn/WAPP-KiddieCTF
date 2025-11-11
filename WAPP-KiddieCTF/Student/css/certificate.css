@@ -57,10 +57,10 @@
     transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.certificate-item:hover {
-    background: rgba(69, 80, 102, 0.85);
-    transform: translateY(-4px);
-}
+    .certificate-item:hover {
+        background: rgba(69, 80, 102, 0.85);
+        transform: translateY(-4px);
+    }
 
 /* Certificate Info */
 .certificate-info {
@@ -73,7 +73,7 @@
 .certificate-name {
     font-size: 20px;
     font-weight: 600;
-    text-align: center; 
+    text-align: center;
     width: 100%;
     margin-top: 50px;
 }
@@ -95,10 +95,10 @@
     border-radius: 5px;
 }
 
-.view-link:hover {
-    background: #3FA9F5;
-    color: white;
-}
+    .view-link:hover {
+        background: #3FA9F5;
+        color: white;
+    }
 
 #rptCertificates {
     width: 100%;
@@ -134,4 +134,17 @@
 
 .back-icon:hover {
     color: white;
+}
+
+#NoCertificatesLabel {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #9BA0A6;
+    text-align: center;
+    width: auto;
+    position: absolute;
+    top: 45%;
+    left: 48%;
+    padding: 10px;
 }

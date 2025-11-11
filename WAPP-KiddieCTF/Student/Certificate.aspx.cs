@@ -7,13 +7,11 @@ namespace WAPP_KiddieCTF.Student
 {
     public partial class Certificate : System.Web.UI.Page
     {
-        private readonly string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string studentId = Session["StudentID"] as string;
+                string studentId = Session["StudentID"]?.ToString();
                 if (string.IsNullOrEmpty(studentId))
                 {
                     Response.Redirect("~/LogIn.aspx");
@@ -28,7 +26,7 @@ namespace WAPP_KiddieCTF.Student
         {
             DataTable certificates = new DataTable();
 
-            using (SqlConnection con = new SqlConnection(connStr))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand(@"
@@ -46,8 +44,18 @@ namespace WAPP_KiddieCTF.Student
                 }
             }
 
-            rptCertificates.DataSource = certificates;
-            rptCertificates.DataBind();
+            if (certificates.Rows.Count == 0)
+            {
+                NoCertificatesLabel.Visible = true;
+                rptCertificates.Visible = false;
+            }
+            else
+            {
+                rptCertificates.DataSource = certificates;
+                rptCertificates.DataBind();
+                NoCertificatesLabel.Visible = false;
+                rptCertificates.Visible = true;
+            }
         }
 
         public string GenerateCertificateLink(object certificateId, object studentName, object courseName)

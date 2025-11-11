@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebGrease.Activities;
 
-namespace WAPP_KiddieCTF
+namespace WAPP_Assignment
 {
     public partial class LogIn : System.Web.UI.Page
     {
@@ -170,9 +170,13 @@ namespace WAPP_KiddieCTF
                 {
                     lblError.Visible = true;
                     lblError.Text = "Login failed! Invalid ID or password!";
+
                     txtUserID.Text = "";
                     txtPassword.Text = "";
                     ddlRole.SelectedIndex = 0;
+
+                    string script = "setTimeout(function() { document.getElementById('" + lblError.ClientID + "').style.display = 'none'; }, 2000);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "HideError", script, true);
                 }
                 con.Close();
             }
@@ -180,6 +184,7 @@ namespace WAPP_KiddieCTF
             {
                 lblError.Visible = true;
                 lblError.Text = "Login failed! " + ex.Message;
+
                 txtUserID.Text = "";
                 txtPassword.Text = "";
                 ddlRole.SelectedIndex = 0;

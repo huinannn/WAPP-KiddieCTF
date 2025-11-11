@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditProfile.aspx.cs" Inherits="WAPP_KiddieCTF.Student.EditProfile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditProfile.aspx.cs" Inherits="WAPP_Assignment.Student.EditProfile" %>
 <%@ Register Src="~/Student/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                 <div class="profile-box">
                     <div class="input-container">
                         <div class="label-p">Student Name</div>
-                        <input class="input-field" value="<%= Session["StudentName"] %>" disabled />
+                        <input id="nameField" class="name-field" name="nameField" value="<%= Session["StudentName"] %>" />
                     </div>
 
                     <div class="input-container">
@@ -38,7 +38,7 @@
 
                     <div class="input-container">
                         <div class="label-p">Student Password</div>
-                        <input id="passwordField" class="password-field" type="text" name="passwordField" value="<%= Session["StudentPassword"] %>" />
+                        <input id="passwordField" class="password-field" name="passwordField" value="<%= Session["StudentPassword"] %>" />
                     </div>
 
                     <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="edit-link" OnClick="SaveProfile" />

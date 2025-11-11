@@ -88,7 +88,7 @@
     font-weight: 900;
 }
 
-.password-field {
+.name-field, .password-field {
     width: 100%;
     padding: 12px;
     margin-top: 5px;
@@ -102,7 +102,7 @@
     transition: 0.3s;
 }
 
-    .password-field:focus {
+    .name-field:focus, .password-field:focus {
         background: #133B5C;
         outline: none;
         border-color: #ffffff;

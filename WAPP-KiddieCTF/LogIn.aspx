@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LogIn.aspx.cs" Inherits="WAPP_KiddieCTF.LogIn" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LogIn.aspx.cs" Inherits="WAPP_Assignment.LogIn" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -36,7 +36,6 @@
                        onclick="togglePasswordVisibility()"></i>
                 </div>
             </div>
-
 
             <div class="input-group">
                 <label class="label">Role:</label>
@@ -91,6 +90,11 @@
                 } else if (role.selectedIndex === 0) {
                     role.focus();
                 }
+
+                setTimeout(function () {
+                    jsError.style.display = "none";
+                }, 2000);
+
                 return false;
             }
             return true;

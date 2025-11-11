@@ -9,7 +9,6 @@ namespace WAPP_KiddieCTF.Student
 {
     public partial class Dashboard : System.Web.UI.Page
     {
-        // your web.config should have this
         private readonly string connStr =
             ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
@@ -17,8 +16,16 @@ namespace WAPP_KiddieCTF.Student
         {
             if (!IsPostBack)
             {
+                string studentId = Session["StudentID"] as string;
+                if (string.IsNullOrEmpty(studentId))
+                {
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
+
                 LoadRecentAccess();
                 LoadCounts();
+                LoadUpcomingDeadlines();
             }
         }
 
@@ -36,9 +43,8 @@ namespace WAPP_KiddieCTF.Student
                 return;
             }
 
-            // we'll merge courses + challenges into 1 table
             DataTable all = new DataTable();
-            all.Columns.Add("ItemType");     // COURSE / CHALLENGE
+            all.Columns.Add("ItemType");
             all.Columns.Add("ItemID");
             all.Columns.Add("ItemName");
             all.Columns.Add("LecturerID");
@@ -48,79 +54,44 @@ namespace WAPP_KiddieCTF.Student
             {
                 con.Open();
 
-                // ------------------- COURSES -------------------
-                // Access_Course_Record: ACouR_ID, Student_ID, ACouR_Date, Course_ID
                 using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT TOP 20 acr.Course_ID,
-                           acr.ACouR_Date,
-                           c.Course_Name,
-                           c.Lecturer_ID
+                    SELECT TOP 20 acr.Course_ID, acr.ACouR_Date, c.Course_Name, c.Lecturer_ID
                     FROM Access_Course_Record acr
                     INNER JOIN Course c ON acr.Course_ID = c.Course_ID
                     WHERE acr.Student_ID = @StudentID
                     ORDER BY acr.ACouR_Date DESC, acr.ACouR_ID DESC", con))
                 {
                     cmd.Parameters.AddWithValue("@StudentID", studentId);
-
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            DateTime accessDate = DateTime.MinValue;
-                            if (dr["ACouR_Date"] != DBNull.Value)
-                                accessDate = Convert.ToDateTime(dr["ACouR_Date"]);
-
-                            all.Rows.Add(
-                                "COURSE",
-                                dr["Course_ID"].ToString(),
-                                dr["Course_Name"].ToString(),
-                                dr["Lecturer_ID"] == DBNull.Value ? "" : dr["Lecturer_ID"].ToString(),
-                                accessDate
-                            );
+                            DateTime accessDate = dr["ACouR_Date"] != DBNull.Value ? Convert.ToDateTime(dr["ACouR_Date"]) : DateTime.MinValue;
+                            all.Rows.Add("COURSE", dr["Course_ID"], dr["Course_Name"], dr["Lecturer_ID"], accessDate);
                         }
                     }
                 }
 
-                // ------------------- CHALLENGES -------------------
-                // Access_Challenge_Record: AChaR_ID, Student_ID, AChaR_Date, Challenge_ID
-                // Challenge: Challenge_ID, Challenge_Name, Lecturer_ID, ...
                 using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT TOP 20 acr.Challenge_ID,
-                           acr.AChaR_Date,
-                           ch.Challenge_Name,
-                           ch.Lecturer_ID
+                    SELECT TOP 20 acr.Challenge_ID, acr.AChaR_Date, ch.Challenge_Name, ch.Lecturer_ID
                     FROM Access_Challenge_Record acr
                     INNER JOIN Challenge ch ON acr.Challenge_ID = ch.Challenge_ID
                     WHERE acr.Student_ID = @StudentID
                     ORDER BY acr.AChaR_Date DESC, acr.AChaR_ID DESC", con))
                 {
                     cmd.Parameters.AddWithValue("@StudentID", studentId);
-
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            DateTime accessDate = DateTime.MinValue;
-                            if (dr["AChaR_Date"] != DBNull.Value)
-                                accessDate = Convert.ToDateTime(dr["AChaR_Date"]);
-
-                            all.Rows.Add(
-                                "CHALLENGE",
-                                dr["Challenge_ID"].ToString(),
-                                dr["Challenge_Name"].ToString(),
-                                dr["Lecturer_ID"] == DBNull.Value ? "" : dr["Lecturer_ID"].ToString(),
-                                accessDate
-                            );
+                            DateTime accessDate = dr["AChaR_Date"] != DBNull.Value ? Convert.ToDateTime(dr["AChaR_Date"]) : DateTime.MinValue;
+                            all.Rows.Add("CHALLENGE", dr["Challenge_ID"], dr["Challenge_Name"], dr["Lecturer_ID"], accessDate);
                         }
                     }
                 }
             }
 
-            // newest first, only 10
-            var ordered = all.AsEnumerable()
-                             .OrderByDescending(r => r.Field<DateTime>("AccessDate"))
-                             .Take(10);
-
+            var ordered = all.AsEnumerable().OrderByDescending(r => r.Field<DateTime>("AccessDate")).Take(10);
             if (ordered.Any())
             {
                 rptRecent.DataSource = ordered.CopyToDataTable();
@@ -148,20 +119,48 @@ namespace WAPP_KiddieCTF.Student
                 return;
             }
 
-            // total final assignments answered
             int doneFA = GetCompletedFACount(studentId);
             lblCompletedFA.Text = doneFA.ToString();
 
-            // total certificates
             int certs = GetCertificateCount(studentId);
             lblCertificates.Text = certs.ToString();
 
-            // challenge progress
             var challengeData = GetChallengeProgress(studentId);
             lblChallengeProgress.Text = $"Completed {challengeData.solved}/{challengeData.total} Challenges";
+
+            hiddenSolved.Value = challengeData.solved.ToString();
+            hiddenTotal.Value = challengeData.total.ToString();
         }
 
-        // Answer_Table: count DISTINCT FA_ID for this student
+        // ===========================================================
+        // 3. UPCOMING DEADLINES
+        // ===========================================================
+        private void LoadUpcomingDeadlines()
+        {
+            string studentId = Session["StudentID"] as string;
+
+            if (string.IsNullOrEmpty(studentId))
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
+            DataTable deadlines = GetUpcomingDeadlines(studentId);
+
+            if (deadlines.Rows.Count > 0)
+            {
+                rptDeadlines.DataSource = deadlines;
+                rptDeadlines.DataBind();
+                pnlNoDeadlines.Visible = false;
+            }
+            else
+            {
+                rptDeadlines.DataSource = null;
+                rptDeadlines.DataBind();
+                pnlNoDeadlines.Visible = true;
+            }
+        }
+
         private int GetCompletedFACount(string studentId)
         {
             int count = 0;
@@ -182,7 +181,6 @@ namespace WAPP_KiddieCTF.Student
             return count;
         }
 
-        // Certificate: count rows for this student
         private int GetCertificateCount(string studentId)
         {
             int count = 0;
@@ -203,8 +201,6 @@ namespace WAPP_KiddieCTF.Student
             return count;
         }
 
-        // Challenge progress: solved / total
-        // solved from Challenge_Solved, total from Challenge
         private (int solved, int total) GetChallengeProgress(string studentId)
         {
             int solved = 0;
@@ -214,7 +210,6 @@ namespace WAPP_KiddieCTF.Student
             {
                 con.Open();
 
-                // total challenges (ignore the NULL row)
                 using (SqlCommand cmdTotal = new SqlCommand(@"
                     SELECT COUNT(*)
                     FROM Challenge
@@ -225,7 +220,6 @@ namespace WAPP_KiddieCTF.Student
                         total = Convert.ToInt32(result);
                 }
 
-                // solved by this student
                 using (SqlCommand cmdSolved = new SqlCommand(@"
                     SELECT COUNT(DISTINCT Challenge_ID)
                     FROM Challenge_Solved
@@ -239,6 +233,38 @@ namespace WAPP_KiddieCTF.Student
             }
 
             return (solved, total);
+        }
+
+        private DataTable GetUpcomingDeadlines(string studentId)
+        {
+            DataTable deadlines = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(connStr))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(@"
+                    SELECT TOP 3 
+                    FA.FA_Name,            
+                    FA.FA_Deadline,      
+                    C.Course_Name,
+                    C.Course_ID,
+                    FORMAT(TRY_CONVERT(DATETIME, FA.FA_Deadline, 103), 'dd/MM/yyyy') AS FormattedDate
+                    FROM Final_Assignment FA
+                    INNER JOIN Course C ON FA.Course_ID = C.Course_ID  
+                    INNER JOIN Assigned_Course AC ON C.Course_ID = AC.Course_ID 
+                    WHERE AC.Student_ID = @StudentID
+                        AND TRY_CONVERT(DATETIME, FA.FA_Deadline, 103) >= CAST(GETDATE() AS DATE)       
+                    ORDER BY TRY_CONVERT(DATETIME, FA.FA_Deadline, 103) ASC", con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", studentId);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(deadlines);
+                    }
+                }
+            }
+
+            return deadlines;
         }
     }
 }

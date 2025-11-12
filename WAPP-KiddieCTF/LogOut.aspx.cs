@@ -65,6 +65,9 @@ namespace WAPP_KiddieCTF
 
                     if (rowsAffected > 0)
                     {
+                        Session["StudentID"] = null;
+                        Session["LecturerID"] = null;
+                        Session["AdminID"] = null;
                         Response.Redirect("/LogIn.aspx");
                     }
                     else

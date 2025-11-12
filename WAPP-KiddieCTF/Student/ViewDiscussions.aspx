@@ -209,7 +209,7 @@
             <div class="discussion-container">
                 <div class="each-card">
                     <div class="discussion-card">
-                        <div class="discussion-left">
+                        <div class="discussion-left" style="display: flex; flex-direction:column;">
                             <asp:Label ID="lblMessage" runat="server" CssClass="discussion-subtext" Visible="false" />
                             <asp:Image ID="imgPost" runat="server" Width="300px" CssClass="discussion-img" Visible="false" />
                         </div>

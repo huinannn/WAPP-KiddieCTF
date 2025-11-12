@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Lecturer
 {
 
 
-    public partial class Tools
+    public partial class Profile
     {
 
         /// <summary>
@@ -22,15 +22,6 @@ namespace WAPP_KiddieCTF.Lecturer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
         /// lblLecturerName control.
@@ -51,12 +42,12 @@ namespace WAPP_KiddieCTF.Lecturer
         protected global::System.Web.UI.WebControls.Label lblLecturerID;
 
         /// <summary>
-        /// rptTools control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptTools;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }

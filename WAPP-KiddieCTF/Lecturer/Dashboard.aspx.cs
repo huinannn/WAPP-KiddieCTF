@@ -33,7 +33,7 @@ namespace WAPP_KiddieCTF.Lecturer
         private void LoadDashboardData()
         {
             string lecturerId = Session["LecturerID"].ToString();
-            string connStr = ConfigurationManager.ConnectionStrings["KiddieCTFConnectionString"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {

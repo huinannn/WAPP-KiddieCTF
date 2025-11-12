@@ -58,7 +58,9 @@ namespace WAPP_KiddieCTF.Lecturer
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            string courseId = lblCourseID.Text.Trim();
             string courseName = txtCourseName.Text.Trim();
+
             if (string.IsNullOrEmpty(courseName))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "EmptyCourseName",
@@ -66,27 +68,59 @@ namespace WAPP_KiddieCTF.Lecturer
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                string query = "UPDATE Course SET Course_Name = @CourseName WHERE Course_ID = @CourseID";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@CourseName", courseName);
-                cmd.Parameters.AddWithValue("@CourseID", lblCourseID.Text);
-                cmd.ExecuteNonQuery();
+
+                // Update course name
+                string updateQuery = "UPDATE Course SET Course_Name = @Name WHERE Course_ID = @CID";
+                SqlCommand updateCmd = new SqlCommand(updateQuery, conn);
+                updateCmd.Parameters.AddWithValue("@Name", courseName);
+                updateCmd.Parameters.AddWithValue("@CID", courseId);
+                updateCmd.ExecuteNonQuery();
+
+                // Insert ONLY new students (avoid duplicates)
+                List<string> tempEdit = Session["TempEditStudents"] as List<string>;
+                if (tempEdit != null && tempEdit.Count > 0)
+                {
+                    // Get existing student IDs for this course
+                    List<string> existing = new List<string>();
+                    string selectExisting = "SELECT Student_ID FROM Assigned_Course WHERE Course_ID = @CID";
+                    SqlCommand existingCmd = new SqlCommand(selectExisting, conn);
+                    existingCmd.Parameters.AddWithValue("@CID", courseId);
+                    SqlDataReader reader = existingCmd.ExecuteReader();
+                    while (reader.Read())
+                        existing.Add(reader["Student_ID"].ToString());
+                    reader.Close();
+
+                    // Insert only those not already assigned
+                    foreach (string studentId in tempEdit)
+                    {
+                        if (!existing.Contains(studentId))
+                        {
+                            string maxQuery = "SELECT ISNULL(MAX(CAST(SUBSTRING(AC_ID, 3, 10) AS INT)), 0) FROM Assigned_Course";
+                            SqlCommand maxCmd = new SqlCommand(maxQuery, conn);
+                            int nextId = (int)maxCmd.ExecuteScalar() + 1;
+                            string newAcId = "AC" + nextId.ToString("D3");
+
+                            string insertQuery = "INSERT INTO Assigned_Course (AC_ID, Course_ID, Student_ID) VALUES (@ACID, @CID, @SID)";
+                            SqlCommand insertCmd = new SqlCommand(insertQuery, conn);
+                            insertCmd.Parameters.AddWithValue("@ACID", newAcId);
+                            insertCmd.Parameters.AddWithValue("@CID", courseId);
+                            insertCmd.Parameters.AddWithValue("@SID", studentId);
+                            insertCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
             }
 
-            string script = @"
-        Swal.fire({
-            icon: 'success',
-            title: 'Course updated successfully!',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            window.location = 'Courses.aspx';
-        });
-    ";
-            ScriptManager.RegisterStartupScript(this, GetType(), "UpdateSuccess", script, true);
+            // Clear session after saving
+            Session.Remove("TempEditStudents");
+
+            // Success message
+            ScriptManager.RegisterStartupScript(this, GetType(), "Updated",
+                "Swal.fire({ icon: 'success', title: 'Course updated successfully!', showConfirmButton:false, timer:1500 }).then(()=>{window.location='Courses.aspx';});", true);
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -126,8 +160,30 @@ namespace WAPP_KiddieCTF.Lecturer
 
         protected void btnAddStudents_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"AddStudent.aspx?course={lblCourseID.Text}&from=edit");
+            string courseId = lblCourseID.Text.Trim();
 
+            // Load currently assigned students into session if not done yet
+            if (Session["TempEditStudents"] == null)
+            {
+                List<string> assigned = new List<string>();
+                string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    string query = "SELECT Student_ID FROM Assigned_Course WHERE Course_ID = @CID";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@CID", courseId);
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                        assigned.Add(reader["Student_ID"].ToString());
+                }
+
+                Session["TempEditStudents"] = assigned;
+            }
+
+            // Redirect to AddStudent.aspx in “edit mode”
+            Response.Redirect($"AddStudent.aspx?course={lblCourseID.Text}&from=edit");
         }
 
         protected void btnViewStudents_Click(object sender, EventArgs e)

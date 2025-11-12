@@ -22,8 +22,8 @@ namespace WAPP_KiddieCTF.Student
                 }
                 else
                 {
-                    lblName.Text = "Guest";
-                    lblID.Text = "Not logged in";
+                    Response.Redirect("/LogIn.aspx");
+                    return;
                 }
             }
         }

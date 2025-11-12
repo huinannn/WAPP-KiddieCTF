@@ -208,7 +208,14 @@
     <Content Include="Default.aspx" />
     <Content Include="Default.css" />
     <Content Include="Images\ctf.png" />
+    <Content Include="Images\discussion\DISC_4d781fa8.jpg" />
+    <Content Include="Images\discussion\DISC_cf22e1bf.png" />
+    <Content Include="Images\discussion\DISC_fdb9a8e2.png" />
     <Content Include="Images\hero.JPG" />
+    <Content Include="Lecturer\css\dashboard.css" />
+    <Content Include="Lecturer\css\profile.css" />
+    <Content Include="Lecturer\EditProfile.aspx" />
+    <Content Include="Lecturer\Profile.aspx" />
     <Content Include="LogIn.aspx" />
     <Content Include="LogIn.css" />
     <Content Include="Global.asax" />
@@ -489,6 +496,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.aspx.cs">
       <DependentUpon>LogIn.aspx</DependentUpon>

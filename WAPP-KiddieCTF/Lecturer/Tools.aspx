@@ -143,21 +143,28 @@
             <nav class="nav">
                 <a href="Dashboard.aspx" class="nav-item"><span class="icon dashboard"></span><span class="label">DASHBOARD</span></a>
                 <a href="Courses.aspx" class="nav-item"><span class="icon courses"></span><span class="label">Courses</span></a>
-                <a href="Challenges.aspx" class="nav-item"><span class="icon challenges"></span><span class="label">Challenges</span></a>
+                <a href="Challenges.aspx" class="nav-item "><span class="icon challenges"></span><span class="label">Challenges</span></a>
                 <a href="Tools.aspx" class="nav-item active"><span class="icon tools"></span><span class="label">Tools</span></a>
-                <a href="Dashboard.aspx" class="nav-item"><span class="icon dashboard"></span><span class="label">DASHBOARD</span></a>
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                <div class="avatar"></div>
+                <div class="avatar">
+                    <img src="images/profile.png" alt="Profile" />
+                </div>
                 <div class="user-info">
-                    <div class="name">Wong Xin Yee</div>
-                    <div class="id">LC123456</div>
+                    <div class="name">
+                        <asp:Label ID="lblLecturerName" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div class="id">
+                        <asp:Label ID="lblLecturerID" runat="server" Text=""></asp:Label>
+                    </div>
                 </div>
             </div>
-            <a href="Login.aspx" class="logout"><span class="icon logout-icon"></span><span class="label">LOG OUT</span></a>
+            <a href="../LogOut.aspx" class="logout">
+                <img src="images/logout.png" alt="Logout" class="logout-img" />
+                <span class="label">LOG OUT</span>
+            </a>
         </div>
-
         <div class="main-content" style="margin-left: 250px; padding: 40px;">
             <h2 style="color: white;">Tools</h2>
 
@@ -196,8 +203,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const buttons = document.querySelectorAll(".category-btn");
-            const cards = document.querySelectorAll(".tool-card");
-
+            const cols = document.querySelectorAll(".col-md-4"); 
             buttons.forEach(btn => {
                 btn.addEventListener("click", function () {
                     buttons.forEach(b => b.classList.remove("active"));
@@ -205,14 +211,13 @@
 
                     const category = this.textContent.trim();
 
-                    cards.forEach(card => {
-                        const smallText = card.querySelector("small").textContent.trim();
-                        const parent = card.closest("a");
+                    cols.forEach(col => {
+                        const smallText = col.querySelector(".tool-card small").textContent.trim(); 
 
                         if (category === "All" || smallText === category) {
-                            parent.style.display = "block";
+                            col.style.display = "block";
                         } else {
-                            parent.style.display = "none";
+                            col.style.display = "none";
                         }
                     });
                 });

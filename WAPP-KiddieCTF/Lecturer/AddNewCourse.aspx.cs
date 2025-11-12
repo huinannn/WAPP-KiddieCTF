@@ -125,13 +125,16 @@ namespace WAPP_KiddieCTF.Lecturer
                 return;
             }
 
-            // Store temporary course info
+            // Keep previous temp students if already exists
+            if (Session["TempStudents"] == null)
+                Session["TempStudents"] = new List<string>();
+
+            // Store temporary course info (always update these)
             Session["TempCourseID"] = courseId;
             Session["TempCourseName"] = courseName;
-            Session["TempStudents"] = new List<string>(); // reset or initialize
 
+            // Redirect to AddStudent.aspx
             Response.Redirect("AddStudent.aspx?course=" + lblCourseID.Text + "&from=add");
-
         }
 
         protected void btnViewStudents_Click(object sender, EventArgs e)

@@ -22,7 +22,7 @@
 
                 <div class="recent-courses-container">
                     <div class="section-title-container">
-                        <div class="section-title">Recently Accessed Courses/Challenges</div>
+                        <div class="section-title">Recent Accessed Courses/Challenges</div>
                         <div class="arrows-container">
                             <div class="arrow-left" onclick="scrollCourses('left')">&#10094;</div>
                             <div class="arrow-right" onclick="scrollCourses('right')">&#10095;</div>
@@ -83,7 +83,7 @@
                         <div class="info-number">
                             <asp:Label ID="lblCompletedFA" runat="server" Text="0"></asp:Label>
                         </div>
-                        <div class="info-label">Total Completed Final Assessment</div>
+                        <div class="info-label">Total Completed Final Assignment</div>
                     </div>
 
                     <div class="info-card" onclick="goToCertificatePage()">

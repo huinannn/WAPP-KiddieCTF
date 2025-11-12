@@ -22,7 +22,7 @@
 
                 <div class="recent-courses-container">
                     <div class="section-title-container">
-                        <div class="section-title">Recent Accessed Courses/Challenges</div>
+                        <div class="section-title">Recently Accessed Courses/Challenges</div>
                         <div class="arrows-container">
                             <div class="arrow-left" onclick="scrollCourses('left')">&#10094;</div>
                             <div class="arrow-right" onclick="scrollCourses('right')">&#10095;</div>

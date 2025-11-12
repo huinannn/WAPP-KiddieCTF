@@ -7,7 +7,7 @@
 }
 
 body {
-    background: #0A122A;
+    background: #111827;
     color: #fff;
     overflow-x: hidden;
 }
@@ -16,7 +16,7 @@ body {
 .page-wrapper {
     display: block; /* no need for flex since sidebar is fixed & outside */
     min-height: 100vh;
-    background: #0A122A;
+    background: #111827;
     padding-left: 250px !important; /* <-- permanent gutter for the 250px sidebar */
 }
 
@@ -24,7 +24,7 @@ body {
 .main-content {
     margin-left: 0 !important; /* <-- don't try to offset with margins */
     padding: 40px 50px;
-    background: #0A122A;
+    background: #111827;
     min-height: 100vh;
 }
 

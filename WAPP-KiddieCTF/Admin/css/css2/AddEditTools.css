@@ -2,7 +2,7 @@
 /* Do NOT touch the sidebar. Keep main beside a fixed 250px sidebar. */
 
 body {
-    background: #0A122A;
+    background: #111827;
     color: #fff;
     overflow-x: hidden;
 }
@@ -19,7 +19,7 @@ body {
     margin-left: 250px !important;
     padding: 40px 50px;
     min-height: 100vh;
-    background: #0A122A;
+    background: #111827;
     transition: margin-left .2s ease, padding .2s ease;
 }
 

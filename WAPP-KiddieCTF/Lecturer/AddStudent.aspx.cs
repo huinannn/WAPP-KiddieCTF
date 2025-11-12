@@ -60,25 +60,45 @@ namespace WAPP_KiddieCTF.Lecturer
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Search", $"%{search}%");
-
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                // 🟢 Filter out students already added in session
-                List<string> tempStudents = Session["TempStudents"] as List<string> ?? new List<string>();
+                string mode = Request.QueryString["from"];
+                List<string> exclude = new List<string>();
 
-                if (dt.Rows.Count > 0 && tempStudents.Count > 0)
+                if (mode == "add")
+                {
+                    exclude = Session["TempStudents"] as List<string> ?? new List<string>();
+                }
+                else if (mode == "edit")
+                {
+                    // Combine existing + newly added
+                    List<string> alreadyAssigned = new List<string>();
+                    string courseId = Request.QueryString["course"];
+                    string assignedQuery = "SELECT Student_ID FROM Assigned_Course WHERE Course_ID = @CID";
+                    SqlCommand assignedCmd = new SqlCommand(assignedQuery, conn);
+                    assignedCmd.Parameters.AddWithValue("@CID", courseId);
+                    conn.Open();
+                    SqlDataReader reader = assignedCmd.ExecuteReader();
+                    while (reader.Read())
+                        alreadyAssigned.Add(reader["Student_ID"].ToString());
+                    conn.Close();
+
+                    List<string> tempEdit = Session["TempEditStudents"] as List<string> ?? new List<string>();
+                    exclude = alreadyAssigned.Union(tempEdit).ToList();
+                }
+
+                if (exclude.Count > 0 && dt.Rows.Count > 0)
                 {
                     dt = dt.AsEnumerable()
-                           .Where(r => !tempStudents.Contains(r["Student_ID"].ToString()))
+                           .Where(r => !exclude.Contains(r["Student_ID"].ToString()))
                            .ToList()
                            .CopyToDataTable();
                 }
 
                 StudentRepeater.DataSource = dt;
                 StudentRepeater.DataBind();
-
                 pnlNoResults.Visible = dt.Rows.Count == 0;
             }
         }
@@ -131,18 +151,29 @@ namespace WAPP_KiddieCTF.Lecturer
         {
             Button btn = (Button)sender;
             string studentId = btn.CommandArgument;
+            string mode = Request.QueryString["from"];
 
-            List<string> tempStudents = Session["TempStudents"] as List<string> ?? new List<string>();
+            if (mode == "add")
+            {
+                // 🟢 For new course (use TempStudents)
+                List<string> tempStudents = Session["TempStudents"] as List<string> ?? new List<string>();
+                if (!tempStudents.Contains(studentId))
+                    tempStudents.Add(studentId);
+                Session["TempStudents"] = tempStudents;
+            }
+            else if (mode == "edit")
+            {
+                // 🟢 For existing course (use TempEditStudents)
+                List<string> tempEdit = Session["TempEditStudents"] as List<string> ?? new List<string>();
+                if (!tempEdit.Contains(studentId))
+                    tempEdit.Add(studentId);
+                Session["TempEditStudents"] = tempEdit;
+            }
 
-            if (!tempStudents.Contains(studentId))
-                tempStudents.Add(studentId);
-
-            Session["TempStudents"] = tempStudents;
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "AddTemp",
+            ScriptManager.RegisterStartupScript(this, GetType(), "Added",
                 "Swal.fire({ icon: 'success', title: 'Student added temporarily!', background:'#1B263B', color:'#fff' });", true);
 
-            // Reload filtered list
+            // Refresh student list
             LoadStudents(txtSearch.Text.Trim());
         }
 

@@ -1,0 +1,205 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Teko', sans-serif;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 250px;
+    padding: 40px;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile Title */
+.profile-title {
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #fff;
+    margin-bottom: 30px;
+    align-self: flex-start;
+    margin-left: 40px;
+}
+
+/* Profile Container */
+.profile-container {
+    width: 1050px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    background: #1B263B;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: -24px;
+    flex-wrap: wrap;
+}
+
+/* Student ID */
+.profile-id {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+/* Profile Box */
+.profile-box {
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 65%;
+}
+
+/* Profile Fields */
+.input-container {
+    margin-bottom: 30px;
+}
+
+.label-p {
+    font-size: 20px;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    background: rgba(69.17, 80.37, 101.75, 0.70);
+    color: #9BA0A6;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 900;
+}
+
+.name-field, .password-field {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    background: #133B5C;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 900;
+    transition: 0.3s;
+}
+
+    .name-field:focus, .password-field:focus {
+        background: #133B5C;
+        outline: none;
+        border-color: #ffffff;
+        box-shadow: 0 0 10px #ffffff;
+    }
+
+/* Password Eye Icon */
+.password-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Edit Button */
+.edit-link {
+    width: 15%;
+    padding: 5px;
+    background: #9BA0A6;
+    border-radius: 10px;
+    color: #1B263B;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1.60px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    transition: 0.3s;
+}
+
+    .edit-link:hover {
+        background: #3FA9F5;
+        color: white;
+    }
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: #9BA0A6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 180px;
+    left: 375px;
+    transition: 0.3s;
+}
+
+.back-icon {
+    font-size: 20px;
+    color: #1B263B;
+    text-align: center;
+}
+
+.back-button:hover {
+    background: #3FA9F5;
+    color: white;
+}
+
+.back-icon:hover {
+    color: white;
+}
+
+/* Success Label */
+.success-label {
+    margin-top: 30px;
+    font-size: 16px;
+    color: lightgreen;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1px;
+    position: absolute;
+    left: 58%;
+    transform: translate(-50%, -50%);
+}
+
+.error-label {
+    margin-top: 30px;
+    font-size: 16px;
+    color: red;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1px;
+    position: absolute;
+    left: 58%;
+    transform: translate(-50%, -50%);
+}

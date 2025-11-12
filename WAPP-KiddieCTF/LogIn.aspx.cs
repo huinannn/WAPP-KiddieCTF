@@ -98,12 +98,19 @@ namespace WAPP_Assignment
                         loginTable = "Lecturer_Login";
                         loginIdColumn = "LecLogin_ID";
 
-                        string lecturerNameQuery = "SELECT Lecturer_Name FROM Lecturer WHERE Lecturer_ID=@LecturerID";
-                        SqlCommand nameCmd = new SqlCommand(lecturerNameQuery, con);
-                        nameCmd.Parameters.AddWithValue("@LecturerID", userId);
-                        string lecturerName = nameCmd.ExecuteScalar()?.ToString();
+                        string lecturerQuery = "SELECT Lecturer_Name, Lecturer_Password FROM Lecturer WHERE Lecturer_ID = @LecturerID";
+                        SqlCommand lecturerCmd = new SqlCommand(lecturerQuery, con);
+                        lecturerCmd.Parameters.AddWithValue("@LecturerID", userId);
 
-                        Session["LecturerName"] = lecturerName;
+                        using (SqlDataReader reader = lecturerCmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Session["LecturerName"] = reader["Lecturer_Name"].ToString();
+                                Session["LecturerPassword"] = reader["Lecturer_Password"].ToString();
+                            }
+                        }
+
                         Session["LecturerID"] = userId;
                     }
 

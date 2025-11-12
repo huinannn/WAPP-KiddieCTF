@@ -71,20 +71,47 @@
                 </asp:DropDownList>
             </div>
 
+            <!-- File Upload Section with Icon Button -->
             <div class="field">
                 <label class="label">Upload File</label>
-                <asp:FileUpload ID="fuFile" runat="server" CssClass="file-upload" />
+                <button type="button" class="btn-file" onclick="document.getElementById('fuFile').click();">
+                    <img src="../../Images/icons/upload_icon.png" alt="Upload File" class="upload-icon" />
+                </button>
+                <asp:FileUpload ID="fuFile" runat="server" style="display:none;" onchange="handleFileUpload()" />
+                <!-- Display uploaded file -->
+                <div id="fileInfo" class="file-info" style="display:none;">
+                    <img src="../../Images/icons/attachedFile_icon.png" alt="file" class="upload-icon" />
+                    <span id="fileName" class="file-name"></span>
+                </div>
             </div>
 
+            <!-- Button Row for Cancel and Add -->
             <div class="actions">
-                <span class="spacer"></span>
-                <asp:Button ID="btnSubmit" runat="server" CssClass="btn primary" Text="DONE" OnClick="btnDone_Click" />
+                <div class="button-row">
+                    <asp:Button ID="btnCancel" runat="server" CssClass="btn danger" Text="Cancel" OnClick="btnCancel_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="btn primary" Text="Add" OnClick="btnAdd_Click" />
+                </div>
             </div>
         </div>
     </div>
 </form>
 
 <script>
+    // Handle the file upload preview (display file name)
+    function handleFileUpload() {
+        const fileInput = document.getElementById('<%= fuFile.ClientID %>');
+        const fileInfoDiv = document.getElementById('fileInfo');
+        const fileNameSpan = document.getElementById('fileName');
+
+        if (fileInput.files && fileInput.files[0]) {
+            fileInfoDiv.style.display = 'block';
+            fileNameSpan.textContent = fileInput.files[0].name;
+        } else {
+            fileInfoDiv.style.display = 'none';
+        }
+    }
+
+    // Navigation Script to highlight active link
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".sidebar .nav a").forEach(link => {
             const href = link.getAttribute("href");

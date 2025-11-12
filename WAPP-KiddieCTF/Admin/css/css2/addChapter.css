@@ -1,196 +1,168 @@
-﻿body {
-    background: #000;
+﻿/* === Base Setup === */
+* {
     margin: 0;
-    font-family: 'Teko', sans-serif;
-}
-
-.main {
-    margin-left: 250px;
-    padding: 40px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #000;
-}
-
-.page-title {
-    font-size: 50px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    color: #fff;
-    margin-bottom: 20px;
-    align-self: flex-start;
-    margin-left: 40px;
-}
-
-/* BIG PANEL - Same as addNewCourse */
-.content-panel {
-    width: 1060px;
-    min-height: 766px;
-    border-radius: 20px;
-    background: #1B263B;
-    padding: 40px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-.form-container {
-    width: 100%;
-    max-width: 935px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    margin-top: 100px;
-}
-
-.back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-    .back-btn img {
-        width: 47px;
-        height: 47px;
-    }
-
-.chapter-id-label {
-    color: white;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-align: center;
-}
-
-.input-group {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-    .input-group label {
-        color: white;
-        font-size: 20px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        margin-left: 5px;
-    }
-
-.input-box,
-.file-upload-box {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    background: rgba(69, 80, 102, 0.7);
-    border-radius: 10px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Teko', sans-serif;
 }
 
-    .input-box .placeholder {
-        color: #9BA0A6;
+body {
+    background: #111827;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* === Scoped Styles Under .edit-challenge === */
+.edit-challenge {
+    margin-left: 250px !important; /* Sidebar is fixed at 250px */
+    padding: 40px 50px;
+    min-height: 100vh;
+    background: #111827;
+    transition: margin-left .2s ease, padding .2s ease;
+}
+
+    .edit-challenge h2 {
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        margin-bottom: 16px;
+        color: #fff; /* Title Color */
     }
 
-.input-field {
-    background: transparent;
-    border: none;
-    color: #9BA0A6;
-    font-family: 'Teko', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    flex: 1;
-    outline: none;
-    height: 100%;
-}
+    /* === Toolbar === */
+    .edit-challenge .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
 
-.placeholder {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9BA0A6;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    pointer-events: none;
-    transition: all 0.2s ease;
-}
+    .edit-challenge .btn-back {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #1B263B;
+        color: #fff;
+        border: 1px solid #4FC3F7;
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: .25s;
+    }
 
-.input-field::placeholder {
-    color: #9BA0A6;
-    opacity: 1;
-}
+        .edit-challenge .btn-back img {
+            width: 20px;
+            height: 20px;
+            transform: rotate(180deg);
+        }
 
-.input-field:focus + .placeholder,
-.input-field:not(:placeholder-shown) + .placeholder {
-    opacity: 0;
-    transform: translateY(-50%) scale(0.8);
-    top: 10px;
-    font-size: 14px;
-}
+        .edit-challenge .btn-back:hover {
+            background: #133B5C;
+        }
 
-/* FILE UPLOAD */
-.file-upload {
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    z-index: 2;
-}
+    .edit-challenge .id-pill {
+        border: 2px solid #FFFFFF;
+        border-radius: 12px;
+        padding: 6px 14px;
+        font-size: 18px;
+        letter-spacing: .5px;
+        color: #fff;
+    }
 
-.upload-icon {
-    position: absolute;
-    right: 20px;
-    pointer-events: none;
-    z-index: 1;
-}
+    /* === Card === */
+    .edit-challenge .card {
+        background: #1B263B;
+        border: 2px solid #FFFFFF;
+        border-radius: 16px;
+        padding: 22px 24px;
+    }
 
-    .upload-icon img {
+    /* === Input Fields === */
+    .edit-challenge .field {
+        width: 100%;
+    }
+
+    .edit-challenge .label {
+        color: #FFFFFF;
+        font-size: 18px;
+        letter-spacing: .5px;
+        margin: 0 0 6px 2px;
+    }
+
+    .edit-challenge .input {
+        width: 100%;
+        background: #455066;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+
+    /* === File Upload Section === */
+    .edit-challenge .btn-file {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .edit-challenge .upload-icon {
         width: 36px;
         height: 36px;
     }
 
-.file-name {
-    color: #9BA0A6;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    margin-left: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 780px;
-}
-
-.done-btn {
-    width: 134px;
-    height: 55px;
-    background: #9BA0A6;
-    border: 2px solid #9BA0A6;
-    border-radius: 10px;
-    color: #1B263B;
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    cursor: pointer;
-    font-family: 'Teko', sans-serif;
-    margin-top: 30px;
-}
-
-    .done-btn:hover {
-        background: transparent;
-        color: #9BA0A6;
-        border: 4px solid #9BA0A6;
-        transform: translateY(-2px);
+    /* File Info Styling (displayed once file is uploaded) */
+    .edit-challenge .file-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
     }
+
+    .edit-challenge .file-name {
+        color: #9BA0A6;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    /* === Actions Section === */
+    .edit-challenge .actions {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+    }
+
+    .edit-challenge .spacer {
+        flex: 1;
+    }
+
+/* === Button Row Styling for Cancel and Add buttons */
+.button-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center; /* Aligns buttons to the center */
+    margin-top: 16px;
+}
+
+    .button-row .btn {
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+
+        .button-row .btn.danger {
+            background-color: #9BA0A6;
+            color: #1B263B;
+        }
+
+        .button-row .btn.primary {
+            background-color: #4FC3F7;
+            color: #0A122A;
+        }
+
+        .button-row .btn:hover {
+            filter: brightness(0.9);
+        }

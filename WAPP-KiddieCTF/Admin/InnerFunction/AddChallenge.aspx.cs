@@ -67,7 +67,7 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             }
         }
 
-        protected void btnDone_Click(object sender, EventArgs e)
+        protected void btnAdd_Click(object sender, EventArgs e)
         {
             string name = txtName.Text.Trim();
             string flag = txtFlag.Text.Trim();
@@ -133,6 +133,12 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
                     window.location = '../Challenges.aspx';
                 });";
             ScriptManager.RegisterStartupScript(this, GetType(), "success", script, true);
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            // Redirect or reset form
+            Response.Redirect("../Challenges.aspx");
         }
 
         private void ShowAlert(string icon, string title)

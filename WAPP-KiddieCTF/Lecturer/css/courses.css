@@ -149,8 +149,8 @@
     grid-template-columns: repeat(3, 280px);
     gap: 40px 48px;
     width: 100%;
-    justify-content: flex-start;
-    align-items: start;
+    justify-content: center;
+    align-items: flex-start;
     margin: 0;
 }
 

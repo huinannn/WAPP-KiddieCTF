@@ -15,7 +15,7 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             if (!IsPostBack)
             {
                 LoadCategories();
-                LoadLecturers();  // Load the lecturers
+                LoadLecturers();
                 GenerateNextChallengeID();
             }
         }
@@ -76,11 +76,8 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             string category = ddlCategory.SelectedValue;
             string lecturer = ddlLecturer.SelectedValue;
 
-            if (string.IsNullOrEmpty(name) ||
-                string.IsNullOrEmpty(flag) ||
-                string.IsNullOrEmpty(category) ||
-                string.IsNullOrEmpty(difficulty) ||
-                string.IsNullOrEmpty(lecturer))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(flag) || string.IsNullOrEmpty(category) ||
+                string.IsNullOrEmpty(difficulty) || string.IsNullOrEmpty(lecturer))
             {
                 ShowAlert("error", "Please fill in all required fields!");
                 return;
@@ -99,7 +96,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
                 return;
             }
 
-            // save file to /Uploads/Challenges/
             string fileName = lblChallengeID.Text + ext;
             string folder = Server.MapPath("~/Uploads/Challenges/");
             Directory.CreateDirectory(folder);

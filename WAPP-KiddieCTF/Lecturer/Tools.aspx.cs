@@ -21,6 +21,9 @@ namespace WAPP_KiddieCTF.Lecturer
                 return;
             }
 
+            lblLecturerID.Text = Session["LecturerID"].ToString();
+            lblLecturerName.Text = Session["LecturerName"].ToString();
+
             if (!IsPostBack)
             {
                 LoadTools();

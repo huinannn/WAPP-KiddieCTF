@@ -98,7 +98,7 @@ namespace WAPP_KiddieCTF.Lecturer
             Button btn = (Button)sender;
             string studentId = btn.CommandArgument;
 
-            string connStr = ConfigurationManager.ConnectionStrings["KiddieCTFConnectionString"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 string query = "DELETE FROM Assigned_Course WHERE Course_ID = @CourseID AND Student_ID = @StudentID";

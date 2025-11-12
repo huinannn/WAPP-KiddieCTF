@@ -55,7 +55,7 @@ namespace WAPP_KiddieCTF.Student
                 con.Open();
 
                 using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT TOP 20 acr.Course_ID, acr.ACouR_Date, c.Course_Name, c.Lecturer_ID
+                    SELECT TOP 5 acr.Course_ID, acr.ACouR_Date, c.Course_Name, c.Lecturer_ID
                     FROM Access_Course_Record acr
                     INNER JOIN Course c ON acr.Course_ID = c.Course_ID
                     WHERE acr.Student_ID = @StudentID
@@ -73,7 +73,7 @@ namespace WAPP_KiddieCTF.Student
                 }
 
                 using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT TOP 20 acr.Challenge_ID, acr.AChaR_Date, ch.Challenge_Name, ch.Lecturer_ID
+                    SELECT TOP 5 acr.Challenge_ID, acr.AChaR_Date, ch.Challenge_Name, ch.Lecturer_ID
                     FROM Access_Challenge_Record acr
                     INNER JOIN Challenge ch ON acr.Challenge_ID = ch.Challenge_ID
                     WHERE acr.Student_ID = @StudentID
@@ -248,7 +248,7 @@ namespace WAPP_KiddieCTF.Student
                     FA.FA_Deadline,      
                     C.Course_Name,
                     C.Course_ID,
-                    FORMAT(TRY_CONVERT(DATETIME, FA.FA_Deadline, 103), 'dd/MM/yyyy') AS FormattedDate
+                    FORMAT(TRY_CONVERT(DATETIME, FA.FA_Deadline, 103), 'MM/dd/yyyy') AS FormattedDate
                     FROM Final_Assignment FA
                     INNER JOIN Course C ON FA.Course_ID = C.Course_ID  
                     INNER JOIN Assigned_Course AC ON C.Course_ID = AC.Course_ID 

@@ -1,4 +1,4 @@
-﻿/* Base */
+﻿/* General Styles */
 * {
     box-sizing: border-box;
     font-family: 'Teko', sans-serif;
@@ -34,29 +34,29 @@ body {
 }
 
 .page-title {
-    font-size: 50px;
+    font-size: 40px; /* Smaller font size */
     font-weight: 600;
-    letter-spacing: 2.5px;
+    letter-spacing: 1.5px;
 }
 
 .pill {
-    font-size: 18px;
+    font-size: 16px; /* Adjusted font size */
     letter-spacing: 1px;
     border: 2px solid #fff;
     border-radius: 12px;
     padding: 6px 14px;
 }
 
-/* Card wrapper (same vibe as Tools) */
+/* Card wrapper */
 .card {
     background: #1B263B;
     border: 2px solid #fff;
     border-radius: 20px;
-    padding: 24px;
+    padding: 20px;
     position: relative;
 }
 
-/* Back button like compact chip */
+/* Back button */
 .btn-back {
     display: inline-flex;
     align-items: center;
@@ -75,52 +75,95 @@ body {
         filter: brightness(.95);
     }
 
-/* Grid like Edit Tool: 2 cols desktop, 1 col mobile */
+/* Grid layout for form fields */
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr 1fr; /* Ensure two columns for larger screens */
+    gap: 20px; /* Increased gap for better spacing */
 }
 
+/* Adjust fields to span one column */
 .field {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
 }
 
-.field-span {
-    grid-column: 1 / -1;
+/* For mobile, make the grid a single column */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr; /* One column for smaller screens */
+    }
 }
 
+/* Labels */
 .label {
-    font-size: 18px;
+    font-size: 16px; /* Smaller font size */
     font-weight: 600;
     letter-spacing: 1px;
 }
 
-/* Inputs style to match the grey bars in your screenshot */
+/* Input fields and selects */
 .input, .select, .textarea, .file {
-    width: 100%;
+    width: 100%; /* Ensure inputs take full width of the column */
     background: #445066b3;
     color: #9BA0A6;
     border: none;
     outline: none;
     border-radius: 10px;
     padding: 12px 16px;
-    font-size: 18px;
-    letter-spacing: .8px;
+    font-size: 16px; /* Smaller font size */
     font-weight: 600;
+    letter-spacing: .8px;
 }
 
 .textarea {
-    min-height: 140px;
+    min-height: 120px; /* Adjusted height */
     resize: vertical;
+}
+
+/* Custom file input label and icon */
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: #445066b3;
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #9BA0A6;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.file-icon {
+    width: 20px; /* Icon size */
+    height: 20px;
+}
+
+/* Hide the file input */
+.file-text {
+    display: none; /* Hide the text */
+}
+
+/* File selected behavior: Update "No file chosen" text */
+#fileStatus {
+    color: #9BA0A6;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+/* Show the file name if a file is chosen */
+.file-status.file-chosen {
+    color: #4FC3F7;
+    font-weight: bold;
 }
 
 /* Existing file hint */
 .file-hint {
     margin-top: 8px;
-    font-size: 16px;
+    font-size: 14px;
     color: #cdd3d9;
 }
 
@@ -132,7 +175,7 @@ body {
 .actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     margin-top: 20px;
 }
 
@@ -143,8 +186,8 @@ body {
 .btn {
     border: none;
     border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 22px;
+    padding: 8px 16px; /* Smaller button padding */
+    font-size: 18px; /* Smaller button font size */
     font-weight: 600;
     letter-spacing: 1px;
     cursor: pointer;
@@ -165,7 +208,7 @@ body {
     color: #1B263B;
 }
 
-/* centered notice below title */
+/* Centered notice below title */
 .notice {
     margin: 14px auto 0;
     text-align: center;
@@ -174,17 +217,17 @@ body {
     border: 1px solid #334155;
     padding: 10px 14px;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 16px; /* Smaller font size */
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 992px) {
     .grid {
         grid-template-columns: 1fr;
     }
 
     .page-title {
-        font-size: 42px;
+        font-size: 36px;
     }
 }
 
@@ -194,6 +237,6 @@ body {
     }
 
     .page-title {
-        font-size: 36px;
+        font-size: 30px;
     }
 }

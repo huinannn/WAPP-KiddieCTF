@@ -68,7 +68,14 @@
 
           <div class="field field-span">
             <label class="label" for="fuAttachment">Attachment (optional)</label>
-            <asp:FileUpload ID="fuAttachment" runat="server" CssClass="file" />
+            <!-- Custom file input label -->
+            <label for="fuAttachment" class="file-label">
+                <img src="../images/attachFile_icon.png" alt="Attach File" class="file-icon" />
+                <span class="file-text">Choose File</span>
+            </label>
+            <asp:FileUpload ID="fuAttachment" runat="server" CssClass="file" style="display: none;" OnChange="showFileName()" />
+            <!-- Display "No File Chosen" if no file is selected -->
+            <span id="fileStatus" class="file-status">No file chosen</span>
             <!-- keep existing file name (if any) -->
             <asp:HiddenField ID="hfExistingFile" runat="server" />
             <asp:Literal ID="litExistingFile" runat="server" />
@@ -103,6 +110,22 @@
               }
           });
       });
+
+      // JavaScript to handle file input and file name display
+      function showFileName() {
+          var fileInput = document.getElementById('<%= fuAttachment.ClientID %>');
+          var fileStatus = document.getElementById('fileStatus');
+
+          if (fileInput.files.length > 0) {
+              // Show the selected file name
+              fileStatus.textContent = fileInput.files[0].name;
+              fileStatus.classList.add('file-chosen'); // Apply class to style the file name
+          } else {
+              // If no file is chosen, show default message
+              fileStatus.textContent = 'No file chosen';
+              fileStatus.classList.remove('file-chosen');
+          }
+      }
   </script>
 </form>
 </body>

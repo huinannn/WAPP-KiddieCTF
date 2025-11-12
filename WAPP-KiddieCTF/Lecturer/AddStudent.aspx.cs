@@ -53,22 +53,28 @@ namespace WAPP_KiddieCTF.Lecturer
             SELECT s.Student_ID, s.Student_Name, s.Intake_Code
             FROM Student s
             WHERE 
-               (s.Student_ID LIKE @Search 
-                OR s.Student_Name LIKE @Search 
-                OR s.Intake_Code LIKE @Search)
+                (s.Student_ID LIKE @Search 
+                 OR s.Student_Name LIKE @Search 
+                 OR s.Intake_Code LIKE @Search)
             ORDER BY s.Student_ID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Search", $"%{search}%");
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                // Remove those already added (in session)
+                // 🟢 Filter out students already added in session
                 List<string> tempStudents = Session["TempStudents"] as List<string> ?? new List<string>();
-                dt = dt.AsEnumerable()
-                       .Where(r => !tempStudents.Contains(r["Student_ID"].ToString()))
-                       .CopyToDataTable<DataRow>();
+
+                if (dt.Rows.Count > 0 && tempStudents.Count > 0)
+                {
+                    dt = dt.AsEnumerable()
+                           .Where(r => !tempStudents.Contains(r["Student_ID"].ToString()))
+                           .ToList()
+                           .CopyToDataTable();
+                }
 
                 StudentRepeater.DataSource = dt;
                 StudentRepeater.DataBind();
@@ -100,17 +106,17 @@ namespace WAPP_KiddieCTF.Lecturer
                 int maxId = (int)maxCmd.ExecuteScalar();
                 string newAcId = "AC" + (maxId + 1).ToString("D3");
 
-                string insertQuery = "INSERT INTO Assigned_Course (AC_ID, Course_ID, Student_ID) VALUES (@AC_ID, @CourseID, @StudentID)";
-                SqlCommand insertCmd = new SqlCommand(insertQuery, conn);
-                insertCmd.Parameters.AddWithValue("@AC_ID", newAcId);
-                insertCmd.Parameters.AddWithValue("@CourseID", CourseID);
-                insertCmd.Parameters.AddWithValue("@StudentID", studentId);
-                insertCmd.ExecuteNonQuery();
+                List<string> tempStudents = Session["TempStudents"] as List<string> ?? new List<string>();
+                if (!tempStudents.Contains(studentId))
+                {
+                    tempStudents.Add(studentId);
+                    Session["TempStudents"] = tempStudents;
+                }
             }
 
             LoadStudents(txtSearch.Text.Trim());
-            ScriptManager.RegisterStartupScript(this, GetType(), "AddSuccess",
-                "Swal.fire({ title: 'Added!', text: 'Student added successfully.', icon: 'success', background:'#1B263B', color:'#fff' });", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "AddTemp",
+                "Swal.fire({ icon: 'success', title: 'Student added temporarily!', background:'#1B263B', color:'#fff' });", true);
         }
 
         protected void txtSearch_TextChanged(object sender, EventArgs e)
@@ -126,10 +132,8 @@ namespace WAPP_KiddieCTF.Lecturer
             Button btn = (Button)sender;
             string studentId = btn.CommandArgument;
 
-            // Retrieve or create temp student list
             List<string> tempStudents = Session["TempStudents"] as List<string> ?? new List<string>();
 
-            // Avoid duplicates
             if (!tempStudents.Contains(studentId))
                 tempStudents.Add(studentId);
 
@@ -138,7 +142,7 @@ namespace WAPP_KiddieCTF.Lecturer
             ScriptManager.RegisterStartupScript(this, GetType(), "AddTemp",
                 "Swal.fire({ icon: 'success', title: 'Student added temporarily!', background:'#1B263B', color:'#fff' });", true);
 
-            // Reload list (simulate removal from available students)
+            // Reload filtered list
             LoadStudents(txtSearch.Text.Trim());
         }
 

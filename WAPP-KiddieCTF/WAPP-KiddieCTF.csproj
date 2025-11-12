@@ -211,6 +211,7 @@
     <Content Include="Images\discussion\DISC_cf22e1bf.png" />
     <Content Include="Images\discussion\DISC_fdb9a8e2.png" />
     <Content Include="Images\hero.JPG" />
+    <Content Include="Lecturer\css\dashboard.css" />
     <Content Include="LogIn.aspx" />
     <Content Include="LogIn.css" />
     <Content Include="Global.asax" />

@@ -196,8 +196,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const buttons = document.querySelectorAll(".category-btn");
-            const cards = document.querySelectorAll(".tool-card");
-
+            const cols = document.querySelectorAll(".col-md-4"); 
             buttons.forEach(btn => {
                 btn.addEventListener("click", function () {
                     buttons.forEach(b => b.classList.remove("active"));
@@ -205,14 +204,13 @@
 
                     const category = this.textContent.trim();
 
-                    cards.forEach(card => {
-                        const smallText = card.querySelector("small").textContent.trim();
-                        const parent = card.closest("a");
+                    cols.forEach(col => {
+                        const smallText = col.querySelector(".tool-card small").textContent.trim(); 
 
                         if (category === "All" || smallText === category) {
-                            parent.style.display = "block";
+                            col.style.display = "block";
                         } else {
-                            parent.style.display = "none";
+                            col.style.display = "none";
                         }
                     });
                 });

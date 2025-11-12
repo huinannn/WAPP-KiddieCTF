@@ -51,6 +51,55 @@
                     <span class="label">LOG OUT</span>
                 </a>
         </div>
+
+         <!-- === MAIN DASHBOARD === -->
+             <div class="main">
+                 <h1 class="page-title">DASHBOARD</h1>
+
+                 <!-- RECENT COURSES + POPULAR COURSES -->
+                 <div class="top-section">
+                     <div class="recent-courses">
+                         <h2>Recent Created Courses</h2>
+                         <div class="recent-boxes">
+                             <asp:Repeater ID="rptRecentCourses" runat="server">
+                                 <ItemTemplate>
+                                     <div class="course-card">
+                                         <div class="course-name"><%# Eval("Course_Name") %></div>
+                                         <div class="course-intake">Course ID: <%# Eval("Course_ID") %></div>
+                                     </div>
+                                 </ItemTemplate>
+                             </asp:Repeater>
+                         </div>
+                     </div>
+
+                     <div class="popular-courses">
+                         <h2>Popular Courses</h2>
+                         <asp:Repeater ID="rptPopularCourses" runat="server">
+                             <ItemTemplate>
+                                 <div class="popular-card">
+                                     <%# Eval("Course_Name") %>
+                                 </div>
+                             </ItemTemplate>
+                         </asp:Repeater>
+                     </div>
+                 </div>
+
+                 <!-- STATISTICS SECTION -->
+                 <div class="stats-section">
+                     <div class="stat-card">
+                         <img src="images/book.png" alt="Courses" />
+                         <div class="stat-title">Total Courses Created</div>
+                         <div class="stat-value"><asp:Label ID="lblTotalCourses" runat="server" Text="0" /></div>
+                     </div>
+
+                     <div class="stat-card">
+                         <img src="images/challenge.png" alt="Challenges" />
+                         <div class="stat-title">Total Challenges Created</div>
+                         <div class="stat-value"><asp:Label ID="lblTotalChallenges" runat="server" Text="0" /></div>
+                     </div>
+                 </div>
+             </div>
+
     </form>
 </body>
 </html>

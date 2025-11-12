@@ -24,7 +24,17 @@ namespace WAPP_KiddieCTF.Lecturer
 
             if (!IsPostBack)
             {
-                GenerateNextCourseID();
+                // If returning from AddStudent.aspx, restore values
+                if (Session["TempCourseID"] != null && Session["TempCourseName"] != null)
+                {
+                    lblCourseID.Text = Session["TempCourseID"].ToString();
+                    txtCourseName.Text = Session["TempCourseName"].ToString();
+                }
+                else
+                {
+                    // First time visiting the page
+                    GenerateNextCourseID();
+                }
             }
         }
 

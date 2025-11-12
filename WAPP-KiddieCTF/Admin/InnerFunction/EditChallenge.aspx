@@ -49,8 +49,7 @@
         .back-btn img {
             width: 30px;
             height: 30px;
-            /* your icon faces right, so rotate to point left */
-            transform: rotate(180deg);
+            
         }
     </style>
 </head>

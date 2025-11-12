@@ -9,7 +9,7 @@ html, body {
 }
 
 body {
-    background: #0A122A;
+    background: #111827;
     color: #fff;
 }
 
@@ -17,12 +17,13 @@ body {
 .page-wrapper {
     padding-left: 250px;
     min-height: 100vh;
+    background-color: #111827;
 }
 
 .main {
     padding: 40px;
     min-height: 100vh;
-    background: #0A122A;
+    background: #111827;
 }
 
 /* Title + pill like your Edit Tool shot */

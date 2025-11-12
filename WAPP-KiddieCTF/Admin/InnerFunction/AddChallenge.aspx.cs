@@ -12,10 +12,10 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // ADMIN VERSION: no lecturer session check
             if (!IsPostBack)
             {
                 LoadCategories();
+                LoadLecturers();  // Load the lecturers
                 GenerateNextChallengeID();
             }
         }
@@ -35,6 +35,23 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
                 reader.Close();
             }
             ddlCategory.Items.Insert(0, new System.Web.UI.WebControls.ListItem("- Select -", ""));
+        }
+
+        private void LoadLecturers()
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string query = "SELECT Lecturer_ID, Lecturer_Name FROM Lecturer";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                ddlLecturer.DataSource = reader;
+                ddlLecturer.DataTextField = "Lecturer_Name";
+                ddlLecturer.DataValueField = "Lecturer_ID";
+                ddlLecturer.DataBind();
+                reader.Close();
+            }
+            ddlLecturer.Items.Insert(0, new System.Web.UI.WebControls.ListItem("- Select Lecturer -", ""));
         }
 
         private void GenerateNextChallengeID()
@@ -57,11 +74,13 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             string description = txtDescription.Text.Trim();
             string difficulty = ddlDifficulty.SelectedValue;
             string category = ddlCategory.SelectedValue;
+            string lecturer = ddlLecturer.SelectedValue;
 
             if (string.IsNullOrEmpty(name) ||
                 string.IsNullOrEmpty(flag) ||
                 string.IsNullOrEmpty(category) ||
-                string.IsNullOrEmpty(difficulty))
+                string.IsNullOrEmpty(difficulty) ||
+                string.IsNullOrEmpty(lecturer))
             {
                 ShowAlert("error", "Please fill in all required fields!");
                 return;
@@ -89,12 +108,11 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                // in admin version we don't store Lecturer_ID (or you can store a default)
                 string query = @"
                     INSERT INTO Challenge
-                        (Challenge_ID, Challenge_Name, Challenge_Answer, Challenge_Description, Challenge_Difficulty, Challenge_File, Category_ID)
+                        (Challenge_ID, Challenge_Name, Challenge_Answer, Challenge_Description, Challenge_Difficulty, Challenge_File, Category_ID, Lecturer_ID)
                     VALUES
-                        (@ID, @Name, @Answer, @Desc, @Diff, @File, @Category)";
+                        (@ID, @Name, @Answer, @Desc, @Diff, @File, @Category, @Lecturer)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@ID", lblChallengeID.Text);
                 cmd.Parameters.AddWithValue("@Name", name);
@@ -103,6 +121,7 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
                 cmd.Parameters.AddWithValue("@Diff", difficulty);
                 cmd.Parameters.AddWithValue("@File", fileName);
                 cmd.Parameters.AddWithValue("@Category", category);
+                cmd.Parameters.AddWithValue("@Lecturer", lecturer);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();

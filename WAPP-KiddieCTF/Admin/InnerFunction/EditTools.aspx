@@ -53,8 +53,7 @@
 
             <div class="actions">
                 <asp:Button ID="btnDelete" runat="server" CssClass="btn danger" Text="DELETE"
-                    OnClick="btnDelete_Click"
-                    OnClientClick="return confirm('Are you sure you want to delete this tool?');" />
+                    OnClick="btnDelete_Click" />
 
                 <span class="spacer"></span>
 
@@ -80,6 +79,26 @@
             document.querySelectorAll('.sidebar .nav a').forEach(a => a.classList.remove('active'));
             toolsLink.classList.add('active');
         }
+
+        // Confirm delete with SweetAlert2
+        document.getElementById('btnDelete').onclick = function (e) {
+            e.preventDefault(); // Prevent default button click action
+            Swal.fire({
+                title: 'Confirm delete',
+                text: 'Are you sure you want to delete this record?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Proceed with the delete operation by redirecting
+                    window.location.href = '<%= ResolveUrl("~/Admin/InnerFunction/EditTools.aspx?Tool_ID=") %>' + '<%= lblToolID.Text %>' + '&action=delete';
+                }
+            });
+        };
     });
 </script>
 </body>

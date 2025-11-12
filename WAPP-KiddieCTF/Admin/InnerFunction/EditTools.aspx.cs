@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 
 namespace WAPP_KiddieCTF.Admin.InnerFunction
 {
@@ -17,6 +16,12 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             {
                 LoadCategories();
                 LoadTool();
+            }
+
+            // Check if the action parameter is 'delete'
+            if (Request.QueryString["action"] == "delete")
+            {
+                DeleteTool();
             }
         }
 
@@ -65,7 +70,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
                     if (dr.Read())
                     {
                         lblToolID.Text = dr["Tool_ID"].ToString();
-                        // because in .aspx we used <input runat="server" ...> it's HtmlInputControl
                         txtToolName.Value = dr["Tool_Name"].ToString();
                         txtToolDescription.Value = dr["Tool_Description"].ToString();
 
@@ -124,7 +128,12 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            string toolId = lblToolID.Text;
+            // The delete action is handled via the SweetAlert confirmation, so this button click won't be used
+        }
+
+        private void DeleteTool()
+        {
+            string toolId = Request.QueryString["Tool_ID"];
             if (string.IsNullOrEmpty(toolId))
             {
                 return;

@@ -1,5 +1,10 @@
-﻿/* PAGE-ONLY STYLES (scoped under .edit-tools) */
-/* Do NOT touch the sidebar. Keep main beside a fixed 250px sidebar. */
+﻿/* === Base Setup === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Teko', sans-serif;
+}
 
 body {
     background: #111827;
@@ -7,16 +12,9 @@ body {
     overflow-x: hidden;
 }
 
-/* scope everything to the page */
-.edit-tools * {
-    box-sizing: border-box;
-    font-family: 'Teko', sans-serif;
-}
-
-/* layout */
+/* === Scoped Styles Under .edit-tools === */
 .edit-tools {
-    /* Sidebar in your project is fixed at 250px — keep main beside it */
-    margin-left: 250px !important;
+    margin-left: 250px !important; /* Sidebar is fixed at 250px */
     padding: 40px 50px;
     min-height: 100vh;
     background: #111827;
@@ -28,9 +26,10 @@ body {
         font-weight: 600;
         letter-spacing: 1.5px;
         margin-bottom: 16px;
+        color: #fff; /* Title Color */
     }
 
-    /* toolbar */
+    /* === Toolbar === */
     .edit-tools .toolbar {
         display: flex;
         align-items: center;
@@ -69,9 +68,10 @@ body {
         padding: 6px 14px;
         font-size: 18px;
         letter-spacing: .5px;
+        color: #fff;
     }
 
-    /* card */
+    /* === Card === */
     .edit-tools .card {
         background: #1B263B;
         border: 2px solid #FFFFFF;
@@ -79,7 +79,7 @@ body {
         padding: 22px 24px;
     }
 
-    /* grid */
+    /* === Grid Layout === */
     .edit-tools .grid-2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -87,7 +87,7 @@ body {
         margin-bottom: 14px;
     }
 
-    /* fields */
+    /* === Input Fields === */
     .edit-tools .field {
         width: 100%;
     }
@@ -110,7 +110,7 @@ body {
         font-size: 18px;
     }
 
-    /* actions */
+    /* === Actions Section === */
     .edit-tools .actions {
         display: flex;
         align-items: center;
@@ -150,14 +150,14 @@ body {
                 filter: brightness(0.95);
             }
 
-/* responsive — NEVER change the 250px margin-left, only adjust padding/grid */
-@media (max-width:1200px) {
+/* === Responsive Adjustments === */
+@media (max-width: 1200px) {
     .edit-tools {
         padding: 32px 28px;
     }
 }
 
-@media (max-width:992px) {
+@media (max-width: 992px) {
     .edit-tools {
         padding: 28px 22px;
     }
@@ -167,8 +167,45 @@ body {
         }
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
     .edit-tools {
         padding: 24px 16px;
     }
+}
+
+/* === File Upload Section Styling === */
+.edit-tools .file-upload-box {
+    position: relative;
+    background: rgba(69, 80, 101, 0.7);
+    border-radius: 10px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 5px;
+}
+
+.edit-tools .file-upload {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.edit-tools .upload-icon {
+    position: absolute;
+    right: 20px;
+}
+
+    .edit-tools .upload-icon img {
+        width: 36px;
+        height: 36px;
+    }
+
+.edit-tools .file-name {
+    color: #9BA0A6;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
 }

@@ -1,22 +1,23 @@
 ﻿/* === Base Setup === */
 body {
-    background: #000;
+    background: #111827;
     margin: 0;
     font-family: 'Teko', sans-serif;
 }
 
 /* === Main Layout === */
+/* === Adjust Main Content Area === */
 .main {
-    margin-left: 250px;
-    padding: 40px;
+    margin-left: 250px; /* Set margin to the width of the sidebar */
+    width: calc(100% - 250px); /* Ensure the main content adjusts to sidebar width */
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #000;
+    padding: 40px 50px;
+    box-sizing: border-box;
+    background: #111827;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-/* === Page Title (consistent alignment) === */
+/* === Page Title === */
 .page-title {
     font-size: 50px;
     font-weight: 600;
@@ -27,7 +28,7 @@ body {
     margin-left: 40px;
 }
 
-/* === Big Panel (consistent size & radius) === */
+/* === Content Panel === */
 .content-panel {
     width: 1060px;
     min-height: 766px;
@@ -121,7 +122,7 @@ body {
     flex: 2;
 }
 
-/* === File Upload (below difficulty, compact layout) === */
+/* === File Upload === */
 .file-upload-box {
     position: relative;
     background: rgba(69, 80, 101, 0.7);
@@ -158,7 +159,7 @@ body {
     letter-spacing: 0.9px;
 }
 
-/* === Done Button (centered) === */
+/* === Done Button === */
 .btn-center {
     display: flex;
     justify-content: center;

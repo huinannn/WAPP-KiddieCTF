@@ -11,7 +11,6 @@ namespace WAPP_KiddieCTF.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // ADMIN version: no lecturer session check
             if (!IsPostBack)
             {
                 BindChallenges("");
@@ -25,12 +24,16 @@ namespace WAPP_KiddieCTF.Admin
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                // admin: show all challenges, just filter by category if provided
                 string query = @"
-                    SELECT Challenge_ID, Challenge_Name, Category_ID, Challenge_Difficulty
-                    FROM Challenge
-                    WHERE (@CategoryID = '' OR Category_ID = @CategoryID)
-                    ORDER BY Challenge_ID";
+                    SELECT ch.Challenge_ID,
+                           ch.Challenge_Name,
+                           ch.Category_ID,
+                           ch.Challenge_Difficulty,
+                           c.Category_Name
+                    FROM Challenge ch
+                    LEFT JOIN Category c ON ch.Category_ID = c.Category_ID
+                    WHERE (@CategoryID = '' OR ch.Category_ID = @CategoryID)
+                    ORDER BY ch.Challenge_ID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -78,30 +81,8 @@ namespace WAPP_KiddieCTF.Admin
 
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
-            LinkButton btn = (LinkButton)sender;
-            string challengeId = btn.CommandArgument;
-
-            // admin innerfunction edit page
-            Response.Redirect($"InnerFunction/EditChallenge.aspx?id={challengeId}");
-        }
-
-        protected string GetCategoryName(object categoryIdObj)
-        {
-            if (categoryIdObj == null) return "";
-            string categoryId = categoryIdObj.ToString();
-
-            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                string query = "SELECT Category_Name FROM Category WHERE Category_ID = @CategoryID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@CategoryID", categoryId);
-                    conn.Open();
-                    object result = cmd.ExecuteScalar();
-                    return result != null ? result.ToString() : "";
-                }
-            }
+            var btn = (LinkButton)sender;
+            Response.Redirect($"InnerFunction/EditChallenge.aspx?id={btn.CommandArgument}");
         }
 
         protected string GetDifficultyClass(object difficultyObj)

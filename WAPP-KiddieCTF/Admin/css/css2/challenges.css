@@ -1,237 +1,224 @@
-﻿body {
-    background: #000;
+﻿/* ===== Base ===== */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Teko', sans-serif;
 }
 
-.main {
-    margin-left: 250px;
-    padding: 40px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #000;
-}
-
-.page-title {
-    font-size: 50px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
+body {
+    background: #0A122A;
     color: #fff;
-    margin-bottom: 30px;
-    align-self: flex-start;
-    margin-left: 40px;
+    overflow-x: hidden;
 }
 
-/* TOOLBAR */
+/* ===== Page Wrapper (reserve space for fixed sidebar) ===== */
+.page-wrapper {
+    display: block; /* no need for flex since sidebar is fixed & outside */
+    min-height: 100vh;
+    background: #0A122A;
+    padding-left: 250px !important; /* <-- permanent gutter for the 250px sidebar */
+}
+
+/* ===== Main Content ===== */
+.main-content {
+    margin-left: 0 !important; /* <-- don't try to offset with margins */
+    padding: 40px 50px;
+    background: #0A122A;
+    min-height: 100vh;
+}
+
+/* ===== Page Title ===== */
+.page-title {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* ===== Toolbar ===== */
 .toolbar {
     display: flex;
-    gap: 16px;
-    margin-bottom: 30px;
-    width: 1060px;
-    justify-content: flex-start;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
 }
 
-/* TAB BUTTONS */
 .tab-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(69, 80, 102, 0.7);
+    background: #1B263B;
+    border: 1px solid transparent;
     border-radius: 10px;
-    padding: 0 16px;
-    height: 46px;
     color: #9BA0A6;
     font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    text-decoration: none;
+    letter-spacing: .5px;
+    padding: 8px 18px;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: .25s;
+    text-decoration: none;
 }
 
-    .tab-btn:hover {
+    .tab-btn:hover, .tab-btn.active {
         background: #133B5C;
+        color: #fff;
+        border-color: #4FC3F7;
     }
 
-    .tab-btn.active {
-        background: rgba(19, 59, 92, 0.7);
-        color: #9BA0A6;
-    }
-
-/* ADD BOX */
 .add-box {
     margin-left: auto;
-    width: 220px;
     display: flex;
     align-items: center;
-    background: rgba(69, 80, 102, 0.7);
-    border-radius: 10px;
-    padding: 0 16px;
-    height: 46px;
-    color: #9BA0A6;
+    gap: 8px;
+    background: #1B263B;
+    border: 1px solid #4FC3F7;
+    color: #fff;
     font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    cursor: pointer;
+    border-radius: 10px;
+    padding: 8px 18px;
+    text-decoration: none;
+    transition: .25s;
 }
 
     .add-box img {
-        width: 30px;
-        height: 25px;
-        margin-right: 10px;
+        width: 20px;
+        height: 20px;
     }
 
     .add-box:hover {
         background: #133B5C;
     }
 
-/* PANEL */
+/* ===== Panel ===== */
 .content-panel {
-    width: 1060px;
-    min-height: 701px;
-    border-radius: 20px;
     background: #1B263B;
-    padding: 40px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    padding: 30px;
 }
 
-/* GRID */
+/* ===== Grid & Cards ===== */
 .challenge-grid {
     display: grid;
-    grid-template-columns: repeat(3, 280px);
-    gap: 40px 48px;
-    width: fit-content;
-    margin: 0 auto;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+    gap: 20px;
 }
 
-/* CHALLENGE CARD */
 .challenge-card {
-    position: relative;
-    width: 280px;
-    height: 173px;
-    background: rgba(69.17, 80.37, 101.75, 0.70);
-    border-radius: 10px;
-    padding: 20px;
+    background: rgba(69,80,102,.7);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-height: 170px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: .2s;
+    cursor: pointer;
 }
 
-    /* Top part (category + name) */
-    .challenge-card .top-info {
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* Bottom part (difficulty) */
-    .challenge-card .bottom-info {
-        margin-top: auto;
-        padding-top: 12px;
-    }
-
     .challenge-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(79, 195, 247, 0.3);
-        background: rgba(69, 80, 102, 0.9);
+        transform: translateY(-3px);
+        box-shadow: 0 0 12px rgba(79,195,247,.4);
+        background: rgba(69,80,102,.9);
     }
-
-    .challenge-card,
-    .challenge-card:hover,
-    .challenge-card:focus,
-    .challenge-card:active {
-        text-decoration: none;
-        color: inherit;
-        outline: none;
-    }
-
-        .challenge-card h3,
-        .challenge-card .challenge-name {
-            text-decoration: none;
-            color: white;
-        }
 
 .category {
     color: #9BA0A6;
     font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.80px;
-    margin-bottom: 8px;
+    font-weight: 500;
+    margin-bottom: 6px;
 }
 
 .challenge-name {
-    color: white;
-    font-size: 24px;
+    color: #fff;
+    font-size: 22px;
     font-weight: 600;
-    letter-spacing: 1.20px;
-    margin: 0;
-    word-wrap: break-word;
+    letter-spacing: 1px;
+    line-height: 1.1;
     max-height: 60px;
     overflow: hidden;
 }
 
 .difficulty {
-    align-self: flex-start;
-    padding: 0 16px;
-    height: 19px;
-    border-radius: 2px;
+    padding: 0 14px;
+    height: 20px;
+    border-radius: 4px;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.60px;
-    color: white;
+    letter-spacing: .6px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 58px;
-    width: auto;
-    box-sizing: border-box;
+    color: #fff;
 }
 
 .diff-easy {
-    background: rgba(47.56, 188.06, 47.56, 0.70);
+    background: rgba(47,188,47,.7);
 }
 
 .diff-medium {
-    background: rgba(223.37, 133.18, 15.25, 0.70);
+    background: rgba(223,133,15,.7);
 }
 
 .diff-hard {
-    background: rgba(184.14, 29.57, 29.57, 0.70);
+    background: rgba(184,30,30,.7);
 }
 
-/* EDIT BUTTON */
 .edit-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 45px;
-    height: 18px;
-    background: rgba(155, 160, 166, 0.70);
-    border: none;
-    border-radius: 5px;
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 24px;
+    padding: 0 10px;
+    border-radius: 6px;
+    background: #9BA0A6;
     color: #1B263B;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.55px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
     cursor: pointer;
+}
+
+    .edit-btn img {
+        width: 12px;
+        height: 12px;
+    }
+
+/* ===== Responsive (do NOT change the 250px gutter) ===== */
+@media (max-width:1200px) {
+    .main-content {
+        padding: 32px 28px;
+    }
+}
+
+@media (max-width:992px) {
+    .main-content {
+        padding: 28px 20px;
+    }
+}
+
+@media (max-width:768px) {
+    .main-content {
+        padding: 24px 16px;
+    }
+
+    .challenge-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* bottom row inside each card: difficulty left, EDIT on the right */
+.bottom-info {
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-decoration: none;
+    justify-content: space-between; /* <-- spreads them */
+    gap: 12px;
+    margin-top: 12px;
 }
 
-.edit-icon {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    background: url('../images/edit_icon.png') center no-repeat;
-    background-size: contain;
-    margin-right: 5px;
+/* optional: no need for auto margin once we use space-between */
+.edit-btn {
+    margin-left: 0; /* was: auto */
 }

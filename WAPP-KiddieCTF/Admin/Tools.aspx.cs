@@ -10,7 +10,6 @@ namespace WAPP_KiddieCTF.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // admin no need session check
             if (!IsPostBack)
             {
                 LoadTools();

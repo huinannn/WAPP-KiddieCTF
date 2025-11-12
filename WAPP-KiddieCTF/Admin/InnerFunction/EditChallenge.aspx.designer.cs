@@ -69,15 +69,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
 
         /// <summary>
-        /// txtAnswer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAnswer;
-
-        /// <summary>
         /// ddlDifficulty control.
         /// </summary>
         /// <remarks>
@@ -87,22 +78,13 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
         protected global::System.Web.UI.WebControls.DropDownList ddlDifficulty;
 
         /// <summary>
-        /// fuFile control.
+        /// ddlLecturer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fuFile;
-
-        /// <summary>
-        /// lblFileName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFileName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLecturer;
 
         /// <summary>
         /// txtDescription control.
@@ -114,6 +96,33 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
+        /// fuAttachment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuAttachment;
+
+        /// <summary>
+        /// hfExistingFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfExistingFile;
+
+        /// <summary>
+        /// litExistingFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litExistingFile;
+
+        /// <summary>
         /// btnDelete control.
         /// </summary>
         /// <remarks>
@@ -123,12 +132,30 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
         protected global::System.Web.UI.WebControls.Button btnDelete;
 
         /// <summary>
-        /// btnEdit control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.Button btnSave;
+
+        /// <summary>
+        /// phMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phMessage;
+
+        /// <summary>
+        /// litMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litMessage;
     }
 }

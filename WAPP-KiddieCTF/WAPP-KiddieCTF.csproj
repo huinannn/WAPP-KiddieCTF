@@ -139,6 +139,7 @@
     <Content Include="Admin\css\css2\addAssignment.css" />
     <Content Include="Admin\css\css2\addChallenge.css" />
     <Content Include="Admin\css\css2\addChapter.css" />
+    <Content Include="Admin\css\css2\AddEditTools.css" />
     <Content Include="Admin\css\css2\addNewCourse.css" />
     <Content Include="Admin\css\css2\addStudent.css" />
     <Content Include="Admin\css\css2\assignmentProgress.css" />

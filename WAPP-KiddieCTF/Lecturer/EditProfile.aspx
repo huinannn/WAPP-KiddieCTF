@@ -20,6 +20,8 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,7 +29,7 @@
         <div class="sidebar">
             <img class="logo" src="images/logo.png" alt="Logo" />
             <nav class="nav">
-                <a href="Dashboard.aspx" class="nav-item active"><span class="icon dashboard"></span><span class="label">DASHBOARD</span></a>
+                <a href="Dashboard.aspx" class="nav-item"><span class="icon dashboard"></span><span class="label">DASHBOARD</span></a>
                 <a href="Courses.aspx" class="nav-item"><span class="icon courses"></span><span class="label">Courses</span></a>
                 <a href="Challenges.aspx" class="nav-item"><span class="icon challenges"></span><span class="label">Challenges</span></a>
                 <a href="Tools.aspx" class="nav-item"><span class="icon tools"></span><span class="label">Tools</span></a>

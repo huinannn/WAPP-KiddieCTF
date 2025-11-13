@@ -35,7 +35,7 @@
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                    <div class="avatar">
+                    <div class="avatar" onclick="window.location='Profile.aspx'" style="cursor:pointer;">
                         <img src="images/profile.png" alt="Profile" />
                     </div>
                     <div class="user-info">
@@ -60,7 +60,7 @@
             <!-- TOOLBAR (Back + Search + Filter + Add) -->
             <div class="toolbar">
                 <!-- BACK BUTTON -->
-                <button type="button" class="back-btn" onclick="history.back()">
+                <button type="button" class="back-btn" onclick="goBackToEdit();">
                     <img src="images/back_icon2.png" alt="Back" />
                 </button>
 
@@ -80,10 +80,6 @@
                         <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
                     </Triggers>
                 </asp:UpdatePanel>
-                <div class="add-box" onclick="location.href='AddStudent.aspx'" style="cursor:pointer;">
-                    <img src="images/add_icon.png" alt="" />
-                    <span>Add New Student</span>
-                </div>
             </div>
 
             <!-- STUDENT TABLE -->
@@ -108,9 +104,12 @@
                                         <div class="col-name"><%# Eval("Student_Name") %></div>
                                         <div class="col-intake"><%# Eval("Intake_Code") %></div>
                                         <div class="col-action">
-                                            <asp:Button ID="btnRemove" runat="server" CssClass="remove-btn" 
-                                                        Text="Remove" CommandArgument='<%# Eval("Student_ID") %>' 
-                                                        OnClick="btnRemove_Click" OnClientClick="return confirm('Remove this student?');" />
+                                            <asp:Button ID="btnRemove" runat="server" CssClass="remove-btn"
+                                                        Text="Remove"
+                                                        CommandArgument='<%# Eval("Student_ID") %>'
+                                                        UseSubmitBehavior="false"
+                                                        OnClientClick="return sweetRemoveConfirm(this);"
+                                                        OnClick="btnRemove_Click" />
                                         </div>
                                     </div>
                                 </ItemTemplate>
@@ -165,6 +164,41 @@
 
         // Run again after every partial postback (UpdatePanel)
         Sys.Application.add_load(initPlaceholderEvents);
+
+        function sweetRemoveConfirm(btn) {
+            Swal.fire({
+                title: "Remove Student?",
+                text: "This student will be removed from the course.",
+                icon: "warning",
+                background: "#1B263B",
+                color: "#fff",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, remove"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    __doPostBack(btn.name, "");
+                }
+            });
+
+            return false;
+        }
+
+        function goBackToEdit() {
+            const params = new URLSearchParams(window.location.search);
+            const courseId = params.get("course");
+
+            if (courseId) {
+                // ALWAYS reload from server (no cache)
+                window.location = "EditCourse.aspx?id=" + courseId + "&ts=" + new Date().getTime();
+                return;
+            }
+
+            // Safety fallback
+            window.location = "Courses.aspx";
+        }
+
     </script>
 
 </body>

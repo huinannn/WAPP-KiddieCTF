@@ -38,7 +38,7 @@
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                    <div class="avatar">
+                    <div class="avatar" onclick="window.location='Profile.aspx'" style="cursor:pointer;">
                         <img src="images/profile.png" alt="Profile" />
                     </div>
                     <div class="user-info">
@@ -106,7 +106,9 @@
 
                     <!-- DELETE & EDIT BUTTONS -->
                     <div class="action-buttons">
-                        <asp:Button ID="btnDelete" runat="server" CssClass="delete-btn" Text="DELETE" OnClick="btnDelete_Click" OnClientClick="return confirmDelete();" />
+                        <asp:Button ID="btnDelete" runat="server" CssClass="delete-btn" Text="DELETE"
+                                    OnClick="btnDelete_Click"
+                                    OnClientClick="return showDeleteConfirm();" />
                         <asp:Button ID="btnEdit" runat="server" CssClass="edit-btn" Text="EDIT" OnClick="btnEdit_Click" />
                     </div>
                 </div>
@@ -115,8 +117,24 @@
     </form>
 
     <script>
-        function confirmDelete() {
-            return confirm("Are you sure you want to permanently delete this course?");
+        function showDeleteConfirm() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "This course and all assigned students will be permanently deleted.",
+                icon: "warning",
+                background: "#1B263B",
+                color: "#fff",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    __doPostBack('<%= btnDelete.ClientID %>', '');
+        }
+    });
+
+            return false; // Prevent default postback
         }
     </script>
 

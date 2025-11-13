@@ -36,7 +36,7 @@
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                    <div class="avatar">
+                    <div class="avatar" onclick="window.location='Profile.aspx'" style="cursor:pointer;">
                         <img src="images/profile.png" alt="Profile" />
                     </div>
                     <div class="user-info">
@@ -101,7 +101,7 @@
                                         <div class="col-id"><%# Eval("Student_ID") %></div>
                                         <div class="col-name"><%# Eval("Student_Name") %></div>
                                         <div class="col-status">
-                                            <span class='status <%# Eval("Status").ToString().ToLower() %>'>
+                                            <span class='status <%# Eval("Status").ToString().ToLower().Replace(" ", "-") %>'>
                                                 <%# Eval("Status") %>
                                             </span>
                                         </div>
@@ -110,9 +110,9 @@
                                                 NavigateUrl='<%# Eval("Answer_ID") != DBNull.Value 
                                                     ? "ReviewAssignment.aspx?answerid=" + Eval("Answer_ID") + "&studentid=" + Eval("Student_ID") + "&courseid=" + Request.QueryString["courseid"] 
                                                     : "#" %>'
-                                                CssClass='<%# Eval("Status").ToString() == "Pending" ? "review-btn disabled-alert" : "review-btn" %>'
+                                                CssClass='<%# Eval("Status").ToString() == "No Submission" ? "review-btn disabled-alert" : "review-btn" %>'
                                                 Text="Review"
-                                                OnClientClick='<%# Eval("Status").ToString() == "Pending" ? "Swal.fire({ icon: \"info\", title: \"Student has not submitted their work yet!\", confirmButtonColor: \"#3085d6\" }); return false;" : "" %>' />
+                                                OnClientClick='<%# Eval("Status").ToString() == "No Submission" ? "Swal.fire({ icon: \"info\", title: \"Student has not submitted their work yet!\", confirmButtonColor: \"#3085d6\" }); return false;" : "" %>' />
                                         </div>
                                     </div>
                                 </ItemTemplate>

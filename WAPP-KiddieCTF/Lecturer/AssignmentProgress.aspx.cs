@@ -46,7 +46,7 @@ namespace WAPP_KiddieCTF.Lecturer
                         CASE 
                             WHEN m.Marking_ID IS NOT NULL THEN 'Graded'
                             WHEN a.Answer_ID IS NOT NULL THEN 'Submitted'
-                            ELSE 'Pending'
+                            ELSE 'No Submission'
                         END AS Status
                     FROM Student s
                     INNER JOIN Assigned_Course ac ON s.Student_ID = ac.Student_ID

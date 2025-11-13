@@ -35,10 +35,9 @@
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                    <div class="avatar">
+                    <div class="avatar" onclick="window.location='Profile.aspx'" style="cursor:pointer;">
                         <img src="images/profile.png" alt="Profile" />
-                    </div>
-                    <div class="user-info">
+                    </div>                    <div class="user-info">
                         <div class="name">
                             <asp:Label ID="lblLecturerName" runat="server" Text=""></asp:Label>
                         </div>

@@ -115,7 +115,9 @@
             </nav>
             <div class="divider"></div>
             <div class="user-profile">
-                <div class="avatar"></div>
+                    <div class="avatar" onclick="window.location='Profile.aspx'" style="cursor:pointer;">
+                        <img src="images/profile.png" alt="Profile" />
+                    </div>
                 <div class="user-info">
                     <div class="name">Wong Xin Yee</div>
                     <div class="id">LC123456</div>

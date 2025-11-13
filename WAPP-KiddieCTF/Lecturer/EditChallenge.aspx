@@ -34,7 +34,9 @@
             <div class="divider"></div>
 
             <div class="user-profile">
-                <div class="avatar"><img src="images/profile.png" alt="Profile" /></div>
+                    <div class="avatar" onclick="window.location='Profile.aspx'" style="cursor:pointer;">
+                        <img src="images/profile.png" alt="Profile" />
+                    </div>
                 <div class="user-info">
                     <div class="name"><asp:Label ID="lblLecturerName" runat="server" /></div>
                     <div class="id"><asp:Label ID="lblLecturerID" runat="server" /></div>

@@ -80,10 +80,6 @@
                         <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
                     </Triggers>
                 </asp:UpdatePanel>
-                <div class="add-box" onclick="location.href='AddStudent.aspx'" style="cursor:pointer;">
-                    <img src="images/add_icon.png" alt="" />
-                    <span>Add New Student</span>
-                </div>
             </div>
 
             <!-- STUDENT TABLE -->

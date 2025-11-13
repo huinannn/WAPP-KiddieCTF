@@ -137,7 +137,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            // Redirect or reset form
             Response.Redirect("../Challenges.aspx");
         }
 

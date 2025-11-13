@@ -8,7 +8,6 @@
 
     <link href="../css/sidebar.css" rel="stylesheet" />
     <link href="../css/css2/AddChallenge.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -71,25 +70,24 @@
                 </asp:DropDownList>
             </div>
 
-            <!-- File Upload Section with Icon Button -->
+            <!-- File Upload Section -->
             <div class="field">
-                <label class="label">Upload File</label>
-                <button type="button" class="btn-file" onclick="document.getElementById('fuFile').click();">
-                    <img src="../../Images/icons/upload_icon.png" alt="Upload File" class="upload-icon" />
+                <label class="label">Attachment (optional)</label>
+                <!-- Custom file input button with icon -->
+                <button type="button" class="file-upload-btn" onclick="document.getElementById('fuFile').click();">
+                    <img src="../images/attachFile_icon.png" alt="Attach File" />
                 </button>
-                <asp:FileUpload ID="fuFile" runat="server" style="display:none;" onchange="handleFileUpload()" />
-                <!-- Display uploaded file -->
-                <div id="fileInfo" class="file-info" style="display:none;">
-                    <img src="../../Images/icons/attachedFile_icon.png" alt="file" class="upload-icon" />
-                    <span id="fileName" class="file-name"></span>
+                <!-- The hidden file input -->
+                <asp:FileUpload ID="fuFile" runat="server" style="display: none;" onchange="handleFileUpload()" />
+                <div id="fileInfo" class="file-info">
+                    <span id="fileName" class="file-name">No file chosen</span>
                 </div>
             </div>
 
-            <!-- Button Row for Cancel and Add -->
+            <!-- Save Button Section -->
             <div class="actions">
                 <div class="button-row">
-                    <asp:Button ID="btnCancel" runat="server" CssClass="btn danger" Text="Cancel" OnClick="btnCancel_Click" />
-                    <asp:Button ID="btnAdd" runat="server" CssClass="btn primary" Text="Add" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="btn primary save-btn" Text="Save" OnClick="btnAdd_Click" />
                 </div>
             </div>
         </div>

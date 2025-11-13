@@ -56,13 +56,13 @@
                     </div>
 
                     <div class="inner-panel">
-                        <asp:Label ID="lblDescription" runat="server" Text="Poooo" CssClass="desc-text"></asp:Label>
+                        <asp:Label ID="lblDescription" runat="server" Text="Poooo" CssClass="desc-text" style="font-size:30px;"></asp:Label>
                     </div>
 
                     <div class="files-section">
                         <div class="file-line"></div>
                         
-                        <span class="files-text" style="margin-top: 20px; padding-top:20px;">Files Attached</span>
+                        <span class="files-text" style="margin-top: 5px; ">Files Attached</span>
                         <div class="file-btn">
                             <asp:Label ID="lblFileName" runat="server" Text="CH001_Certificate_Ali (2).pdf"></asp:Label>
                         </div>

@@ -82,6 +82,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     align-self: flex-end; /* Align the 'Edit' button to the right */
+    font-family: 'Teko', sans-serif;
 }
 
 /* Detail Section */
@@ -139,7 +140,7 @@ body {
     font-size: 16px;
     color: #fff;
     line-height: 1.8;
-    padding-bottom: 30px;
+
     max-height: 150px;
     overflow-y: auto;
 }

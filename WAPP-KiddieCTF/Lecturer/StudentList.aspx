@@ -60,7 +60,7 @@
             <!-- TOOLBAR (Back + Search + Filter + Add) -->
             <div class="toolbar">
                 <!-- BACK BUTTON -->
-                <button type="button" class="back-btn" onclick="history.back()">
+                <button type="button" class="back-btn" onclick="goBackToEdit();">
                     <img src="images/back_icon2.png" alt="Back" />
                 </button>
 
@@ -187,6 +187,20 @@
             });
 
             return false;
+        }
+
+        function goBackToEdit() {
+            const params = new URLSearchParams(window.location.search);
+            const courseId = params.get("course");
+
+            if (courseId) {
+                // ALWAYS reload from server (no cache)
+                window.location = "EditCourse.aspx?id=" + courseId + "&ts=" + new Date().getTime();
+                return;
+            }
+
+            // Safety fallback
+            window.location = "Courses.aspx";
         }
 
     </script>

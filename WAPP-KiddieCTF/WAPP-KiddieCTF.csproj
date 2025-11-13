@@ -207,6 +207,7 @@
     <Content Include="db.Connection.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Default.css" />
+    <Content Include="Images\Course.png" />
     <Content Include="Images\ctf.png" />
     <Content Include="Images\discussion\DISC_4d781fa8.jpg" />
     <Content Include="Images\discussion\DISC_cf22e1bf.png" />

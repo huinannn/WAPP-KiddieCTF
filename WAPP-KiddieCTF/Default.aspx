@@ -71,21 +71,18 @@
     <div id="courses" class="course-section">
         <h2>Course Categories</h2>
         <div style="margin: 20px;"></div>
-        <div class="course">
-           <asp:Repeater ID="rptCourses" runat="server">
-                <ItemTemplate>
-                    <div class="each-course" data-coursename='<%# Eval("Course_Name") %>'>
-                        <h5><%# Eval("Course_Name") %></h5>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+        <div class="section">
+            <div class="left">
+                <img src="../Images/Course.png" style="width: 500px;"/>
+            </div>
+            <div class="right">
+                <p style="text-align:justify; font-size: 20px;">Whether you’re decoding secret messages, solving puzzles, or uncovering hidden flags, every challenge helps you build real cybersecurity skills step by step.
+                    <br />
+                    🎓 You can now enrol in Kiddie CTF courses through your lecturers — learn at your own pace, compete with friends, and discover the thrill of ethical hacking in a safe, guided environment.
+                    <br />
+                    It’s time to decode the future — starting today! 🚀</p>
+            </div>
         </div>
-    </div>
-    <div id="courseModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-        background:#fff; padding:20px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.3); z-index:999;">
-        <h2 id="modalTitle" style="color: black;"></h2>
-        <p id="modalDesc"  style="color: black;">This is a short preview of the course.</p>
-        <span id="closeModalBtn" onclick="closeModal()">&times;</span>
     </div>
 
     <div id="challenges" class="course-section">
@@ -140,27 +137,5 @@
     <div class="copyright">
         <p>© Copyright 2025. All Rights Reserved | KIDDIECTF</p>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const courses = document.querySelectorAll(".each-course");
-            courses.forEach(course => {
-                course.addEventListener("click", function () {
-                    const courseName = this.getAttribute("data-coursename");
-                    showPreview(courseName);
-                });
-            });
-        });
-
-        function showPreview(courseName) {
-            document.getElementById('modalTitle').innerText = courseName;
-            document.getElementById('modalDesc').innerText = "This is a short description for " + courseName + ".";
-            document.getElementById('courseModal').style.display = "block";
-        }
-
-        function closeModal() {
-            document.getElementById('courseModal').style.display = "none";
-        }
-    </script>
-
 </body>
 </html>

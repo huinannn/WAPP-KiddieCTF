@@ -103,7 +103,9 @@
 
                 <div class="action-buttons">
                     <asp:Button ID="btnDelete" runat="server" CssClass="delete-btn" Text="DELETE"
-                        OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure to delete this challenge?');" />
+                                OnClick="btnDelete_Click"
+                                UseSubmitBehavior="false"
+                                OnClientClick="return sweetDeleteConfirm(this);" />
                     <asp:Button ID="btnEdit" runat="server" CssClass="edit-btn" Text="EDIT" OnClick="btnEdit_Click" />
                 </div>
             </div>
@@ -114,6 +116,27 @@
                 const name = this.files[0]?.name || '<%= lblFileName.Text %>';
                 document.querySelector('.file-name').textContent = name;
             });
+
+            function sweetDeleteConfirm(btn) {
+                Swal.fire({
+                    title: "Delete Challenge?",
+                    text: "This challenge will be permanently deleted.",
+                    icon: "warning",
+                    background: "#1B263B",
+                    color: "#fff",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        __doPostBack(btn.name, "");
+                    }
+                });
+
+                return false;
+            }
+
         </script>
     </form>
 </body>

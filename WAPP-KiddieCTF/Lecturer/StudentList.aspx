@@ -108,9 +108,12 @@
                                         <div class="col-name"><%# Eval("Student_Name") %></div>
                                         <div class="col-intake"><%# Eval("Intake_Code") %></div>
                                         <div class="col-action">
-                                            <asp:Button ID="btnRemove" runat="server" CssClass="remove-btn" 
-                                                        Text="Remove" CommandArgument='<%# Eval("Student_ID") %>' 
-                                                        OnClick="btnRemove_Click" OnClientClick="return confirm('Remove this student?');" />
+                                            <asp:Button ID="btnRemove" runat="server" CssClass="remove-btn"
+                                                        Text="Remove"
+                                                        CommandArgument='<%# Eval("Student_ID") %>'
+                                                        UseSubmitBehavior="false"
+                                                        OnClientClick="return sweetRemoveConfirm(this);"
+                                                        OnClick="btnRemove_Click" />
                                         </div>
                                     </div>
                                 </ItemTemplate>
@@ -165,6 +168,27 @@
 
         // Run again after every partial postback (UpdatePanel)
         Sys.Application.add_load(initPlaceholderEvents);
+
+        function sweetRemoveConfirm(btn) {
+            Swal.fire({
+                title: "Remove Student?",
+                text: "This student will be removed from the course.",
+                icon: "warning",
+                background: "#1B263B",
+                color: "#fff",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, remove"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    __doPostBack(btn.name, "");
+                }
+            });
+
+            return false;
+        }
+
     </script>
 
 </body>

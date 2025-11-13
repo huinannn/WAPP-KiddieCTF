@@ -87,22 +87,23 @@
 
     <div id="challenges" class="course-section">
         <h2>Challenges</h2>
-        <div class="challenge">
-            <div class="each-challenge">
-                <h6>1. Pick a Challenge</h6>
-                <p>Choose a beginner-friendly challenge in web, crypto, or forensics. Each has a description and difficulty level.</p>
+        <div class="section">
+            <div class="challenge">
+                <div class="each-challenge">
+                    <h6>1. Pick a Challenge</h6>
+                    <p>Choose a beginner-friendly challenge in web, crypto, or forensics. Each has a description and difficulty level.</p>
+                </div>
+                <div class="each-challenge">
+                    <h6>2. Analyze and Solve</h6>
+                    <p>Use hints, tutorials, and your curiosity to explore and figure out the puzzle.</p>
+                </div>
+                <div class="each-challenge">
+                    <h6>3. Capture the Flag</h6>
+                    <p>Once you find the secret code (e.g., FLAG{you_did_it}), submit it to earn points.</p>
+                </div>
             </div>
-            <div class="each-challenge">
-                <h6>2. Analyze and Solve</h6>
-                <p>Use hints, tutorials, and your curiosity to explore and figure out the puzzle.</p>
-            </div>
-            <div class="each-challenge">
-                <h6>3. Capture the Flag</h6>
-                <p>Once you find the secret code (e.g., FLAG{you_did_it}), submit it to earn points.</p>
-            </div>
-            <div class="each-challenge">
-                <h6>4. Earn Points and Level Up</h6>
-                <p>Collect points, climb the leaderboard, and unlock harder challenges as you improve.</p>
+            <div class="img">
+                <img src="../Images/Challenge.png" style="width: 500px;"/>
             </div>
         </div>
         <div class="button">

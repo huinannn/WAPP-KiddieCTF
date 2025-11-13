@@ -154,12 +154,36 @@
                 </div>
                 <div class="btn">
                     <div class="spacer"></div>
-                    <asp:Button ID="btnDelete" runat="server" CssClass="done" Text="DELETE" OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete this tool?');" />
+                    <asp:Button ID="btnDelete" runat="server" CssClass="done" Text="DELETE" OnClick="btnDelete_Click" />
                     <asp:Button ID="btnSubmit" runat="server" CssClass="done" Text="DONE" OnClick="btnSubmit_Click" />
                     <div class="spacer"></div>
                 </div>
             </div>
         </div>
     </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteBtn = document.querySelector('#<%= btnDelete.ClientID %>');
+
+            deleteBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // prevent default postback
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This tool will be permanently deleted!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        __doPostBack('<%= btnDelete.UniqueID %>', '');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

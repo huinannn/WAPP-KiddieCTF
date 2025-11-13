@@ -1,99 +1,90 @@
-﻿/* ===== base ===== */
+﻿/* ===== Base ===== */
 * {
-    box-sizing: border-box;
-}
-
-body {
-    background: #000;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Teko', sans-serif;
 }
 
-/* ===== main layout ===== */
-/* layout for main area beside sidebar */
-.main {
-    margin-left: 250px; /* keep space for sidebar */
-    width: calc(100% - 250px); /* stay within remaining width */
-    padding: 40px 60px; /* 50px left/right gap */
-    box-sizing: border-box;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #000;
-}
-
-
-/* ===== title ===== */
-.page-title {
-    font-size: 50px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
+body {
+    background: #111827;
     color: #fff;
-    margin-bottom: 30px;
-    align-self: flex-start;
-    margin-left: 40px;
+    overflow-x: hidden;
 }
 
-/* ===== toolbar ===== */
+/* ===== Page Wrapper (reserve space for fixed sidebar) ===== */
+.page-wrapper {
+    display: block;
+    min-height: 100vh;
+    background: #111827;
+    padding-left: 250px !important;
+}
+
+/* ===== Sidebar Styling ===== */
+.sidebar {
+    position: fixed;
+    width: 250px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #1B263B;
+    padding-top: 50px;
+    z-index: 100;
+}
+
+/* ===== Main Content ===== */
+.main {
+    margin-left: 250px; /* Ensures content does not overlap the sidebar */
+    padding: 40px 50px;
+    background: #111827;
+    min-height: 100vh;
+}
+
+/* ===== Page Title ===== */
+.page-title {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* ===== Toolbar ===== */
 .toolbar {
     display: flex;
-    gap: 16px;
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 1060px;
-    justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
 }
 
-    .toolbar > div {
-        display: flex;
-        align-items: center;
-        background: rgba(69, 80, 102, 0.7);
-        border-radius: 10px;
-        padding: 0 16px;
-        height: 46px;
-        color: #9BA0A6;
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: 0.9px;
-    }
-
-    .toolbar img {
-        margin-right: 10px;
-    }
-
-/* ===== search box ===== */
+/* Search box styling */
 .search-box {
-    position: relative;
-    width: 364px;
-    height: 46px;
-    border-radius: 10px;
-    padding: 0 16px;
     display: flex;
     align-items: center;
-    box-sizing: border-box;
+    gap: 10px;
+    background: rgba(69, 80, 102, 0.7);
+    border-radius: 10px;
+    padding: 8px 16px;
+    height: 46px;
 }
 
     .search-box img {
-        width: 25px;
-        height: 27px;
-        margin-right: 10px;
-        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
     }
 
 .search-input {
     background: transparent;
-    font-family: 'Teko', sans-serif;
     border: none;
     color: #9BA0A6;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.9px;
-    flex: 1;
-    outline: none;
+    width: 300px;
+    padding: 8px;
     height: 100%;
-    padding: 0;
+    outline: none;
 }
 
 .placeholder-label {
@@ -111,150 +102,167 @@ body {
 }
 
 .search-input:not(:placeholder-shown) + .placeholder-label,
-.search-input:focus + .placeholder-label,
-.search-input[has-value="true"] + .placeholder-label {
+.search-input:focus + .placeholder-label {
     opacity: 0;
     transform: translateY(-50%) scale(0.8);
     top: 10px;
     font-size: 14px;
 }
 
-/* ===== panel ===== */
-.content-panel {
-    width: 100%;
-    max-width: 1060px;
-    min-height: 701px;
-    border-radius: 20px;
-    background: #1B263B;
-    padding: 40px;
+/* Add button style */
+.add-box {
+    margin-left: auto;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: #1B263B;
+    border: 1px solid #4FC3F7;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 8px 18px;
+    text-decoration: none;
+    transition: .25s;
 }
 
-/* ===== grid ===== */
+    .add-box img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .add-box:hover {
+        background: #133B5C;
+    }
+
+/* ===== Panel ===== */
+.content-panel {
+    background: #1B263B;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    padding: 30px;
+}
+
+/* ===== Grid & Cards ===== */
 .course-grid {
     display: grid;
-    grid-template-columns: repeat(3, 280px);
-    gap: 40px 48px;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: start;
-    margin: 0;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
 }
 
-/* ===== card ===== */
 .course-card {
-    position: relative;
-    width: 280px;
-    height: 280px;
     background: rgba(69, 80, 102, 0.7);
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-height: 240px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    transition: 0.2s ease-in-out;
     cursor: pointer;
+    position: relative;
 }
 
     .course-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(79, 195, 247, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 0 12px rgba(79, 195, 247, 0.4);
         background: rgba(69, 80, 102, 0.9);
     }
+
+.category {
+    color: #9BA0A6;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.course-name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.difficulty {
+    padding: 0 14px;
+    height: 28px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.diff-easy {
+    background: rgba(47, 188, 47, 0.7);
+}
+
+.diff-medium {
+    background: rgba(223, 133, 15, 0.7);
+}
+
+.diff-hard {
+    background: rgba(184, 30, 30, 0.7);
+}
 
 .edit-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 45px;
-    height: 18px;
+    padding: 5px 12px;
     background: rgba(155, 160, 166, 0.7);
-    border: none;
     border-radius: 5px;
     color: #1B263B;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.55px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: none;
 }
 
-.course-name {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #fff;
-    margin-bottom: 8px;
-}
+    .edit-btn:hover {
+        background-color: rgba(79, 195, 247, 0.7);
+    }
 
-.course-id {
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    color: #9BA0A6;
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-/* under 1200px: let grid auto-fit and panel stretch */
+/* ===== Responsive (do NOT change the 250px gutter) ===== */
 @media (max-width: 1200px) {
     .main {
-        padding: 30px 20px;
-        width: calc(100% - 250px); /* keep the gap */
+        padding: 32px 28px;
     }
+}
 
-    .page-title {
-        margin-left: 0;
+@media (max-width: 992px) {
+    .main {
+        padding: 28px 20px;
     }
+}
 
-    .toolbar {
-        flex-wrap: wrap;
-        max-width: 100%;
-    }
-
-    .content-panel {
-        max-width: 100%;
+@media (max-width: 768px) {
+    .main {
+        padding: 24px 16px;
     }
 
     .course-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 24px;
+        grid-template-columns: 1fr;
     }
 }
 
-/* under 800px: stack toolbar and tighten padding */
-@media (max-width: 800px) {
-    .main {
-        padding: 20px 12px;
-        width: calc(100% - 250px);
-    }
-
-    .toolbar {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .search-box,
-    .add-box {
-        width: 100%;
-    }
-
-    .content-panel {
-        padding: 20px;
-    }
+/* bottom row inside each card: difficulty left, EDIT on the right */
+.bottom-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
 }
 
-/* optional: REALLY small screens — if you want content to use full width
-   even though sidebar is still 250px, drop the margin-left here */
-@media (max-width: 600px) {
-    .main {
-        margin-left: 0;
-        width: 100%;
-    }
+.edit-btn {
+    margin-left: 0;
 }

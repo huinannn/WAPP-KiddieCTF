@@ -83,7 +83,7 @@ namespace WAPP_KiddieCTF.Admin
         {
             LinkButton btn = (LinkButton)sender;
             string courseId = btn.CommandArgument;
-            Response.Redirect($"EditCourse.aspx?id={courseId}");
+            Response.Redirect($"InnerFunction/EditCourse.aspx?id={courseId}");
         }
     }
 }

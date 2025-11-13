@@ -47,7 +47,7 @@
                     </Triggers>
                 </asp:UpdatePanel>
 
-                <div class="add-box" onclick="location.href='AddNewCourse.aspx'" style="cursor:pointer;">
+                <div class="add-box" onclick="location.href='InnerFunction/AddNewCourse.aspx'" style="cursor:pointer;">
                     <img src="images/add_icon.png" alt="" />
                     <span>Add New Course</span>
                 </div>
@@ -60,7 +60,7 @@
                         <div class="course-grid">
                             <asp:Repeater ID="CourseRepeater" runat="server">
                                 <ItemTemplate>
-                                    <div class="course-card" onclick="location.href='CourseDetails.aspx?id=<%# Eval("Course_ID") %>'">
+                                    <div class="course-card" onclick="location.href='InnerFunction/CourseDetails.aspx?id=<%# Eval("Course_ID") %>'">
                                         <asp:LinkButton ID="lnkEdit" runat="server"
                                                         CssClass="edit-btn"
                                                         CommandArgument='<%# Eval("Course_ID") %>'

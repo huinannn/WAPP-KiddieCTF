@@ -174,6 +174,8 @@
     <Content Include="Admin\InnerFunction\AddTools.aspx" />
     <Content Include="Admin\InnerFunction\ChallengeDetails.aspx" />
     <Content Include="Admin\InnerFunction\EditChallenge.aspx" />
+    <Content Include="Admin\InnerFunction\EditChapter.aspx" />
+    <Content Include="Admin\InnerFunction\EditCourse.aspx" />
     <Content Include="Admin\InnerFunction\EditTools.aspx" />
     <Content Include="Admin\SideBar.ascx" />
     <Content Include="Admin\Tools.aspx" />
@@ -413,6 +415,20 @@
     </Compile>
     <Compile Include="Admin\InnerFunction\EditChallenge.aspx.designer.cs">
       <DependentUpon>EditChallenge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditChapter.aspx.cs">
+      <DependentUpon>EditChapter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditChapter.aspx.designer.cs">
+      <DependentUpon>EditChapter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditCourse.aspx.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\EditCourse.aspx.designer.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\InnerFunction\EditTools.aspx.cs">
       <DependentUpon>EditTools.aspx</DependentUpon>

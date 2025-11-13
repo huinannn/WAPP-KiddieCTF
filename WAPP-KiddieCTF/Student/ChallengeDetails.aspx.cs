@@ -110,7 +110,7 @@ namespace WAPP_KiddieCTF.Student
                 submitButton.CssClass = "submit-btn disabled";
                 flagTextBox.CssClass = "flag-input correct";
                 flagTextBox.Text = string.Empty;
-                flagTextBox.Attributes["placeholder"] = "This question has been solved!";
+                flagTextBox.Attributes["placeholder"] = "This challenge has been solved!";
                 flagTextBox.Attributes["readonly"] = "true";
                 lnkFile.Enabled = false;
                 lnkFile.CssClass = "download-btn disabled";
@@ -157,7 +157,7 @@ namespace WAPP_KiddieCTF.Student
                 submitButton.CssClass = "submit-btn disabled";
                 flagTextBox.CssClass = "flag-input correct";
                 flagTextBox.Text = string.Empty;
-                flagTextBox.Attributes["placeholder"] = "This question has been solved!";
+                flagTextBox.Attributes["placeholder"] = "This challenge has been solved!";
                 flagTextBox.Attributes["readonly"] = "true";
                 lnkFile.Enabled = false;
                 lnkFile.CssClass = "download-btn disabled";

@@ -11,8 +11,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // ADMIN VERSION: no lecturer session check
-
             challengeID = Request.QueryString["id"];
             if (string.IsNullOrEmpty(challengeID))
             {
@@ -78,7 +76,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            // go to admin edit challenge in innerfunction
             Response.Redirect($"EditChallenge.aspx?id={challengeID}");
         }
     }

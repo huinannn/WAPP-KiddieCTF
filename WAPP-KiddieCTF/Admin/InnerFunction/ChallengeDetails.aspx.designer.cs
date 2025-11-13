@@ -24,15 +24,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
         /// SidebarControl control.
         /// </summary>
         /// <remarks>
@@ -76,6 +67,15 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl difficultyBox;
+
+        /// <summary>
+        /// lblLecturerID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLecturerID;
 
         /// <summary>
         /// lblDescription control.

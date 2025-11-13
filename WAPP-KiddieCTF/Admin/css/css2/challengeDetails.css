@@ -1,128 +1,197 @@
-﻿body {
-    background: #0A122A; /* Dark background */
+﻿/* General Styles */
+body {
     margin: 0;
-    font-family: 'Teko', sans-serif; /* Matching font family */
+    background: #111827;
+    color: #fff;
+    font-family: 'Teko', sans-serif;
 }
 
-.main {
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #000;
+    z-index: 90;
+}
+
+/* Main Content Area */
+.main-content {
     margin-left: 250px;
     padding: 40px;
-    position: relative;
     min-height: 100vh;
-    background: #0A122A; /* Dark background for the content */
+    background-color: #111827;
+}
+
+/* Header */
+.content-header {
+    margin-bottom: 30px;
 }
 
 .page-title {
-    color: white;
-    font-size: 40px; /* Same as the Dashboard title */
+    font-size: 30px;
     font-weight: 600;
-    letter-spacing: 1.8px;
-    margin-bottom: 30px;
-    text-align: center;
+    letter-spacing: 1px;
 }
 
-/* Outer Panel */
-.outer-panel {
+/* Card container for Challenge Details */
+.details-card {
     background: #1B263B;
-    padding: 35px;
-    border-radius: 20px;
+    border-radius: 14px;
+    padding: 25px;
     width: 100%;
-    max-width: 1060px;
-    margin: 0 auto; /* Center the content */
+    max-width: 700px;
+    border: 3px solid #fff;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between elements inside */
 }
 
-/* Panel Header */
+/* Panel Header - Aligning the 'Edit' Button to the right */
 .panel-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribute space between the back button and the edit button */
     align-items: center;
     margin-bottom: 20px;
 }
 
-    .panel-header .back-btn img {
-        width: 30px;
-        height: 30px;
+/* Back Button Styling */
+.back-btn {
+    padding: 10px;
+
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .back-btn img {
+        width: 24px;
+        height: 24px;
     }
 
+/* Edit Button Styling */
 .edit-btn {
     background: #9BA0A6;
     color: #1B263B;
     border: none;
     border-radius: 10px;
-    padding: 8px 25px;
-    font-size: 20px;
+    padding: 6px 25px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    align-self: flex-end; /* Align the 'Edit' button to the right */
 }
 
-    .edit-btn:hover {
-        background: transparent;
-        color: #9BA0A6;
-        border: 2px solid #9BA0A6;
+/* Detail Section */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+    .details-grid label {
+        font-weight: 600;
+        color: #fff;
+        font-size: 16px;
+        margin-bottom: 8px;
     }
 
-/* Challenge Name */
-.challenge-name {
-    font-size: 30px;
-    font-weight: 700;
-    color: white;
-    text-align: left;
-    margin-top: 10px;
-}
+    .details-grid span,
+    .details-grid .difficulty-box {
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 20px;
+    }
 
-/* Difficulty Section */
-.difficulty {
-    font-size: 16px;
-    color: #9BA0A6;
+/* Difficulty Box */
+.difficulty-box {
+    padding: 6px 12px;
+    font-size: 18px;
     font-weight: 500;
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 10px;
+    border-radius: 12px;
+    margin-left: 10px;
 }
 
-    .difficulty.easy {
-        background-color: rgba(47, 188, 47, 0.7); /* Green for Easy */
-    }
+.difficulty-easy {
+    background-color: #2ECC71;
+    color: #fff;
+}
 
-    .difficulty.medium {
-        background-color: rgba(223, 133, 15, 0.7); /* Orange for Medium */
-    }
+.difficulty-medium {
+    background-color: #F39C12;
+    color: #fff;
+}
 
-    .difficulty.hard {
-        background-color: rgba(184, 29, 29, 0.7); /* Red for Hard */
-    }
+.difficulty-hard {
+    background-color: #E74C3C;
+    color: #fff;
+}
 
-/* Inner Panel for Description */
-.inner-panel {
-    background: rgba(69, 80, 101, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 10px;
-    color: white;
+/* Description and Files Section */
+.inner-panel, .files-section {
+    margin-top: 25px;
+}
+
+.desc-text {
     font-size: 16px;
-    line-height: 1.5;
+    color: #fff;
+    line-height: 1.8;
+    padding-bottom: 30px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
-/* File Section */
 .files-text {
-    font-size: 14px;
-    color: #9BA0A6;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
     margin-top: 20px;
 }
 
-.file-btn {
-    background: #9BA0A6;
-    border-radius: 10px;
-    color: #1B263B;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 12px 25px;
+.file-line {
+    border-top: 1px solid #fff;
     margin-top: 10px;
-    display: block;
+}
+
+.file-btn {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Footer Section */
+.files-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.file-btn {
+    background: #2c3e50;
+    padding: 10px;
+    border-radius: 10px;
     text-align: center;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .details-card {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
 }

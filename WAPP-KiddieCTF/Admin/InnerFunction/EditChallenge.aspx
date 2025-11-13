@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-  <title>Edit Challenge</title>
+    <title>Edit Challenge</title>
 
-  <!-- Fonts / Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Fonts / Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Sidebar + Page CSS -->
-  <link href="../css/sidebar.css" rel="stylesheet" />
-  <link href="../css/css2/editChallenge.css" rel="stylesheet" />
+    <!-- Sidebar + Page CSS -->
+    <link href="../css/sidebar.css" rel="stylesheet" />
+    <link href="../css/css2/editChallenge.css" rel="stylesheet" />
 </head>
 <body>
 <form id="form1" runat="server">
@@ -172,4 +172,3 @@
     </script>
 </body>
 </html>
-

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Admin Tools</title>
+    <title>Kiddie CTF | Admin Tools</title>
 
     <!-- Styles -->
     <link href="css/css2/tools.css" rel="stylesheet" />

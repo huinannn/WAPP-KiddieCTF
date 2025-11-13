@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Kiddie CTF - Challenges (Admin)</title>
+    <title>Kiddie CTF | Challenges (Admin)</title>
 
     <!-- Sidebar + Page CSS -->
     <link href="css/sidebar.css" rel="stylesheet" />

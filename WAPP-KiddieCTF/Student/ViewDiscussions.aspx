@@ -195,6 +195,7 @@
         }
 
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -235,6 +236,7 @@
                         <div class="comment-view">
                             <asp:Repeater ID="rptComments" runat="server">
                                 <ItemTemplate>
+                                    <asp:HiddenField ID="hfCommentID" runat="server" Value='<%# Eval("Comment_ID") %>' />
                                     <div class="each-comment">
                                         <div class="comment-element">
                                             <p><%# Eval("Student_Name") %></p>
@@ -271,6 +273,7 @@
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
+
                         </div>
                     </div>
                 </div>

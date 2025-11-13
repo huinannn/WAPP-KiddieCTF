@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
 namespace WAPP_KiddieCTF.Student
 {
@@ -47,33 +46,16 @@ namespace WAPP_KiddieCTF.Student
                     lblStudentName.Text = dr["Student_Name"].ToString();
                     lblDateTime.Text = Convert.ToDateTime(dr["Discussion_DateTime"]).ToString("dd/MM/yyyy hh:mm tt");
 
-                    // Handle discussion message visibility
                     string discussionMessage = dr["Discussion_Message"]?.ToString();
-                    if (!string.IsNullOrWhiteSpace(discussionMessage))
-                    {
-                        lblMessage.Text = discussionMessage;
-                        lblMessage.Visible = true;
-                    }
-                    else
-                    {
-                        lblMessage.Visible = false;
-                    }
+                    lblMessage.Visible = !string.IsNullOrWhiteSpace(discussionMessage);
+                    lblMessage.Text = discussionMessage;
 
-                    // Handle image visibility
                     string discussionPost = dr["Discussion_Post"]?.ToString();
-                    if (!string.IsNullOrWhiteSpace(discussionPost))
-                    {
-                        imgPost.ImageUrl = discussionPost;
-                        imgPost.Visible = true;
-                    }
-                    else
-                    {
-                        imgPost.Visible = false;
-                    }
+                    imgPost.Visible = !string.IsNullOrWhiteSpace(discussionPost);
+                    imgPost.ImageUrl = discussionPost;
                 }
             }
         }
-
 
         private void LoadComments(string discussionID)
         {
@@ -82,7 +64,9 @@ namespace WAPP_KiddieCTF.Student
                 string query = @"SELECT c.Comment_ID, c.Comment_Message, c.Comment_DateTime, s.Student_Name
                          FROM Comment c
                          JOIN Student s ON c.Student_ID = s.Student_ID
-                         WHERE c.Discussion_ID = @Discussion_ID";
+                         WHERE c.Discussion_ID = @Discussion_ID
+                         ORDER BY c.Comment_DateTime ASC";
+
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Discussion_ID", discussionID);
 
@@ -92,38 +76,32 @@ namespace WAPP_KiddieCTF.Student
 
                 rptComments.DataSource = dt;
                 rptComments.DataBind();
-            }
-        }
 
-        protected void rptComments_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                string commentID = DataBinder.Eval(e.Item.DataItem, "Comment_ID").ToString();
-                Repeater rptReplies = (Repeater)e.Item.FindControl("rptReplies");
-
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                // ✅ Force loading of replies for each comment after binding
+                foreach (RepeaterItem item in rptComments.Items)
                 {
-                    string query = @"SELECT r.Reply_Message, r.Reply_DateTime, s.Student_Name
-                             FROM Reply r
-                             JOIN Student s ON r.Student_ID = s.Student_ID
-                             WHERE r.Comment_ID = @Comment_ID";
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@Comment_ID", commentID);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    rptReplies.DataSource = dt;
-                    rptReplies.DataBind();
+                    string commentID = ((HiddenField)item.FindControl("hfCommentID")).Value;
+                    Repeater rptReplies = (Repeater)item.FindControl("rptReplies");
+                    LoadReplies(commentID, rptReplies);
                 }
             }
         }
 
+
+        protected void rptComments_ItemDataBound(object sender, RepeaterItemEventArgs e)
+            {
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+                    string commentID = DataBinder.Eval(e.Item.DataItem, "Comment_ID").ToString();
+                    Repeater rptReplies = (Repeater)e.Item.FindControl("rptReplies");
+
+                    // ✅ Only this line is needed — handles loading replies cleanly
+                    LoadReplies(commentID, rptReplies);
+                }
+            }
+
         protected void btnAddComment_Click(object sender, EventArgs e)
         {
-            // Check if user is logged in
             if (Session["StudentID"] == null)
             {
                 Response.Redirect("~/LogIn.aspx");
@@ -136,13 +114,20 @@ namespace WAPP_KiddieCTF.Student
 
             if (string.IsNullOrWhiteSpace(commentMessage))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Comment cannot be empty!');", true);
+                // 🟡 Empty comment warning
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", @"
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Comment cannot be empty!',
+                    });
+                ", true);
                 return;
             }
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                string newCommentID = "C" + DateTime.Now.Ticks; // simple unique ID
+                string newCommentID = "C" + DateTime.Now.Ticks;
                 string query = @"INSERT INTO Comment 
                         (Comment_ID, Comment_Message, Discussion_ID, Student_ID) 
                         VALUES (@Comment_ID, @Comment_Message, @Discussion_ID, @Student_ID)";
@@ -159,7 +144,16 @@ namespace WAPP_KiddieCTF.Student
             }
 
             txtComment.Text = "";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Comment posted successfully!');", true);
+
+            // ✅ Success message
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", @"
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Comment Posted!',
+                    text: 'Your comment has been added successfully.',
+                });
+            ", true);
+
             LoadComments(discussionID);
         }
 
@@ -174,13 +168,18 @@ namespace WAPP_KiddieCTF.Student
 
             if (string.IsNullOrWhiteSpace(replyMessage))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Reply cannot be empty!');", true);
+                // 🟡 Empty reply warning
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", @"
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Reply cannot be empty!',
+                    });
+                ", true);
                 return;
             }
 
             string studentID = Session["StudentID"].ToString();
-
-            // Generate sequential Reply_ID
             string newReplyID = "R" + DateTime.Now.Ticks;
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
@@ -201,13 +200,20 @@ namespace WAPP_KiddieCTF.Student
             }
 
             txtReply.Text = "";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Reply posted successfully!');", true);
+
+            // ✅ Success alert
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", @"
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Reply Added!',
+                    text: 'Your reply has been posted successfully.',
+                });
+            ", true);
 
             Repeater rptReplies = (Repeater)item.FindControl("rptReplies");
             LoadReplies(commentID, rptReplies);
         }
 
-        // New helper method to load replies for a specific comment
         private void LoadReplies(string commentID, Repeater rptReplies)
         {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))

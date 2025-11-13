@@ -72,7 +72,7 @@
         <h2>Course Categories</h2>
         <div style="margin: 20px;"></div>
         <div class="section">
-            <div class="left">
+            <div class="left" style="text-align:center;">
                 <img src="../Images/Course.png" style="width: 500px;"/>
             </div>
             <div class="right">

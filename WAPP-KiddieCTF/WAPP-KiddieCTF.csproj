@@ -172,6 +172,7 @@
     <Content Include="Admin\images\viewStudent.png" />
     <Content Include="Admin\InnerFunction\AddChallenge.aspx" />
     <Content Include="Admin\InnerFunction\AddNewCourse.aspx" />
+    <Content Include="Admin\InnerFunction\AddStudent.aspx" />
     <Content Include="Admin\InnerFunction\AddTools.aspx" />
     <Content Include="Admin\InnerFunction\ChallengeDetails.aspx" />
     <Content Include="Admin\InnerFunction\CourseDetails.aspx" />
@@ -179,6 +180,7 @@
     <Content Include="Admin\InnerFunction\EditChapter.aspx" />
     <Content Include="Admin\InnerFunction\EditCourse.aspx" />
     <Content Include="Admin\InnerFunction\EditTools.aspx" />
+    <Content Include="Admin\InnerFunction\StudentList.aspx" />
     <Content Include="Admin\SideBar.ascx" />
     <Content Include="Admin\Tools.aspx" />
     <Content Include="App_Data\KiddieCTF.mdf" />
@@ -404,6 +406,13 @@
     <Compile Include="Admin\InnerFunction\AddNewCourse.aspx.designer.cs">
       <DependentUpon>AddNewCourse.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\InnerFunction\AddStudent.aspx.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddStudent.aspx.designer.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\InnerFunction\AddTools.aspx.cs">
       <DependentUpon>AddTools.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -452,6 +461,13 @@
     </Compile>
     <Compile Include="Admin\InnerFunction\EditTools.aspx.designer.cs">
       <DependentUpon>EditTools.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\StudentList.aspx.cs">
+      <DependentUpon>StudentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\StudentList.aspx.designer.cs">
+      <DependentUpon>StudentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SideBar.ascx.cs">
       <DependentUpon>SideBar.ascx</DependentUpon>

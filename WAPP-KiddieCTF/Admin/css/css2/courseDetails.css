@@ -13,7 +13,7 @@
     flex-direction: column;
     /* align-items: center; is correct for centering the content-panel */
     align-items: center;
-    background: #000;
+    background: #111827;
     position: relative;
     /* Add width: calc(100% - 250px) to ensure the main content stretches across the available space */
     width: calc(100% - 250px);

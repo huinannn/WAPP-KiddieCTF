@@ -4,34 +4,75 @@
     font-family: 'Teko', sans-serif;
 }
 
+/* --- MAIN Content Container --- */
 .main {
     margin-left: 250px;
     padding: 40px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    /* align-items: center; is correct for centering the content-panel */
     align-items: center;
-    background: #000;
+    background: #111827;
+    position: relative;
+    /* Add width: calc(100% - 250px) to ensure the main content stretches across the available space */
+    width: calc(100% - 250px);
+    box-sizing: border-box; /* Include padding/border in the width */
 }
 
+/* --- Page Title (REVISED for CENTERING) --- */
 .page-title {
     font-size: 50px;
     font-weight: 600;
     letter-spacing: 2.5px;
     color: #fff;
-    margin-bottom: 30px;
-    align-self: flex-start;
-    margin-left: 40px;
+    margin-bottom: 20px;
+    /* REMOVE align-self: flex-start; to allow centering */
+    /* REMOVE margin-left: 40px; */
+    /* NEW RULES for Centering the Title block */
+    width: 100%; /* Important: Make it span the width of its parent (.main) */
+    text-align: center; /* This centers the text inside the h1 element */
+    /* If you still need some horizontal margin for spacing, use margin: 0 auto; on a max-width container,
+       but for a full-width centered text title, these rules are sufficient. */
+}
+
+/* BIG PANEL - REVISED for FULL WIDTH */
+.content-panel {
+    /* width: 1060px; <-- REMOVED this fixed width */
+    width: 100%; /* NEW: Make it span the full width of the main container's content area */
+    min-height: 766px;
+    border-radius: 20px;
+    background: #1B263B;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.content-wrapper {
+    width: 1150px;
+
+    border-radius: 20px;
+
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .toolbar {
     display: flex;
     gap: 16px;
     margin-bottom: 30px;
-    width: 1060px;
+    width: 1060px; /* Kept fixed width to constrain internal elements */
     justify-content: flex-start;
     align-items: center;
     padding-left: 0;
+    /* NEW: Center the toolbar block inside the full-width panel */
+    margin-left: auto;
+    margin-right: auto;
 }
 
     .toolbar > div {
@@ -150,9 +191,10 @@
         background: #133B5C;
     }
 
-/* PANEL */
+/* PANEL - REVISED TO MATCH .content-panel */
 .content-panel {
-    width: 1060px;
+    /* width: 1060px; <-- REMOVED this fixed width */
+    width: 100%; /* Make it span the full width of the main container's content area */
     min-height: 701px;
     border-radius: 20px;
     background: #1B263B;
@@ -176,6 +218,10 @@
     align-items: center;
     min-width: 0;
     box-sizing: border-box;
+    /* NEW: Center the table block inside the full-width panel */
+    margin-left: auto;
+    margin-right: auto;
+    width: 1060px; /* Keep fixed width for table layout */
 }
 
 /* HEADER STYLE */
@@ -245,10 +291,15 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    /* Max height should be calculated considering the full-width panel */
     max-height: 580px;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 8px;
+    /* NEW: Center the table body block inside the full-width panel */
+    margin-left: auto;
+    margin-right: auto;
+    width: 1060px; /* Keep fixed width for scrollable area */
 }
 
     .table-body::-webkit-scrollbar {

@@ -54,60 +54,64 @@
         <div class="main">
             <h1 class="page-title">Courses</h1>
 
-            <!-- Toolbar with Real Search -->
-            <div class="toolbar">
-                <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
+            <!--FIXED WRAPPER -->
+            <div class="page-container">
+
+                <!-- === TOOLBAR === -->
+                <div class="toolbar">
+
+                    <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="search-box">
+                                <img src="images/search.png" alt="" />
+                                <asp:TextBox ID="txtSearch" runat="server"
+                                             CssClass="search-input"
+                                             AutoPostBack="true"
+                                             OnTextChanged="txtSearch_TextChanged">
+                                </asp:TextBox>
+                                <label class="placeholder-label">Search Course Name</label>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    <div class="add-box" onclick="location.href='AddNewCourse.aspx?from=home'" style="cursor:pointer;">
+                        <img src="images/add_icon.png" alt="" />
+                        <span>Add New Course</span>
+                    </div>
+                </div>
+
+                <!-- === COURSE PANEL === -->
+                <asp:UpdatePanel ID="UpdatePanelCourses" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <div class="search-box">
-                            <img src="images/search.png" alt="" />
-                            <asp:TextBox ID="txtSearch" runat="server" 
-                                         CssClass="search-input" 
-                                         AutoPostBack="true" 
-                                         OnTextChanged="txtSearch_TextChanged">
-                            </asp:TextBox>
-                            <label class="placeholder-label">Search Course Name</label>
+                        <div class="content-panel">
+                            <div class="course-grid">
+                                <asp:Repeater ID="CourseRepeater" runat="server">
+                                    <ItemTemplate>
+                                        <div class="course-card" onclick="location.href='CourseDetails.aspx?id=<%# Eval("Course_ID") %>'">
+                                            <asp:LinkButton ID="lnkEdit" runat="server"
+                                                            CssClass="edit-btn"
+                                                            CommandArgument='<%# Eval("Course_ID") %>'
+                                                            OnClick="lnkEdit_Click"
+                                                            OnClientClick="event.stopPropagation();">
+                                                <span>EDIT</span>
+                                            </asp:LinkButton>
+
+                                            <h3 class="course-name"><%# Eval("Course_Name") %></h3>
+                                            <p class="course-id">Course ID: <%# Eval("Course_ID") %></p>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
                     </Triggers>
                 </asp:UpdatePanel>
-
-                <div class="add-box" onclick="location.href='AddNewCourse.aspx?from=home'" style="cursor:pointer;">
-                    <img src="images/add_icon.png" alt="" />
-                    <span>Add New Course</span>
-                </div>
-            </div>
-
-            <!-- Wrap Course Panel in UpdatePanel -->
-            <asp:UpdatePanel ID="UpdatePanelCourses" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <div class="content-panel">
-                        <div class="course-grid">
-                            <asp:Repeater ID="CourseRepeater" runat="server">
-                                <ItemTemplate>
-                                    <div class="course-card" onclick="location.href='CourseDetails.aspx?id=<%# Eval("Course_ID") %>'"
->
-                                        <asp:LinkButton ID="lnkEdit" runat="server"
-                                                        CssClass="edit-btn"
-                                                        CommandArgument='<%# Eval("Course_ID") %>'
-                                                        OnClick="lnkEdit_Click"
-                                                        OnClientClick="event.stopPropagation();">
-                                            <span>EDIT</span>
-                                        </asp:LinkButton>
-                                        <h3 class="course-name"><%# Eval("Course_Name") %></h3>
-                                        <p class="course-id">Course ID: <%# Eval("Course_ID") %></p>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </div>
-                    </div>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
-                </Triggers>
-            </asp:UpdatePanel>
-        </div>
+            </div> 
+        </div> 
     </form>
 
     <script>

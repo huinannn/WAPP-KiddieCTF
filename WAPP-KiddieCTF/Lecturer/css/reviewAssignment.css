@@ -81,7 +81,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 35px;
-    align-items: center;
 }
 
 /* === LABEL === */
@@ -110,15 +109,35 @@ body {
 
 /* === FULL WIDTH === */
 .full-width {
-    width: 935px;
+    width: 100%;
+    max-width: 935px; 
+    box-sizing: border-box;
+}
+
+.input-box {
+    height: 60px;
+    background: rgba(69, 80: 102, 0.7);
+    border-radius: 10px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    color: #9BA0A6;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    width: 100%; 
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* === ROWS === */
 .dual-row, .file-mark-row {
     display: flex;
     justify-content: space-between;
-    width: 935px;
+    width: 100%;
     gap: 25px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 /* Fixed column widths */
@@ -138,6 +157,31 @@ body {
     width: 290px;
     position: relative;
     justify-content: center;
+}
+
+.student-id-box,
+.student-name-box,
+.file-box,
+.mark-wrapper {
+    min-width: 280px; 
+    flex: 1; 
+    box-sizing: border-box;
+}
+
+.student-id-box {
+    flex: 0 0 calc(50% - 12.5px);
+}
+
+.student-name-box {
+    flex: 0 0 calc(50% - 12.5px);
+}
+
+.file-box {
+    flex: 0 0 calc(65% - 12.5px);
+}
+
+.mark-wrapper {
+    flex: 0 0 calc(35% - 12.5px);
 }
 
 /* === MARK INPUT === */

@@ -30,8 +30,7 @@
 
 /* Certificate Container */
 .certificate-container {
-    width: 100%;
-    max-width: 1200px;
+    width: 1050px;
     min-height: 500px;
     border-radius: 20px;
     background: #1B263B;

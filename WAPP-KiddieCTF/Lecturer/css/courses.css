@@ -6,12 +6,14 @@
 
 .main {
     margin-left: 250px;
+    width: calc(100% - 250px);
     padding: 40px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     background: #000;
+    min-width: 900px;
 }
 
 .page-title {
@@ -24,12 +26,19 @@
     margin-left: 40px;
 }
 
+.page-container {
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
 /* TOOLBAR */
 .toolbar {
     display: flex;
     gap: 16px;
     margin-bottom: 30px;
-    width: 1060px;
+    max-width: 1060px;
+    width: 100%;
     justify-content: flex-start;
     align-items: center;
 }
@@ -132,7 +141,8 @@
 
 /* PANEL: GROWS VERTICALLY */
 .content-panel {
-    width: 1060px;
+    max-width: 1060px;
+    width: 100%;
     min-height: 701px;
     border-radius: 20px;
     background: #1B263B;
@@ -141,6 +151,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    overflow-x: auto;
 }
 
 /* GRID: 3 COLUMNS, AUTO-WRAP */
@@ -148,10 +159,9 @@
     display: grid;
     grid-template-columns: repeat(3, 280px);
     gap: 40px 48px;
-    width: 100%;
+    width: fit-content;
+    margin: 0 auto;
     justify-content: center;
-    align-items: flex-start;
-    margin: 0;
 }
 
 .course-card {

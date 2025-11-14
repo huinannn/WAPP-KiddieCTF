@@ -54,55 +54,57 @@
         <!-- === MAIN CONTENT === -->
         <div class="main">
             <h1 class="page-title">Challenges</h1>
+            <div class="content-wrapper">
 
-            <!-- Toolbar with Category Tabs -->
-            <div class="toolbar">
-                <asp:LinkButton ID="lnkAll" runat="server" CssClass="tab-btn active" OnClick="Filter_Click" CommandArgument="">All</asp:LinkButton>
-                <asp:LinkButton ID="lnkOSINT" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT001">OSINT</asp:LinkButton>
-                <asp:LinkButton ID="lnkCrypto" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT002">Cryptography</asp:LinkButton>
-                <asp:LinkButton ID="lnkStegano" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT003">Steganography</asp:LinkButton>
-                <asp:LinkButton ID="lnkReverse" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT004">Reverse Engineering</asp:LinkButton>
-                <div class="add-box" onclick="location.href='AddChallenge.aspx'" style="cursor:pointer;">
-                    <img src="images/add_icon.png" alt="" />
-                    <span>Add New Challenge</span>
+                <!-- Toolbar with Category Tabs -->
+                <div class="toolbar">
+                    <asp:LinkButton ID="lnkAll" runat="server" CssClass="tab-btn active" OnClick="Filter_Click" CommandArgument="">All</asp:LinkButton>
+                    <asp:LinkButton ID="lnkOSINT" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT001">OSINT</asp:LinkButton>
+                    <asp:LinkButton ID="lnkCrypto" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT002">Cryptography</asp:LinkButton>
+                    <asp:LinkButton ID="lnkStegano" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT003">Steganography</asp:LinkButton>
+                    <asp:LinkButton ID="lnkReverse" runat="server" CssClass="tab-btn" OnClick="Filter_Click" CommandArgument="CT004">Reverse Engineering</asp:LinkButton>
+                    <div class="add-box" onclick="location.href='AddChallenge.aspx'" style="cursor:pointer;">
+                        <img src="images/add_icon.png" alt="" />
+                        <span>Add New Challenge</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Challenge Grid -->
-            <asp:UpdatePanel ID="UpdatePanelChallenges" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <div class="content-panel">
-                        <div class="challenge-grid">
-                            <asp:Repeater ID="ChallengeRepeater" runat="server">
-                                <ItemTemplate>
-                                    <div class="challenge-card" onclick="location.href='ChallengeDetails.aspx?id=<%# Eval("Challenge_ID") %>'" style="cursor:pointer;">
+                <!-- Challenge Grid -->
+                <asp:UpdatePanel ID="UpdatePanelChallenges" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="content-panel">
+                            <div class="challenge-grid">
+                                <asp:Repeater ID="ChallengeRepeater" runat="server">
+                                    <ItemTemplate>
+                                        <div class="challenge-card" onclick="location.href='ChallengeDetails.aspx?id=<%# Eval("Challenge_ID") %>'" style="cursor:pointer;">
 
-                                        <div class="top-info">
-                                            <div class="category"><%# GetCategoryName(Eval("Category_ID")) %></div>
-                                            <h3 class="challenge-name"><%# Eval("Challenge_Name") %></h3>
-                                        </div>
-
-                                        <div class="bottom-info">
-                                            <div class="difficulty <%# GetDifficultyClass(Eval("Challenge_Difficulty")) %>">
-                                                <%# Eval("Challenge_Difficulty").ToString().ToUpper() %>
+                                            <div class="top-info">
+                                                <div class="category"><%# GetCategoryName(Eval("Category_ID")) %></div>
+                                                <h3 class="challenge-name"><%# Eval("Challenge_Name") %></h3>
                                             </div>
 
-                                            <!-- Edit Button -->
-                                            <asp:LinkButton ID="lnkEdit" runat="server"
-                                                CssClass="edit-btn"
-                                                CommandArgument='<%# Eval("Challenge_ID") %>'
-                                                OnClick="lnkEdit_Click">
-                                                <img src="images/edit_icon.png" alt="Edit" class="edit-icon" />
-                                                EDIT
-                                            </asp:LinkButton>
+                                            <div class="bottom-info">
+                                                <div class="difficulty <%# GetDifficultyClass(Eval("Challenge_Difficulty")) %>">
+                                                    <%# Eval("Challenge_Difficulty").ToString().ToUpper() %>
+                                                </div>
+
+                                                <!-- Edit Button -->
+                                                <asp:LinkButton ID="lnkEdit" runat="server"
+                                                    CssClass="edit-btn"
+                                                    CommandArgument='<%# Eval("Challenge_ID") %>'
+                                                    OnClick="lnkEdit_Click">
+                                                    <img src="images/edit_icon.png" alt="Edit" class="edit-icon" />
+                                                    EDIT
+                                                </asp:LinkButton>
+                                            </div>
                                         </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
         </div>
     </form>
 </body>

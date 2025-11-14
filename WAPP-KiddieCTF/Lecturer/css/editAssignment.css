@@ -12,6 +12,8 @@
     flex-direction: column;
     align-items: center;
     background: #000;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .page-title {
@@ -26,6 +28,7 @@
 
 .content-panel {
     width: 1060px;
+    max-width: calc(100% - 80px);
     min-height: 766px;
     border-radius: 20px;
     background: #1B263B;
@@ -216,3 +219,7 @@
         border: 4px solid #9BA0A6;
         transform: translateY(-2px);
     }
+
+html, body {
+    overflow-x: hidden;
+}

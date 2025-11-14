@@ -14,9 +14,11 @@ body {
     flex-direction: column;
     align-items: center;
     background: #000;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-/* === Page Title (consistent alignment) === */
+/* === Page Title === */
 .page-title {
     font-size: 50px;
     font-weight: 600;
@@ -27,14 +29,16 @@ body {
     margin-left: 40px;
 }
 
-/* === Big Panel (consistent size & radius) === */
+/* === Big Panel === */
 .content-panel {
     width: 1060px;
+    max-width: calc(100% - 80px);
     min-height: 766px;
     background: #1B263B;
     border-radius: 20px;
     padding: 40px;
     position: relative;
+    box-sizing: border-box;
 }
 
 /* === Back Button === */
@@ -114,14 +118,14 @@ body {
 }
 
     .flex-1 .input-group:first-child {
-        margin-bottom: 0; /* no big gap */
+        margin-bottom: 0;
     }
 
 .flex-2 {
     flex: 2;
 }
 
-/* === File Upload (below difficulty, compact layout) === */
+/* === File Upload  === */
 .file-upload-box {
     position: relative;
     background: rgba(69, 80, 101, 0.7);
@@ -158,7 +162,7 @@ body {
     letter-spacing: 0.9px;
 }
 
-/* === Done Button (centered) === */
+/* === Done Button === */
 .btn-center {
     display: flex;
     justify-content: center;
@@ -186,3 +190,7 @@ body {
         border: 4px solid #9BA0A6;
         transform: translateY(-2px);
     }
+
+html, body {
+    overflow-x: hidden;
+}

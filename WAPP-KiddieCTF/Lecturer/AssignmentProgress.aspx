@@ -57,23 +57,71 @@
         <!-- MAIN -->
         <div class="main">
             <h1 class="page-title">Final Assignment Progress</h1>
+            <div class="content-wrapper">
+                <!-- TOOLBAR -->
+                <div class="toolbar">
+                    <button type="button" class="back-btn" onclick="history.back()">
+                        <img src="images/back_icon2.png" alt="Back" />
+                    </button>
 
-            <!-- TOOLBAR -->
-            <div class="toolbar">
-                <button type="button" class="back-btn" onclick="history.back()">
-                    <img src="images/back_icon2.png" alt="Back" />
-                </button>
+                    <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="search-box">
+                                <img src="images/search.png" alt="" />
+                                <asp:TextBox ID="txtSearch" runat="server"
+                                             CssClass="search-input"
+                                             AutoPostBack="true"
+                                             OnTextChanged="txtSearch_TextChanged">
+                                </asp:TextBox>
+                                <label class="placeholder-label">Search Student ID/StudentName</label>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
+                        </Triggers>
 
-                <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
+                    </asp:UpdatePanel>
+                </div>
+
+                <!-- TABLE PANEL -->
+                <asp:UpdatePanel ID="UpdatePanelProgress" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <div class="search-box">
-                            <img src="images/search.png" alt="" />
-                            <asp:TextBox ID="txtSearch" runat="server"
-                                         CssClass="search-input"
-                                         AutoPostBack="true"
-                                         OnTextChanged="txtSearch_TextChanged">
-                            </asp:TextBox>
-                            <label class="placeholder-label">Search Student ID/StudentName</label>
+                        <div class="content-panel">
+                            <div class="table-header">
+                                <div class="col-id">Student ID</div>
+                                <div class="col-name">Student Name</div>
+                                <div class="col-status">Final Assignment Progress</div>
+                                <div class="col-action">Action</div>
+                            </div>
+
+                            <div class="table-body">
+                                <asp:Repeater ID="rptProgress" runat="server">
+                                    <ItemTemplate>
+                                        <div class="table-row">
+                                            <div class="col-id"><%# Eval("Student_ID") %></div>
+                                            <div class="col-name"><%# Eval("Student_Name") %></div>
+                                            <div class="col-status">
+                                                <span class='status <%# Eval("Status").ToString().ToLower().Replace(" ", "-") %>'>
+                                                    <%# Eval("Status") %>
+                                                </span>
+                                            </div>
+                                            <div class="col-action">
+                                                <asp:HyperLink ID="lnkReview" runat="server"
+                                                    NavigateUrl='<%# Eval("Answer_ID") != DBNull.Value 
+                                                        ? "ReviewAssignment.aspx?answerid=" + Eval("Answer_ID") + "&studentid=" + Eval("Student_ID") + "&courseid=" + Request.QueryString["courseid"] 
+                                                        : "#" %>'
+                                                    CssClass='<%# Eval("Status").ToString() == "No Submission" ? "review-btn disabled-alert" : "review-btn" %>'
+                                                    Text="Review"
+                                                    OnClientClick='<%# Eval("Status").ToString() == "No Submission" ? "Swal.fire({ icon: \"info\", title: \"Student has not submitted their work yet!\", confirmButtonColor: \"#3085d6\" }); return false;" : "" %>' />
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+                                <asp:Literal ID="litNoData" runat="server"
+                                             Text="<div class='no-data'>No students enrolled or no assignment set.</div>"
+                                             Visible="false"></asp:Literal>
+                            </div>
                         </div>
                     </ContentTemplate>
                     <Triggers>
@@ -82,53 +130,6 @@
 
                 </asp:UpdatePanel>
             </div>
-
-            <!-- TABLE PANEL -->
-            <asp:UpdatePanel ID="UpdatePanelProgress" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <div class="content-panel">
-                        <div class="table-header">
-                            <div class="col-id">Student ID</div>
-                            <div class="col-name">Student Name</div>
-                            <div class="col-status">Final Assignment Progress</div>
-                            <div class="col-action">Action</div>
-                        </div>
-
-                        <div class="table-body">
-                            <asp:Repeater ID="rptProgress" runat="server">
-                                <ItemTemplate>
-                                    <div class="table-row">
-                                        <div class="col-id"><%# Eval("Student_ID") %></div>
-                                        <div class="col-name"><%# Eval("Student_Name") %></div>
-                                        <div class="col-status">
-                                            <span class='status <%# Eval("Status").ToString().ToLower().Replace(" ", "-") %>'>
-                                                <%# Eval("Status") %>
-                                            </span>
-                                        </div>
-                                        <div class="col-action">
-                                            <asp:HyperLink ID="lnkReview" runat="server"
-                                                NavigateUrl='<%# Eval("Answer_ID") != DBNull.Value 
-                                                    ? "ReviewAssignment.aspx?answerid=" + Eval("Answer_ID") + "&studentid=" + Eval("Student_ID") + "&courseid=" + Request.QueryString["courseid"] 
-                                                    : "#" %>'
-                                                CssClass='<%# Eval("Status").ToString() == "No Submission" ? "review-btn disabled-alert" : "review-btn" %>'
-                                                Text="Review"
-                                                OnClientClick='<%# Eval("Status").ToString() == "No Submission" ? "Swal.fire({ icon: \"info\", title: \"Student has not submitted their work yet!\", confirmButtonColor: \"#3085d6\" }); return false;" : "" %>' />
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
-
-                            <asp:Literal ID="litNoData" runat="server"
-                                         Text="<div class='no-data'>No students enrolled or no assignment set.</div>"
-                                         Visible="false"></asp:Literal>
-                        </div>
-                    </div>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
-                </Triggers>
-
-            </asp:UpdatePanel>
         </div>
     </form>
 

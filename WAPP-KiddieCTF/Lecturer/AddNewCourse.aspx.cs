@@ -24,15 +24,31 @@ namespace WAPP_KiddieCTF.Lecturer
 
             if (!IsPostBack)
             {
-                // If returning from AddStudent.aspx, restore values
-                if (Session["TempCourseID"] != null && Session["TempCourseName"] != null)
+                string from = Request.QueryString["from"];
+
+                if (from == "home")
+                {
+                    Session.Remove("TempCourseID");
+                    Session.Remove("TempCourseName");
+                    Session.Remove("TempStudents");
+                    GenerateNextCourseID();
+                    return;
+                }
+
+                // RESTORE values when returning from AddStudent / StudentList
+                if (Session["TempCourseID"] != null)
                 {
                     lblCourseID.Text = Session["TempCourseID"].ToString();
+                }
+
+                if (Session["TempCourseName"] != null)
+                {
                     txtCourseName.Text = Session["TempCourseName"].ToString();
                 }
-                else
+
+                // If first visit & no session, generate a new course ID
+                if (Session["TempCourseID"] == null)
                 {
-                    // First time visiting the page
                     GenerateNextCourseID();
                 }
             }
@@ -139,7 +155,18 @@ namespace WAPP_KiddieCTF.Lecturer
 
         protected void btnViewStudents_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"StudentList.aspx?course={lblCourseID.Text}");
+            string courseId = lblCourseID.Text.Trim();
+            string courseName = txtCourseName.Text.Trim();
+
+            // Store temporary course details BEFORE redirecting
+            Session["TempCourseID"] = courseId;
+            Session["TempCourseName"] = courseName;
+
+            // Keep previously selected students
+            if (Session["TempStudents"] == null)
+                Session["TempStudents"] = new List<string>();
+
+            Response.Redirect($"StudentList.aspx?course={courseId}&from=add");
         }
 
     }

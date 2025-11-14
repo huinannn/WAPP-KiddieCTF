@@ -188,7 +188,7 @@ namespace WAPP_KiddieCTF.Lecturer
 
         protected void btnViewStudents_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"StudentList.aspx?course={lblCourseID.Text}");
+            Response.Redirect($"StudentList.aspx?course={lblCourseID.Text}&from=edit"); 
         }
 
     }

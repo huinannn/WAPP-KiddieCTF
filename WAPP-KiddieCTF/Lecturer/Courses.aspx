@@ -73,7 +73,7 @@
                     </Triggers>
                 </asp:UpdatePanel>
 
-                <div class="add-box" onclick="location.href='AddNewCourse.aspx'" style="cursor:pointer;">
+                <div class="add-box" onclick="location.href='AddNewCourse.aspx?from=home'" style="cursor:pointer;">
                     <img src="images/add_icon.png" alt="" />
                     <span>Add New Course</span>
                 </div>

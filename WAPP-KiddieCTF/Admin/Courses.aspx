@@ -60,7 +60,7 @@
                         <div class="course-grid">
                             <asp:Repeater ID="CourseRepeater" runat="server">
                                 <ItemTemplate>
-                                    <div class="course-card" onclick="location.href='InnerFunction/CourseDetails.aspx?id=<%# Eval("Course_ID") %>'">
+                                    <div class="course-card" onclick="location.href='<%# ResolveUrl("~/Admin/InnerFunction/CourseDetails.aspx?Course_ID=" + Eval("Course_ID")) %>'">
                                         <asp:LinkButton ID="lnkEdit" runat="server"
                                                         CssClass="edit-btn"
                                                         CommandArgument='<%# Eval("Course_ID") %>'

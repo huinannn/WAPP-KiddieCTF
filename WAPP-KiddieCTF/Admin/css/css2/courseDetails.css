@@ -4,27 +4,53 @@
     font-family: 'Teko', sans-serif;
 }
 
+/* --- MAIN Content Container --- */
 .main {
     margin-left: 250px;
     padding: 40px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    /* align-items: center; is correct for centering the content-panel */
     align-items: center;
     background: #000;
     position: relative;
+    /* Add width: calc(100% - 250px) to ensure the main content stretches across the available space */
+    width: calc(100% - 250px);
+    box-sizing: border-box; /* Include padding/border in the width */
 }
 
+/* --- Page Title (REVISED for CENTERING) --- */
 .page-title {
     font-size: 50px;
     font-weight: 600;
     letter-spacing: 2.5px;
     color: #fff;
     margin-bottom: 20px;
-    align-self: flex-start;
-    margin-left: 40px;
+    /* REMOVE align-self: flex-start; to allow centering */
+    /* REMOVE margin-left: 40px; */
+    /* NEW RULES for Centering the Title block */
+    width: 100%; /* Important: Make it span the width of its parent (.main) */
+    text-align: center; /* This centers the text inside the h1 element */
+    /* If you still need some horizontal margin for spacing, use margin: 0 auto; on a max-width container,
+       but for a full-width centered text title, these rules are sufficient. */
 }
 
+/* BIG PANEL */
+.content-panel {
+    /* ... keep existing styles for content-panel ... */
+    width: 1060px;
+    min-height: 766px;
+    border-radius: 20px;
+    background: #1B263B;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* The rest of your CSS remains unchanged */
 .back-btn {
     position: absolute;
     top: 20px;

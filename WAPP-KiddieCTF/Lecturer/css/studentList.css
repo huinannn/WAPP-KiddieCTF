@@ -4,6 +4,14 @@
     font-family: 'Teko', sans-serif;
 }
 
+.content-wrapper {
+    width: 1060px;
+    max-width: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .main {
     margin-left: 250px;
     padding: 40px;
@@ -12,6 +20,8 @@
     flex-direction: column;
     align-items: center;
     background: #000;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .page-title {
@@ -27,7 +37,7 @@
 .toolbar {
     display: flex;
     gap: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     width: 1060px;
     justify-content: flex-start;
     align-items: center;
@@ -170,7 +180,7 @@
 .table-header,
 .table-row {
     display: grid;
-    grid-template-columns: 180px 280px 340px 120px; /* ← SUM = 920px + 60px gap = 980px < 1060px */
+    grid-template-columns: 180px 280px 340px 120px;
     gap: 20px;
     padding: 15px 20px;
     align-items: center;
@@ -201,7 +211,7 @@
     flex-shrink: 0;
 }
 
-    /* === ALL CELLS – TRUNCATE TEXT === */
+    /* === ALL CELLS === */
     .table-header > div,
     .table-row > div {
         overflow: hidden;
@@ -209,7 +219,7 @@
         text-overflow: ellipsis;
     }
 
-    /* === COLUMN PADDING – ONLY ON ID === */
+    /* === COLUMN PADDING === */
     .table-header .col-id,
     .table-row .col-id {
         padding-left: 30px;
@@ -221,7 +231,7 @@
         padding: 0;
     }
 
-/* === REMOVE BUTTON – FITS === */
+/* === REMOVE BUTTON === */
 .remove-btn {
     width: 80px;
     height: 36px;
@@ -240,7 +250,7 @@
         background: #b0b5bc;
     }
 
-/* === TABLE BODY – SCROLL VERTICAL ONLY === */
+/* === TABLE BODY === */
 .table-body {
     display: flex;
     flex-direction: column;
@@ -270,15 +280,17 @@
     text-align: center;
 }
 
-/* Center the Remove button and keep spacing from scrollbar */
 .col-action .remove-btn {
     display: inline-block;
-    margin-right: 10px; /* small gap from scrollbar edge */
+    margin-right: 10px;
 }
 
-/* Optional (for consistent height alignment) */
 .table-row .col-action {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+html, body {
+    overflow-x: hidden;
 }

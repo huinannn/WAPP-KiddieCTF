@@ -4,6 +4,15 @@
     font-family: 'Teko', sans-serif;
 }
 
+.content-wrapper {
+    width: 1060px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-sizing: border-box;
+}
+
 .main {
     margin-left: 250px;
     padding: 40px;
@@ -12,6 +21,8 @@
     flex-direction: column;
     align-items: center;
     background: #000;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .page-title {
@@ -24,11 +35,18 @@
     margin-left: 40px;
 }
 
+.toolbar,
+.content-panel {
+    width: 100%;
+    max-width: 1060px;
+    box-sizing: border-box;
+}
+
 /* TOOLBAR */
 .toolbar {
     display: flex;
     gap: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     width: 1060px;
     justify-content: flex-start;
     align-items: center;
@@ -91,7 +109,6 @@
 
 /* PANEL */
 .content-panel {
-    width: 1060px;
     min-height: 701px;
     border-radius: 20px;
     background: #1B263B;
@@ -234,4 +251,8 @@
     background: url('../images/edit_icon.png') center no-repeat;
     background-size: contain;
     margin-right: 5px;
+}
+
+html, body {
+    overflow-x: hidden;
 }

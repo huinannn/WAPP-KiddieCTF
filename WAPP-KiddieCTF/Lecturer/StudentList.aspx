@@ -56,24 +56,66 @@
         <!-- === MAIN CONTENT === -->
         <div class="main">
             <h1 class="page-title">Student List</h1>
+            <div class="content-wrapper">
 
-            <!-- TOOLBAR (Back + Search + Filter + Add) -->
-            <div class="toolbar">
-                <!-- BACK BUTTON -->
-                <button type="button" class="back-btn" onclick="goBackToEdit();">
-                    <img src="images/back_icon2.png" alt="Back" />
-                </button>
+                <!-- TOOLBAR (Back + Search + Filter + Add) -->
+                <div class="toolbar">
+                    <!-- BACK BUTTON -->
+                   <button type="button" class="back-btn" onclick="goBack();">
+                        <img src="images/back_icon2.png" alt="Back" />
+                    </button>
 
-                <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
+                    <asp:UpdatePanel ID="UpdatePanelSearch" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="search-box">
+                                <img src="images/search.png" alt="" />
+                                <asp:TextBox ID="txtSearch" runat="server" 
+                                             CssClass="search-input" 
+                                             AutoPostBack="true" 
+                                             OnTextChanged="txtSearch_TextChanged">
+                                </asp:TextBox>
+                                <label class="placeholder-label">Search Course Name</label>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+
+                <!-- STUDENT TABLE -->
+                <asp:UpdatePanel ID="UpdatePanelStudents" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <div class="search-box">
-                            <img src="images/search.png" alt="" />
-                            <asp:TextBox ID="txtSearch" runat="server" 
-                                         CssClass="search-input" 
-                                         AutoPostBack="true" 
-                                         OnTextChanged="txtSearch_TextChanged">
-                            </asp:TextBox>
-                            <label class="placeholder-label">Search Course Name</label>
+                        <!-- CONTENT PANEL -->
+                        <div class="content-panel">
+                            <!-- TABLE HEADER -->
+                            <div class="table-header">
+                                <div class="col-id">Student ID</div>
+                                <div class="col-name">Student Name</div>
+                                <div class="col-intake">Student Intake Code</div>
+                                <div class="col-action">Action</div>
+                            </div>
+
+                            <!-- TABLE BODY (SCROLLABLE) -->
+                            <div class="table-body">
+                                <asp:Repeater ID="StudentRepeater" runat="server">
+                                    <ItemTemplate>
+                                        <div class="table-row">
+                                            <div class="col-id"><%# Eval("Student_ID") %></div>
+                                            <div class="col-name"><%# Eval("Student_Name") %></div>
+                                            <div class="col-intake"><%# Eval("Intake_Code") %></div>
+                                            <div class="col-action">
+                                                <asp:Button ID="btnRemove" runat="server" CssClass="remove-btn"
+                                                            Text="Remove"
+                                                            CommandArgument='<%# Eval("Student_ID") %>'
+                                                            UseSubmitBehavior="false"
+                                                            OnClientClick="return sweetRemoveConfirm(this);"
+                                                            OnClick="btnRemove_Click" />
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
                     </ContentTemplate>
                     <Triggers>
@@ -81,46 +123,6 @@
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
-
-            <!-- STUDENT TABLE -->
-            <asp:UpdatePanel ID="UpdatePanelStudents" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <!-- CONTENT PANEL -->
-                    <div class="content-panel">
-                        <!-- TABLE HEADER -->
-                        <div class="table-header">
-                            <div class="col-id">Student ID</div>
-                            <div class="col-name">Student Name</div>
-                            <div class="col-intake">Student Intake Code</div>
-                            <div class="col-action">Action</div>
-                        </div>
-
-                        <!-- TABLE BODY (SCROLLABLE) -->
-                        <div class="table-body">
-                            <asp:Repeater ID="StudentRepeater" runat="server">
-                                <ItemTemplate>
-                                    <div class="table-row">
-                                        <div class="col-id"><%# Eval("Student_ID") %></div>
-                                        <div class="col-name"><%# Eval("Student_Name") %></div>
-                                        <div class="col-intake"><%# Eval("Intake_Code") %></div>
-                                        <div class="col-action">
-                                            <asp:Button ID="btnRemove" runat="server" CssClass="remove-btn"
-                                                        Text="Remove"
-                                                        CommandArgument='<%# Eval("Student_ID") %>'
-                                                        UseSubmitBehavior="false"
-                                                        OnClientClick="return sweetRemoveConfirm(this);"
-                                                        OnClick="btnRemove_Click" />
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </div>
-                    </div>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
-                </Triggers>
-            </asp:UpdatePanel>
         </div>
 
     </form>
@@ -185,17 +187,21 @@
             return false;
         }
 
-        function goBackToEdit() {
+        function goBack() {
             const params = new URLSearchParams(window.location.search);
             const courseId = params.get("course");
+            const from = params.get("from");
 
-            if (courseId) {
-                // ALWAYS reload from server (no cache)
-                window.location = "EditCourse.aspx?id=" + courseId + "&ts=" + new Date().getTime();
+            if (from === "add") {
+                window.location = "AddNewCourse.aspx?course=" + courseId;
                 return;
             }
 
-            // Safety fallback
+            if (from === "edit") {
+                window.location = "EditCourse.aspx?id=" + courseId;
+                return;
+            }
+
             window.location = "Courses.aspx";
         }
 

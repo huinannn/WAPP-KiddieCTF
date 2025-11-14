@@ -244,17 +244,21 @@ namespace WAPP_KiddieCTF.Student
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand(@"
                     SELECT TOP 3 
-                    FA.FA_Name,            
-                    FA.FA_Deadline,      
+                    FA.FA_Name,
+                    FA.FA_Deadline,
                     C.Course_Name,
                     C.Course_ID,
-                    FORMAT(TRY_CONVERT(DATETIME, FA.FA_Deadline, 103), 'MM/dd/yyyy') AS FormattedDate
+                    FORMAT(d.DeadlineDate, 'MM/dd/yyyy') AS FormattedDate
                     FROM Final_Assignment FA
                     INNER JOIN Course C ON FA.Course_ID = C.Course_ID  
                     INNER JOIN Assigned_Course AC ON C.Course_ID = AC.Course_ID 
+                    CROSS APPLY (
+                        SELECT TRY_CONVERT(DATETIME, FA.FA_Deadline, 103) AS DeadlineDate
+                    ) d
                     WHERE AC.Student_ID = @StudentID
-                        AND TRY_CONVERT(DATETIME, FA.FA_Deadline, 103) >= CAST(GETDATE() AS DATE)       
-                    ORDER BY TRY_CONVERT(DATETIME, FA.FA_Deadline, 103) ASC", con))
+                      AND d.DeadlineDate IS NOT NULL
+                      AND d.DeadlineDate >= CAST(GETDATE() AS DATE)
+                    ORDER BY d.DeadlineDate ASC", con))
                 {
                     cmd.Parameters.AddWithValue("@StudentID", studentId);
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))

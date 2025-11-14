@@ -2,8 +2,9 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace WAPP_Assignment.Student
+namespace WAPP_KiddieCTF.Student
 {
     public partial class EditProfile : System.Web.UI.Page
     {
@@ -24,6 +25,13 @@ namespace WAPP_Assignment.Student
                 {
                     lblError.Text = "Student Name and Password cannot be empty.";
                     lblError.Visible = true;
+
+                    ScriptManager.RegisterStartupScript(
+                        this, this.GetType(), "HideError1",
+                        "setTimeout(function(){ document.getElementById('" + lblError.ClientID + "').style.display='none'; }, 2000);",
+                        true
+                    );
+
                     return;
                 }
 
@@ -55,6 +63,13 @@ namespace WAPP_Assignment.Student
                 {
                     lblError.Text = "Nothing updated! The new values are the same as the current ones.";
                     lblError.Visible = true;
+
+                    ScriptManager.RegisterStartupScript(
+                        this, this.GetType(), "HideError2",
+                        "setTimeout(function(){ document.getElementById('" + lblError.ClientID + "').style.display='none'; }, 2000);",
+                        true
+                    );
+
                     return;
                 }
 
@@ -62,9 +77,9 @@ namespace WAPP_Assignment.Student
                 {
                     con.Open();
                     string updateQuery = @"
-                        UPDATE Student 
-                        SET Student_Password = @NewPassword, Student_Name = @NewName 
-                        WHERE Student_ID = @StudentID";
+                UPDATE Student 
+                SET Student_Password = @NewPassword, Student_Name = @NewName 
+                WHERE Student_ID = @StudentID";
                     SqlCommand cmd = new SqlCommand(updateQuery, con);
                     cmd.Parameters.AddWithValue("@NewPassword", newPassword);
                     cmd.Parameters.AddWithValue("@NewName", newStudentName);
@@ -83,6 +98,12 @@ namespace WAPP_Assignment.Student
                     {
                         lblError.Text = "Nothing updated!";
                         lblError.Visible = true;
+
+                        ScriptManager.RegisterStartupScript(
+                            this, this.GetType(), "HideError3",
+                            "setTimeout(function(){ document.getElementById('" + lblError.ClientID + "').style.display='none'; }, 2000);",
+                            true
+                        );
                     }
                 }
             }
@@ -90,6 +111,12 @@ namespace WAPP_Assignment.Student
             {
                 lblError.Text = "General Error: " + ex.Message;
                 lblError.Visible = true;
+
+                ScriptManager.RegisterStartupScript(
+                    this, this.GetType(), "HideErrorEx",
+                    "setTimeout(function(){ document.getElementById('" + lblError.ClientID + "').style.display='none'; }, 2000);",
+                    true
+                );
             }
         }
     }

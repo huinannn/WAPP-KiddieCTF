@@ -8,6 +8,8 @@
     margin-left: 250px;
     padding: 40px;
     position: relative;
+    position: relative;
+    overflow: hidden;
 }
 
 .page-title {
@@ -22,14 +24,16 @@
 .outer-panel {
     position: relative;
     width: 1060px;
+    max-width: calc(100% - 80px);
     height: 766px;
     background: #1B263B;
     border-radius: 20px;
     margin-left: 65px;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* --- PANEL HEADER (Contains Back + Edit Buttons) --- */
+/* --- PANEL HEADER --- */
 .panel-header {
     position: absolute;
     top: 20px;
@@ -79,7 +83,7 @@
         transform: translateY(-2px);
     }
 
-/* === Top Section (Category, Challenge Name, Difficulty) === */
+/* === Top Section === */
 .category,
 .challenge-name,
 .difficulty {
@@ -187,7 +191,7 @@
     letter-spacing: 0.8px;
 }
 
-/* File name display (no longer clickable) */
+/* File name display */
 .file-btn {
     position: absolute;
     top: 450px;
@@ -203,4 +207,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+html, body {
+    overflow-x: hidden;
 }

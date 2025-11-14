@@ -128,7 +128,36 @@
 
         document.addEventListener("DOMContentLoaded", initPlaceholderEvents);
         Sys.Application.add_load(initPlaceholderEvents);
-    </script>
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const navLinks = document.querySelectorAll(".sidebar .nav a");
+
+            navLinks.forEach(function (link) {
+                const href = link.getAttribute("href");
+                if (!href) return;
+                if (href.startsWith("/") || href.startsWith("http")) return;
+                if (href.startsWith("../")) return;
+
+                link.setAttribute("href", "../" + href);
+            });
+
+            const path = window.location.pathname.toLowerCase();
+            const isChallengeInner =
+                path.includes("assignmentprogress") ||
+                path.includes("coursedetails") ;
+
+            if (isChallengeInner) {
+                document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
+                const challengesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
+                    .find(a => (a.getAttribute("href") || "").toLowerCase().includes("courses.aspx"));
+
+                if (challengesLink) {
+                    challengesLink.classList.add("active");
+                }
+            }
+        });
+
+    </script>
+    
 </body>
 </html>

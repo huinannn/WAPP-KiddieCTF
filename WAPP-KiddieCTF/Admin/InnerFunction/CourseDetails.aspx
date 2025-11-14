@@ -107,21 +107,31 @@
     </form>
 
     <script>
-        // Navigation Script to highlight active link (for Course Details)
         document.addEventListener("DOMContentLoaded", function () {
-            // Update the href links to be relative to the root directory
-            document.querySelectorAll(".sidebar .nav a").forEach(link => {
+            const navLinks = document.querySelectorAll(".sidebar .nav a");
+
+            navLinks.forEach(function (link) {
                 const href = link.getAttribute("href");
-                if (href && !href.startsWith("/") && !href.startsWith("http")) {
-                    link.setAttribute("href", "../" + href);
-                }
+                if (!href) return;
+                if (href.startsWith("/") || href.startsWith("http")) return;
+                if (href.startsWith("../")) return;
+
+                link.setAttribute("href", "../" + href);
             });
 
-            // Highlight the active link for Course Details
-            const courseDetailsLink = document.querySelector('.sidebar .nav a[href*="CourseDetails.aspx"]');
-            if (courseDetailsLink) {
-                document.querySelectorAll('.sidebar .nav a').forEach(a => a.classList.remove('active'));
-                courseDetailsLink.classList.add('active');
+            const path = window.location.pathname.toLowerCase();
+            const isChallengeInner =
+                path.includes("assignmentprogress") ||
+                path.includes("coursedetails");
+
+            if (isChallengeInner) {
+                document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
+                const challengesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
+                    .find(a => (a.getAttribute("href") || "").toLowerCase().includes("courses.aspx"));
+
+                if (challengesLink) {
+                    challengesLink.classList.add("active");
+                }
             }
         });
     </script>

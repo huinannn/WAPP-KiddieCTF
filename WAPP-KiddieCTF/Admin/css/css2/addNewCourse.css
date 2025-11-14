@@ -270,6 +270,7 @@ form {
         transform: translateY(-2px);
     }
 
+
 /* --- Mobile Fixes --- */
 @media (max-width: 730px) {
     .main {

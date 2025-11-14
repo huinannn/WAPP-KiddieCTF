@@ -1,233 +1,292 @@
-﻿body {
-    background: #000;
-    margin: 0;
+﻿/* --- General Page Structure --- */
+body {
+    background-color: #0d1321;
+    color: #ffffff;
     font-family: 'Teko', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .main {
+    flex-grow: 1;
+    padding: 20px 40px 20px 20px;
     margin-left: 250px;
-    padding: 40px;
+    width: calc(100% - 250px);
     min-height: 100vh;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background: #000;
+    align-items: center; /* Center main content wrapper */
 }
 
-.page-title {
-    font-size: 50px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    color: #fff;
-    margin-bottom: 20px;
-    align-self: flex-start;
-    margin-left: 40px;
-}
-
-/* BIG PANEL - Taller (no toolbar) */
-.content-panel {
-    width: 1060px;
-    min-height: 766px; /* Taller than Courses.aspx */
-    border-radius: 20px;
-    background: #1B263B;
-    padding: 40px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-.form-container {
+form {
     width: 100%;
-    max-width: 935px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    margin-top: 40px;
 }
 
+/* --- Page Title (CENTERED ABOVE BOX) --- */
+.page-title {
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    text-align: center; /* Center title */
+    width: 100%;
+}
+
+/* --- Content Panel --- */
+.content-panel {
+    background-color: #1B263B;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    width: 900px;
+    max-width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    /* Removed align-items: center to allow back-btn to go to the edge */
+}
+
+/* --- Back Button (TOP-LEFT CORNER) --- */
 .back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
     background: none;
     border: none;
     cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+    align-self: flex-start; /* Aligns button to the left edge of the panel */
+    margin-top: -15px; /* Adjust up to be closer to corner */
+    margin-left: -10px; /* Adjust left to be closer to corner */
 }
 
     .back-btn img {
-        width: 47px;
-        height: 47px;
+        width: 40px;
+        height: 40px;
+        filter: invert(100%) brightness(200%);
     }
 
+    .back-btn:hover {
+        transform: scale(1.1);
+    }
+
+/* --- Course ID --- */
 .course-id-label {
-    color: white;
-    font-size: 30px;
-    font-weight: 700;
+    font-size: 32px;
+    font-weight: 500;
+    color: #9BA0A6;
     letter-spacing: 1.5px;
-    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 35px;
 }
 
+/* --- Input Group (LONGER INPUT & RE-CENTERED) --- */
 .input-group {
+    margin-bottom: 30px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    max-width: 700px; /* INCREASED MAX-WIDTH */
+    text-align: left;
+    margin-left: auto; /* Center the block */
+    margin-right: auto; /* Center the block */
 }
 
     .input-group label {
-        color: white;
-        font-size: 20px;
-        font-weight: 600;
-        letter-spacing: 1px;
+        display: block;
+        font-size: 24px;
+        font-weight: 500;
+        color: #9BA0A6;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
     }
 
+/* --- Course Name --- */
 .course-name-box {
     position: relative;
     width: 100%;
-    height: 60px;
-    background: rgba(69, 80, 102, 0.7);
-    border-radius: 10px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
 }
 
 .course-name-input {
-    background: transparent;
+    width: 100%;
+    height: 55px;
+    padding: 0 15px;
+    background-color: #303F54;
+    border: 2px solid #5A6D88;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 24px;
     font-family: 'Teko', sans-serif;
-    border: none;
-    color: #9BA0A6;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    flex: 1;
     outline: none;
-    height: 100%;
-    padding: 0;
+    transition: border-color 0.3s;
 }
 
-.course-name-box .placeholder-label {
+    .course-name-input:focus {
+        border-color: #00BFFF;
+    }
+
+.placeholder-label {
     position: absolute;
-    left: 20px;
     top: 50%;
+    left: 15px;
     transform: translateY(-50%);
     color: #9BA0A6;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
+    font-size: 24px;
     pointer-events: none;
-    transition: all 0.2s ease;
-    opacity: 1;
+    transition: all 0.2s ease-in-out;
+    opacity: 1; /* Make sure the label is visible initially */
 }
 
-/* Float up when user types or focuses */
-.course-name-input:not(:placeholder-shown) + .placeholder-label,
-.course-name-input:focus + .placeholder-label {
-    opacity: 0;
-    transform: translateY(-50%) scale(0.8);
-    top: 10px;
-    font-size: 14px;
+.course-name-input:focus + .placeholder-label,
+.course-name-input:not(:placeholder-shown) + .placeholder-label {
+    opacity: 0; /* Make the label invisible when typing starts */
+    transform: translateY(-50%); /* Keeps the label in place when invisible */
 }
 
+
+/* --- Lecturer Dropdown (Vertical Arrow Alignment) --- */
+.course-name-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Add an arrow for the dropdown (Ensures it's on the same line as text) */
+.course-name-box:has(.course-name-input[name$="ddlLecturer"])::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%); /* Centers vertically */
+    color: #9BA0A6;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.input-group:has(.course-name-input[name$="ddlLecturer"]) {
+    position: relative;
+}
+
+    .input-group:has(.course-name-input[name$="ddlLecturer"]) label {
+        margin-bottom: 10px;
+    }
+
+/* --- Student Section (RE-CENTERED) --- */
 .student-section {
+    margin-top: 20px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
+    max-width: 700px; /* MATCHED NEW INPUT MAX-WIDTH */
+    text-align: center;
+    margin-left: auto; /* Center the block */
+    margin-right: auto; /* Center the block */
 }
 
     .student-section label {
-        color: white;
-        font-size: 20px;
-        font-weight: 600;
-        letter-spacing: 1px;
+        font-size: 24px;
+        color: #9BA0A6;
+        margin-bottom: 20px;
+        display: block;
+        letter-spacing: 1.2px;
     }
 
-/* GRAY PANEL */
-.student-panel {
-    width: 500px;
-    height: 143px;
-    background: rgba(69, 80, 102, 0.7);
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* BUTTON ROW */
 .student-buttons {
     display: flex;
-    gap: 30px;
-    width: 100%;
     justify-content: center;
+    gap: 20px;
 }
 
-/* BUTTON WRAPPER */
-.student-btn-wrapper {
-    position: relative;
-    width: 235px;
-    height: 127px;
-    display: inline-block;
-}
-
+/* --- Student Buttons --- */
 .student-btn {
-    width: 100%;
-    height: 100%;
-    background: #9BA0A6;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 180px;
+    height: 150px;
+    background-color: #303F54;
+    border: 2px solid #5A6D88;
+    border-radius: 10px;
+    color: #ffffff;
     text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    padding: 10px;
 }
 
-    .student-btn .btn-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
+    .student-btn:hover {
+        background-color: #405169;
+        border-color: #00BFFF;
+        transform: translateY(-2px);
     }
 
+/* --- Icon ABOVE text --- */
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
 .btn-icon {
-    width: 79px;
-    height: 79px;
-    margin-bottom: 10px;
+    width: 60px;
+    height: 60px;
+    filter: invert(100%);
 }
 
 .btn-text {
-    color: #1B263B;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
+    font-size: 24px;
+    margin-top: 8px;
 }
 
+/* --- DONE Button (CENTERED) --- */
 .done-btn {
-    width: 134px;
-    height: 55px;
-    background: #9BA0A6;
-    border: 2px solid #9BA0A6;
+    width: 180px;
+    height: 60px;
     border-radius: 10px;
-    color: #1B263B;
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 600;
-    letter-spacing: 1.6px;
+    letter-spacing: 1.8px;
     cursor: pointer;
-    margin-top: 50px;
     font-family: 'Teko', sans-serif;
     transition: all 0.25s ease-in-out;
+    text-transform: uppercase;
+    margin-top: 40px;
+    background: #00BFFF;
+    color: #1B263B;
+    border: 2px solid #00BFFF;
+    display: block; /* Required for margin auto to work */
+    margin-left: auto; /* Center the block */
+    margin-right: auto; /* Center the block */
 }
 
     .done-btn:hover {
-        background: transparent; /* button becomes see-through */
-        color: #9BA0A6; /* text takes the button color */
-        border: 4px solid #9BA0A6; /* keep border same color */
-        transform: translateY(-2px); /* subtle lift effect */
+        background: #00a0e0;
+        color: #ffffff;
+        border-color: #00a0e0;
+        transform: translateY(-2px);
     }
+
+/* --- Mobile Fixes --- */
+@media (max-width: 730px) {
+    .main {
+        padding: 20px 10px;
+    }
+
+    .content-panel {
+        padding: 25px;
+    }
+
+    .student-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .student-btn {
+        width: 100%;
+        height: 120px;
+    }
+}

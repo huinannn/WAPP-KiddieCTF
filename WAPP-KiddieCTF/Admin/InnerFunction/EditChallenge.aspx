@@ -32,7 +32,7 @@
       <div class="card">
         <!-- back button -->
         <button type="button" class="btn-back" onclick="window.location.href='../Challenges.aspx'">
-          <i class="fa-solid fa-arrow-left"></i> Back
+          <i class="fa-solid fa-arrow-left" style="color:#ffffff"></i> Back
         </button>
 
         <!-- form grid -->

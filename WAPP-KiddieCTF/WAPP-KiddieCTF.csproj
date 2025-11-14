@@ -171,6 +171,7 @@
     <Content Include="Admin\images\search.png" />
     <Content Include="Admin\images\viewStudent.png" />
     <Content Include="Admin\InnerFunction\AddChallenge.aspx" />
+    <Content Include="Admin\InnerFunction\AddNewCourse.aspx" />
     <Content Include="Admin\InnerFunction\AddTools.aspx" />
     <Content Include="Admin\InnerFunction\ChallengeDetails.aspx" />
     <Content Include="Admin\InnerFunction\EditChallenge.aspx" />
@@ -394,6 +395,13 @@
     </Compile>
     <Compile Include="Admin\InnerFunction\AddChallenge.aspx.designer.cs">
       <DependentUpon>AddChallenge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddNewCourse.aspx.cs">
+      <DependentUpon>AddNewCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AddNewCourse.aspx.designer.cs">
+      <DependentUpon>AddNewCourse.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\InnerFunction\AddTools.aspx.cs">
       <DependentUpon>AddTools.aspx</DependentUpon>

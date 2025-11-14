@@ -4,20 +4,26 @@
     font-family: 'Teko', sans-serif;
 }
 
-.main {
-    flex-grow: 1;
-    padding: 20px 40px 20px 20px;
-    margin-left: 250px;
-    width: calc(100% - 250px);
-    min-height: 100vh;
-    box-sizing: border-box;
+.content-wrapper {
+    width: 1060px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center main content wrapper */
+    gap: 16px;
+    box-sizing: border-box;
 }
 
-form {
-    width: 100%;
+.main {
+    margin-left: 250px;
+    padding: 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background: #000;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* --- Page Title (CENTERED ABOVE BOX) --- */
@@ -30,13 +36,19 @@ form {
     letter-spacing: 3px;
     text-align: center; /* Center title */
     width: 100%;
-    : 40px;
+}
+
+.toolbar,
+.content-panel {
+    width: 100%;
+    max-width: 1060px;
+    box-sizing: border-box;
 }
 
 .toolbar {
     display: flex;
     gap: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     width: 1060px;
     justify-content: flex-start;
     align-items: center;
@@ -138,7 +150,6 @@ form {
 
 /* PANEL */
 .content-panel {
-    width: 1060px;
     min-height: 701px;
     border-radius: 20px;
     background: #1B263B;
@@ -149,10 +160,10 @@ form {
     overflow: hidden;
 }
 
-/* Updated Table Layout (removing Action column) */
+/* TABLE */
 .table-header, .table-row {
     display: grid;
-    grid-template-columns: 180px 300px 280px; /* Removed the last column for Action */
+    grid-template-columns: 180px 300px 280px 140px;
     gap: 20px;
     padding: 15px 20px;
     align-items: center;
@@ -188,10 +199,9 @@ form {
         padding-left: 30px;
     }
 
-    .table-header .col-status, .table-row .col-status {
+    .table-header .col-action, .table-row .col-action {
         text-align: center;
     }
-
 
 /* STATUS BADGE */
 .status {
@@ -202,7 +212,7 @@ form {
     text-transform: uppercase;
 }
 
-    .status.pending {
+    .status.no-submission {
         color: #FF6B6B;
     }
 
@@ -237,7 +247,6 @@ form {
         background: #b0b5bc;
     }
 
-    /* Admin disables review button */
     .review-btn.disabled-alert {
         background: #555;
         color: #ccc;
@@ -265,10 +274,24 @@ form {
         border-radius: 4px;
     }
 
+.table-header .col-status,
+.table-row .col-status {
+    text-align: center;
+}
+
+.table-header .col-action,
+.table-row .col-action {
+    text-align: center;
+}
+
 .no-data {
     text-align: center;
     color: #777;
     font-size: 20px;
     padding: 40px;
     font-style: italic;
+}
+
+html, body {
+    overflow-x: hidden;
 }

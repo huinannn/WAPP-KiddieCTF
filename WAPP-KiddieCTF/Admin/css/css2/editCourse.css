@@ -318,3 +318,56 @@ form {
         height: 120px;
     }
 }
+
+/* Custom Styles for SweetAlert2 Popup */
+.swal2-popup {
+    border-radius: 10px; /* Rounded corners */
+    padding: 30px; /* Extra padding for space */
+    width: 80%; /* Adjust width of popup */
+    max-width: 600px; /* Limit the max width */
+    background: #1B263B; /* Dark background */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+}
+
+.swal2-title {
+    font-size: 24px; /* Larger font size for title */
+    font-weight: bold;
+    color: #fff; /* White text for title */
+    margin-bottom: 20px;
+}
+
+.swal2-text {
+    font-size: 16px; /* Standard text size */
+    color: #fff; /* White text for description */
+    margin-bottom: 20px;
+}
+
+.swal2-confirm {
+    background-color: #d33; /* Red color for the confirm button */
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .swal2-confirm:hover {
+        background-color: #c23616; /* Slightly darker red on hover */
+    }
+
+.swal2-cancel {
+    background-color: #3085d6; /* Blue color for cancel button */
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .swal2-cancel:hover {
+        background-color: #2a74b1; /* Slightly darker blue on hover */
+    }

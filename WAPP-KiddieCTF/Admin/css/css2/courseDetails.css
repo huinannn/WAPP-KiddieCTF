@@ -1,56 +1,56 @@
-﻿body {
+﻿/* --- GLOBAL STYLES --- */
+body {
     background: #000;
-    margin: 0;
+    margin: 0; /* Ensure no default body margin causes issues */
     font-family: 'Teko', sans-serif;
 }
 
-/* --- MAIN Content Container --- */
+/* --- MAIN Content Container (Responsive to Sidebar) --- */
 .main {
     margin-left: 250px;
-    padding: 40px;
+    padding: 40px 20px; /* Reduced side padding for responsiveness */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* align-items: center; is correct for centering the content-panel */
+    /* This centers the content-panel horizontally */
     align-items: center;
     background: #111827;
     position: relative;
-    /* Add width: calc(100% - 250px) to ensure the main content stretches across the available space */
-    width: calc(100% - 250px);
-    box-sizing: border-box; /* Include padding/border in the width */
+    /* CRITICAL FIX: Ensures it only fills the space remaining after the fixed 250px sidebar. */
+    width: calc(100vw - 250px);
+    box-sizing: border-box; /* Include padding in the width/height calculation */
 }
 
-/* --- Page Title (REVISED for CENTERING) --- */
+/* --- Page Title (REVISED for CENTERING & RESPONSIVENESS) --- */
 .page-title {
-    font-size: 50px;
+    font-size: clamp(30px, 5vw, 50px); /* Responsive font size */
     font-weight: 600;
     letter-spacing: 2.5px;
     color: #fff;
     margin-bottom: 20px;
-    /* REMOVE align-self: flex-start; to allow centering */
-    /* REMOVE margin-left: 40px; */
-    /* NEW RULES for Centering the Title block */
-    width: 100%; /* Important: Make it span the width of its parent (.main) */
-    text-align: center; /* This centers the text inside the h1 element */
-    /* If you still need some horizontal margin for spacing, use margin: 0 auto; on a max-width container,
-       but for a full-width centered text title, these rules are sufficient. */
+    width: 100%; /* Make it span the width of its parent (.main) */
+    text-align: center; /* Centers the text inside the element */
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-/* BIG PANEL */
+/* --- BIG PANEL (CONTENT-PANEL) --- */
 .content-panel {
-    /* ... keep existing styles for content-panel ... */
-    width: 1060px;
+    /* **RESPONSIVE CHANGE**: Use max-width instead of fixed width */
+    width: 95%; /* Make it take up most of the available space */
+    max-width: 1060px; /* Prevents it from getting too wide on huge screens */
     min-height: 766px;
     border-radius: 20px;
     background: #1B263B;
-    padding: 40px;
+    padding: clamp(20px, 4vw, 40px); /* Responsive padding */
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: clamp(20px, 4vw, 40px);
+    box-sizing: border-box;
 }
 
-/* The rest of your CSS remains unchanged */
+/* --- Back Button --- */
 .back-btn {
     position: absolute;
     top: 20px;
@@ -66,36 +66,35 @@
         height: 47px;
     }
 
+/* --- Form Container --- */
 .form-container {
-    width: 100%;
+    width: 100%; /* Important for responsiveness */
     max-width: 935px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: clamp(20px, 4vw, 40px);
     margin-top: 60px; /* push content down to avoid overlapping */
 }
 
-
-/* BIG PANEL */
-.content-panel {
-    width: 1060px;
-    min-height: 766px;
-    border-radius: 20px;
-    background: #1B263B;
-    padding: 40px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
+/* --- Section Styling --- */
 .section {
     background: rgba(69.17, 80.37, 101.75, 0.70);
     border-radius: 10px;
     padding: 30px;
     padding-bottom: 70px;
     position: relative;
+    width: 100%; /* Ensure sections fill the content-panel width */
+}
+
+.chapters-section {
+    flex: 1.2;
+    margin-bottom: 40px;
+}
+
+.assignment-section {
+    flex: 0.9;
+    min-height: 320px;
 }
 
 .section-header {
@@ -107,12 +106,13 @@
 
     .section-header h2 {
         color: white;
-        font-size: 30px;
+        font-size: clamp(24px, 3vw, 30px); /* Responsive font size */
         font-weight: 700;
         letter-spacing: 1.5px;
         margin: 0;
     }
 
+/* --- Edit Button --- */
 .edit-btn {
     width: 113px;
     height: 47px;
@@ -135,6 +135,7 @@
         margin-left: 8px;
     }
 
+/* --- List and Details Content --- */
 .chapter-list {
     color: white;
     font-size: 20px;
@@ -146,7 +147,6 @@
     overflow-y: auto;
 }
 
-
 .assignment-details {
     color: white;
     font-size: 20px;
@@ -156,17 +156,18 @@
     margin-bottom: 20px;
 }
 
-    .chapter-list em, .assignment-details em {
+    .chapter-list em,
+    .assignment-details em {
         color: #777;
     }
 
-
+/* --- Action Buttons --- */
 .action-buttons {
     position: absolute;
     bottom: 20px;
-    right: 30px;
+    right: 20px; /* Adjusted right position for smaller screens */
     display: flex;
-    gap: 20px;
+    gap: 15px; /* Adjusted gap */
     justify-content: flex-end;
 }
 
@@ -181,8 +182,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 20px;
-    font-size: 18px;
+    padding: 0 clamp(10px, 2vw, 20px); /* Responsive padding */
+    font-size: clamp(16px, 2vw, 18px); /* Responsive font size */
+    box-sizing: border-box;
 }
 
 .add-btn {
@@ -207,12 +209,29 @@
     width: 215px;
 }
 
-.chapters-section {
-    flex: 1.2;
-    margin-bottom: 40px;
-}
+/* --- Media Query for Mobile/Tablet Layout (Optional but recommended) --- */
+@media (max-width: 768px) {
+    /* If the sidebar is hidden/collapsed on small screens, adjust .main */
+    /* .main {
+        margin-left: 0;
+        width: 100vw;
+    } */
 
-.assignment-section {
-    flex: 0.9;
-    min-height: 320px;
+    .action-buttons {
+        /* Stack buttons vertically if needed, or reduce space */
+        flex-direction: column;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 10px;
+        gap: 10px;
+    }
+
+    .add-btn, .view-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .section {
+        padding-bottom: 120px; /* Increased padding to account for stacked buttons */
+    }
 }

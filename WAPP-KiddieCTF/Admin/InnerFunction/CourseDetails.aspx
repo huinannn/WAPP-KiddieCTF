@@ -27,7 +27,7 @@
         </div>
 
         <!-- MAIN CONTENT -->
-        <div class="main">
+        <div class="main" >
             <h1 class="page-title" style="text-align: center;">
                 <asp:Label ID="lblCourseName" runat="server" Text="Course Name (Course Code)"></asp:Label>
             </h1>
@@ -134,6 +134,9 @@
                 }
             }
         });
+
+
+
     </script>
 
 </body>

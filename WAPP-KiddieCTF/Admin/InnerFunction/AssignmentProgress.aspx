@@ -45,7 +45,7 @@
                                              AutoPostBack="true"
                                              OnTextChanged="txtSearch_TextChanged">
                                 </asp:TextBox>
-                                <label class="placeholder-label">Search Student ID/Student Name</label>
+                                <label class="placeholder-label">Search Student</label>
                             </div>
                         </ContentTemplate>
                         <Triggers>

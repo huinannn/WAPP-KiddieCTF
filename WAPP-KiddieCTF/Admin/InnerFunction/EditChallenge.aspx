@@ -13,6 +13,12 @@
     <!-- Sidebar + Page CSS -->
     <link href="../css/sidebar.css" rel="stylesheet" />
     <link href="../css/css2/editChallenge.css" rel="stylesheet" />
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <form id="form1" runat="server">
@@ -86,7 +92,7 @@
         <div class="actions">
           <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-muted" Text="DELETE"
                       OnClick="btnDelete_Click"
-                      OnClientClick="return confirm('Delete this challenge?');" />
+                      OnClientClick="return showDeleteConfirm();" />
           <span class="flex-spacer"></span>
           <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" Text="DONE" OnClick="btnSave_Click" />
         </div>
@@ -126,49 +132,29 @@
               fileStatus.classList.remove('file-chosen');
           }
       }
+
+      // SweetAlert2 delete confirmation
+      function showDeleteConfirm() {
+          event.preventDefault(); // Prevent default behavior of button click
+
+          Swal.fire({
+              title: 'Are you sure?',
+              text: 'Do you want to delete this challenge?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!',
+              cancelButtonText: 'No, cancel'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  // Proceed with the delete operation by submitting the form
+                  __doPostBack('<%= btnDelete.ClientID %>', ''); // Trigger the server-side button click
+              }
+          });
+          return false; // To prevent default form submission
+      }
   </script>
 </form>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // we are in /Admin/InnerFunction/*
-            // 1) fix sidebar nav links so they point back to /Admin/*.aspx
-            const navLinks = document.querySelectorAll(".sidebar .nav a");
-
-            navLinks.forEach(function (link) {
-                const href = link.getAttribute("href");
-                if (!href) return;
-
-                // skip absolute paths or full urls
-                if (href.startsWith("/") || href.startsWith("http")) return;
-
-                // if it already starts with ../ then it's already fixed
-                if (href.startsWith("../")) return;
-
-                // otherwise, prepend ../
-                link.setAttribute("href", "../" + href);
-            });
-
-            // 2) force "Challenges" to be active on challenge inner pages
-            //    (addchallenge, editchallenge, challengedetails, etc.)
-            const path = window.location.pathname.toLowerCase();
-            const isChallengeInner =
-                path.includes("addchallenge") ||
-                path.includes("editchallenge") ||
-                path.includes("challengedetails");
-
-            if (isChallengeInner) {
-                // remove active from all first
-                document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
-
-                // find the Challenges link — after we rewrote it above it should contain "Challenges.aspx"
-                const challengesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
-                    .find(a => (a.getAttribute("href") || "").toLowerCase().includes("challenges.aspx"));
-
-                if (challengesLink) {
-                    challengesLink.classList.add("active");
-                }
-            }
-        });
-    </script>
 </body>
 </html>

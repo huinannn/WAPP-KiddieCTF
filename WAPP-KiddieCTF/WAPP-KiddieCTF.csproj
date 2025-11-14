@@ -166,6 +166,7 @@
     <Content Include="Admin\InnerFunction\AddChallenge.aspx" />
     <Content Include="Admin\InnerFunction\AddNewCourse.aspx" />
     <Content Include="Admin\InnerFunction\AddTools.aspx" />
+    <Content Include="Admin\InnerFunction\AssignmentProgress.aspx" />
     <Content Include="Admin\InnerFunction\ChallengeDetails.aspx" />
     <Content Include="Admin\InnerFunction\ChapterProgress.aspx" />
     <Content Include="Admin\InnerFunction\CourseDetails.aspx" />
@@ -403,6 +404,13 @@
     </Compile>
     <Compile Include="Admin\InnerFunction\AddTools.aspx.designer.cs">
       <DependentUpon>AddTools.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AssignmentProgress.aspx.cs">
+      <DependentUpon>AssignmentProgress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\InnerFunction\AssignmentProgress.aspx.designer.cs">
+      <DependentUpon>AssignmentProgress.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\InnerFunction\ChallengeDetails.aspx.cs">
       <DependentUpon>ChallengeDetails.aspx</DependentUpon>

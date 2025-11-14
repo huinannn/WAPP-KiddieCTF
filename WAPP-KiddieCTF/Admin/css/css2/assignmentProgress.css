@@ -140,10 +140,10 @@
     overflow: hidden;
 }
 
-/* TABLE */
+/* Updated Table Layout (removing Action column) */
 .table-header, .table-row {
     display: grid;
-    grid-template-columns: 180px 300px 280px 140px;
+    grid-template-columns: 180px 300px 280px; /* Removed the last column for Action */
     gap: 20px;
     padding: 15px 20px;
     align-items: center;
@@ -179,9 +179,10 @@
         padding-left: 30px;
     }
 
-    .table-header .col-action, .table-row .col-action {
+    .table-header .col-status, .table-row .col-status {
         text-align: center;
     }
+
 
 /* STATUS BADGE */
 .status {
@@ -227,6 +228,7 @@
         background: #b0b5bc;
     }
 
+    /* Admin disables review button */
     .review-btn.disabled-alert {
         background: #555;
         color: #ccc;
@@ -253,16 +255,6 @@
         background: #5D6B88;
         border-radius: 4px;
     }
-
-.table-header .col-status,
-.table-row .col-status {
-    text-align: center;
-}
-
-.table-header .col-action,
-.table-row .col-action {
-    text-align: center;
-}
 
 .no-data {
     text-align: center;

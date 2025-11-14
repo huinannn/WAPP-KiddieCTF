@@ -55,35 +55,6 @@
                     </div>
                 </div>
 
-                <!-- STUDENT BUTTONS -->
-                <div class="student-section">
-                    <label>Student Enrolled</label>
-
-                    <div class="student-buttons">
-
-                        <div class="student-btn-wrapper">
-                            <asp:LinkButton ID="btnAddStudents" runat="server"
-                                CssClass="student-btn" OnClick="btnAddStudents_Click">
-                                <div class="btn-content">
-                                    <img src="../images/addStudent.png" class="btn-icon" />
-                                    <span class="btn-text">Add Students</span>
-                                </div>
-                            </asp:LinkButton>
-                        </div>
-
-                        <div class="student-btn-wrapper">
-                            <asp:LinkButton ID="btnViewStudents" runat="server"
-                                CssClass="student-btn" OnClick="btnViewStudents_Click">
-                                <div class="btn-content">
-                                    <img src="../images/viewStudent.png" class="btn-icon" />
-                                    <span class="btn-text">View Students</span>
-                                </div>
-                            </asp:LinkButton>
-                        </div>
-
-                    </div>
-                </div>
-
                 <!-- ACTION BUTTONS -->
                 <div class="action-buttons">
                     <asp:Button ID="btnDelete" runat="server" Text="DELETE"
@@ -118,6 +89,7 @@
             });
             return false;
         }
+
         document.addEventListener("DOMContentLoaded", function () {
             // we are in /Admin/InnerFunction/*
 
@@ -139,19 +111,12 @@
             });
 
             // 2) force the correct link to be active on inner pages
-
-            // Determine if this is a Course inner page (EditCourse, AddCourse, etc.)
             const path = window.location.pathname.toLowerCase();
-            const isCourseInner = path.includes("editcourse") || path.includes("addcourse");
-
-            // Add other course-related inner pages if needed:
-            // || path.includes("addstudents") || path.includes("viewstudents"); 
+            const isCourseInner = path.includes("editcourse") || path.includes("addnewcourse");
 
             if (isCourseInner) {
-                // remove active from all first
                 document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
 
-                // find the Courses link (should contain "Courses.aspx")
                 const coursesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
                     .find(a => (a.getAttribute("href") || "").toLowerCase().includes("courses.aspx"));
 
@@ -160,17 +125,12 @@
                 }
             }
 
-            // Keep the original Challenges logic for other Challenge inner pages (if they use this script)
             const isChallengeInner =
                 path.includes("addchallenge") ||
                 path.includes("editchallenge") ||
                 path.includes("challengedetails");
 
             if (isChallengeInner) {
-                // remove active from all first (already done above, but safe to repeat if you only use this section)
-                // document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
-
-                // find the Challenges link
                 const challengesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
                     .find(a => (a.getAttribute("href") || "").toLowerCase().includes("challenges.aspx"));
 
@@ -180,7 +140,5 @@
             }
         });
     </script>
-   
-
 </body>
 </html>

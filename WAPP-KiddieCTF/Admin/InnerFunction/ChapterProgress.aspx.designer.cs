@@ -11,7 +11,7 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 {
 
 
-    public partial class StudentList
+    public partial class ChapterProgress
     {
 
         /// <summary>
@@ -60,21 +60,30 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// UpdatePanelStudents control.
+        /// UpdatePanelProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelStudents;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelProgress;
 
         /// <summary>
-        /// StudentRepeater control.
+        /// rptProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater StudentRepeater;
+        protected global::System.Web.UI.WebControls.Repeater rptProgress;
+
+        /// <summary>
+        /// litNoData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNoData;
     }
 }

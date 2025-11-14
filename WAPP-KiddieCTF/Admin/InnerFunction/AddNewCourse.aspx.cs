@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WAPP_KiddieCTF.Admin.InnerFunction
 {
@@ -14,7 +12,7 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             if (!IsPostBack)
             {
                 GenerateNextCourseID(); // Generate new Course ID upon page load
-                LoadLecturers(); // Load lecturers into the dropdown list
+                LoadLecturers();        // Load lecturers into the dropdown list
             }
         }
 
@@ -45,7 +43,7 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
                 ddlLecturer.DataTextField = "Lecturer_Name";
                 ddlLecturer.DataValueField = "Lecturer_ID";
                 ddlLecturer.DataBind();
-                ddlLecturer.Items.Insert(0, new ListItem("Select Lecturer", ""));
+                ddlLecturer.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Select Lecturer", ""));
             }
         }
 
@@ -75,8 +73,8 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             {
                 conn.Open();
 
-                // Insert the course
-                string insertCourse = "INSERT INTO Course (Course_ID, Course_Name, Lecturer_ID) VALUES (@ID, @Name, @Lecturer)";
+                string insertCourse = "INSERT INTO Course (Course_ID, Course_Name, Lecturer_ID) " +
+                                      "VALUES (@ID, @Name, @Lecturer)";
                 SqlCommand cmd = new SqlCommand(insertCourse, conn);
                 cmd.Parameters.AddWithValue("@ID", courseId);
                 cmd.Parameters.AddWithValue("@Name", courseName);
@@ -86,29 +84,8 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
             // Success message
             ScriptManager.RegisterStartupScript(this, GetType(), "Success",
-                "Swal.fire({ icon: 'success', title: 'Course created successfully!', showConfirmButton:false, timer:1500 }).then(()=>{window.location='../Courses.aspx';});", true);
-        }
-
-        protected void btnAddStudents_Click(object sender, EventArgs e)
-        {
-            string courseId = lblCourseID.Text.Trim();
-            string courseName = txtCourseName.Text.Trim();
-
-            if (string.IsNullOrEmpty(courseName))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "MissingCourse",
-                    "Swal.fire({ icon: 'error', title: 'Please enter the course name first!', confirmButtonColor: '#3085d6' });", true);
-                return;
-            }
-
-            // Redirect to AddStudent.aspx to add students to the course
-            Response.Redirect("AddStudent.aspx?course=" + lblCourseID.Text);
-        }
-
-        protected void btnViewStudents_Click(object sender, EventArgs e)
-        {
-            // Redirect to view the list of students assigned to the course
-            Response.Redirect($"StudentList.aspx?course={lblCourseID.Text}");
+                "Swal.fire({ icon: 'success', title: 'Course created successfully!', showConfirmButton:false, timer:1500 }).then(()=>{window.location='../Courses.aspx';});",
+                true);
         }
     }
 }

@@ -42,7 +42,10 @@
                     </button>
 
                     <!-- Course ID (Auto) -->
-                    <div class="course-id-label">Course ID: <asp:Label ID="lblCourseID" runat="server" Text=""></asp:Label></div>
+                    <div class="course-id-label">
+                        Course ID: 
+                        <asp:Label ID="lblCourseID" runat="server" Text=""></asp:Label>
+                    </div>
 
                     <!-- Course Name Input -->
                     <div class="input-group">
@@ -58,37 +61,6 @@
                         <label>Assign Lecturer</label>
                         <asp:DropDownList ID="ddlLecturer" runat="server" CssClass="course-name-input">
                         </asp:DropDownList>
-                    </div>
-
-                    <!-- Student Enrolled Section -->
-                    <div class="student-section">
-                        <label>Student Enrolled</label>
-
-                        <div class="student-panel">
-                            <div class="student-buttons">
-
-                                <!-- ADD STUDENTS -->
-                                <div class="student-btn-wrapper">
-                                    <asp:LinkButton ID="btnAddStudents" runat="server" CssClass="student-btn" OnClick="btnAddStudents_Click">
-                                        <div class="btn-content">
-                                            <img src="../images/addStudent.png" alt="Add" class="btn-icon" />
-                                            <span class="btn-text">Add Students</span>
-                                        </div>
-                                    </asp:LinkButton>
-                                </div>
-
-                                <!-- VIEW STUDENTS -->
-                                <div class="student-btn-wrapper">
-                                    <asp:LinkButton ID="btnViewStudents" runat="server" CssClass="student-btn" OnClick="btnViewStudents_Click">
-                                        <div class="btn-content">
-                                            <img src="../images/viewStudent.png" alt="View" class="btn-icon" />
-                                            <span class="btn-text">View Students</span>
-                                        </div>
-                                    </asp:LinkButton>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
 
                     <!-- DONE Button -->
@@ -121,18 +93,12 @@
 
             // 2) force the correct link to be active on inner pages
 
-            // Determine if this is a Course inner page (EditCourse, AddCourse, etc.)
             const path = window.location.pathname.toLowerCase();
             const isCourseInner = path.includes("editcourse") || path.includes("addnewcourse");
 
-            // Add other course-related inner pages if needed:
-            // || path.includes("addstudents") || path.includes("viewstudents"); 
-
             if (isCourseInner) {
-                // remove active from all first
                 document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
 
-                // find the Courses link (should contain "Courses.aspx")
                 const coursesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
                     .find(a => (a.getAttribute("href") || "").toLowerCase().includes("courses.aspx"));
 
@@ -141,17 +107,12 @@
                 }
             }
 
-            // Keep the original Challenges logic for other Challenge inner pages (if they use this script)
             const isChallengeInner =
                 path.includes("addchallenge") ||
                 path.includes("editchallenge") ||
                 path.includes("challengedetails");
 
             if (isChallengeInner) {
-                // remove active from all first (already done above, but safe to repeat if you only use this section)
-                // document.querySelectorAll(".sidebar .nav a").forEach(a => a.classList.remove("active"));
-
-                // find the Challenges link
                 const challengesLink = Array.from(document.querySelectorAll(".sidebar .nav a"))
                     .find(a => (a.getAttribute("href") || "").toLowerCase().includes("challenges.aspx"));
 

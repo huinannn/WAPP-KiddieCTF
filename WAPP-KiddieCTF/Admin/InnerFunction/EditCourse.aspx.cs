@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 
@@ -144,16 +143,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
             ScriptManager.RegisterStartupScript(this, GetType(), "Deleted",
                 "Swal.fire({ icon:'success', title:'Course deleted!', timer:1500, showConfirmButton:false })" +
                 ".then(()=>{ window.location='../Courses.aspx'; });", true);
-        }
-
-        protected void btnAddStudents_Click(object sender, EventArgs e)
-        {
-            Response.Redirect($"AddStudent.aspx?course={lblCourseID.Text}&from=edit");
-        }
-
-        protected void btnViewStudents_Click(object sender, EventArgs e)
-        {
-            Response.Redirect($"StudentList.aspx?course={lblCourseID.Text}");
         }
     }
 }

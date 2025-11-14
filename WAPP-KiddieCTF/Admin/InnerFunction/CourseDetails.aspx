@@ -46,7 +46,7 @@
                                 <h2>Course Information</h2>
                             </div>
                             <div class="course-info" style="color:#fff">
-                                <strong >Assigned Lecturer: </strong>
+                                <strong>Assigned Lecturer: </strong>
                                 <asp:Label ID="lblAssignedLecturer" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
@@ -60,20 +60,19 @@
                                 <asp:Repeater ID="rptChapters" runat="server">
                                     <ItemTemplate>
                                         <div class="chapter-item">
-                                            <a href='<%# "EditChapter.aspx?chapterid=" + Eval("Chapter_ID") + "&Course_ID=" + Request.QueryString["Course_ID"] %>' class="chapter-link">
+                                            <span class="chapter-link">
                                                 <%# Eval("Chapter_Name") %>
-                                            </a>
+                                            </span>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
                                 <asp:Literal ID="litNoChapters" runat="server" Text="<em>No chapters added yet.</em>" Visible="false"></asp:Literal>
                             </div>
                             <div class="action-buttons">
-                                <asp:Button ID="btnAddChapter" runat="server" 
-                                            Text="Add Chapter" 
-                                            CssClass="action-btn add-btn" 
-                                            OnClick="btnAddChapter_Click" />
-                                <asp:Button ID="btnViewProgress" runat="server" Text="View Students Progress" CssClass="action-btn view-btn" OnClick="btnViewProgress_Click" />
+                                <asp:Button ID="btnViewProgress" runat="server" 
+                                            Text="View Students Progress" 
+                                            CssClass="action-btn view-btn" 
+                                            OnClick="btnViewProgress_Click" />
                             </div>
                         </div>
 
@@ -85,17 +84,20 @@
                             <div class="assignment-details">
                                 <asp:Repeater ID="rptAssignment" runat="server">
                                     <ItemTemplate>
-                                        <a href='<%# "EditAssignment.aspx?faid=" + Eval("FA_ID") + "&Course_ID=" + Request.QueryString["Course_ID"] %>' 
-                                           class="assignment-link">
-                                            <%# Eval("FA_Name") %>
-                                        </a>
+                                        <div class="assignment-item">
+                                            <span class="assignment-link">
+                                                <%# Eval("FA_Name") %>
+                                            </span>
+                                        </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
                                 <asp:Literal ID="litNoAssignment" runat="server" Text="<em>No final assignment added.</em>" Visible="false"></asp:Literal>
                             </div>
                             <div class="action-buttons">
-                                <asp:Button ID="btnAddAssignment" runat="server" Text="Add Assignment" CssClass="action-btn add-btn" OnClick="btnAddAssignment_Click" />
-                                <asp:Button ID="btnViewAssignProgress" runat="server" Text="View Students Progress" CssClass="action-btn view-btn" OnClick="btnViewAssignProgress_Click" />
+                                <asp:Button ID="btnViewAssignProgress" runat="server" 
+                                            Text="View Students Progress" 
+                                            CssClass="action-btn view-btn" 
+                                            OnClick="btnViewAssignProgress_Click" />
                             </div>
                         </div>
                     </ContentTemplate>
@@ -103,6 +105,7 @@
             </div>
         </div>
     </form>
+
     <script>
         // Navigation Script to highlight active link (for Course Details)
         document.addEventListener("DOMContentLoaded", function () {
@@ -117,10 +120,7 @@
             // Highlight the active link for Course Details
             const courseDetailsLink = document.querySelector('.sidebar .nav a[href*="CourseDetails.aspx"]');
             if (courseDetailsLink) {
-                // Remove active class from all links
                 document.querySelectorAll('.sidebar .nav a').forEach(a => a.classList.remove('active'));
-
-                // Add active class to the current CourseDetails link
                 courseDetailsLink.classList.add('active');
             }
         });
@@ -128,4 +128,3 @@
 
 </body>
 </html>
-

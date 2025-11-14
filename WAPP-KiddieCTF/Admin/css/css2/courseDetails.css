@@ -146,16 +146,6 @@
     overflow-y: auto;
 }
 
-.chapter-link {
-    color: white;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-    .chapter-link:hover {
-        color: #007bff;
-        text-decoration: underline;
-    }
 
 .assignment-details {
     color: white;
@@ -170,21 +160,6 @@
         color: #777;
     }
 
-.assignment-link {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    display: block;
-    margin: 8px 0;
-    transition: color 0.2s ease;
-}
-
-    .assignment-link:hover {
-        color: #007bff;
-        text-decoration: underline;
-    }
 
 .action-buttons {
     position: absolute;

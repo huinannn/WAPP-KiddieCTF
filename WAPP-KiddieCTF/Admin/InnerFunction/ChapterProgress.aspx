@@ -1,21 +1,22 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentList.aspx.cs" Inherits="WAPP_KiddieCTF.Admin.InnerFunction.StudentList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChapterProgress.aspx.cs" Inherits="WAPP_KiddieCTF.Admin.InnerFunction.ChapterProgress" %>
 <%@ Register Src="~/Admin/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Kiddie CTF - Student List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiddie CTF - Chapter Progress</title>
 
-    <!-- Reusable Sidebar CSS -->
+    <!-- Reusable Sidebar CSS (Admin) -->
     <link href="../css/sidebar.css" rel="stylesheet" runat="server" />
 
-    <!-- Student List Page CSS -->
-    <link href="../css/css2/studentList.css" rel="stylesheet" runat="server" />
+    <!-- Chapter Progress Page CSS (Admin) -->
+    <link href="../css/css2/chapterProgress.css" rel="stylesheet" runat="server" />
 
     <!-- Google Font: Teko -->
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -24,20 +25,19 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-        <!-- === SIDEBAR === -->
+        <!-- SIDEBAR (Admin Version with UC) -->
         <div class="sidebar">
             <uc:SideBar ID="SidebarControl" runat="server" />
         </div>
 
-        <!-- === MAIN CONTENT === -->
-        <div class="main"">
-            <h1 class="page-title">Student List</h1>
+        <!-- MAIN -->
+        <div class="main">
+            <h1 class="page-title">Chapter Progress</h1>
             <div class="content-wrapper">
 
-                <!-- TOOLBAR (Back + Search + Filter + Add) -->
+                <!-- TOOLBAR -->
                 <div class="toolbar">
-                    <!-- BACK BUTTON -->
-                   <button type="button" class="back-btn" onclick="goBack();">
+                    <button type="button" class="back-btn" onclick="history.back()">
                         <img src="../images/back_icon2.png" alt="Back" />
                     </button>
 
@@ -45,12 +45,12 @@
                         <ContentTemplate>
                             <div class="search-box">
                                 <img src="../images/search.png" alt="" />
-                                <asp:TextBox ID="txtSearch" runat="server" 
-                                             CssClass="search-input" 
-                                             AutoPostBack="true" 
+                                <asp:TextBox ID="txtSearch" runat="server"
+                                             CssClass="search-input"
+                                             AutoPostBack="true"
                                              OnTextChanged="txtSearch_TextChanged">
                                 </asp:TextBox>
-                                <label class="placeholder-label">Search Student Name</label>
+                                <label class="placeholder-label">Search Student ID / Student Name</label>
                             </div>
                         </ContentTemplate>
                         <Triggers>
@@ -59,52 +59,44 @@
                     </asp:UpdatePanel>
                 </div>
 
-                <!-- STUDENT TABLE -->
-                <asp:UpdatePanel ID="UpdatePanelStudents" runat="server" UpdateMode="Conditional">
+                <!-- TABLE PANEL -->
+                <asp:UpdatePanel ID="UpdatePanelProgress" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <!-- CONTENT PANEL -->
                         <div class="content-panel">
-                            <!-- TABLE HEADER -->
                             <div class="table-header">
                                 <div class="col-id">Student ID</div>
                                 <div class="col-name">Student Name</div>
-                                <div class="col-intake">Student Intake Code</div>
-                                <div class="col-action">Action</div>
+                                <div class="col-progress">Total Chapters Completed</div>
                             </div>
 
-                            <!-- TABLE BODY (SCROLLABLE) -->
                             <div class="table-body">
-                                <asp:Repeater ID="StudentRepeater" runat="server">
+                                <asp:Repeater ID="rptProgress" runat="server">
                                     <ItemTemplate>
                                         <div class="table-row">
                                             <div class="col-id"><%# Eval("Student_ID") %></div>
                                             <div class="col-name"><%# Eval("Student_Name") %></div>
-                                            <div class="col-intake"><%# Eval("Intake_Code") %></div>
-                                            <div class="col-action">
-                                                <asp:Button ID="btnRemove" runat="server" CssClass="remove-btn"
-                                                            Text="Remove"
-                                                            CommandArgument='<%# Eval("Student_ID") %>'
-                                                            UseSubmitBehavior="false"
-                                                            OnClientClick="return sweetRemoveConfirm(this);"
-                                                            OnClick="btnRemove_Click" />
-                                            </div>
+                                            <div class="col-progress"><%# Eval("Completed") %></div>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
+
+                                <asp:Literal ID="litNoData" runat="server"
+                                             Text="<div class='no-data'>No students enrolled or no progress recorded.</div>"
+                                             Visible="false"></asp:Literal>
                             </div>
                         </div>
                     </ContentTemplate>
+
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="txtSearch" EventName="TextChanged" />
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
         </div>
-
     </form>
 
-    <script>
-        // Sync placeholder behavior with server control
+    <script type="text/javascript">
+        // ====== Search placeholder handling ======
         function updatePlaceholder() {
             var txt = document.getElementById('<%= txtSearch.ClientID %>');
             var label = txt ? txt.parentNode.querySelector('.placeholder-label') : null;
@@ -137,50 +129,58 @@
             }
         }
 
+        // ====== Sidebar link fix for /Admin/InnerFunction/* + active "Courses" ======
+        function fixAdminInnerSidebar() {
+            const navLinks = document.querySelectorAll(".sidebar .nav a");
+            if (!navLinks || navLinks.length === 0) return;
+
+            // 1) Fix href to point back to /Admin/*.aspx from /Admin/InnerFunction/*
+            navLinks.forEach(function (link) {
+                const href = link.getAttribute("href");
+                if (!href) return;
+
+                // skip absolute paths or full urls
+                if (href.startsWith("/") || href.startsWith("http")) return;
+
+                // already "../"
+                if (href.startsWith("../")) return;
+
+                link.setAttribute("href", "../" + href);
+            });
+
+            // 2) Force "Courses" active on chapter-related inner pages
+            const path = window.location.pathname.toLowerCase();
+            const isCoursesInner =
+                path.includes("chapterprogress") ||
+                path.includes("addnewcourse") ||
+                path.includes("editcourse") ||
+                path.includes("studentlist") ||
+                path.includes("addstudent");
+
+            if (isCoursesInner) {
+                navLinks.forEach(function (link) {
+                    link.classList.remove("active");
+                });
+
+                const coursesLink = Array.from(navLinks).find(function (link) {
+                    const href = (link.getAttribute("href") || "").toLowerCase();
+                    return href.indexOf("courses.aspx") !== -1;
+                });
+
+                if (coursesLink) {
+                    coursesLink.classList.add("active");
+                }
+            }
+        }
+
         // Run once when page first loads
-        document.addEventListener("DOMContentLoaded", initPlaceholderEvents);
+        document.addEventListener("DOMContentLoaded", function () {
+            initPlaceholderEvents();
+            fixAdminInnerSidebar();
+        });
 
         // Run again after every partial postback (UpdatePanel)
         Sys.Application.add_load(initPlaceholderEvents);
-
-        function sweetRemoveConfirm(btn) {
-            Swal.fire({
-                title: "Remove Student?",
-                text: "This student will be removed from the course.",
-                icon: "warning",
-                background: "#1B263B",
-                color: "#fff",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#3085d6",
-                confirmButtonText: "Yes, remove"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    __doPostBack(btn.name, "");
-                }
-            });
-
-            return false;
-        }
-
-        function goBack() {
-            const params = new URLSearchParams(window.location.search);
-            const courseId = params.get("course");
-            const from = params.get("from");
-
-            if (from === "add") {
-                window.location = "AddNewCourse.aspx?course=" + courseId;
-                return;
-            }
-
-            if (from === "edit") {
-                window.location = "EditCourse.aspx?id=" + courseId;
-                return;
-            }
-
-            window.location = "../Courses.aspx";
-        }
-
     </script>
 
 </body>

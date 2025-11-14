@@ -88,7 +88,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
                 bool hasChapters = dt.Rows.Count > 0;
                 litNoChapters.Visible = !hasChapters;
-                btnAddChapter.Visible = true;
             }
         }
 
@@ -99,6 +98,7 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
                 string query = "SELECT FA_ID, FA_Name FROM Final_Assignment WHERE Course_ID = @CourseID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@CourseID", CurrentCourseID);
+
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
@@ -108,16 +108,6 @@ namespace WAPP_KiddieCTF.Admin.InnerFunction
 
                 litNoAssignment.Visible = dt.Rows.Count == 0;
             }
-        }
-
-        protected void btnAddChapter_Click(object sender, EventArgs e)
-        {
-            Response.Redirect($"AddChapter.aspx?Course_ID={CurrentCourseID}");
-        }
-
-        protected void btnAddAssignment_Click(object sender, EventArgs e)
-        {
-            Response.Redirect($"AddAssignment.aspx?Course_ID={CurrentCourseID}");
         }
 
         protected void btnViewProgress_Click(object sender, EventArgs e)

@@ -130,7 +130,7 @@
             <h2 style="color: white; margin-bottom: 20px;">Edit Tool</h2>
 
             <div class="row" style="padding: 10px;">
-                <div class="back">
+                <div class="back" style="cursor:pointer" onclick="window.location.href='Tools.aspx'">
                     <img src="../Images/icons/back.png" />
                     <div class="spacer"></div>
                 </div>

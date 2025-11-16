@@ -91,8 +91,8 @@ namespace WAPP_KiddieCTF.Student
                 }
 
                 string insertQuery = @"INSERT INTO Discussion 
-            (Discussion_ID, Discussion_Title, Discussion_Message, Discussion_Post, Student_ID)
-            VALUES (@DiscussionID, @Title, @Message, @Post, @StudentID)";
+                (Discussion_ID, Discussion_Title, Discussion_Message, Discussion_Post, Student_ID)
+                VALUES (@DiscussionID, @Title, @Message, @Post, @StudentID)";
 
                 SqlCommand cmd = new SqlCommand(insertQuery, con);
                 cmd.Parameters.AddWithValue("@DiscussionID", newDiscussionID);

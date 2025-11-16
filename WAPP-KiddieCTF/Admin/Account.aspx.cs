@@ -641,7 +641,7 @@ namespace WAPP_KiddieCTF.Admin
                             if (ddlStudentIntake.Items.FindByValue(intake) != null)
                                 ddlStudentIntake.SelectedValue = intake;
 
-                            lblStudentModalTitle.Text = "Edit New Student";
+                            lblStudentModalTitle.Text = "Edit Student";
                             btnSaveStudent.Text = "Edit";
 
                             pnlModal.Visible = true;
@@ -677,7 +677,7 @@ namespace WAPP_KiddieCTF.Admin
                             txtNewLecturerID.Enabled = false;
                             txtNewLecturerName.Text = dr["Lecturer_Name"].ToString();
 
-                            lblLecturerModalTitle.Text = "Edit New Lecturer";
+                            lblLecturerModalTitle.Text = "Edit Lecturer";
                             btnSaveLecturer.Text = "Edit";
 
                             pnlModal.Visible = true;
@@ -722,7 +722,7 @@ namespace WAPP_KiddieCTF.Admin
                             if (ddlIntakeYear.Items.FindByValue(year) != null)
                                 ddlIntakeYear.SelectedValue = year;
 
-                            lblIntakeModalTitle.Text = "Edit New Intake";
+                            lblIntakeModalTitle.Text = "Edit Intake";
                             btnSaveIntake.Text = "Edit";
 
                             pnlModal.Visible = true;
